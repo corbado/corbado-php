@@ -14,6 +14,7 @@ use Corbado\Generated\Model\ValidateEmailRsp;
 use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Generated\Model\ValidationEmail;
+use Corbado\Generated\Model\ValidationPhoneNumber;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -110,7 +111,7 @@ class Validation
         $data->setValidationCode($json['data']['validationCode']);
 
         if (array_key_exists('phoneNumber', $json['data'])) {
-            $phoneNumber = new PhoneNumber();
+            $phoneNumber = new ValidationPhoneNumber();
             $phoneNumber->setNationalNumber($json['data']['phoneNumber']['nationalNumber']);
             $phoneNumber->setCountryCode($json['data']['phoneNumber']['countryCode']);
             $phoneNumber->setRegionCode($json['data']['phoneNumber']['regionCode']);
