@@ -5,7 +5,6 @@ namespace Corbado;
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
 use Corbado\Classes\ProjectConfiguration;
-use Corbado\Classes\Response;
 use CorbadoGenerated\Model\GenericRsp;
 use CorbadoGenerated\Model\ProjectConfigSaveReq;
 use GuzzleHttp\ClientInterface;

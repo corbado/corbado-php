@@ -4,12 +4,12 @@ namespace Corbado;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\ClientInfo;
-use Corbado\Generated\Model\EmailLinkSendReq;
-use Corbado\Generated\Model\EmailLinkSendRsp;
-use Corbado\Generated\Model\EmailLinkSendRspAllOfData;
-use Corbado\Generated\Model\EmailLinksValidateReq;
-use Corbado\Generated\Model\EmailLinkValidateRsp;
+use CorbadoGenerated\Model\ClientInfo;
+use CorbadoGenerated\Model\EmailLinkSendReq;
+use CorbadoGenerated\Model\EmailLinkSendRsp;
+use CorbadoGenerated\Model\EmailLinksValidateReq;
+use CorbadoGenerated\Model\EmailLinkValidateRsp;
+use CorbadoGenerated\Model\EmailLinkSendRspAllOfData;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
