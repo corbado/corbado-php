@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingOSDetailedStatsListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class TrackingOSDetailedStatsListRspAllOf implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\TrackingOSDetailedStatsListRspAllOfData'
+        'data' => '\Corbado\Generated\Model\TrackingOSDetailedStatsListRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class TrackingOSDetailedStatsListRspAllOf implements ModelInterface, ArrayAccess
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\TrackingOSDetailedStatsListRspAllOfData
+     * @return \Corbado\Generated\Model\TrackingOSDetailedStatsListRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class TrackingOSDetailedStatsListRspAllOf implements ModelInterface, ArrayAccess
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\TrackingOSDetailedStatsListRspAllOfData $data data
+     * @param \Corbado\Generated\Model\TrackingOSDetailedStatsListRspAllOfData $data data
      *
      * @return self
      */

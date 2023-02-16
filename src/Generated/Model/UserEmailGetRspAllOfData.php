@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserEmailGetRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class UserEmailGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => '\CorbadoGenerated\Model\Email'
+        'email' => '\Corbado\Generated\Model\Email'
     ];
 
     /**
@@ -296,7 +296,7 @@ class UserEmailGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets email
      *
-     * @return \CorbadoGenerated\Model\Email
+     * @return \Corbado\Generated\Model\Email
      */
     public function getEmail()
     {
@@ -306,7 +306,7 @@ class UserEmailGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets email
      *
-     * @param \CorbadoGenerated\Model\Email $email email
+     * @param \Corbado\Generated\Model\Email $email email
      *
      * @return self
      */

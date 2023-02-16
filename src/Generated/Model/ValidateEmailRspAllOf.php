@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * ValidateEmailRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class ValidateEmailRspAllOf implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\EmailValidationResult'
+        'data' => '\Corbado\Generated\Model\EmailValidationResult'
     ];
 
     /**
@@ -296,7 +296,7 @@ class ValidateEmailRspAllOf implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\EmailValidationResult
+     * @return \Corbado\Generated\Model\EmailValidationResult
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class ValidateEmailRspAllOf implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\EmailValidationResult $data data
+     * @param \Corbado\Generated\Model\EmailValidationResult $data data
      *
      * @return self
      */

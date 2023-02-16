@@ -5,8 +5,9 @@ namespace Corbado;
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
 use Corbado\Classes\ProjectConfiguration;
-use CorbadoGenerated\Model\GenericRsp;
-use CorbadoGenerated\Model\ProjectConfigSaveReq;
+use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Model\GenericRsp;
+use Corbado\Generated\Model\ProjectConfigSaveReq;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 

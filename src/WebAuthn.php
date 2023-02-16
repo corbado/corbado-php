@@ -4,16 +4,16 @@ namespace Corbado;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
-use CorbadoGenerated\Model\ClientInfo;
-use CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp;
-use CorbadoGenerated\Model\WebAuthnAuthenticateStartReq;
-use CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp;
-use CorbadoGenerated\Model\WebAuthnCredentialReq;
-use CorbadoGenerated\Model\WebAuthnCredentialRsp;
-use CorbadoGenerated\Model\WebAuthnFinishReq;
-use CorbadoGenerated\Model\WebAuthnRegisterFinishRsp;
-use CorbadoGenerated\Model\WebAuthnRegisterStartReq;
-use CorbadoGenerated\Model\WebAuthnRegisterStartRsp;
+use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
+use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
+use Corbado\Generated\Model\WebAuthnAuthenticateStartRsp;
+use Corbado\Generated\Model\WebAuthnCredentialReq;
+use Corbado\Generated\Model\WebAuthnCredentialRsp;
+use Corbado\Generated\Model\WebAuthnFinishReq;
+use Corbado\Generated\Model\WebAuthnRegisterFinishRsp;
+use Corbado\Generated\Model\WebAuthnRegisterStartReq;
+use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 

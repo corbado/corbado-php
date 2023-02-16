@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * ValidationApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -129,12 +129,12 @@ class ValidationApi
     /**
      * Operation validateEmail
      *
-     * @param  \CorbadoGenerated\Model\ValidateEmailReq $validate_email_req validate_email_req (required)
+     * @param  \Corbado\Generated\Model\ValidateEmailReq $validate_email_req validate_email_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validateEmail'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\ValidateEmailRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\ValidateEmailRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function validateEmail($validate_email_req, string $contentType = self::contentTypes['validateEmail'][0])
     {
@@ -145,12 +145,12 @@ class ValidationApi
     /**
      * Operation validateEmailWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ValidateEmailReq $validate_email_req (required)
+     * @param  \Corbado\Generated\Model\ValidateEmailReq $validate_email_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validateEmail'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\ValidateEmailRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\ValidateEmailRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function validateEmailWithHttpInfo($validate_email_req, string $contentType = self::contentTypes['validateEmail'][0])
     {
@@ -193,38 +193,38 @@ class ValidationApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\ValidateEmailRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ValidateEmailRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ValidateEmailRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ValidateEmailRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ValidateEmailRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ValidateEmailRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\ValidateEmailRsp';
+            $returnType = '\Corbado\Generated\Model\ValidateEmailRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -245,7 +245,7 @@ class ValidationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ValidateEmailRsp',
+                        '\Corbado\Generated\Model\ValidateEmailRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -253,7 +253,7 @@ class ValidationApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -266,7 +266,7 @@ class ValidationApi
     /**
      * Operation validateEmailAsync
      *
-     * @param  \CorbadoGenerated\Model\ValidateEmailReq $validate_email_req (required)
+     * @param  \Corbado\Generated\Model\ValidateEmailReq $validate_email_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validateEmail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -285,7 +285,7 @@ class ValidationApi
     /**
      * Operation validateEmailAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ValidateEmailReq $validate_email_req (required)
+     * @param  \Corbado\Generated\Model\ValidateEmailReq $validate_email_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validateEmail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -293,7 +293,7 @@ class ValidationApi
      */
     public function validateEmailAsyncWithHttpInfo($validate_email_req, string $contentType = self::contentTypes['validateEmail'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\ValidateEmailRsp';
+        $returnType = '\Corbado\Generated\Model\ValidateEmailRsp';
         $request = $this->validateEmailRequest($validate_email_req, $contentType);
 
         return $this->client
@@ -335,7 +335,7 @@ class ValidationApi
     /**
      * Create request for operation 'validateEmail'
      *
-     * @param  \CorbadoGenerated\Model\ValidateEmailReq $validate_email_req (required)
+     * @param  \Corbado\Generated\Model\ValidateEmailReq $validate_email_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validateEmail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -435,12 +435,12 @@ class ValidationApi
     /**
      * Operation validatePhoneNumber
      *
-     * @param  \CorbadoGenerated\Model\ValidatePhoneNumberReq $validate_phone_number_req validate_phone_number_req (required)
+     * @param  \Corbado\Generated\Model\ValidatePhoneNumberReq $validate_phone_number_req validate_phone_number_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhoneNumber'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\ValidatePhoneNumberRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\ValidatePhoneNumberRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function validatePhoneNumber($validate_phone_number_req, string $contentType = self::contentTypes['validatePhoneNumber'][0])
     {
@@ -451,12 +451,12 @@ class ValidationApi
     /**
      * Operation validatePhoneNumberWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
+     * @param  \Corbado\Generated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhoneNumber'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\ValidatePhoneNumberRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\ValidatePhoneNumberRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function validatePhoneNumberWithHttpInfo($validate_phone_number_req, string $contentType = self::contentTypes['validatePhoneNumber'][0])
     {
@@ -499,38 +499,38 @@ class ValidationApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\ValidatePhoneNumberRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ValidatePhoneNumberRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ValidatePhoneNumberRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ValidatePhoneNumberRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ValidatePhoneNumberRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ValidatePhoneNumberRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\ValidatePhoneNumberRsp';
+            $returnType = '\Corbado\Generated\Model\ValidatePhoneNumberRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -551,7 +551,7 @@ class ValidationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ValidatePhoneNumberRsp',
+                        '\Corbado\Generated\Model\ValidatePhoneNumberRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -559,7 +559,7 @@ class ValidationApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -572,7 +572,7 @@ class ValidationApi
     /**
      * Operation validatePhoneNumberAsync
      *
-     * @param  \CorbadoGenerated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
+     * @param  \Corbado\Generated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhoneNumber'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -591,7 +591,7 @@ class ValidationApi
     /**
      * Operation validatePhoneNumberAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
+     * @param  \Corbado\Generated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhoneNumber'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -599,7 +599,7 @@ class ValidationApi
      */
     public function validatePhoneNumberAsyncWithHttpInfo($validate_phone_number_req, string $contentType = self::contentTypes['validatePhoneNumber'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\ValidatePhoneNumberRsp';
+        $returnType = '\Corbado\Generated\Model\ValidatePhoneNumberRsp';
         $request = $this->validatePhoneNumberRequest($validate_phone_number_req, $contentType);
 
         return $this->client
@@ -641,7 +641,7 @@ class ValidationApi
     /**
      * Create request for operation 'validatePhoneNumber'
      *
-     * @param  \CorbadoGenerated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
+     * @param  \Corbado\Generated\Model\ValidatePhoneNumberReq $validate_phone_number_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhoneNumber'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

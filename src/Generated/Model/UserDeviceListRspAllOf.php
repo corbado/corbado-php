@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserDeviceListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class UserDeviceListRspAllOf implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'devices' => '\CorbadoGenerated\Model\UserDeviceItem[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'devices' => '\Corbado\Generated\Model\UserDeviceItem[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class UserDeviceListRspAllOf implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets devices
      *
-     * @return \CorbadoGenerated\Model\UserDeviceItem[]
+     * @return \Corbado\Generated\Model\UserDeviceItem[]
      */
     public function getDevices()
     {
@@ -316,7 +316,7 @@ class UserDeviceListRspAllOf implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets devices
      *
-     * @param \CorbadoGenerated\Model\UserDeviceItem[] $devices devices
+     * @param \Corbado\Generated\Model\UserDeviceItem[] $devices devices
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class UserDeviceListRspAllOf implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class UserDeviceListRspAllOf implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

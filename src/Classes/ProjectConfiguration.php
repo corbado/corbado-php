@@ -20,7 +20,7 @@ class ProjectConfiguration {
     public ?string $passwordVerifyUrl = '';
     public ?string $authSuccessRedirectUrl = '';
     public ?string $passwordResetUrl = '';
-    public ?string $allowUserRegistration = '';
+    public bool $allowUserRegistration = true;
     public bool $allowIPStickiness = true;
     public ?string $passkeyAppendInterval = '';
     public ?string $fallbackLanguage = '';

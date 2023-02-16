@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * EmailTemplatesApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -129,12 +129,12 @@ class EmailTemplatesApi
     /**
      * Operation emailTemplateCreate
      *
-     * @param  \CorbadoGenerated\Model\EmailTemplateCreateReq $email_template_create_req email_template_create_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateCreateReq $email_template_create_req email_template_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\EmailTemplateCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\EmailTemplateCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailTemplateCreate($email_template_create_req, string $contentType = self::contentTypes['emailTemplateCreate'][0])
     {
@@ -145,12 +145,12 @@ class EmailTemplatesApi
     /**
      * Operation emailTemplateCreateWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\EmailTemplateCreateReq $email_template_create_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateCreateReq $email_template_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\EmailTemplateCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\EmailTemplateCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailTemplateCreateWithHttpInfo($email_template_create_req, string $contentType = self::contentTypes['emailTemplateCreate'][0])
     {
@@ -193,38 +193,38 @@ class EmailTemplatesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\EmailTemplateCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\EmailTemplateCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\EmailTemplateCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\EmailTemplateCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\EmailTemplateCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\EmailTemplateCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\EmailTemplateCreateRsp';
+            $returnType = '\Corbado\Generated\Model\EmailTemplateCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -245,7 +245,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\EmailTemplateCreateRsp',
+                        '\Corbado\Generated\Model\EmailTemplateCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -253,7 +253,7 @@ class EmailTemplatesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -266,7 +266,7 @@ class EmailTemplatesApi
     /**
      * Operation emailTemplateCreateAsync
      *
-     * @param  \CorbadoGenerated\Model\EmailTemplateCreateReq $email_template_create_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateCreateReq $email_template_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -285,7 +285,7 @@ class EmailTemplatesApi
     /**
      * Operation emailTemplateCreateAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\EmailTemplateCreateReq $email_template_create_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateCreateReq $email_template_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -293,7 +293,7 @@ class EmailTemplatesApi
      */
     public function emailTemplateCreateAsyncWithHttpInfo($email_template_create_req, string $contentType = self::contentTypes['emailTemplateCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\EmailTemplateCreateRsp';
+        $returnType = '\Corbado\Generated\Model\EmailTemplateCreateRsp';
         $request = $this->emailTemplateCreateRequest($email_template_create_req, $contentType);
 
         return $this->client
@@ -335,7 +335,7 @@ class EmailTemplatesApi
     /**
      * Create request for operation 'emailTemplateCreate'
      *
-     * @param  \CorbadoGenerated\Model\EmailTemplateCreateReq $email_template_create_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateCreateReq $email_template_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -432,12 +432,12 @@ class EmailTemplatesApi
      * Operation emailTemplateDelete
      *
      * @param  string $email_template_id ID of email template (required)
-     * @param  \CorbadoGenerated\Model\EmailTemplateDeleteReq $email_template_delete_req email_template_delete_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateDeleteReq $email_template_delete_req email_template_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailTemplateDelete($email_template_id, $email_template_delete_req, string $contentType = self::contentTypes['emailTemplateDelete'][0])
     {
@@ -449,12 +449,12 @@ class EmailTemplatesApi
      * Operation emailTemplateDeleteWithHttpInfo
      *
      * @param  string $email_template_id ID of email template (required)
-     * @param  \CorbadoGenerated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailTemplateDeleteWithHttpInfo($email_template_id, $email_template_delete_req, string $contentType = self::contentTypes['emailTemplateDelete'][0])
     {
@@ -497,38 +497,38 @@ class EmailTemplatesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -549,7 +549,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -557,7 +557,7 @@ class EmailTemplatesApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -571,7 +571,7 @@ class EmailTemplatesApi
      * Operation emailTemplateDeleteAsync
      *
      * @param  string $email_template_id ID of email template (required)
-     * @param  \CorbadoGenerated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -591,7 +591,7 @@ class EmailTemplatesApi
      * Operation emailTemplateDeleteAsyncWithHttpInfo
      *
      * @param  string $email_template_id ID of email template (required)
-     * @param  \CorbadoGenerated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -599,7 +599,7 @@ class EmailTemplatesApi
      */
     public function emailTemplateDeleteAsyncWithHttpInfo($email_template_id, $email_template_delete_req, string $contentType = self::contentTypes['emailTemplateDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->emailTemplateDeleteRequest($email_template_id, $email_template_delete_req, $contentType);
 
         return $this->client
@@ -642,7 +642,7 @@ class EmailTemplatesApi
      * Create request for operation 'emailTemplateDelete'
      *
      * @param  string $email_template_id ID of email template (required)
-     * @param  \CorbadoGenerated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
+     * @param  \Corbado\Generated\Model\EmailTemplateDeleteReq $email_template_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailTemplateDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

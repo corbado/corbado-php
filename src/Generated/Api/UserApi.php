@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * UserApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -167,9 +167,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userAuthLogList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserAuthLogListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserAuthLogListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userAuthLogList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userAuthLogList'][0])
     {
@@ -188,9 +188,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userAuthLogList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserAuthLogListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserAuthLogListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userAuthLogListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userAuthLogList'][0])
     {
@@ -233,38 +233,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserAuthLogListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserAuthLogListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserAuthLogListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserAuthLogListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserAuthLogListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserAuthLogListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserAuthLogListRsp';
+            $returnType = '\Corbado\Generated\Model\UserAuthLogListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -285,7 +285,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserAuthLogListRsp',
+                        '\Corbado\Generated\Model\UserAuthLogListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -293,7 +293,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -343,7 +343,7 @@ class UserApi
      */
     public function userAuthLogListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userAuthLogList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserAuthLogListRsp';
+        $returnType = '\Corbado\Generated\Model\UserAuthLogListRsp';
         $request = $this->userAuthLogListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -540,12 +540,12 @@ class UserApi
     /**
      * Operation userCreate
      *
-     * @param  \CorbadoGenerated\Model\UserCreateReq $user_create_req user_create_req (required)
+     * @param  \Corbado\Generated\Model\UserCreateReq $user_create_req user_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userCreate($user_create_req, string $contentType = self::contentTypes['userCreate'][0])
     {
@@ -556,12 +556,12 @@ class UserApi
     /**
      * Operation userCreateWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\UserCreateReq $user_create_req (required)
+     * @param  \Corbado\Generated\Model\UserCreateReq $user_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userCreateWithHttpInfo($user_create_req, string $contentType = self::contentTypes['userCreate'][0])
     {
@@ -604,38 +604,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserCreateRsp';
+            $returnType = '\Corbado\Generated\Model\UserCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -656,7 +656,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserCreateRsp',
+                        '\Corbado\Generated\Model\UserCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -664,7 +664,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -677,7 +677,7 @@ class UserApi
     /**
      * Operation userCreateAsync
      *
-     * @param  \CorbadoGenerated\Model\UserCreateReq $user_create_req (required)
+     * @param  \Corbado\Generated\Model\UserCreateReq $user_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -696,7 +696,7 @@ class UserApi
     /**
      * Operation userCreateAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\UserCreateReq $user_create_req (required)
+     * @param  \Corbado\Generated\Model\UserCreateReq $user_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -704,7 +704,7 @@ class UserApi
      */
     public function userCreateAsyncWithHttpInfo($user_create_req, string $contentType = self::contentTypes['userCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserCreateRsp';
+        $returnType = '\Corbado\Generated\Model\UserCreateRsp';
         $request = $this->userCreateRequest($user_create_req, $contentType);
 
         return $this->client
@@ -746,7 +746,7 @@ class UserApi
     /**
      * Create request for operation 'userCreate'
      *
-     * @param  \CorbadoGenerated\Model\UserCreateReq $user_create_req (required)
+     * @param  \Corbado\Generated\Model\UserCreateReq $user_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -851,12 +851,12 @@ class UserApi
      * Operation userDelete
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserDeleteReq $user_delete_req user_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserDeleteReq $user_delete_req user_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userDelete($user_id, $user_delete_req, string $contentType = self::contentTypes['userDelete'][0])
     {
@@ -868,12 +868,12 @@ class UserApi
      * Operation userDeleteWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserDeleteReq $user_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserDeleteReq $user_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userDeleteWithHttpInfo($user_id, $user_delete_req, string $contentType = self::contentTypes['userDelete'][0])
     {
@@ -916,38 +916,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -968,7 +968,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -976,7 +976,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -990,7 +990,7 @@ class UserApi
      * Operation userDeleteAsync
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserDeleteReq $user_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserDeleteReq $user_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1010,7 +1010,7 @@ class UserApi
      * Operation userDeleteAsyncWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserDeleteReq $user_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserDeleteReq $user_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1018,7 +1018,7 @@ class UserApi
      */
     public function userDeleteAsyncWithHttpInfo($user_id, $user_delete_req, string $contentType = self::contentTypes['userDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->userDeleteRequest($user_id, $user_delete_req, $contentType);
 
         return $this->client
@@ -1061,7 +1061,7 @@ class UserApi
      * Create request for operation 'userDelete'
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserDeleteReq $user_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserDeleteReq $user_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1189,9 +1189,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDeviceList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserDeviceListRsp
+     * @return \Corbado\Generated\Model\UserDeviceListRsp
      */
     public function userDeviceList($user_id, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userDeviceList'][0])
     {
@@ -1211,9 +1211,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userDeviceList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserDeviceListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserDeviceListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userDeviceListWithHttpInfo($user_id, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userDeviceList'][0])
     {
@@ -1256,23 +1256,23 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserDeviceListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserDeviceListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserDeviceListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserDeviceListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserDeviceListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserDeviceListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserDeviceListRsp';
+            $returnType = '\Corbado\Generated\Model\UserDeviceListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1293,7 +1293,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserDeviceListRsp',
+                        '\Corbado\Generated\Model\UserDeviceListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1345,7 +1345,7 @@ class UserApi
      */
     public function userDeviceListAsyncWithHttpInfo($user_id, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userDeviceList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserDeviceListRsp';
+        $returnType = '\Corbado\Generated\Model\UserDeviceListRsp';
         $request = $this->userDeviceListRequest($user_id, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -1555,12 +1555,12 @@ class UserApi
      * Operation userEmailCreate
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserEmailCreateReq $user_email_create_req user_email_create_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailCreateReq $user_email_create_req user_email_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserEmailCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserEmailCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userEmailCreate($user_id, $user_email_create_req, string $contentType = self::contentTypes['userEmailCreate'][0])
     {
@@ -1572,12 +1572,12 @@ class UserApi
      * Operation userEmailCreateWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserEmailCreateReq $user_email_create_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailCreateReq $user_email_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserEmailCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserEmailCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userEmailCreateWithHttpInfo($user_id, $user_email_create_req, string $contentType = self::contentTypes['userEmailCreate'][0])
     {
@@ -1620,38 +1620,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserEmailCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserEmailCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserEmailCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserEmailCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserEmailCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserEmailCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserEmailCreateRsp';
+            $returnType = '\Corbado\Generated\Model\UserEmailCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1672,7 +1672,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserEmailCreateRsp',
+                        '\Corbado\Generated\Model\UserEmailCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1680,7 +1680,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1694,7 +1694,7 @@ class UserApi
      * Operation userEmailCreateAsync
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserEmailCreateReq $user_email_create_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailCreateReq $user_email_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1714,7 +1714,7 @@ class UserApi
      * Operation userEmailCreateAsyncWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserEmailCreateReq $user_email_create_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailCreateReq $user_email_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1722,7 +1722,7 @@ class UserApi
      */
     public function userEmailCreateAsyncWithHttpInfo($user_id, $user_email_create_req, string $contentType = self::contentTypes['userEmailCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserEmailCreateRsp';
+        $returnType = '\Corbado\Generated\Model\UserEmailCreateRsp';
         $request = $this->userEmailCreateRequest($user_id, $user_email_create_req, $contentType);
 
         return $this->client
@@ -1765,7 +1765,7 @@ class UserApi
      * Create request for operation 'userEmailCreate'
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserEmailCreateReq $user_email_create_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailCreateReq $user_email_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1886,12 +1886,12 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $email_id ID of email (required)
-     * @param  \CorbadoGenerated\Model\UserEmailDeleteReq $user_email_delete_req user_email_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailDeleteReq $user_email_delete_req user_email_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userEmailDelete($user_id, $email_id, $user_email_delete_req, string $contentType = self::contentTypes['userEmailDelete'][0])
     {
@@ -1904,12 +1904,12 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $email_id ID of email (required)
-     * @param  \CorbadoGenerated\Model\UserEmailDeleteReq $user_email_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailDeleteReq $user_email_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userEmailDeleteWithHttpInfo($user_id, $email_id, $user_email_delete_req, string $contentType = self::contentTypes['userEmailDelete'][0])
     {
@@ -1952,38 +1952,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2004,7 +2004,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2012,7 +2012,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2027,7 +2027,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $email_id ID of email (required)
-     * @param  \CorbadoGenerated\Model\UserEmailDeleteReq $user_email_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailDeleteReq $user_email_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2048,7 +2048,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $email_id ID of email (required)
-     * @param  \CorbadoGenerated\Model\UserEmailDeleteReq $user_email_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailDeleteReq $user_email_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2056,7 +2056,7 @@ class UserApi
      */
     public function userEmailDeleteAsyncWithHttpInfo($user_id, $email_id, $user_email_delete_req, string $contentType = self::contentTypes['userEmailDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->userEmailDeleteRequest($user_id, $email_id, $user_email_delete_req, $contentType);
 
         return $this->client
@@ -2100,7 +2100,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $email_id ID of email (required)
-     * @param  \CorbadoGenerated\Model\UserEmailDeleteReq $user_email_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserEmailDeleteReq $user_email_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2240,9 +2240,9 @@ class UserApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserEmailGetRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserEmailGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userEmailGet($user_id, $email_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userEmailGet'][0])
     {
@@ -2259,9 +2259,9 @@ class UserApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userEmailGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserEmailGetRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserEmailGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userEmailGetWithHttpInfo($user_id, $email_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userEmailGet'][0])
     {
@@ -2304,38 +2304,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserEmailGetRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserEmailGetRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserEmailGetRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserEmailGetRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserEmailGetRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserEmailGetRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserEmailGetRsp';
+            $returnType = '\Corbado\Generated\Model\UserEmailGetRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2356,7 +2356,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserEmailGetRsp',
+                        '\Corbado\Generated\Model\UserEmailGetRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2364,7 +2364,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2410,7 +2410,7 @@ class UserApi
      */
     public function userEmailGetAsyncWithHttpInfo($user_id, $email_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userEmailGet'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserEmailGetRsp';
+        $returnType = '\Corbado\Generated\Model\UserEmailGetRsp';
         $request = $this->userEmailGetRequest($user_id, $email_id, $remote_address, $user_agent, $contentType);
 
         return $this->client
@@ -2603,9 +2603,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userList'][0])
     {
@@ -2624,9 +2624,9 @@ class UserApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userList'][0])
     {
@@ -2669,38 +2669,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserListRsp';
+            $returnType = '\Corbado\Generated\Model\UserListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2721,7 +2721,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserListRsp',
+                        '\Corbado\Generated\Model\UserListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2729,7 +2729,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2779,7 +2779,7 @@ class UserApi
      */
     public function userListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['userList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserListRsp';
+        $returnType = '\Corbado\Generated\Model\UserListRsp';
         $request = $this->userListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -2977,12 +2977,12 @@ class UserApi
      * Operation userPhoneNumberCreate
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req user_phone_number_create_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req user_phone_number_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserPhoneNumberCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserPhoneNumberCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userPhoneNumberCreate($user_id, $user_phone_number_create_req, string $contentType = self::contentTypes['userPhoneNumberCreate'][0])
     {
@@ -2994,12 +2994,12 @@ class UserApi
      * Operation userPhoneNumberCreateWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserPhoneNumberCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserPhoneNumberCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userPhoneNumberCreateWithHttpInfo($user_id, $user_phone_number_create_req, string $contentType = self::contentTypes['userPhoneNumberCreate'][0])
     {
@@ -3042,38 +3042,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserPhoneNumberCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserPhoneNumberCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserPhoneNumberCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserPhoneNumberCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserPhoneNumberCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserPhoneNumberCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserPhoneNumberCreateRsp';
+            $returnType = '\Corbado\Generated\Model\UserPhoneNumberCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3094,7 +3094,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserPhoneNumberCreateRsp',
+                        '\Corbado\Generated\Model\UserPhoneNumberCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3102,7 +3102,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3116,7 +3116,7 @@ class UserApi
      * Operation userPhoneNumberCreateAsync
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3136,7 +3136,7 @@ class UserApi
      * Operation userPhoneNumberCreateAsyncWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3144,7 +3144,7 @@ class UserApi
      */
     public function userPhoneNumberCreateAsyncWithHttpInfo($user_id, $user_phone_number_create_req, string $contentType = self::contentTypes['userPhoneNumberCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserPhoneNumberCreateRsp';
+        $returnType = '\Corbado\Generated\Model\UserPhoneNumberCreateRsp';
         $request = $this->userPhoneNumberCreateRequest($user_id, $user_phone_number_create_req, $contentType);
 
         return $this->client
@@ -3187,7 +3187,7 @@ class UserApi
      * Create request for operation 'userPhoneNumberCreate'
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberCreateReq $user_phone_number_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3308,12 +3308,12 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $phone_number_id ID of phone number (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req user_phone_number_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req user_phone_number_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userPhoneNumberDelete($user_id, $phone_number_id, $user_phone_number_delete_req, string $contentType = self::contentTypes['userPhoneNumberDelete'][0])
     {
@@ -3326,12 +3326,12 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $phone_number_id ID of phone number (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userPhoneNumberDeleteWithHttpInfo($user_id, $phone_number_id, $user_phone_number_delete_req, string $contentType = self::contentTypes['userPhoneNumberDelete'][0])
     {
@@ -3374,38 +3374,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3426,7 +3426,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3434,7 +3434,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3449,7 +3449,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $phone_number_id ID of phone number (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3470,7 +3470,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $phone_number_id ID of phone number (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3478,7 +3478,7 @@ class UserApi
      */
     public function userPhoneNumberDeleteAsyncWithHttpInfo($user_id, $phone_number_id, $user_phone_number_delete_req, string $contentType = self::contentTypes['userPhoneNumberDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->userPhoneNumberDeleteRequest($user_id, $phone_number_id, $user_phone_number_delete_req, $contentType);
 
         return $this->client
@@ -3522,7 +3522,7 @@ class UserApi
      *
      * @param  string $user_id ID of user (required)
      * @param  string $phone_number_id ID of phone number (required)
-     * @param  \CorbadoGenerated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
+     * @param  \Corbado\Generated\Model\UserPhoneNumberDeleteReq $user_phone_number_delete_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3662,9 +3662,9 @@ class UserApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserPhoneNumberGetRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserPhoneNumberGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userPhoneNumberGet($user_id, $phone_number_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userPhoneNumberGet'][0])
     {
@@ -3681,9 +3681,9 @@ class UserApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userPhoneNumberGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserPhoneNumberGetRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserPhoneNumberGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userPhoneNumberGetWithHttpInfo($user_id, $phone_number_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userPhoneNumberGet'][0])
     {
@@ -3726,38 +3726,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserPhoneNumberGetRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserPhoneNumberGetRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserPhoneNumberGetRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserPhoneNumberGetRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserPhoneNumberGetRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserPhoneNumberGetRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserPhoneNumberGetRsp';
+            $returnType = '\Corbado\Generated\Model\UserPhoneNumberGetRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3778,7 +3778,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserPhoneNumberGetRsp',
+                        '\Corbado\Generated\Model\UserPhoneNumberGetRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3786,7 +3786,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3832,7 +3832,7 @@ class UserApi
      */
     public function userPhoneNumberGetAsyncWithHttpInfo($user_id, $phone_number_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['userPhoneNumberGet'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserPhoneNumberGetRsp';
+        $returnType = '\Corbado\Generated\Model\UserPhoneNumberGetRsp';
         $request = $this->userPhoneNumberGetRequest($user_id, $phone_number_id, $remote_address, $user_agent, $contentType);
 
         return $this->client
@@ -4010,12 +4010,12 @@ class UserApi
      * Operation userUpdate
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserUpdateReq $user_update_req user_update_req (required)
+     * @param  \Corbado\Generated\Model\UserUpdateReq $user_update_req user_update_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userUpdate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\UserUpdateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\UserUpdateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function userUpdate($user_id, $user_update_req, string $contentType = self::contentTypes['userUpdate'][0])
     {
@@ -4027,12 +4027,12 @@ class UserApi
      * Operation userUpdateWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserUpdateReq $user_update_req (required)
+     * @param  \Corbado\Generated\Model\UserUpdateReq $user_update_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userUpdate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\UserUpdateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\UserUpdateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function userUpdateWithHttpInfo($user_id, $user_update_req, string $contentType = self::contentTypes['userUpdate'][0])
     {
@@ -4075,38 +4075,38 @@ class UserApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\UserUpdateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\UserUpdateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\UserUpdateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\UserUpdateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\UserUpdateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\UserUpdateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\UserUpdateRsp';
+            $returnType = '\Corbado\Generated\Model\UserUpdateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -4127,7 +4127,7 @@ class UserApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\UserUpdateRsp',
+                        '\Corbado\Generated\Model\UserUpdateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4135,7 +4135,7 @@ class UserApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4149,7 +4149,7 @@ class UserApi
      * Operation userUpdateAsync
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserUpdateReq $user_update_req (required)
+     * @param  \Corbado\Generated\Model\UserUpdateReq $user_update_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4169,7 +4169,7 @@ class UserApi
      * Operation userUpdateAsyncWithHttpInfo
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserUpdateReq $user_update_req (required)
+     * @param  \Corbado\Generated\Model\UserUpdateReq $user_update_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4177,7 +4177,7 @@ class UserApi
      */
     public function userUpdateAsyncWithHttpInfo($user_id, $user_update_req, string $contentType = self::contentTypes['userUpdate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\UserUpdateRsp';
+        $returnType = '\Corbado\Generated\Model\UserUpdateRsp';
         $request = $this->userUpdateRequest($user_id, $user_update_req, $contentType);
 
         return $this->client
@@ -4220,7 +4220,7 @@ class UserApi
      * Create request for operation 'userUpdate'
      *
      * @param  string $user_id ID of user (required)
-     * @param  \CorbadoGenerated\Model\UserUpdateReq $user_update_req (required)
+     * @param  \Corbado\Generated\Model\UserUpdateReq $user_update_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['userUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * SMSOTPApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -129,12 +129,12 @@ class SMSOTPApi
     /**
      * Operation smsCodeSend
      *
-     * @param  \CorbadoGenerated\Model\SmsCodeSendReq $sms_code_send_req sms_code_send_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeSendReq $sms_code_send_req sms_code_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeSend'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\SmsCodeSendRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\SmsCodeSendRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function smsCodeSend($sms_code_send_req, string $contentType = self::contentTypes['smsCodeSend'][0])
     {
@@ -145,12 +145,12 @@ class SMSOTPApi
     /**
      * Operation smsCodeSendWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SmsCodeSendReq $sms_code_send_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeSendReq $sms_code_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeSend'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\SmsCodeSendRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\SmsCodeSendRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function smsCodeSendWithHttpInfo($sms_code_send_req, string $contentType = self::contentTypes['smsCodeSend'][0])
     {
@@ -193,38 +193,38 @@ class SMSOTPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\SmsCodeSendRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\SmsCodeSendRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\SmsCodeSendRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\SmsCodeSendRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\SmsCodeSendRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\SmsCodeSendRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\SmsCodeSendRsp';
+            $returnType = '\Corbado\Generated\Model\SmsCodeSendRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -245,7 +245,7 @@ class SMSOTPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\SmsCodeSendRsp',
+                        '\Corbado\Generated\Model\SmsCodeSendRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -253,7 +253,7 @@ class SMSOTPApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -266,7 +266,7 @@ class SMSOTPApi
     /**
      * Operation smsCodeSendAsync
      *
-     * @param  \CorbadoGenerated\Model\SmsCodeSendReq $sms_code_send_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeSendReq $sms_code_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -285,7 +285,7 @@ class SMSOTPApi
     /**
      * Operation smsCodeSendAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SmsCodeSendReq $sms_code_send_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeSendReq $sms_code_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -293,7 +293,7 @@ class SMSOTPApi
      */
     public function smsCodeSendAsyncWithHttpInfo($sms_code_send_req, string $contentType = self::contentTypes['smsCodeSend'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\SmsCodeSendRsp';
+        $returnType = '\Corbado\Generated\Model\SmsCodeSendRsp';
         $request = $this->smsCodeSendRequest($sms_code_send_req, $contentType);
 
         return $this->client
@@ -335,7 +335,7 @@ class SMSOTPApi
     /**
      * Create request for operation 'smsCodeSend'
      *
-     * @param  \CorbadoGenerated\Model\SmsCodeSendReq $sms_code_send_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeSendReq $sms_code_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -436,12 +436,12 @@ class SMSOTPApi
      * Operation smsCodeValidate
      *
      * @param  string $sms_code_id ID of SMS OTP (required)
-     * @param  \CorbadoGenerated\Model\SmsCodeValidateReq $sms_code_validate_req sms_code_validate_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeValidateReq $sms_code_validate_req sms_code_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeValidate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function smsCodeValidate($sms_code_id, $sms_code_validate_req, string $contentType = self::contentTypes['smsCodeValidate'][0])
     {
@@ -453,12 +453,12 @@ class SMSOTPApi
      * Operation smsCodeValidateWithHttpInfo
      *
      * @param  string $sms_code_id ID of SMS OTP (required)
-     * @param  \CorbadoGenerated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeValidate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function smsCodeValidateWithHttpInfo($sms_code_id, $sms_code_validate_req, string $contentType = self::contentTypes['smsCodeValidate'][0])
     {
@@ -501,38 +501,38 @@ class SMSOTPApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -553,7 +553,7 @@ class SMSOTPApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -561,7 +561,7 @@ class SMSOTPApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -575,7 +575,7 @@ class SMSOTPApi
      * Operation smsCodeValidateAsync
      *
      * @param  string $sms_code_id ID of SMS OTP (required)
-     * @param  \CorbadoGenerated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -595,7 +595,7 @@ class SMSOTPApi
      * Operation smsCodeValidateAsyncWithHttpInfo
      *
      * @param  string $sms_code_id ID of SMS OTP (required)
-     * @param  \CorbadoGenerated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -603,7 +603,7 @@ class SMSOTPApi
      */
     public function smsCodeValidateAsyncWithHttpInfo($sms_code_id, $sms_code_validate_req, string $contentType = self::contentTypes['smsCodeValidate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->smsCodeValidateRequest($sms_code_id, $sms_code_validate_req, $contentType);
 
         return $this->client
@@ -646,7 +646,7 @@ class SMSOTPApi
      * Create request for operation 'smsCodeValidate'
      *
      * @param  string $sms_code_id ID of SMS OTP (required)
-     * @param  \CorbadoGenerated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
+     * @param  \Corbado\Generated\Model\SmsCodeValidateReq $sms_code_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['smsCodeValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

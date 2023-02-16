@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * EmailValidationResult Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class EmailValidationResult implements ModelInterface, ArrayAccess, \JsonSeriali
         'is_valid' => 'bool',
         'validation_code' => 'string',
         'suggestion' => 'string',
-        'email' => '\CorbadoGenerated\Model\ValidationEmail'
+        'email' => '\Corbado\Generated\Model\ValidationEmail'
     ];
 
     /**
@@ -441,7 +441,7 @@ class EmailValidationResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets email
      *
-     * @return \CorbadoGenerated\Model\ValidationEmail|null
+     * @return \Corbado\Generated\Model\ValidationEmail|null
      */
     public function getEmail()
     {
@@ -451,7 +451,7 @@ class EmailValidationResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets email
      *
-     * @param \CorbadoGenerated\Model\ValidationEmail|null $email email
+     * @param \Corbado\Generated\Model\ValidationEmail|null $email email
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * SessionTokenCreateReq Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class SessionTokenCreateReq implements ModelInterface, ArrayAccess, \JsonSeriali
         'user_id' => 'string',
         'user_data' => 'string',
         'request_id' => 'string',
-        'client_info' => '\CorbadoGenerated\Model\ClientInfo'
+        'client_info' => '\Corbado\Generated\Model\ClientInfo'
     ];
 
     /**
@@ -404,7 +404,7 @@ class SessionTokenCreateReq implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets client_info
      *
-     * @return \CorbadoGenerated\Model\ClientInfo
+     * @return \Corbado\Generated\Model\ClientInfo
      */
     public function getClientInfo()
     {
@@ -414,7 +414,7 @@ class SessionTokenCreateReq implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets client_info
      *
-     * @param \CorbadoGenerated\Model\ClientInfo $client_info client_info
+     * @param \Corbado\Generated\Model\ClientInfo $client_info client_info
      *
      * @return self
      */

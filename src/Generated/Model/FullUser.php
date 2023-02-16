@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * FullUser Class Doc Comment
  *
  * @category Class
  * @description User entry with emails and phone numbers
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -64,9 +64,9 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
         'full_name' => 'string',
         'created' => 'string',
         'updated' => 'string',
-        'status' => '\CorbadoGenerated\Model\Status',
-        'emails' => '\CorbadoGenerated\Model\UserEmail[]',
-        'phone_numbers' => '\CorbadoGenerated\Model\UserPhoneNumber[]'
+        'status' => '\Corbado\Generated\Model\Status',
+        'emails' => '\Corbado\Generated\Model\UserEmail[]',
+        'phone_numbers' => '\Corbado\Generated\Model\UserPhoneNumber[]'
     ];
 
     /**
@@ -502,7 +502,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \CorbadoGenerated\Model\Status
+     * @return \Corbado\Generated\Model\Status
      */
     public function getStatus()
     {
@@ -512,7 +512,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \CorbadoGenerated\Model\Status $status status
+     * @param \Corbado\Generated\Model\Status $status status
      *
      * @return self
      */
@@ -529,7 +529,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets emails
      *
-     * @return \CorbadoGenerated\Model\UserEmail[]
+     * @return \Corbado\Generated\Model\UserEmail[]
      */
     public function getEmails()
     {
@@ -539,7 +539,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets emails
      *
-     * @param \CorbadoGenerated\Model\UserEmail[] $emails emails
+     * @param \Corbado\Generated\Model\UserEmail[] $emails emails
      *
      * @return self
      */
@@ -556,7 +556,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets phone_numbers
      *
-     * @return \CorbadoGenerated\Model\UserPhoneNumber[]
+     * @return \Corbado\Generated\Model\UserPhoneNumber[]
      */
     public function getPhoneNumbers()
     {
@@ -566,7 +566,7 @@ class FullUser implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets phone_numbers
      *
-     * @param \CorbadoGenerated\Model\UserPhoneNumber[] $phone_numbers phone_numbers
+     * @param \Corbado\Generated\Model\UserPhoneNumber[] $phone_numbers phone_numbers
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingStatsListRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class TrackingStatsListRspAllOfData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'stats' => '\CorbadoGenerated\Model\TrackingStats[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'stats' => '\Corbado\Generated\Model\TrackingStats[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class TrackingStatsListRspAllOfData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets stats
      *
-     * @return \CorbadoGenerated\Model\TrackingStats[]
+     * @return \Corbado\Generated\Model\TrackingStats[]
      */
     public function getStats()
     {
@@ -316,7 +316,7 @@ class TrackingStatsListRspAllOfData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets stats
      *
-     * @param \CorbadoGenerated\Model\TrackingStats[] $stats stats
+     * @param \Corbado\Generated\Model\TrackingStats[] $stats stats
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class TrackingStatsListRspAllOfData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class TrackingStatsListRspAllOfData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * ErrorRspAllOfError Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class ErrorRspAllOfError implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'type' => 'string',
         'details' => 'string',
-        'validation' => '\CorbadoGenerated\Model\ErrorRspAllOfErrorValidation[]',
+        'validation' => '\Corbado\Generated\Model\ErrorRspAllOfErrorValidation[]',
         'links' => 'string[]'
     ];
 
@@ -374,7 +374,7 @@ class ErrorRspAllOfError implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets validation
      *
-     * @return \CorbadoGenerated\Model\ErrorRspAllOfErrorValidation[]|null
+     * @return \Corbado\Generated\Model\ErrorRspAllOfErrorValidation[]|null
      */
     public function getValidation()
     {
@@ -384,7 +384,7 @@ class ErrorRspAllOfError implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets validation
      *
-     * @param \CorbadoGenerated\Model\ErrorRspAllOfErrorValidation[]|null $validation Validation errors per field
+     * @param \Corbado\Generated\Model\ErrorRspAllOfErrorValidation[]|null $validation Validation errors per field
      *
      * @return self
      */

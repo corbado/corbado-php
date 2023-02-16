@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * SessionsApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -129,12 +129,12 @@ class SessionsApi
     /**
      * Operation sessionTokenCreate
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenCreateReq $session_token_create_req session_token_create_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenCreateReq $session_token_create_req session_token_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\SessionTokenCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\SessionTokenCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function sessionTokenCreate($session_token_create_req, string $contentType = self::contentTypes['sessionTokenCreate'][0])
     {
@@ -145,12 +145,12 @@ class SessionsApi
     /**
      * Operation sessionTokenCreateWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenCreateReq $session_token_create_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenCreateReq $session_token_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\SessionTokenCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\SessionTokenCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function sessionTokenCreateWithHttpInfo($session_token_create_req, string $contentType = self::contentTypes['sessionTokenCreate'][0])
     {
@@ -193,38 +193,38 @@ class SessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\SessionTokenCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\SessionTokenCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\SessionTokenCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\SessionTokenCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\SessionTokenCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\SessionTokenCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\SessionTokenCreateRsp';
+            $returnType = '\Corbado\Generated\Model\SessionTokenCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -245,7 +245,7 @@ class SessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\SessionTokenCreateRsp',
+                        '\Corbado\Generated\Model\SessionTokenCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -253,7 +253,7 @@ class SessionsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -266,7 +266,7 @@ class SessionsApi
     /**
      * Operation sessionTokenCreateAsync
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenCreateReq $session_token_create_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenCreateReq $session_token_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -285,7 +285,7 @@ class SessionsApi
     /**
      * Operation sessionTokenCreateAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenCreateReq $session_token_create_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenCreateReq $session_token_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -293,7 +293,7 @@ class SessionsApi
      */
     public function sessionTokenCreateAsyncWithHttpInfo($session_token_create_req, string $contentType = self::contentTypes['sessionTokenCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\SessionTokenCreateRsp';
+        $returnType = '\Corbado\Generated\Model\SessionTokenCreateRsp';
         $request = $this->sessionTokenCreateRequest($session_token_create_req, $contentType);
 
         return $this->client
@@ -335,7 +335,7 @@ class SessionsApi
     /**
      * Create request for operation 'sessionTokenCreate'
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenCreateReq $session_token_create_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenCreateReq $session_token_create_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -431,12 +431,12 @@ class SessionsApi
     /**
      * Operation sessionTokenVerify
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenVerifyReq $session_token_verify_req session_token_verify_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenVerifyReq $session_token_verify_req session_token_verify_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenVerify'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\SessionTokenVerifyRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\SessionTokenVerifyRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function sessionTokenVerify($session_token_verify_req, string $contentType = self::contentTypes['sessionTokenVerify'][0])
     {
@@ -447,12 +447,12 @@ class SessionsApi
     /**
      * Operation sessionTokenVerifyWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenVerify'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\SessionTokenVerifyRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\SessionTokenVerifyRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function sessionTokenVerifyWithHttpInfo($session_token_verify_req, string $contentType = self::contentTypes['sessionTokenVerify'][0])
     {
@@ -495,38 +495,38 @@ class SessionsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\SessionTokenVerifyRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\SessionTokenVerifyRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\SessionTokenVerifyRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\SessionTokenVerifyRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\SessionTokenVerifyRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\SessionTokenVerifyRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\SessionTokenVerifyRsp';
+            $returnType = '\Corbado\Generated\Model\SessionTokenVerifyRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -547,7 +547,7 @@ class SessionsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\SessionTokenVerifyRsp',
+                        '\Corbado\Generated\Model\SessionTokenVerifyRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -555,7 +555,7 @@ class SessionsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -568,7 +568,7 @@ class SessionsApi
     /**
      * Operation sessionTokenVerifyAsync
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenVerify'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -587,7 +587,7 @@ class SessionsApi
     /**
      * Operation sessionTokenVerifyAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenVerify'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -595,7 +595,7 @@ class SessionsApi
      */
     public function sessionTokenVerifyAsyncWithHttpInfo($session_token_verify_req, string $contentType = self::contentTypes['sessionTokenVerify'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\SessionTokenVerifyRsp';
+        $returnType = '\Corbado\Generated\Model\SessionTokenVerifyRsp';
         $request = $this->sessionTokenVerifyRequest($session_token_verify_req, $contentType);
 
         return $this->client
@@ -637,7 +637,7 @@ class SessionsApi
     /**
      * Create request for operation 'sessionTokenVerify'
      *
-     * @param  \CorbadoGenerated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
+     * @param  \Corbado\Generated\Model\SessionTokenVerifyReq $session_token_verify_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sessionTokenVerify'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

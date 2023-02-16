@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * RequestLogsApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -134,9 +134,9 @@ class RequestLogsApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestLogGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\RequestLogGetRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\RequestLogGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function requestLogGet($request_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['requestLogGet'][0])
     {
@@ -152,9 +152,9 @@ class RequestLogsApi
      * @param  string $user_agent Client&#39;s user agent (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestLogGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\RequestLogGetRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\RequestLogGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function requestLogGetWithHttpInfo($request_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['requestLogGet'][0])
     {
@@ -197,38 +197,38 @@ class RequestLogsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\RequestLogGetRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\RequestLogGetRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\RequestLogGetRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\RequestLogGetRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\RequestLogGetRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\RequestLogGetRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\RequestLogGetRsp';
+            $returnType = '\Corbado\Generated\Model\RequestLogGetRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -249,7 +249,7 @@ class RequestLogsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\RequestLogGetRsp',
+                        '\Corbado\Generated\Model\RequestLogGetRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -257,7 +257,7 @@ class RequestLogsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class RequestLogsApi
      */
     public function requestLogGetAsyncWithHttpInfo($request_id, $remote_address = null, $user_agent = null, string $contentType = self::contentTypes['requestLogGet'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\RequestLogGetRsp';
+        $returnType = '\Corbado\Generated\Model\RequestLogGetRsp';
         $request = $this->requestLogGetRequest($request_id, $remote_address, $user_agent, $contentType);
 
         return $this->client
@@ -478,9 +478,9 @@ class RequestLogsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestLogsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\RequestLogsListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\RequestLogsListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function requestLogsList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['requestLogsList'][0])
     {
@@ -499,9 +499,9 @@ class RequestLogsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestLogsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\RequestLogsListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\RequestLogsListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function requestLogsListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['requestLogsList'][0])
     {
@@ -544,38 +544,38 @@ class RequestLogsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\RequestLogsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\RequestLogsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\RequestLogsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\RequestLogsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\RequestLogsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\RequestLogsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\RequestLogsListRsp';
+            $returnType = '\Corbado\Generated\Model\RequestLogsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -596,7 +596,7 @@ class RequestLogsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\RequestLogsListRsp',
+                        '\Corbado\Generated\Model\RequestLogsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -604,7 +604,7 @@ class RequestLogsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -654,7 +654,7 @@ class RequestLogsApi
      */
     public function requestLogsListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['requestLogsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\RequestLogsListRsp';
+        $returnType = '\Corbado\Generated\Model\RequestLogsListRsp';
         $request = $this->requestLogsListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client

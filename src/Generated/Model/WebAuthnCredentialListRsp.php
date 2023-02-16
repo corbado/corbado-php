@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * WebAuthnCredentialListRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,10 +60,10 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
-        'rows' => '\CorbadoGenerated\Model\WebAuthnCredentialItemRsp[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'rows' => '\Corbado\Generated\Model\WebAuthnCredentialItemRsp[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -416,7 +416,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -426,7 +426,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */
@@ -470,7 +470,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets rows
      *
-     * @return \CorbadoGenerated\Model\WebAuthnCredentialItemRsp[]
+     * @return \Corbado\Generated\Model\WebAuthnCredentialItemRsp[]
      */
     public function getRows()
     {
@@ -480,7 +480,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets rows
      *
-     * @param \CorbadoGenerated\Model\WebAuthnCredentialItemRsp[] $rows rows
+     * @param \Corbado\Generated\Model\WebAuthnCredentialItemRsp[] $rows rows
      *
      * @return self
      */
@@ -497,7 +497,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -507,7 +507,7 @@ class WebAuthnCredentialListRsp implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */
