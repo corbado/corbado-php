@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserPhoneNumberGetRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,9 +60,9 @@ class UserPhoneNumberGetRsp implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
-        'data' => '\CorbadoGenerated\Model\UserPhoneNumberGetRspAllOfData'
+        'data' => '\Corbado\Generated\Model\UserPhoneNumberGetRspAllOfData'
     ];
 
     /**
@@ -406,7 +406,7 @@ class UserPhoneNumberGetRsp implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -416,7 +416,7 @@ class UserPhoneNumberGetRsp implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */
@@ -460,7 +460,7 @@ class UserPhoneNumberGetRsp implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\UserPhoneNumberGetRspAllOfData
+     * @return \Corbado\Generated\Model\UserPhoneNumberGetRspAllOfData
      */
     public function getData()
     {
@@ -470,7 +470,7 @@ class UserPhoneNumberGetRsp implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\UserPhoneNumberGetRspAllOfData $data data
+     * @param \Corbado\Generated\Model\UserPhoneNumberGetRspAllOfData $data data
      *
      * @return self
      */

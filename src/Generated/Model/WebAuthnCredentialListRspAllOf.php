@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * WebAuthnCredentialListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class WebAuthnCredentialListRspAllOf implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'rows' => '\CorbadoGenerated\Model\WebAuthnCredentialItemRsp[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'rows' => '\Corbado\Generated\Model\WebAuthnCredentialItemRsp[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class WebAuthnCredentialListRspAllOf implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets rows
      *
-     * @return \CorbadoGenerated\Model\WebAuthnCredentialItemRsp[]
+     * @return \Corbado\Generated\Model\WebAuthnCredentialItemRsp[]
      */
     public function getRows()
     {
@@ -316,7 +316,7 @@ class WebAuthnCredentialListRspAllOf implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets rows
      *
-     * @param \CorbadoGenerated\Model\WebAuthnCredentialItemRsp[] $rows rows
+     * @param \Corbado\Generated\Model\WebAuthnCredentialItemRsp[] $rows rows
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class WebAuthnCredentialListRspAllOf implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class WebAuthnCredentialListRspAllOf implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

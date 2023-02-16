@@ -4,17 +4,17 @@ namespace Corbado;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
-use CorbadoGenerated\Model\ClientInfo;
-use CorbadoGenerated\Model\EmailValidationResult;
-use CorbadoGenerated\Model\PhoneNumberValidationResult;
-use CorbadoGenerated\Model\Email;
-use CorbadoGenerated\Model\PhoneNumber;
-use CorbadoGenerated\Model\ValidateEmailReq;
-use CorbadoGenerated\Model\ValidateEmailRsp;
-use CorbadoGenerated\Model\ValidatePhoneNumberReq;
-use CorbadoGenerated\Model\ValidatePhoneNumberRsp;
-use CorbadoGenerated\Model\ValidationEmail;
-use CorbadoGenerated\Model\ValidationPhoneNumber;
+use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Model\EmailValidationResult;
+use Corbado\Generated\Model\PhoneNumberValidationResult;
+use Corbado\Generated\Model\Email;
+use Corbado\Generated\Model\PhoneNumber;
+use Corbado\Generated\Model\ValidateEmailReq;
+use Corbado\Generated\Model\ValidateEmailRsp;
+use Corbado\Generated\Model\ValidatePhoneNumberReq;
+use Corbado\Generated\Model\ValidatePhoneNumberRsp;
+use Corbado\Generated\Model\ValidationEmail;
+use Corbado\Generated\Model\ValidationPhoneNumber;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 

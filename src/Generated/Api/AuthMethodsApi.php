@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * AuthMethodsApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -126,12 +126,12 @@ class AuthMethodsApi
     /**
      * Operation authMethodsList
      *
-     * @param  \CorbadoGenerated\Model\AuthMethodsListReq $auth_methods_list_req auth_methods_list_req (required)
+     * @param  \Corbado\Generated\Model\AuthMethodsListReq $auth_methods_list_req auth_methods_list_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authMethodsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\AuthMethodsListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\AuthMethodsListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function authMethodsList($auth_methods_list_req, string $contentType = self::contentTypes['authMethodsList'][0])
     {
@@ -142,12 +142,12 @@ class AuthMethodsApi
     /**
      * Operation authMethodsListWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\AuthMethodsListReq $auth_methods_list_req (required)
+     * @param  \Corbado\Generated\Model\AuthMethodsListReq $auth_methods_list_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authMethodsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\AuthMethodsListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\AuthMethodsListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function authMethodsListWithHttpInfo($auth_methods_list_req, string $contentType = self::contentTypes['authMethodsList'][0])
     {
@@ -190,38 +190,38 @@ class AuthMethodsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\AuthMethodsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\AuthMethodsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\AuthMethodsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\AuthMethodsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\AuthMethodsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\AuthMethodsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\AuthMethodsListRsp';
+            $returnType = '\Corbado\Generated\Model\AuthMethodsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -242,7 +242,7 @@ class AuthMethodsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\AuthMethodsListRsp',
+                        '\Corbado\Generated\Model\AuthMethodsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -250,7 +250,7 @@ class AuthMethodsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -263,7 +263,7 @@ class AuthMethodsApi
     /**
      * Operation authMethodsListAsync
      *
-     * @param  \CorbadoGenerated\Model\AuthMethodsListReq $auth_methods_list_req (required)
+     * @param  \Corbado\Generated\Model\AuthMethodsListReq $auth_methods_list_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authMethodsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -282,7 +282,7 @@ class AuthMethodsApi
     /**
      * Operation authMethodsListAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\AuthMethodsListReq $auth_methods_list_req (required)
+     * @param  \Corbado\Generated\Model\AuthMethodsListReq $auth_methods_list_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authMethodsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -290,7 +290,7 @@ class AuthMethodsApi
      */
     public function authMethodsListAsyncWithHttpInfo($auth_methods_list_req, string $contentType = self::contentTypes['authMethodsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\AuthMethodsListRsp';
+        $returnType = '\Corbado\Generated\Model\AuthMethodsListRsp';
         $request = $this->authMethodsListRequest($auth_methods_list_req, $contentType);
 
         return $this->client
@@ -332,7 +332,7 @@ class AuthMethodsApi
     /**
      * Create request for operation 'authMethodsList'
      *
-     * @param  \CorbadoGenerated\Model\AuthMethodsListReq $auth_methods_list_req (required)
+     * @param  \Corbado\Generated\Model\AuthMethodsListReq $auth_methods_list_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authMethodsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

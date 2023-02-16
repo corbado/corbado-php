@@ -4,12 +4,12 @@ namespace Corbado;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
-use CorbadoGenerated\Model\ClientInfo;
-use CorbadoGenerated\Model\GenericRsp;
-use CorbadoGenerated\Model\SmsCodeSendReq;
-use CorbadoGenerated\Model\SmsCodeSendRsp;
-use CorbadoGenerated\Model\SmsCodeSendRspAllOfData;
-use CorbadoGenerated\Model\SmsCodeValidateReq;
+use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Model\GenericRsp;
+use Corbado\Generated\Model\SmsCodeSendReq;
+use Corbado\Generated\Model\SmsCodeSendRsp;
+use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
+use Corbado\Generated\Model\SmsCodeValidateReq;
 use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 

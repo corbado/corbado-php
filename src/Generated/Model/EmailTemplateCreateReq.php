@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * EmailTemplateCreateReq Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -73,7 +73,7 @@ class EmailTemplateCreateReq implements ModelInterface, ArrayAccess, \JsonSerial
         'html_color_button_font' => 'string',
         'is_default' => 'bool',
         'request_id' => 'string',
-        'client_info' => '\CorbadoGenerated\Model\ClientInfo'
+        'client_info' => '\Corbado\Generated\Model\ClientInfo'
     ];
 
     /**
@@ -878,7 +878,7 @@ class EmailTemplateCreateReq implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets client_info
      *
-     * @return \CorbadoGenerated\Model\ClientInfo|null
+     * @return \Corbado\Generated\Model\ClientInfo|null
      */
     public function getClientInfo()
     {
@@ -888,7 +888,7 @@ class EmailTemplateCreateReq implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets client_info
      *
-     * @param \CorbadoGenerated\Model\ClientInfo|null $client_info client_info
+     * @param \Corbado\Generated\Model\ClientInfo|null $client_info client_info
      *
      * @return self
      */

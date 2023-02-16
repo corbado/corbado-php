@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * SessionTokenVerifyRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class SessionTokenVerifyRspAllOf implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\SessionTokenVerifyRspAllOfData'
+        'data' => '\Corbado\Generated\Model\SessionTokenVerifyRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class SessionTokenVerifyRspAllOf implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\SessionTokenVerifyRspAllOfData
+     * @return \Corbado\Generated\Model\SessionTokenVerifyRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class SessionTokenVerifyRspAllOf implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\SessionTokenVerifyRspAllOfData $data data
+     * @param \Corbado\Generated\Model\SessionTokenVerifyRspAllOfData $data data
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingBrowserDetailedStatsListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class TrackingBrowserDetailedStatsListRspAllOf implements ModelInterface, ArrayA
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRspAllOfData'
+        'data' => '\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class TrackingBrowserDetailedStatsListRspAllOf implements ModelInterface, ArrayA
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRspAllOfData
+     * @return \Corbado\Generated\Model\TrackingBrowserDetailedStatsListRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class TrackingBrowserDetailedStatsListRspAllOf implements ModelInterface, ArrayA
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRspAllOfData $data data
+     * @param \Corbado\Generated\Model\TrackingBrowserDetailedStatsListRspAllOfData $data data
      *
      * @return self
      */

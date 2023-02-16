@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserEmailCreateRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,9 +60,9 @@ class UserEmailCreateRsp implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
-        'data' => '\CorbadoGenerated\Model\UserEmailCreateRspAllOfData'
+        'data' => '\Corbado\Generated\Model\UserEmailCreateRspAllOfData'
     ];
 
     /**
@@ -406,7 +406,7 @@ class UserEmailCreateRsp implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -416,7 +416,7 @@ class UserEmailCreateRsp implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */
@@ -460,7 +460,7 @@ class UserEmailCreateRsp implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\UserEmailCreateRspAllOfData
+     * @return \Corbado\Generated\Model\UserEmailCreateRspAllOfData
      */
     public function getData()
     {
@@ -470,7 +470,7 @@ class UserEmailCreateRsp implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\UserEmailCreateRspAllOfData $data data
+     * @param \Corbado\Generated\Model\UserEmailCreateRspAllOfData $data data
      *
      * @return self
      */

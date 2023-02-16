@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * SmsCodeSendRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class SmsCodeSendRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\SmsCodeSendRspAllOfData'
+        'data' => '\Corbado\Generated\Model\SmsCodeSendRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class SmsCodeSendRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\SmsCodeSendRspAllOfData
+     * @return \Corbado\Generated\Model\SmsCodeSendRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class SmsCodeSendRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\SmsCodeSendRspAllOfData $data data
+     * @param \Corbado\Generated\Model\SmsCodeSendRspAllOfData $data data
      *
      * @return self
      */

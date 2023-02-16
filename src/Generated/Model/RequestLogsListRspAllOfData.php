@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * RequestLogsListRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class RequestLogsListRspAllOfData implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'logs' => '\CorbadoGenerated\Model\RequestLog[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'logs' => '\Corbado\Generated\Model\RequestLog[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class RequestLogsListRspAllOfData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets logs
      *
-     * @return \CorbadoGenerated\Model\RequestLog[]
+     * @return \Corbado\Generated\Model\RequestLog[]
      */
     public function getLogs()
     {
@@ -316,7 +316,7 @@ class RequestLogsListRspAllOfData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets logs
      *
-     * @param \CorbadoGenerated\Model\RequestLog[] $logs logs
+     * @param \Corbado\Generated\Model\RequestLog[] $logs logs
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class RequestLogsListRspAllOfData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class RequestLogsListRspAllOfData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

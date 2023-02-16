@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * APISecretsApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -132,12 +132,12 @@ class APISecretsApi
     /**
      * Operation projectSecretCreate
      *
-     * @param  \CorbadoGenerated\Model\ProjectSecretCreateReq $project_secret_create_req project_secret_create_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretCreateReq $project_secret_create_req project_secret_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\ProjectSecretCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\ProjectSecretCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function projectSecretCreate($project_secret_create_req = null, string $contentType = self::contentTypes['projectSecretCreate'][0])
     {
@@ -148,12 +148,12 @@ class APISecretsApi
     /**
      * Operation projectSecretCreateWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\ProjectSecretCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\ProjectSecretCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectSecretCreateWithHttpInfo($project_secret_create_req = null, string $contentType = self::contentTypes['projectSecretCreate'][0])
     {
@@ -196,38 +196,38 @@ class APISecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\ProjectSecretCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ProjectSecretCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ProjectSecretCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ProjectSecretCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ProjectSecretCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ProjectSecretCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\ProjectSecretCreateRsp';
+            $returnType = '\Corbado\Generated\Model\ProjectSecretCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -248,7 +248,7 @@ class APISecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ProjectSecretCreateRsp',
+                        '\Corbado\Generated\Model\ProjectSecretCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -256,7 +256,7 @@ class APISecretsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -269,7 +269,7 @@ class APISecretsApi
     /**
      * Operation projectSecretCreateAsync
      *
-     * @param  \CorbadoGenerated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -288,7 +288,7 @@ class APISecretsApi
     /**
      * Operation projectSecretCreateAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -296,7 +296,7 @@ class APISecretsApi
      */
     public function projectSecretCreateAsyncWithHttpInfo($project_secret_create_req = null, string $contentType = self::contentTypes['projectSecretCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\ProjectSecretCreateRsp';
+        $returnType = '\Corbado\Generated\Model\ProjectSecretCreateRsp';
         $request = $this->projectSecretCreateRequest($project_secret_create_req, $contentType);
 
         return $this->client
@@ -338,7 +338,7 @@ class APISecretsApi
     /**
      * Create request for operation 'projectSecretCreate'
      *
-     * @param  \CorbadoGenerated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretCreateReq $project_secret_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -437,12 +437,12 @@ class APISecretsApi
      * Operation projectSecretDelete
      *
      * @param  string $secret_id Secret ID from create (required)
-     * @param  \CorbadoGenerated\Model\ProjectSecretDeleteReq $project_secret_delete_req project_secret_delete_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretDeleteReq $project_secret_delete_req project_secret_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function projectSecretDelete($secret_id, $project_secret_delete_req = null, string $contentType = self::contentTypes['projectSecretDelete'][0])
     {
@@ -454,12 +454,12 @@ class APISecretsApi
      * Operation projectSecretDeleteWithHttpInfo
      *
      * @param  string $secret_id Secret ID from create (required)
-     * @param  \CorbadoGenerated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectSecretDeleteWithHttpInfo($secret_id, $project_secret_delete_req = null, string $contentType = self::contentTypes['projectSecretDelete'][0])
     {
@@ -502,38 +502,38 @@ class APISecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -554,7 +554,7 @@ class APISecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -562,7 +562,7 @@ class APISecretsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -576,7 +576,7 @@ class APISecretsApi
      * Operation projectSecretDeleteAsync
      *
      * @param  string $secret_id Secret ID from create (required)
-     * @param  \CorbadoGenerated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -596,7 +596,7 @@ class APISecretsApi
      * Operation projectSecretDeleteAsyncWithHttpInfo
      *
      * @param  string $secret_id Secret ID from create (required)
-     * @param  \CorbadoGenerated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -604,7 +604,7 @@ class APISecretsApi
      */
     public function projectSecretDeleteAsyncWithHttpInfo($secret_id, $project_secret_delete_req = null, string $contentType = self::contentTypes['projectSecretDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->projectSecretDeleteRequest($secret_id, $project_secret_delete_req, $contentType);
 
         return $this->client
@@ -647,7 +647,7 @@ class APISecretsApi
      * Create request for operation 'projectSecretDelete'
      *
      * @param  string $secret_id Secret ID from create (required)
-     * @param  \CorbadoGenerated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
+     * @param  \Corbado\Generated\Model\ProjectSecretDeleteReq $project_secret_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -762,9 +762,9 @@ class APISecretsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\ProjectSecretListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\ProjectSecretListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function projectSecretList(string $contentType = self::contentTypes['projectSecretList'][0])
     {
@@ -777,9 +777,9 @@ class APISecretsApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectSecretList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\ProjectSecretListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\ProjectSecretListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectSecretListWithHttpInfo(string $contentType = self::contentTypes['projectSecretList'][0])
     {
@@ -822,38 +822,38 @@ class APISecretsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\ProjectSecretListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ProjectSecretListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ProjectSecretListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ProjectSecretListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ProjectSecretListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ProjectSecretListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\ProjectSecretListRsp';
+            $returnType = '\Corbado\Generated\Model\ProjectSecretListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -874,7 +874,7 @@ class APISecretsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ProjectSecretListRsp',
+                        '\Corbado\Generated\Model\ProjectSecretListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -882,7 +882,7 @@ class APISecretsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -920,7 +920,7 @@ class APISecretsApi
      */
     public function projectSecretListAsyncWithHttpInfo(string $contentType = self::contentTypes['projectSecretList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\ProjectSecretListRsp';
+        $returnType = '\Corbado\Generated\Model\ProjectSecretListRsp';
         $request = $this->projectSecretListRequest($contentType);
 
         return $this->client

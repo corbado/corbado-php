@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * ProjectConfigGetRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class ProjectConfigGetRspAllOf implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\ProjectConfig'
+        'data' => '\Corbado\Generated\Model\ProjectConfig'
     ];
 
     /**
@@ -296,7 +296,7 @@ class ProjectConfigGetRspAllOf implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\ProjectConfig
+     * @return \Corbado\Generated\Model\ProjectConfig
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class ProjectConfigGetRspAllOf implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\ProjectConfig $data data
+     * @param \Corbado\Generated\Model\ProjectConfig $data data
      *
      * @return self
      */

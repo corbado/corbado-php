@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * PhoneNumberValidationResult Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class PhoneNumberValidationResult implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'is_valid' => 'bool',
         'validation_code' => 'string',
-        'phone_number' => '\CorbadoGenerated\Model\ValidationPhoneNumber'
+        'phone_number' => '\Corbado\Generated\Model\ValidationPhoneNumber'
     ];
 
     /**
@@ -405,7 +405,7 @@ class PhoneNumberValidationResult implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets phone_number
      *
-     * @return \CorbadoGenerated\Model\ValidationPhoneNumber|null
+     * @return \Corbado\Generated\Model\ValidationPhoneNumber|null
      */
     public function getPhoneNumber()
     {
@@ -415,7 +415,7 @@ class PhoneNumberValidationResult implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets phone_number
      *
-     * @param \CorbadoGenerated\Model\ValidationPhoneNumber|null $phone_number phone_number
+     * @param \Corbado\Generated\Model\ValidationPhoneNumber|null $phone_number phone_number
      *
      * @return self
      */

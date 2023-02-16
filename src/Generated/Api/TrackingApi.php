@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -149,9 +149,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingAllRequest'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingRawListRsp
+     * @return \Corbado\Generated\Model\TrackingRawListRsp
      */
     public function trackingAllRequest($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingAllRequest'][0])
     {
@@ -170,9 +170,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingAllRequest'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingRawListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingRawListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingAllRequestWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingAllRequest'][0])
     {
@@ -215,23 +215,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingRawListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingRawListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingRawListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingRawListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingRawListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingRawListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingRawListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingRawListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -252,7 +252,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingRawListRsp',
+                        '\Corbado\Generated\Model\TrackingRawListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -302,7 +302,7 @@ class TrackingApi
      */
     public function trackingAllRequestAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingAllRequest'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingRawListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingRawListRsp';
         $request = $this->trackingAllRequestRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -508,9 +508,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingBrowserDetailedStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp
+     * @return \Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp
      */
     public function trackingBrowserDetailedStatsList($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserDetailedStatsList'][0])
     {
@@ -530,9 +530,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingBrowserDetailedStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingBrowserDetailedStatsListWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserDetailedStatsList'][0])
     {
@@ -575,23 +575,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -612,7 +612,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp',
+                        '\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -664,7 +664,7 @@ class TrackingApi
      */
     public function trackingBrowserDetailedStatsListAsyncWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserDetailedStatsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingBrowserDetailedStatsListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingBrowserDetailedStatsListRsp';
         $request = $this->trackingBrowserDetailedStatsListRequest($granularity, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -887,9 +887,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingBrowserStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingBrowserStatsListRsp
+     * @return \Corbado\Generated\Model\TrackingBrowserStatsListRsp
      */
     public function trackingBrowserStatsList($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserStatsList'][0])
     {
@@ -909,9 +909,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingBrowserStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingBrowserStatsListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingBrowserStatsListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingBrowserStatsListWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserStatsList'][0])
     {
@@ -954,23 +954,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingBrowserStatsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingBrowserStatsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingBrowserStatsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingBrowserStatsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingBrowserStatsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingBrowserStatsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingBrowserStatsListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingBrowserStatsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -991,7 +991,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingBrowserStatsListRsp',
+                        '\Corbado\Generated\Model\TrackingBrowserStatsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1043,7 +1043,7 @@ class TrackingApi
      */
     public function trackingBrowserStatsListAsyncWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingBrowserStatsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingBrowserStatsListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingBrowserStatsListRsp';
         $request = $this->trackingBrowserStatsListRequest($granularity, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -1266,9 +1266,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingOSDetailedStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp
+     * @return \Corbado\Generated\Model\TrackingOSDetailedStatsListRsp
      */
     public function trackingOSDetailedStatsList($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSDetailedStatsList'][0])
     {
@@ -1288,9 +1288,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingOSDetailedStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingOSDetailedStatsListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingOSDetailedStatsListWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSDetailedStatsList'][0])
     {
@@ -1333,23 +1333,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1370,7 +1370,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp',
+                        '\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1422,7 +1422,7 @@ class TrackingApi
      */
     public function trackingOSDetailedStatsListAsyncWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSDetailedStatsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingOSDetailedStatsListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingOSDetailedStatsListRsp';
         $request = $this->trackingOSDetailedStatsListRequest($granularity, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -1645,9 +1645,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingOSStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingOSStatsListRsp
+     * @return \Corbado\Generated\Model\TrackingOSStatsListRsp
      */
     public function trackingOSStatsList($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSStatsList'][0])
     {
@@ -1667,9 +1667,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingOSStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingOSStatsListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingOSStatsListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingOSStatsListWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSStatsList'][0])
     {
@@ -1712,23 +1712,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingOSStatsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingOSStatsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingOSStatsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingOSStatsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingOSStatsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingOSStatsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingOSStatsListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingOSStatsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1749,7 +1749,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingOSStatsListRsp',
+                        '\Corbado\Generated\Model\TrackingOSStatsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1801,7 +1801,7 @@ class TrackingApi
      */
     public function trackingOSStatsListAsyncWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingOSStatsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingOSStatsListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingOSStatsListRsp';
         $request = $this->trackingOSStatsListRequest($granularity, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -2024,9 +2024,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\TrackingStatsListRsp
+     * @return \Corbado\Generated\Model\TrackingStatsListRsp
      */
     public function trackingStatsList($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingStatsList'][0])
     {
@@ -2046,9 +2046,9 @@ class TrackingApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['trackingStatsList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\TrackingStatsListRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\TrackingStatsListRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function trackingStatsListWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingStatsList'][0])
     {
@@ -2091,23 +2091,23 @@ class TrackingApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\TrackingStatsListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\TrackingStatsListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\TrackingStatsListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\TrackingStatsListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\TrackingStatsListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\TrackingStatsListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\TrackingStatsListRsp';
+            $returnType = '\Corbado\Generated\Model\TrackingStatsListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2128,7 +2128,7 @@ class TrackingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\TrackingStatsListRsp',
+                        '\Corbado\Generated\Model\TrackingStatsListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2180,7 +2180,7 @@ class TrackingApi
      */
     public function trackingStatsListAsyncWithHttpInfo($granularity, $remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['trackingStatsList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\TrackingStatsListRsp';
+        $returnType = '\Corbado\Generated\Model\TrackingStatsListRsp';
         $request = $this->trackingStatsListRequest($granularity, $remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client

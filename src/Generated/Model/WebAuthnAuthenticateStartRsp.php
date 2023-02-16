@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * WebAuthnAuthenticateStartRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class WebAuthnAuthenticateStartRsp implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
         'public_key_credential_request_options' => 'string',
         'status' => 'string'
@@ -442,7 +442,7 @@ class WebAuthnAuthenticateStartRsp implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -452,7 +452,7 @@ class WebAuthnAuthenticateStartRsp implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */

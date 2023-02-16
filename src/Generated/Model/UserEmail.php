@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserEmail Class Doc Comment
  *
  * @category Class
  * @description User&#39;s email
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -63,7 +63,7 @@ class UserEmail implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'string',
         'created' => 'string',
         'updated' => 'string',
-        'status' => '\CorbadoGenerated\Model\Status'
+        'status' => '\Corbado\Generated\Model\Status'
     ];
 
     /**
@@ -445,7 +445,7 @@ class UserEmail implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \CorbadoGenerated\Model\Status
+     * @return \Corbado\Generated\Model\Status
      */
     public function getStatus()
     {
@@ -455,7 +455,7 @@ class UserEmail implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \CorbadoGenerated\Model\Status $status status
+     * @param \Corbado\Generated\Model\Status $status status
      *
      * @return self
      */

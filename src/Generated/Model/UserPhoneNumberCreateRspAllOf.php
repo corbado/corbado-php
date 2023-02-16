@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserPhoneNumberCreateRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class UserPhoneNumberCreateRspAllOf implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\UserPhoneNumberCreateRspAllOfData'
+        'data' => '\Corbado\Generated\Model\UserPhoneNumberCreateRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class UserPhoneNumberCreateRspAllOf implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\UserPhoneNumberCreateRspAllOfData
+     * @return \Corbado\Generated\Model\UserPhoneNumberCreateRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class UserPhoneNumberCreateRspAllOf implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\UserPhoneNumberCreateRspAllOfData $data data
+     * @param \Corbado\Generated\Model\UserPhoneNumberCreateRspAllOfData $data data
      *
      * @return self
      */

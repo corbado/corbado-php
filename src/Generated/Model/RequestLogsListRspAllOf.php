@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * RequestLogsListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class RequestLogsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\RequestLogsListRspAllOfData'
+        'data' => '\Corbado\Generated\Model\RequestLogsListRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class RequestLogsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\RequestLogsListRspAllOfData
+     * @return \Corbado\Generated\Model\RequestLogsListRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class RequestLogsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\RequestLogsListRspAllOfData $data data
+     * @param \Corbado\Generated\Model\RequestLogsListRspAllOfData $data data
      *
      * @return self
      */

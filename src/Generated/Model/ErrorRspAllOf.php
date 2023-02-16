@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * ErrorRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class ErrorRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'error' => '\CorbadoGenerated\Model\ErrorRspAllOfError'
+        'error' => '\Corbado\Generated\Model\ErrorRspAllOfError'
     ];
 
     /**
@@ -296,7 +296,7 @@ class ErrorRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets error
      *
-     * @return \CorbadoGenerated\Model\ErrorRspAllOfError
+     * @return \Corbado\Generated\Model\ErrorRspAllOfError
      */
     public function getError()
     {
@@ -306,7 +306,7 @@ class ErrorRspAllOf implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets error
      *
-     * @param \CorbadoGenerated\Model\ErrorRspAllOfError $error error
+     * @param \Corbado\Generated\Model\ErrorRspAllOfError $error error
      *
      * @return self
      */

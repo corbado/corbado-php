@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingBrowserDetailedStatsListRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class TrackingBrowserDetailedStatsListRspAllOfData implements ModelInterface, Ar
       * @var string[]
       */
     protected static $openAPITypes = [
-        'stats' => '\CorbadoGenerated\Model\TrackingBrowserDetailedStats[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'stats' => '\Corbado\Generated\Model\TrackingBrowserDetailedStats[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class TrackingBrowserDetailedStatsListRspAllOfData implements ModelInterface, Ar
     /**
      * Gets stats
      *
-     * @return \CorbadoGenerated\Model\TrackingBrowserDetailedStats[]
+     * @return \Corbado\Generated\Model\TrackingBrowserDetailedStats[]
      */
     public function getStats()
     {
@@ -316,7 +316,7 @@ class TrackingBrowserDetailedStatsListRspAllOfData implements ModelInterface, Ar
     /**
      * Sets stats
      *
-     * @param \CorbadoGenerated\Model\TrackingBrowserDetailedStats[] $stats stats
+     * @param \Corbado\Generated\Model\TrackingBrowserDetailedStats[] $stats stats
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class TrackingBrowserDetailedStatsListRspAllOfData implements ModelInterface, Ar
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class TrackingBrowserDetailedStatsListRspAllOfData implements ModelInterface, Ar
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

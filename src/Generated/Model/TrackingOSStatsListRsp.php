@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * TrackingOSStatsListRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,9 +60,9 @@ class TrackingOSStatsListRsp implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
-        'data' => '\CorbadoGenerated\Model\TrackingOSStatsListRspAllOfData'
+        'data' => '\Corbado\Generated\Model\TrackingOSStatsListRspAllOfData'
     ];
 
     /**
@@ -406,7 +406,7 @@ class TrackingOSStatsListRsp implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -416,7 +416,7 @@ class TrackingOSStatsListRsp implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */
@@ -460,7 +460,7 @@ class TrackingOSStatsListRsp implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\TrackingOSStatsListRspAllOfData
+     * @return \Corbado\Generated\Model\TrackingOSStatsListRspAllOfData
      */
     public function getData()
     {
@@ -470,7 +470,7 @@ class TrackingOSStatsListRsp implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\TrackingOSStatsListRspAllOfData $data data
+     * @param \Corbado\Generated\Model\TrackingOSStatsListRspAllOfData $data data
      *
      * @return self
      */

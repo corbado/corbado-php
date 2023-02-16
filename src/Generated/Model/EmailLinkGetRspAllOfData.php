@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * EmailLinkGetRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class EmailLinkGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email_link' => '\CorbadoGenerated\Model\EmailLink'
+        'email_link' => '\Corbado\Generated\Model\EmailLink'
     ];
 
     /**
@@ -296,7 +296,7 @@ class EmailLinkGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets email_link
      *
-     * @return \CorbadoGenerated\Model\EmailLink
+     * @return \Corbado\Generated\Model\EmailLink
      */
     public function getEmailLink()
     {
@@ -306,7 +306,7 @@ class EmailLinkGetRspAllOfData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets email_link
      *
-     * @param \CorbadoGenerated\Model\EmailLink $email_link email_link
+     * @param \Corbado\Generated\Model\EmailLink $email_link email_link
      *
      * @return self
      */

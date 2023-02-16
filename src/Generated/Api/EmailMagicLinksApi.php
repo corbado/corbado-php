@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * EmailMagicLinksApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -136,12 +136,12 @@ class EmailMagicLinksApi
      * Operation emailLinkDelete
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksDeleteReq $email_links_delete_req email_links_delete_req (optional)
+     * @param  \Corbado\Generated\Model\EmailLinksDeleteReq $email_links_delete_req email_links_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\EmailLinkValidateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\EmailLinkValidateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailLinkDelete($email_link_id, $email_links_delete_req = null, string $contentType = self::contentTypes['emailLinkDelete'][0])
     {
@@ -153,12 +153,12 @@ class EmailMagicLinksApi
      * Operation emailLinkDeleteWithHttpInfo
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
+     * @param  \Corbado\Generated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\EmailLinkValidateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\EmailLinkValidateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailLinkDeleteWithHttpInfo($email_link_id, $email_links_delete_req = null, string $contentType = self::contentTypes['emailLinkDelete'][0])
     {
@@ -201,38 +201,38 @@ class EmailMagicLinksApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\EmailLinkValidateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\EmailLinkValidateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\EmailLinkValidateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\EmailLinkValidateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\EmailLinkValidateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\EmailLinkValidateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\EmailLinkValidateRsp';
+            $returnType = '\Corbado\Generated\Model\EmailLinkValidateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -253,7 +253,7 @@ class EmailMagicLinksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\EmailLinkValidateRsp',
+                        '\Corbado\Generated\Model\EmailLinkValidateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -261,7 +261,7 @@ class EmailMagicLinksApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -275,7 +275,7 @@ class EmailMagicLinksApi
      * Operation emailLinkDeleteAsync
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
+     * @param  \Corbado\Generated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -295,7 +295,7 @@ class EmailMagicLinksApi
      * Operation emailLinkDeleteAsyncWithHttpInfo
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
+     * @param  \Corbado\Generated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -303,7 +303,7 @@ class EmailMagicLinksApi
      */
     public function emailLinkDeleteAsyncWithHttpInfo($email_link_id, $email_links_delete_req = null, string $contentType = self::contentTypes['emailLinkDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\EmailLinkValidateRsp';
+        $returnType = '\Corbado\Generated\Model\EmailLinkValidateRsp';
         $request = $this->emailLinkDeleteRequest($email_link_id, $email_links_delete_req, $contentType);
 
         return $this->client
@@ -346,7 +346,7 @@ class EmailMagicLinksApi
      * Create request for operation 'emailLinkDelete'
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
+     * @param  \Corbado\Generated\Model\EmailLinksDeleteReq $email_links_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -458,9 +458,9 @@ class EmailMagicLinksApi
      * @param  string $email_link_id ID of email magic link (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\EmailLinkGetRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\EmailLinkGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailLinkGet($email_link_id, string $contentType = self::contentTypes['emailLinkGet'][0])
     {
@@ -474,9 +474,9 @@ class EmailMagicLinksApi
      * @param  string $email_link_id ID of email magic link (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\EmailLinkGetRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\EmailLinkGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailLinkGetWithHttpInfo($email_link_id, string $contentType = self::contentTypes['emailLinkGet'][0])
     {
@@ -519,38 +519,38 @@ class EmailMagicLinksApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\EmailLinkGetRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\EmailLinkGetRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\EmailLinkGetRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\EmailLinkGetRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\EmailLinkGetRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\EmailLinkGetRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\EmailLinkGetRsp';
+            $returnType = '\Corbado\Generated\Model\EmailLinkGetRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -571,7 +571,7 @@ class EmailMagicLinksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\EmailLinkGetRsp',
+                        '\Corbado\Generated\Model\EmailLinkGetRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -579,7 +579,7 @@ class EmailMagicLinksApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -619,7 +619,7 @@ class EmailMagicLinksApi
      */
     public function emailLinkGetAsyncWithHttpInfo($email_link_id, string $contentType = self::contentTypes['emailLinkGet'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\EmailLinkGetRsp';
+        $returnType = '\Corbado\Generated\Model\EmailLinkGetRsp';
         $request = $this->emailLinkGetRequest($email_link_id, $contentType);
 
         return $this->client
@@ -762,12 +762,12 @@ class EmailMagicLinksApi
     /**
      * Operation emailLinkSend
      *
-     * @param  \CorbadoGenerated\Model\EmailLinkSendReq $email_link_send_req email_link_send_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinkSendReq $email_link_send_req email_link_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkSend'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\EmailLinkSendRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\EmailLinkSendRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailLinkSend($email_link_send_req, string $contentType = self::contentTypes['emailLinkSend'][0])
     {
@@ -778,12 +778,12 @@ class EmailMagicLinksApi
     /**
      * Operation emailLinkSendWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\EmailLinkSendReq $email_link_send_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinkSendReq $email_link_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkSend'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\EmailLinkSendRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\EmailLinkSendRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailLinkSendWithHttpInfo($email_link_send_req, string $contentType = self::contentTypes['emailLinkSend'][0])
     {
@@ -826,38 +826,38 @@ class EmailMagicLinksApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\EmailLinkSendRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\EmailLinkSendRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\EmailLinkSendRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\EmailLinkSendRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\EmailLinkSendRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\EmailLinkSendRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\EmailLinkSendRsp';
+            $returnType = '\Corbado\Generated\Model\EmailLinkSendRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -878,7 +878,7 @@ class EmailMagicLinksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\EmailLinkSendRsp',
+                        '\Corbado\Generated\Model\EmailLinkSendRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -886,7 +886,7 @@ class EmailMagicLinksApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -899,7 +899,7 @@ class EmailMagicLinksApi
     /**
      * Operation emailLinkSendAsync
      *
-     * @param  \CorbadoGenerated\Model\EmailLinkSendReq $email_link_send_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinkSendReq $email_link_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -918,7 +918,7 @@ class EmailMagicLinksApi
     /**
      * Operation emailLinkSendAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\EmailLinkSendReq $email_link_send_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinkSendReq $email_link_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -926,7 +926,7 @@ class EmailMagicLinksApi
      */
     public function emailLinkSendAsyncWithHttpInfo($email_link_send_req, string $contentType = self::contentTypes['emailLinkSend'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\EmailLinkSendRsp';
+        $returnType = '\Corbado\Generated\Model\EmailLinkSendRsp';
         $request = $this->emailLinkSendRequest($email_link_send_req, $contentType);
 
         return $this->client
@@ -968,7 +968,7 @@ class EmailMagicLinksApi
     /**
      * Create request for operation 'emailLinkSend'
      *
-     * @param  \CorbadoGenerated\Model\EmailLinkSendReq $email_link_send_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinkSendReq $email_link_send_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkSend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1069,12 +1069,12 @@ class EmailMagicLinksApi
      * Operation emailLinkValidate
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksValidateReq $email_links_validate_req email_links_validate_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinksValidateReq $email_links_validate_req email_links_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkValidate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\EmailLinkValidateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\EmailLinkValidateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function emailLinkValidate($email_link_id, $email_links_validate_req, string $contentType = self::contentTypes['emailLinkValidate'][0])
     {
@@ -1086,12 +1086,12 @@ class EmailMagicLinksApi
      * Operation emailLinkValidateWithHttpInfo
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksValidateReq $email_links_validate_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinksValidateReq $email_links_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkValidate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\EmailLinkValidateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\EmailLinkValidateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function emailLinkValidateWithHttpInfo($email_link_id, $email_links_validate_req, string $contentType = self::contentTypes['emailLinkValidate'][0])
     {
@@ -1134,38 +1134,38 @@ class EmailMagicLinksApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\EmailLinkValidateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\EmailLinkValidateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\EmailLinkValidateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\EmailLinkValidateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\EmailLinkValidateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\EmailLinkValidateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\EmailLinkValidateRsp';
+            $returnType = '\Corbado\Generated\Model\EmailLinkValidateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1186,7 +1186,7 @@ class EmailMagicLinksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\EmailLinkValidateRsp',
+                        '\Corbado\Generated\Model\EmailLinkValidateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1194,7 +1194,7 @@ class EmailMagicLinksApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1208,7 +1208,7 @@ class EmailMagicLinksApi
      * Operation emailLinkValidateAsync
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksValidateReq $email_links_validate_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinksValidateReq $email_links_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1228,7 +1228,7 @@ class EmailMagicLinksApi
      * Operation emailLinkValidateAsyncWithHttpInfo
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksValidateReq $email_links_validate_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinksValidateReq $email_links_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1236,7 +1236,7 @@ class EmailMagicLinksApi
      */
     public function emailLinkValidateAsyncWithHttpInfo($email_link_id, $email_links_validate_req, string $contentType = self::contentTypes['emailLinkValidate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\EmailLinkValidateRsp';
+        $returnType = '\Corbado\Generated\Model\EmailLinkValidateRsp';
         $request = $this->emailLinkValidateRequest($email_link_id, $email_links_validate_req, $contentType);
 
         return $this->client
@@ -1279,7 +1279,7 @@ class EmailMagicLinksApi
      * Create request for operation 'emailLinkValidate'
      *
      * @param  string $email_link_id ID of email magic link (required)
-     * @param  \CorbadoGenerated\Model\EmailLinksValidateReq $email_links_validate_req (required)
+     * @param  \Corbado\Generated\Model\EmailLinksValidateReq $email_links_validate_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['emailLinkValidate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

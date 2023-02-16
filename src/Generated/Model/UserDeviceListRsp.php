@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserDeviceListRsp Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,10 +60,10 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPITypes = [
         'http_status_code' => 'int',
         'message' => 'string',
-        'request_data' => '\CorbadoGenerated\Model\RequestData',
+        'request_data' => '\Corbado\Generated\Model\RequestData',
         'runtime' => 'float',
-        'devices' => '\CorbadoGenerated\Model\UserDeviceItem[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'devices' => '\Corbado\Generated\Model\UserDeviceItem[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -416,7 +416,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets request_data
      *
-     * @return \CorbadoGenerated\Model\RequestData
+     * @return \Corbado\Generated\Model\RequestData
      */
     public function getRequestData()
     {
@@ -426,7 +426,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets request_data
      *
-     * @param \CorbadoGenerated\Model\RequestData $request_data request_data
+     * @param \Corbado\Generated\Model\RequestData $request_data request_data
      *
      * @return self
      */
@@ -470,7 +470,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets devices
      *
-     * @return \CorbadoGenerated\Model\UserDeviceItem[]
+     * @return \Corbado\Generated\Model\UserDeviceItem[]
      */
     public function getDevices()
     {
@@ -480,7 +480,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets devices
      *
-     * @param \CorbadoGenerated\Model\UserDeviceItem[] $devices devices
+     * @param \Corbado\Generated\Model\UserDeviceItem[] $devices devices
      *
      * @return self
      */
@@ -497,7 +497,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -507,7 +507,7 @@ class UserDeviceListRsp implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

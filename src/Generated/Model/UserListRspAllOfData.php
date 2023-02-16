@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * UserListRspAllOfData Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class UserListRspAllOfData implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'users' => '\CorbadoGenerated\Model\FullUser[]',
-        'paging' => '\CorbadoGenerated\Model\Paging'
+        'users' => '\Corbado\Generated\Model\FullUser[]',
+        'paging' => '\Corbado\Generated\Model\Paging'
     ];
 
     /**
@@ -306,7 +306,7 @@ class UserListRspAllOfData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets users
      *
-     * @return \CorbadoGenerated\Model\FullUser[]
+     * @return \Corbado\Generated\Model\FullUser[]
      */
     public function getUsers()
     {
@@ -316,7 +316,7 @@ class UserListRspAllOfData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets users
      *
-     * @param \CorbadoGenerated\Model\FullUser[] $users users
+     * @param \Corbado\Generated\Model\FullUser[] $users users
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class UserListRspAllOfData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets paging
      *
-     * @return \CorbadoGenerated\Model\Paging
+     * @return \Corbado\Generated\Model\Paging
      */
     public function getPaging()
     {
@@ -343,7 +343,7 @@ class UserListRspAllOfData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets paging
      *
-     * @param \CorbadoGenerated\Model\Paging $paging paging
+     * @param \Corbado\Generated\Model\Paging $paging paging
      *
      * @return self
      */

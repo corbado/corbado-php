@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Model;
+namespace Corbado\Generated\Model;
 
 use \ArrayAccess;
-use \CorbadoGenerated\ObjectSerializer;
+use \Corbado\Generated\ObjectSerializer;
 
 /**
  * AuthMethodsListRspAllOf Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class AuthMethodsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\CorbadoGenerated\Model\AuthMethodsListRspAllOfData'
+        'data' => '\Corbado\Generated\Model\AuthMethodsListRspAllOfData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class AuthMethodsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets data
      *
-     * @return \CorbadoGenerated\Model\AuthMethodsListRspAllOfData
+     * @return \Corbado\Generated\Model\AuthMethodsListRspAllOfData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class AuthMethodsListRspAllOf implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets data
      *
-     * @param \CorbadoGenerated\Model\AuthMethodsListRspAllOfData $data data
+     * @param \Corbado\Generated\Model\AuthMethodsListRspAllOfData $data data
      *
      * @return self
      */

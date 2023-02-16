@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace CorbadoGenerated\Api;
+namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -35,16 +35,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use CorbadoGenerated\ApiException;
-use CorbadoGenerated\Configuration;
-use CorbadoGenerated\HeaderSelector;
-use CorbadoGenerated\ObjectSerializer;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Configuration;
+use Corbado\Generated\HeaderSelector;
+use Corbado\Generated\ObjectSerializer;
 
 /**
  * PasskeysBiometricsApi Class Doc Comment
  *
  * @category Class
- * @package  CorbadoGenerated
+ * @package  Corbado\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -159,12 +159,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateFinish
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnAuthenticateFinish($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
@@ -175,12 +175,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateFinishWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnAuthenticateFinishWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
@@ -223,38 +223,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -275,7 +275,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp',
+                        '\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -283,7 +283,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -296,7 +296,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateFinishAsync
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -315,7 +315,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateFinishAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -323,7 +323,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnAuthenticateFinishAsyncWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnAuthenticateFinishRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp';
         $request = $this->webAuthnAuthenticateFinishRequest($web_authn_finish_req, $contentType);
 
         return $this->client
@@ -365,7 +365,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnAuthenticateFinish'
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -465,12 +465,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateStart
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req web_authn_authenticate_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req web_authn_authenticate_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnAuthenticateStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnAuthenticateStart($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
@@ -481,12 +481,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateStartWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnAuthenticateStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnAuthenticateStartWithHttpInfo($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
@@ -529,38 +529,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -581,7 +581,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp',
+                        '\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -589,7 +589,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -602,7 +602,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateStartAsync
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -621,7 +621,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnAuthenticateStartAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -629,7 +629,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnAuthenticateStartAsyncWithHttpInfo($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnAuthenticateStartRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp';
         $request = $this->webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req, $contentType);
 
         return $this->client
@@ -671,7 +671,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnAuthenticateStart'
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -779,9 +779,9 @@ class PasskeysBiometricsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnCredentialListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnCredentialListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnCredentialList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
@@ -800,9 +800,9 @@ class PasskeysBiometricsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnCredentialListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnCredentialListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnCredentialListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
@@ -845,38 +845,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnCredentialListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnCredentialListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnCredentialListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnCredentialListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnCredentialListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnCredentialListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnCredentialListRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnCredentialListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -897,7 +897,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnCredentialListRsp',
+                        '\Corbado\Generated\Model\WebAuthnCredentialListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -905,7 +905,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -955,7 +955,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnCredentialListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnCredentialListRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnCredentialListRsp';
         $request = $this->webAuthnCredentialListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -1153,12 +1153,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnCredentialUpdate
      *
      * @param  string $credential_id ID of credential (required)
-     * @param  \CorbadoGenerated\Model\WebAuthnCredentialReq $web_authn_credential_req web_authn_credential_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req web_authn_credential_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnCredentialRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnCredentialRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnCredentialUpdate($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
@@ -1170,12 +1170,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnCredentialUpdateWithHttpInfo
      *
      * @param  string $credential_id ID of credential (required)
-     * @param  \CorbadoGenerated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnCredentialRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnCredentialRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnCredentialUpdateWithHttpInfo($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
@@ -1218,38 +1218,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnCredentialRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnCredentialRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnCredentialRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnCredentialRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnCredentialRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnCredentialRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnCredentialRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnCredentialRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1270,7 +1270,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnCredentialRsp',
+                        '\Corbado\Generated\Model\WebAuthnCredentialRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1278,7 +1278,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1292,7 +1292,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnCredentialUpdateAsync
      *
      * @param  string $credential_id ID of credential (required)
-     * @param  \CorbadoGenerated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1312,7 +1312,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnCredentialUpdateAsyncWithHttpInfo
      *
      * @param  string $credential_id ID of credential (required)
-     * @param  \CorbadoGenerated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1320,7 +1320,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnCredentialUpdateAsyncWithHttpInfo($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnCredentialRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnCredentialRsp';
         $request = $this->webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req, $contentType);
 
         return $this->client
@@ -1363,7 +1363,7 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnCredentialUpdate'
      *
      * @param  string $credential_id ID of credential (required)
-     * @param  \CorbadoGenerated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1478,12 +1478,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnMediationStart
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req web_authn_mediation_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req web_authn_mediation_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnMediationStartRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnMediationStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnMediationStart($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
@@ -1494,12 +1494,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnMediationStartWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnMediationStartRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnMediationStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnMediationStartWithHttpInfo($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
@@ -1542,38 +1542,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnMediationStartRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnMediationStartRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnMediationStartRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnMediationStartRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnMediationStartRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnMediationStartRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnMediationStartRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnMediationStartRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1594,7 +1594,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnMediationStartRsp',
+                        '\Corbado\Generated\Model\WebAuthnMediationStartRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1602,7 +1602,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1615,7 +1615,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnMediationStartAsync
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1634,7 +1634,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnMediationStartAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1642,7 +1642,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnMediationStartAsyncWithHttpInfo($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnMediationStartRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnMediationStartRsp';
         $request = $this->webAuthnMediationStartRequest($web_authn_mediation_start_req, $contentType);
 
         return $this->client
@@ -1684,7 +1684,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnMediationStart'
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1784,12 +1784,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterFinish
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnRegisterFinishRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnRegisterFinishRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnRegisterFinish($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
@@ -1800,12 +1800,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterFinishWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnRegisterFinishRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnRegisterFinishRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnRegisterFinishWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
@@ -1848,38 +1848,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnRegisterFinishRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnRegisterFinishRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnRegisterFinishRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnRegisterFinishRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1900,7 +1900,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp',
+                        '\Corbado\Generated\Model\WebAuthnRegisterFinishRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1908,7 +1908,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1921,7 +1921,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterFinishAsync
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1940,7 +1940,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterFinishAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1948,7 +1948,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnRegisterFinishAsyncWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnRegisterFinishRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnRegisterFinishRsp';
         $request = $this->webAuthnRegisterFinishRequest($web_authn_finish_req, $contentType);
 
         return $this->client
@@ -1990,7 +1990,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnRegisterFinish'
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2090,12 +2090,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterStart
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req web_authn_register_start_req (optional)
+     * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req web_authn_register_start_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebAuthnRegisterStartRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebAuthnRegisterStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnRegisterStart($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
@@ -2106,12 +2106,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterStartWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebAuthnRegisterStartRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebAuthnRegisterStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnRegisterStartWithHttpInfo($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
@@ -2154,38 +2154,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebAuthnRegisterStartRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebAuthnRegisterStartRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebAuthnRegisterStartRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebAuthnRegisterStartRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebAuthnRegisterStartRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebAuthnRegisterStartRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebAuthnRegisterStartRsp';
+            $returnType = '\Corbado\Generated\Model\WebAuthnRegisterStartRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2206,7 +2206,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebAuthnRegisterStartRsp',
+                        '\Corbado\Generated\Model\WebAuthnRegisterStartRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2214,7 +2214,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2227,7 +2227,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterStartAsync
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2246,7 +2246,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnRegisterStartAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2254,7 +2254,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnRegisterStartAsyncWithHttpInfo($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebAuthnRegisterStartRsp';
+        $returnType = '\Corbado\Generated\Model\WebAuthnRegisterStartRsp';
         $request = $this->webAuthnRegisterStartRequest($web_authn_register_start_req, $contentType);
 
         return $this->client
@@ -2296,7 +2296,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnRegisterStart'
      *
-     * @param  \CorbadoGenerated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2390,12 +2390,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnSettingCreate
      *
-     * @param  \CorbadoGenerated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req webauthn_setting_create_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req webauthn_setting_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebauthnSettingCreateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebauthnSettingCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnSettingCreate($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
@@ -2406,12 +2406,12 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnSettingCreateWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebauthnSettingCreateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebauthnSettingCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnSettingCreateWithHttpInfo($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
@@ -2454,38 +2454,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebauthnSettingCreateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebauthnSettingCreateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebauthnSettingCreateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebauthnSettingCreateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebauthnSettingCreateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebauthnSettingCreateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebauthnSettingCreateRsp';
+            $returnType = '\Corbado\Generated\Model\WebauthnSettingCreateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2506,7 +2506,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebauthnSettingCreateRsp',
+                        '\Corbado\Generated\Model\WebauthnSettingCreateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2514,7 +2514,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2527,7 +2527,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnSettingCreateAsync
      *
-     * @param  \CorbadoGenerated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2546,7 +2546,7 @@ class PasskeysBiometricsApi
     /**
      * Operation webAuthnSettingCreateAsyncWithHttpInfo
      *
-     * @param  \CorbadoGenerated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2554,7 +2554,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnSettingCreateAsyncWithHttpInfo($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebauthnSettingCreateRsp';
+        $returnType = '\Corbado\Generated\Model\WebauthnSettingCreateRsp';
         $request = $this->webAuthnSettingCreateRequest($webauthn_setting_create_req, $contentType);
 
         return $this->client
@@ -2596,7 +2596,7 @@ class PasskeysBiometricsApi
     /**
      * Create request for operation 'webAuthnSettingCreate'
      *
-     * @param  \CorbadoGenerated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2695,12 +2695,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingDelete
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req webauthn_setting_delete_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req webauthn_setting_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnSettingDelete($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
@@ -2712,12 +2712,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingDeleteWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\GenericRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnSettingDeleteWithHttpInfo($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
@@ -2760,38 +2760,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\GenericRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\GenericRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\GenericRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\GenericRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\GenericRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\GenericRsp';
+            $returnType = '\Corbado\Generated\Model\GenericRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2812,7 +2812,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\GenericRsp',
+                        '\Corbado\Generated\Model\GenericRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2820,7 +2820,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2834,7 +2834,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingDeleteAsync
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2854,7 +2854,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingDeleteAsyncWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2862,7 +2862,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnSettingDeleteAsyncWithHttpInfo($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\GenericRsp';
+        $returnType = '\Corbado\Generated\Model\GenericRsp';
         $request = $this->webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req, $contentType);
 
         return $this->client
@@ -2905,7 +2905,7 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnSettingDelete'
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3021,9 +3021,9 @@ class PasskeysBiometricsApi
      * @param  string $setting_id ID from create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebauthnSettingGetRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebauthnSettingGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnSettingGet($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
@@ -3037,9 +3037,9 @@ class PasskeysBiometricsApi
      * @param  string $setting_id ID from create (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebauthnSettingGetRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebauthnSettingGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnSettingGetWithHttpInfo($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
@@ -3082,38 +3082,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebauthnSettingGetRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebauthnSettingGetRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebauthnSettingGetRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebauthnSettingGetRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebauthnSettingGetRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebauthnSettingGetRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebauthnSettingGetRsp';
+            $returnType = '\Corbado\Generated\Model\WebauthnSettingGetRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3134,7 +3134,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebauthnSettingGetRsp',
+                        '\Corbado\Generated\Model\WebauthnSettingGetRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3142,7 +3142,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3182,7 +3182,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnSettingGetAsyncWithHttpInfo($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebauthnSettingGetRsp';
+        $returnType = '\Corbado\Generated\Model\WebauthnSettingGetRsp';
         $request = $this->webAuthnSettingGetRequest($setting_id, $contentType);
 
         return $this->client
@@ -3337,9 +3337,9 @@ class PasskeysBiometricsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebauthnSettingListRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebauthnSettingListRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnSettingList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
@@ -3358,9 +3358,9 @@ class PasskeysBiometricsApi
      * @param  int $page_size Number of items per page (optional, default to 10)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebauthnSettingListRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebauthnSettingListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnSettingListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
@@ -3403,38 +3403,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebauthnSettingListRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebauthnSettingListRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebauthnSettingListRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebauthnSettingListRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebauthnSettingListRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebauthnSettingListRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebauthnSettingListRsp';
+            $returnType = '\Corbado\Generated\Model\WebauthnSettingListRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3455,7 +3455,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebauthnSettingListRsp',
+                        '\Corbado\Generated\Model\WebauthnSettingListRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3463,7 +3463,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3513,7 +3513,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnSettingListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebauthnSettingListRsp';
+        $returnType = '\Corbado\Generated\Model\WebauthnSettingListRsp';
         $request = $this->webAuthnSettingListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
@@ -3711,12 +3711,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingPut
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req webauthn_setting_update_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req webauthn_setting_update_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \CorbadoGenerated\Model\WebauthnSettingUpdateRsp|\CorbadoGenerated\Model\ErrorRsp
+     * @return \Corbado\Generated\Model\WebauthnSettingUpdateRsp|\Corbado\Generated\Model\ErrorRsp
      */
     public function webAuthnSettingPut($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
@@ -3728,12 +3728,12 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingPutWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
-     * @throws \CorbadoGenerated\ApiException on non-2xx response
+     * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \CorbadoGenerated\Model\WebauthnSettingUpdateRsp|\CorbadoGenerated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Corbado\Generated\Model\WebauthnSettingUpdateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
     public function webAuthnSettingPutWithHttpInfo($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
@@ -3776,38 +3776,38 @@ class PasskeysBiometricsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\CorbadoGenerated\Model\WebauthnSettingUpdateRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\WebauthnSettingUpdateRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\WebauthnSettingUpdateRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\WebauthnSettingUpdateRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\WebauthnSettingUpdateRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\WebauthnSettingUpdateRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\CorbadoGenerated\Model\ErrorRsp' === '\SplFileObject') {
+                    if ('\Corbado\Generated\Model\ErrorRsp' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\CorbadoGenerated\Model\ErrorRsp' !== 'string') {
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\CorbadoGenerated\Model\ErrorRsp', []),
+                        ObjectSerializer::deserialize($content, '\Corbado\Generated\Model\ErrorRsp', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\CorbadoGenerated\Model\WebauthnSettingUpdateRsp';
+            $returnType = '\Corbado\Generated\Model\WebauthnSettingUpdateRsp';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3828,7 +3828,7 @@ class PasskeysBiometricsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\WebauthnSettingUpdateRsp',
+                        '\Corbado\Generated\Model\WebauthnSettingUpdateRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3836,7 +3836,7 @@ class PasskeysBiometricsApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CorbadoGenerated\Model\ErrorRsp',
+                        '\Corbado\Generated\Model\ErrorRsp',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3850,7 +3850,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingPutAsync
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3870,7 +3870,7 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingPutAsyncWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3878,7 +3878,7 @@ class PasskeysBiometricsApi
      */
     public function webAuthnSettingPutAsyncWithHttpInfo($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
-        $returnType = '\CorbadoGenerated\Model\WebauthnSettingUpdateRsp';
+        $returnType = '\Corbado\Generated\Model\WebauthnSettingUpdateRsp';
         $request = $this->webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req, $contentType);
 
         return $this->client
@@ -3921,7 +3921,7 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnSettingPut'
      *
      * @param  string $setting_id ID from create (required)
-     * @param  \CorbadoGenerated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
