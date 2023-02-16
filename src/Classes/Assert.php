@@ -16,4 +16,10 @@ class Assert {
             }
         }
     }
+
+    public static function notNull($data) {
+        if ($data == null) {
+            throw new \Corbado\Exceptions\Assert('Assert failed: Given object is null');
+        }
+    }
 }
