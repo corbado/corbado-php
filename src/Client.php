@@ -69,7 +69,7 @@ class Client
         return $this->widget;
     }
 
-    public function projectConfig() : Widget {
+    public function projectConfig() : ProjectConfig {
         if ($this->projectConfig === null) {
             $this->projectConfig = new ProjectConfig($this->client);
         }
@@ -77,3 +77,5 @@ class Client
         return $this->projectConfig;
     }
 }
+
+
