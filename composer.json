@@ -1,6 +1,15 @@
 {
   "name": "corbado/client-php",
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "description": "This client allows you to easy access API from Corbado GmbH",
+  "homepage": "https://www.corbado.com",
+  "authors": [
+    {
+      "name": "Tobias Albrecht",
+      "email": "tobias.albrecht@corbado.com"
+    }
+  ],
+  "license": "MIT",
   "autoload": {
     "psr-4": {"Corbado\\": "src/"}
   },
