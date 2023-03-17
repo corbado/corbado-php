@@ -13,7 +13,7 @@ class Client
     private ?Validation $validation = null;
     private ?Widget $widget = null;
 
-    public function __construct(string $baseURI, string $username, string $password, ?\GuzzleHttp\ClientInterface $client = null)
+    public function __construct(string $username, string $password, string $baseURI = 'https://api.corbado.com/v1', ?\GuzzleHttp\ClientInterface $client = null)
     {
         if ($client === null) {
             $client = new \GuzzleHttp\Client(

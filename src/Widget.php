@@ -53,6 +53,7 @@ class Widget
        }
 
        $data = new SessionTokenVerifyRspAllOfData();
+       $data->setUserId($json['data']['userID']);
        $data->setUserData($json['data']['userData']);
 
        $response = new SessionTokenVerifyRsp();
