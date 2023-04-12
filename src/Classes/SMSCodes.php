@@ -1,9 +1,7 @@
 <?php
 
-namespace Corbado;
+namespace Corbado\Classes;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Helper;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\SmsCodeSendReq;

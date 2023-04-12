@@ -1,14 +1,10 @@
 <?php
 
-namespace Corbado;
+namespace Corbado\Classes;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Helper;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailValidationResult;
 use Corbado\Generated\Model\PhoneNumberValidationResult;
-use Corbado\Generated\Model\Email;
-use Corbado\Generated\Model\PhoneNumber;
 use Corbado\Generated\Model\ValidateEmailReq;
 use Corbado\Generated\Model\ValidateEmailRsp;
 use Corbado\Generated\Model\ValidatePhoneNumberReq;

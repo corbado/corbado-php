@@ -1,27 +1,13 @@
 <?php
 
-namespace Corbado;
+namespace Corbado\Classes;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Helper;
 use Corbado\Generated\Model\ClientInfo;
-use Corbado\Generated\Model\PhoneNumberValidationResult;
 use Corbado\Generated\Model\SessionTokenVerifyReq;
 use Corbado\Generated\Model\SessionTokenVerifyRsp;
 use Corbado\Generated\Model\SessionTokenVerifyRspAllOfData;
-use Corbado\Generated\Model\ValidatePhoneNumberReq;
-use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
-use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
-use Corbado\Generated\Model\WebAuthnAuthenticateStartRsp;
 use Corbado\Generated\Model\WebAuthnAuthenticateSuccessRsp;
-use Corbado\Generated\Model\WebAuthnCredentialReq;
-use Corbado\Generated\Model\WebAuthnCredentialRsp;
-use Corbado\Generated\Model\WebAuthnFinishReq;
-use Corbado\Generated\Model\WebAuthnRegisterFinishRsp;
-use Corbado\Generated\Model\WebAuthnRegisterStartReq;
-use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
 use GuzzleHttp\ClientInterface;
-use JetBrains\PhpStorm\ArrayShape;
 
 class Widget
 {
