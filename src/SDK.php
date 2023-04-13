@@ -96,7 +96,7 @@ class SDK
                 throw new \Corbado\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->shortSession = new ShortSession($this->config->getJwksCachePool());
+            $this->shortSession = new ShortSession($this->client, $this->config->getJwksCachePool());
         }
 
         return $this->shortSession;

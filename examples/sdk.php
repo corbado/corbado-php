@@ -16,6 +16,8 @@ try {
 
     $sdk = new SDK($config);
     $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
+    $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
+    $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
 
 } catch (Throwable $e) {
     echo $e->getMessage();
