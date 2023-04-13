@@ -22,6 +22,9 @@ class SDK
     private ?Widget $widget;
     private ?ShortSession $shortSession = null;
 
+    /**
+     * @throws Exceptions\Configuration
+     */
     public function __construct(Configuration $config)
     {
         $this->config = $config;
@@ -96,7 +99,7 @@ class SDK
                 throw new \Corbado\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->shortSession = new ShortSession($this->client, $this->config->getJwksCachePool());
+            $this->shortSession = new ShortSession('', '', '', $this->client, $this->config->getJwksCachePool());
         }
 
         return $this->shortSession;

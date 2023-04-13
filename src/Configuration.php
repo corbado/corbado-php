@@ -16,7 +16,7 @@ class Configuration {
     /**
      * @throws Exceptions\Assert
      */
-    public function setBaseURI(string $baseURI) : Configuration
+    public function setBaseURI(string $baseURI) : self
     {
         Assert::stringNotEmpty($baseURI);
 
@@ -29,7 +29,7 @@ class Configuration {
      * @throws Exceptions\Assert
      * @throws Exceptions\Configuration
      */
-    public function setProjectID(string $projectID) : Configuration
+    public function setProjectID(string $projectID) : self
     {
         Assert::stringNotEmpty($projectID);
 
@@ -45,7 +45,7 @@ class Configuration {
     /**
      * @throws Exceptions\Assert
      */
-    public function setApiSecret(string $apiSecret) : Configuration
+    public function setApiSecret(string $apiSecret) : self
     {
         Assert::stringNotEmpty($apiSecret);
 
@@ -54,13 +54,13 @@ class Configuration {
         return $this;
     }
 
-    public function setHttpClient(ClientInterface $httpClient) : Configuration {
+    public function setHttpClient(ClientInterface $httpClient) : self {
         $this->httpClient = $httpClient;
 
         return $this;
     }
 
-    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : Configuration
+    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : self
     {
         $this->jwksCachePool = $jwksCachePool;
 
