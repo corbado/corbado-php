@@ -90,7 +90,7 @@ EOD;
 
         $payload = [
             'iss' => 'http://example.org',
-            'aud' => 'http://example.com',
+            'azp' => 'http://example.com',
             'iat' => 1356999524,
             'exp' => time() + 10,
             'nbf' => 1357000000
