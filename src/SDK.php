@@ -5,6 +5,7 @@ namespace Corbado;
 use Corbado\Classes\EmailLinks;
 use Corbado\Classes\ShortSession;
 use Corbado\Classes\SMSCodes;
+use Corbado\Classes\User;
 use Corbado\Classes\Validation;
 use Corbado\Classes\WebAuthn;
 use Corbado\Classes\Widget;
@@ -103,5 +104,9 @@ class SDK
         }
 
         return $this->shortSession;
+    }
+
+    public function getUser() : User {
+        return new User('', false);
     }
 }

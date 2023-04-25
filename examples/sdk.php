@@ -19,6 +19,14 @@ try {
     $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
     $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
 
+    $user = $sdk->getUser();
+
+    if ($user->isAuthenticated()) {
+        echo 'User is authenticated (user ID: ' . $user->getUserID() . ')';
+    } else {
+        echo 'User is not authenticated';
+    }
+
 } catch (Throwable $e) {
     echo $e->getMessage();
     echo $e->getTraceAsString();
