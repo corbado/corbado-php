@@ -2,20 +2,37 @@
 
 namespace Corbado\Classes;
 
+use Corbado\Exceptions\Standard;
+
 class User {
-    private string $userID;
     private bool $authenticated;
+    private string $userID;
 
-    public function __construct(string $userID, bool $authenticated) {
-        $this->userID = $userID;
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     */
+    public function __construct(bool $authenticated, string $userID) {
+        Assert::stringNotEmpty($userID);
+
         $this->authenticated = $authenticated;
-    }
+        $this->userID = $userID;
 
-    public function getUserID() : string {
-        return $this->userID;
     }
 
     public function isAuthenticated() : bool {
         return $this->authenticated;
     }
+
+    /**
+     * @throws Standard
+     */
+    public function getUserID() : string {
+        if ($this->isAuthenticated() === false) {
+            throw new Standard('User is not authenticated');
+        }
+
+        return $this->userID;
+    }
+
+
 }

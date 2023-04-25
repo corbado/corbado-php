@@ -2,7 +2,7 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Exceptions\Standard;
+use Corbado\Exceptions\Http;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\RequestData;
 
@@ -13,7 +13,7 @@ class Helper
     {
         $json = \json_encode($data);
         if ($json === false) {
-            throw new Standard('json_encode() failed: ' . json_last_error_msg());
+            throw new Http('json_encode() failed: ' . json_last_error_msg());
         }
 
         return $json;
@@ -25,7 +25,7 @@ class Helper
 
         $json = \json_decode($data, true);
         if ($json === false) {
-            throw new Standard('json_decode() failed: ' . json_last_error_msg());
+            throw new Http('json_decode() failed: ' . json_last_error_msg());
         }
 
         return $json;
@@ -49,7 +49,7 @@ class Helper
            $data['error'] = [];
         }
 
-        throw new Standard($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
+        throw new Http($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
     }
 
     public static function hydrateRequestData(array $data): RequestData

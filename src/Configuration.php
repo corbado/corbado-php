@@ -10,6 +10,7 @@ class Configuration {
     private string $baseURI = 'https://api.corbado.com/v1';
     private string $projectID;
     private string $apiSecret;
+    private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
 
@@ -54,6 +55,15 @@ class Configuration {
         return $this;
     }
 
+    public function setShortSessionCookieName(string $shortSessionCookieName) : self
+    {
+        Assert::stringNotEmpty($shortSessionCookieName);
+
+        $this->shortSessionCookieName = $shortSessionCookieName;
+
+        return $this;
+    }
+
     public function setHttpClient(ClientInterface $httpClient) : self {
         $this->httpClient = $httpClient;
 
@@ -89,6 +99,14 @@ class Configuration {
     public function getApiSecret(): string
     {
         return $this->apiSecret;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortSessionCookieName() : string
+    {
+        return $this->shortSessionCookieName;
     }
 
     /**

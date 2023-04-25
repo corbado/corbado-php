@@ -9,6 +9,8 @@ use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\User;
+use Corbado\Exceptions\Assert;
+use Corbado\Exceptions\Standard;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -106,9 +108,37 @@ class SDK
         return $this->shortSession;
     }
 
+    /**
+     * @throws Standard
+     * @throws Assert
+     * @throws Exceptions\Configuration
+     */
     public function getUser() : User {
+        if (!empty($_COOKIE[$this->config->getShortSessionCookieName()])) {
+            $jwt = $_COOKIE[$this->config->getShortSessionCookieName()];
+        } else if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            $jwt = $this->extractBearerToken($_SERVER['HTTP_AUTHORIZATION']);
+        }
 
+        if (strlen($jwt) < 10) {
+            throw new Standard('Could not extract JWT from cookie or Authorization header');
+        }
 
-        return new User('', false);
+        $authenticated = $this->shortSession()->validate($jwt);
+
+        return new User($authenticated, 'TODO');
+    }
+
+    /**
+     * @throws Assert
+     */
+    private function extractBearerToken($authorizationHeader) : string {
+        Classes\Assert::stringNotEmpty($authorizationHeader);
+
+        if (!str_starts_with($authorizationHeader, 'Bearer ')) {
+            return '';
+        }
+
+        return substr($authorizationHeader, 7);
     }
 }

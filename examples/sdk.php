@@ -15,10 +15,6 @@ try {
            ->setJwksCachePool($jwksCachePool);
 
     $sdk = new SDK($config);
-    $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
-    $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
-    $valid = $sdk->shortSession()->validate('fldkjgflkdgfdjkl');
-
     $user = $sdk->getUser();
 
     if ($user->isAuthenticated()) {

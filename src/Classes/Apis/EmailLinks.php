@@ -28,6 +28,11 @@ class EmailLinks
         return ['X-Corbado-ProjectID' => $projectId];
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Exceptions\Http
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function send(string $projectID, string $email, string $templateName, string $redirect, string $remoteAddress, string $userAgent, bool $create = false, string $additionalPayload = "", ?string $requestID = ''): EmailLinkSendRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -68,6 +73,11 @@ class EmailLinks
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Exceptions\Http
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function validate(string $projectID, string $emailLinkID, string $token, string $remoteAddress, string $userAgent, ?string $requestID = ''): EmailLinkValidateRsp
     {
         Assert::stringNotEmpty($projectID);
