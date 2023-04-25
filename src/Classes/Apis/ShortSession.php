@@ -1,7 +1,8 @@
 <?php
 
-namespace Corbado\Classes;
+namespace Corbado\Classes\Apis;
 
+use Corbado\Classes\Assert;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Psr7\HttpFactory;

@@ -1,6 +1,6 @@
 <?php
 
-use Corbado\Classes\ShortSession;
+use Corbado\Classes\Apis\ShortSession;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;

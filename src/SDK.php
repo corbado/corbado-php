@@ -2,13 +2,13 @@
 
 namespace Corbado;
 
-use Corbado\Classes\EmailLinks;
-use Corbado\Classes\ShortSession;
-use Corbado\Classes\SMSCodes;
+use Corbado\Classes\Apis\EmailLinks;
+use Corbado\Classes\Apis\ShortSession;
+use Corbado\Classes\Apis\SMSCodes;
+use Corbado\Classes\Apis\Validation;
+use Corbado\Classes\Apis\WebAuthn;
+use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\User;
-use Corbado\Classes\Validation;
-use Corbado\Classes\WebAuthn;
-use Corbado\Classes\Widget;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -107,6 +107,8 @@ class SDK
     }
 
     public function getUser() : User {
+
+
         return new User('', false);
     }
 }
