@@ -118,6 +118,8 @@ class SDK
             $jwt = $_COOKIE[$this->config->getShortSessionCookieName()];
         } else if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
             $jwt = $this->extractBearerToken($_SERVER['HTTP_AUTHORIZATION']);
+        } else {
+            $jwt = '';
         }
 
         if (strlen($jwt) < 10) {
