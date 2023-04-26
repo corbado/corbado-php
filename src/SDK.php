@@ -122,13 +122,18 @@ class SDK
             $jwt = '';
         }
 
+        $notAuthenticatedUser = new User(false, '');
+
         if (strlen($jwt) < 10) {
-            throw new Standard('Could not extract JWT from cookie or Authorization header');
+            return $notAuthenticatedUser;
         }
 
-        $authenticated = $this->shortSession()->validate($jwt);
+        $decoded = $this->shortSession()->validate($jwt);
+        if ($decoded !== null) {
+            return new User(true, $decoded->sub);
+        }
 
-        return new User($authenticated, 'TODO');
+        return $notAuthenticatedUser;
     }
 
     /**

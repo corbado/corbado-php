@@ -7,12 +7,10 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 require_once '../vendor/autoload.php';
 
 try {
-    $jwksCachePool = new ArrayAdapter();
-
     $config = new Configuration();
     $config->setProjectID('pro-1')
            ->setApiSecret('43jlk5j43lk5j34kl')
-           ->setJwksCachePool($jwksCachePool);
+           ->setJwksCachePool(new ArrayAdapter());
 
     $sdk = new SDK($config);
     $user = $sdk->getUser();

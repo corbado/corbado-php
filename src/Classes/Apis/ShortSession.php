@@ -8,6 +8,7 @@ use Firebase\JWT\JWT;
 use GuzzleHttp\Psr7\HttpFactory;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
+use stdClass;
 use Throwable;
 
 class ShortSession
@@ -19,6 +20,9 @@ class ShortSession
     private ClientInterface $client;
     private CacheItemPoolInterface $jwksCachePool;
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     */
     public function __construct(string $issuer, string $authorizedParty, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
         Assert::stringNotEmpty($issuer);
@@ -32,14 +36,11 @@ class ShortSession
         $this->jwksCachePool = $jwksCachePool;
     }
 
-    /**
-     * @throws \Corbado\Exceptions\Assert
-     */
-    public function validate(string $jwt) : bool
+    public function validate(string $jwt) : ?stdClass
     {
-        Assert::stringNotEmpty($jwt);
-
         try {
+            Assert::stringNotEmpty($jwt);
+
             $keySet = new CachedKeySet(
                 $this->jwksURI,
                 $this->client,
@@ -62,12 +63,12 @@ class ShortSession
             }
 
             if ($issuerValid === true && $authorizedPartyValid === true) {
-                return true;
+                return $decoded;
             }
 
-            return false;
+            return null;
         } catch (Throwable) {
-            return false;
+            return null;
         }
     }
 }
