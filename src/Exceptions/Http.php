@@ -6,10 +6,22 @@ use Throwable;
 
 class Http extends \Exception {
     private int $httpStatusCode;
+
+    /**
+     * @var array<mixed>
+     */
     private array $requestData;
     private float $runtime;
+
+    /**
+     * @var array<mixed>
+     */
     private array $error;
 
+    /**
+     * @param array<mixed> $requestData
+     * @param array<mixed> $error
+     */
     public function __construct(int $httpStatusCode, string $message, array $requestData, float $runtime, array $error)
     {
         parent::__construct($message, $httpStatusCode);
@@ -24,6 +36,9 @@ class Http extends \Exception {
         return $this->httpStatusCode;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getRequestData(): array {
         return $this->requestData;
     }
@@ -32,6 +47,9 @@ class Http extends \Exception {
         return $this->runtime;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getError(): array {
         return $this->error;
     }

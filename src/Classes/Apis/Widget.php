@@ -8,8 +8,7 @@ use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\SessionTokenVerifyReq;
 use Corbado\Generated\Model\SessionTokenVerifyRsp;
 use Corbado\Generated\Model\SessionTokenVerifyRspAllOfData;
-use Corbado\Generated\Model\WebAuthnAuthenticateSuccessRsp;
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 
 class Widget
 {

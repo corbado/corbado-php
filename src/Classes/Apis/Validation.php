@@ -13,7 +13,7 @@ use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Generated\Model\ValidationEmail;
 use Corbado\Generated\Model\ValidationPhoneNumber;
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
 class Validation

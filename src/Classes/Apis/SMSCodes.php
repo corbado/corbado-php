@@ -10,7 +10,7 @@ use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;
 use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
 use Corbado\Generated\Model\SmsCodeValidateReq;
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
 class SMSCodes

@@ -15,7 +15,7 @@ use Corbado\Generated\Model\WebAuthnFinishReq;
 use Corbado\Generated\Model\WebAuthnRegisterFinishRsp;
 use Corbado\Generated\Model\WebAuthnRegisterStartReq;
 use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
 class WebAuthn

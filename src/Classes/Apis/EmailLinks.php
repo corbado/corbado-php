@@ -10,8 +10,8 @@ use Corbado\Generated\Model\EmailLinkSendRsp;
 use Corbado\Generated\Model\EmailLinkSendRspAllOfData;
 use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
-use GuzzleHttp\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
+use Psr\Http\Client\ClientInterface;
 
 class EmailLinks
 {

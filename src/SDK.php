@@ -94,7 +94,7 @@ class SDK
     }
 
     /**
-     * @throws Exceptions\Configuration
+     * @throws Exceptions\Configuration|Assert
      */
     public function shortSession() : ShortSession {
         if ($this->shortSession === null) {
@@ -109,7 +109,6 @@ class SDK
     }
 
     /**
-     * @throws Standard
      * @throws Assert
      * @throws Exceptions\Configuration
      */
@@ -122,10 +121,10 @@ class SDK
             $jwt = '';
         }
 
-        $notAuthenticatedUser = new User(false, '');
+        $guest = new User(false, '');
 
         if (strlen($jwt) < 10) {
-            return $notAuthenticatedUser;
+            return $guest;
         }
 
         $decoded = $this->shortSession()->validate($jwt);
@@ -133,13 +132,13 @@ class SDK
             return new User(true, $decoded->sub);
         }
 
-        return $notAuthenticatedUser;
+        return $guest;
     }
 
     /**
      * @throws Assert
      */
-    private function extractBearerToken($authorizationHeader) : string {
+    private function extractBearerToken(string $authorizationHeader) : string {
         Classes\Assert::stringNotEmpty($authorizationHeader);
 
         if (!str_starts_with($authorizationHeader, 'Bearer ')) {
