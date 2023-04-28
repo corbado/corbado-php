@@ -4,6 +4,8 @@ namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
+use Corbado\Exceptions\Http;
+use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
@@ -15,6 +17,8 @@ use Corbado\Generated\Model\WebAuthnFinishReq;
 use Corbado\Generated\Model\WebAuthnRegisterFinishRsp;
 use Corbado\Generated\Model\WebAuthnRegisterStartReq;
 use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
+use GuzzleHttp\Psr7\Request;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -33,6 +37,12 @@ class WebAuthn
         return ['X-Corbado-ProjectID' => $projectId];
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function registerStart(string $projectID, string $origin, string $credentialStatus, string $username, string $remoteAddress, string $userAgent, ?string $requestID = null): WebAuthnRegisterStartRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -51,9 +61,15 @@ class WebAuthn
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('POST', 'webauthn/register/start', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                'webauthn/register/start',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -103,6 +119,12 @@ class WebAuthn
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws ClientExceptionInterface
+     * @throws Http
+     * @throws Standard
+     */
     protected function finish(string $endPoint, string $projectID, string $origin, string $publicKeyCredential, string $remoteAddress, string $userAgent, string $requestID = ''): array
     {
         $request = new WebAuthnFinishReq();
@@ -113,9 +135,15 @@ class WebAuthn
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('POST', $endPoint, ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                $endPoint,
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -123,6 +151,12 @@ class WebAuthn
         return $json;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function authenticateStart(string $projectID, string $origin, string $username, string $remoteAddress, string $userAgent, string $requestID = ''): WebAuthnAuthenticateStartRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -139,9 +173,15 @@ class WebAuthn
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('POST', 'webauthn/authenticate/start', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                'webauthn/authenticate/start',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -157,6 +197,12 @@ class WebAuthn
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function authenticateFinish(string $projectID, string $origin, string $publicKeyCredential, string $remoteAddress, string $userAgent, string $requestID = ''): WebAuthnAuthenticateFinishRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -187,6 +233,12 @@ class WebAuthn
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function credentialUpdate(string $credentialId, string $projectID, string $status, string $remoteAddress, string $userAgent, string $requestID = ''): WebAuthnCredentialRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -201,9 +253,15 @@ class WebAuthn
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('PUT', 'webauthn/credential/' . $credentialId, ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'PUT',
+                'webauthn/credential/' . $credentialId,
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -217,5 +275,4 @@ class WebAuthn
 
         return $response;
     }
-
 }

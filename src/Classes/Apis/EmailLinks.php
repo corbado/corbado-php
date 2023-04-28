@@ -4,13 +4,18 @@ namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
+use Corbado\Exceptions\Http;
+use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailLinkSendReq;
 use Corbado\Generated\Model\EmailLinkSendRsp;
 use Corbado\Generated\Model\EmailLinkSendRspAllOfData;
 use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use JetBrains\PhpStorm\ArrayShape;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 
 class EmailLinks
@@ -29,9 +34,11 @@ class EmailLinks
     }
 
     /**
+     * @throws Http
+     * @throws GuzzleException
+     * @throws ClientExceptionInterface
+     * @throws Standard
      * @throws \Corbado\Exceptions\Assert
-     * @throws \Corbado\Exceptions\Http
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send(string $projectID, string $email, string $templateName, string $redirect, string $remoteAddress, string $userAgent, bool $create = false, string $additionalPayload = "", ?string $requestID = ''): EmailLinkSendRsp
     {
@@ -53,9 +60,15 @@ class EmailLinks
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('POST', 'emailLinks', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                'emailLinks',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -75,8 +88,10 @@ class EmailLinks
 
     /**
      * @throws \Corbado\Exceptions\Assert
-     * @throws \Corbado\Exceptions\Http
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws Http
+     * @throws GuzzleException
+     * @throws ClientExceptionInterface
+     * @throws Standard
      */
     public function validate(string $projectID, string $emailLinkID, string $token, string $remoteAddress, string $userAgent, ?string $requestID = ''): EmailLinkValidateRsp
     {
@@ -93,9 +108,15 @@ class EmailLinks
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('PUT', 'emailLinks/' . $emailLinkID . '/validate', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'PUT',
+                'emailLinks/' . $emailLinkID . '/validate',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }

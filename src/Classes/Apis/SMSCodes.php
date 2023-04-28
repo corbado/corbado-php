@@ -10,6 +10,7 @@ use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;
 use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
 use Corbado\Generated\Model\SmsCodeValidateReq;
+use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -28,6 +29,12 @@ class SMSCodes
         $this->client = $client;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Exceptions\Http
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Corbado\Exceptions\Standard
+     */
     public function send(string $projectID, string $phoneNumber, string $remoteAddress, string $userAgent, bool $create = false, ?string $requestID = ''): SmsCodeSendRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -43,9 +50,15 @@ class SMSCodes
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('POST', 'smsCodes', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                'smsCodes',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -63,6 +76,13 @@ class SMSCodes
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Exceptions\Http
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Corbado\Exceptions\Standard
+     */
     public function validate(string $projectID, string $smsCodeID, string $smsCode, string $remoteAddress, string $userAgent, ?string $requestID = ''): GenericRsp
     {
         Assert::stringNotEmpty($projectID);
@@ -78,9 +98,15 @@ class SMSCodes
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('PUT', 'smsCodes/' . $smsCodeID . '/validate', ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'PUT',
+                'smsCodes/' . $smsCodeID . '/validate',
+                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }

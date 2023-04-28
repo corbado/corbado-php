@@ -4,10 +4,15 @@ namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
+use Corbado\Exceptions\Http;
+use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\SessionTokenVerifyReq;
 use Corbado\Generated\Model\SessionTokenVerifyRsp;
 use Corbado\Generated\Model\SessionTokenVerifyRspAllOfData;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 
 class Widget
@@ -19,7 +24,14 @@ class Widget
         $this->client = $client;
     }
 
-   public function sessionVerify(string $sessionToken, string $remoteAddress, string $userAgent, string $requestID = ''): SessionTokenVerifyRsp
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws GuzzleException
+     * @throws Standard
+     * @throws ClientExceptionInterface
+     */
+    public function sessionVerify(string $sessionToken, string $remoteAddress, string $userAgent, string $requestID = ''): SessionTokenVerifyRsp
    {
        Assert::stringNotEmpty($sessionToken);
        Assert::stringNotEmpty($remoteAddress);
@@ -32,9 +44,15 @@ class Widget
            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
        );
 
-       $res = $this->client->request('POST', '/v1/sessions/verify', ['body' => Helper::jsonEncode($request->jsonSerialize())]);
-       $json = Helper::jsonDecode($res->getBody()->getContents());
+       $httpResponse = $this->client->sendRequest(
+           new Request(
+               'POST',
+               'sessions/verify',
+               ['body' => Helper::jsonEncode($request->jsonSerialize())]
+           )
+       );
 
+       $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
            Helper::throwException($json);
        }
@@ -48,5 +66,4 @@ class Widget
 
        return $response;
    }
-
 }

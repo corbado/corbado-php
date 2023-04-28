@@ -4,6 +4,8 @@ namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
+use Corbado\Exceptions\Http;
+use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailValidationResult;
 use Corbado\Generated\Model\PhoneNumberValidationResult;
@@ -13,8 +15,9 @@ use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Generated\Model\ValidationEmail;
 use Corbado\Generated\Model\ValidationPhoneNumber;
+use GuzzleHttp\Psr7\Request;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
-use JetBrains\PhpStorm\ArrayShape;
 
 class Validation
 {
@@ -25,12 +28,12 @@ class Validation
         $this->client = $client;
     }
 
-    #[ArrayShape(['X-Corbado-ProjectID' => "string"])]
-    private function generateHeaders(string $projectId): array
-    {
-        return ['X-Corbado-ProjectID' => $projectId];
-    }
-
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function validateEmail(string $email, string $remoteAddress, string $userAgent, bool $smtpCheck = false, bool $suggestDomain = false, ?string $requestID = ''): ValidateEmailRsp
     {
         Assert::stringNotEmpty($email);
@@ -46,9 +49,15 @@ class Validation
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('PUT', 'validate/email', ['body' => Helper::jsonEncode($request->jsonSerialize())]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'PUT',
+                'validate/email',
+                ['body' => Helper::jsonEncode($request->jsonSerialize())]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
@@ -83,6 +92,12 @@ class Validation
         return $response;
     }
 
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
+     */
     public function validatePhoneNumber(string $phoneNumber, string $remoteAddress, string $userAgent, ?string $regionCode = '', ?string $requestID = ''): ValidatePhoneNumberRsp
     {
         Assert::stringNotEmpty($phoneNumber);
@@ -97,9 +112,15 @@ class Validation
             (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
         );
 
-        $res = $this->client->request('PUT', 'validate/phoneNumber', ['body' => Helper::jsonEncode($request->jsonSerialize())]);
-        $json = Helper::jsonDecode($res->getBody()->getContents());
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'PUT',
+                'validate/phoneNumber',
+                ['body' => Helper::jsonEncode($request->jsonSerialize())]
+            )
+        );
 
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
         if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
             Helper::throwException($json);
         }
