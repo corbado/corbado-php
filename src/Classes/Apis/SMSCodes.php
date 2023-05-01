@@ -4,13 +4,17 @@ namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
 use Corbado\Classes\Helper;
+use Corbado\Exceptions\Http;
+use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;
 use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
 use Corbado\Generated\Model\SmsCodeValidateReq;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -18,7 +22,10 @@ class SMSCodes
 {
     private ClientInterface $client;
 
-    #[ArrayShape(['X-Corbado-ProjectID' => "string"])]
+    /**
+     * @param string $projectId
+     * @return string[]
+     */
     private function generateHeaders(string $projectId): array
     {
         return ['X-Corbado-ProjectID' => $projectId];
@@ -31,9 +38,9 @@ class SMSCodes
 
     /**
      * @throws \Corbado\Exceptions\Assert
-     * @throws \Corbado\Exceptions\Http
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Corbado\Exceptions\Standard
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws Standard
      */
     public function send(string $projectID, string $phoneNumber, string $remoteAddress, string $userAgent, bool $create = false, ?string $requestID = ''): SmsCodeSendRsp
     {
@@ -78,10 +85,10 @@ class SMSCodes
 
     /**
      * @throws \Corbado\Exceptions\Assert
-     * @throws \Corbado\Exceptions\Http
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Corbado\Exceptions\Standard
+     * @throws Http
+     * @throws ClientExceptionInterface
+     * @throws GuzzleException
+     * @throws Standard
      */
     public function validate(string $projectID, string $smsCodeID, string $smsCode, string $remoteAddress, string $userAgent, ?string $requestID = ''): GenericRsp
     {
@@ -113,5 +120,4 @@ class SMSCodes
 
         return Helper::hydrateResponse($json);
     }
-
 }

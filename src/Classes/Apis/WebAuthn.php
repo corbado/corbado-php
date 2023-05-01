@@ -10,7 +10,6 @@ use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartRsp;
-use Corbado\Generated\Model\WebAuthnAuthenticateSuccessRsp;
 use Corbado\Generated\Model\WebAuthnCredentialReq;
 use Corbado\Generated\Model\WebAuthnCredentialRsp;
 use Corbado\Generated\Model\WebAuthnFinishReq;
@@ -31,7 +30,10 @@ class WebAuthn
         $this->client = $client;
     }
 
-    #[ArrayShape(['X-Corbado-ProjectID' => "string"])]
+    /**
+     * @param string $projectId
+     * @return string[]
+     */
     private function generateHeaders(string $projectId): array
     {
         return ['X-Corbado-ProjectID' => $projectId];
@@ -124,6 +126,7 @@ class WebAuthn
      * @throws ClientExceptionInterface
      * @throws Http
      * @throws Standard
+     * @return array<string, mixed>
      */
     protected function finish(string $endPoint, string $projectID, string $origin, string $publicKeyCredential, string $remoteAddress, string $userAgent, string $requestID = ''): array
     {

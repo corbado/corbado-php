@@ -27,7 +27,10 @@ class EmailLinks
         $this->client = $client;
     }
 
-    #[ArrayShape(['X-Corbado-ProjectID' => "string"])]
+    /**
+     * @param string $projectId
+     * @return string[]
+     */
     private function generateHeaders(string $projectId): array
     {
         return ['X-Corbado-ProjectID' => $projectId];

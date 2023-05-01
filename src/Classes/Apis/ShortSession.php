@@ -50,6 +50,7 @@ class ShortSession
                 true
             );
 
+            // @phpstan-ignore-next-line
             $decoded = JWT::decode($jwt, $keySet);
 
             $issuerValid = false;

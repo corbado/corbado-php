@@ -121,8 +121,7 @@ class SDK
             $jwt = '';
         }
 
-        $guest = new User(false, '');
-
+        $guest = new User(false);
         if (strlen($jwt) < 10) {
             return $guest;
         }
