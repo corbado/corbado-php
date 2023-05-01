@@ -19,7 +19,6 @@ use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
-use JetBrains\PhpStorm\ArrayShape;
 
 class WebAuthn
 {

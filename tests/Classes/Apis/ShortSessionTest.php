@@ -3,13 +3,13 @@
 namespace Classes\Apis;
 
 use Corbado\Classes\Apis\ShortSession;
+use Corbado\Exceptions\Assert;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Stream;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
@@ -17,7 +17,7 @@ class ShortSessionTest extends TestCase
 {
     /**
      * @dataProvider provideJWTs
-     * @throws \Corbado\Exceptions\Assert
+     * @throws Assert
      */
     public function testValidate(bool $expected, string $input): void
     {

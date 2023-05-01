@@ -14,7 +14,6 @@ use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use JetBrains\PhpStorm\ArrayShape;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 

@@ -4,13 +4,13 @@ namespace Corbado;
 
 use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\ShortSession;
+use Corbado\Classes\Apis\ShortSessionInterface;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\User;
 use Corbado\Exceptions\Assert;
-use Corbado\Exceptions\Standard;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -23,7 +23,7 @@ class SDK
     private ?WebAuthn $webAuthn;
     private ?Validation $validation;
     private ?Widget $widget;
-    private ?ShortSession $shortSession = null;
+    private ?ShortSessionInterface $shortSession = null;
 
     /**
      * @throws Exceptions\Configuration
@@ -93,10 +93,14 @@ class SDK
         return $this->widget;
     }
 
+    public function setShortSession(ShortSessionInterface $shortSession) : void {
+        $this->shortSession = $shortSession;
+    }
+
     /**
      * @throws Exceptions\Configuration|Assert
      */
-    public function shortSession() : ShortSession {
+    public function shortSession() : ShortSessionInterface {
         if ($this->shortSession === null) {
             if ($this->config->getJwksCachePool() === null) {
                 throw new \Corbado\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');

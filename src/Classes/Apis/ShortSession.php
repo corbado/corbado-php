@@ -11,7 +11,7 @@ use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Throwable;
 
-class ShortSession
+class ShortSession implements ShortSessionInterface
 {
 
     private string $issuer;
