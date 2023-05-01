@@ -15,7 +15,7 @@
   "require": {
     "guzzlehttp/guzzle": "^7.4",
     "psr/cache": "^3.0",
-    "symfony/cache": "6.0",
+    "symfony/cache": "6.0.*",
     "firebase/php-jwt": "^6.4",
     "ext-openssl": "*"
   },
