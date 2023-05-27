@@ -150,6 +150,4 @@ class SDK
 
         return $guest;
     }
-
-
 }
