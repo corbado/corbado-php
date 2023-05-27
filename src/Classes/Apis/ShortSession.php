@@ -14,6 +14,7 @@ use Throwable;
 class ShortSession implements ShortSessionInterface
 {
 
+    private string $shortSessionCookieName;
     private string $issuer;
     private string $authorizedParty;
     private string $jwksURI;
@@ -23,17 +24,35 @@ class ShortSession implements ShortSessionInterface
     /**
      * @throws \Corbado\Exceptions\Assert
      */
-    public function __construct(string $issuer, string $authorizedParty, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
+    public function __construct(string $shortSessionCookieName, string $issuer, string $authorizedParty, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
+        Assert::stringNotEmpty($shortSessionCookieName);
         Assert::stringNotEmpty($issuer);
         Assert::stringNotEmpty($authorizedParty);
         Assert::stringNotEmpty($jwksURI);
 
+        $this->shortSessionCookieName = $shortSessionCookieName;
         $this->issuer = $issuer;
         $this->authorizedParty = $authorizedParty;
         $this->jwksURI = $jwksURI;
         $this->client = $client;
         $this->jwksCachePool = $jwksCachePool;
+    }
+
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     */
+    public function getValue() : string
+    {
+        if (!empty($_COOKIE[$this->shortSessionCookieName])) {
+            return $_COOKIE[$this->shortSessionCookieName];
+        }
+
+        if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            return $this->extractBearerToken($_SERVER['HTTP_AUTHORIZATION']);
+        }
+
+        return '';
     }
 
     public function validate(string $jwt) : ?stdClass
@@ -71,5 +90,18 @@ class ShortSession implements ShortSessionInterface
         } catch (Throwable) {
             return null;
         }
+    }
+
+    /**
+     * @throws \Corbado\Exceptions\Assert
+     */
+    private function extractBearerToken(string $authorizationHeader) : string {
+        Assert::stringNotEmpty($authorizationHeader);
+
+        if (!str_starts_with($authorizationHeader, 'Bearer ')) {
+            return '';
+        }
+
+        return substr($authorizationHeader, 7);
     }
 }

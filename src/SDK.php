@@ -106,7 +106,26 @@ class SDK
                 throw new \Corbado\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->shortSession = new ShortSession('', '', '', $this->client, $this->config->getJwksCachePool());
+            if ($this->config->getIssuer() === '') {
+                throw new \Corbado\Exceptions\Configuration('No issuer set, use Configuration::setIssuer()');
+            }
+
+            if ($this->config->getAuthorizedParty() === '') {
+                throw new \Corbado\Exceptions\Configuration('No authorized party set, use Configuration::setAuthorizedParty()');
+            }
+
+            if ($this->config->getJwksURI() === '') {
+                throw new \Corbado\Exceptions\Configuration('No JWKS URI set, use Configuration::setJwksURI()');
+            }
+
+            $this->shortSession = new ShortSession(
+                $this->config->getShortSessionCookieName(),
+                $this->config->getIssuer(),
+                $this->config->getAuthorizedParty(),
+                $this->config->getJwksURI(),
+                $this->client,
+                $this->config->getJwksCachePool()
+            );
         }
 
         return $this->shortSession;
@@ -117,13 +136,7 @@ class SDK
      * @throws Exceptions\Configuration
      */
     public function getUser() : User {
-        if (!empty($_COOKIE[$this->config->getShortSessionCookieName()])) {
-            $jwt = $_COOKIE[$this->config->getShortSessionCookieName()];
-        } else if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
-            $jwt = $this->extractBearerToken($_SERVER['HTTP_AUTHORIZATION']);
-        } else {
-            $jwt = '';
-        }
+        $jwt = $this->shortSession()->getValue();
 
         $guest = new User(false);
         if (strlen($jwt) < 10) {
@@ -138,16 +151,5 @@ class SDK
         return $guest;
     }
 
-    /**
-     * @throws Assert
-     */
-    private function extractBearerToken(string $authorizationHeader) : string {
-        Classes\Assert::stringNotEmpty($authorizationHeader);
 
-        if (!str_starts_with($authorizationHeader, 'Bearer ')) {
-            return '';
-        }
-
-        return substr($authorizationHeader, 7);
-    }
 }

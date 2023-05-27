@@ -16,6 +16,34 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 class ShortSessionTest extends TestCase
 {
     /**
+     * @throws Assert
+     */
+    public function testGetValue() : void
+    {
+        $client = new Client();
+        $shortSession = new ShortSession(
+            'cbo_short_session',
+            'https://auth.acme.com',
+            'https://www.acme.com',
+            'https://xxx', // does not matter because response is mocked
+            $client,
+            new ArrayAdapter()
+        );
+
+        $_COOKIE['cbo_short_session'] = 'cookie_1234567890';
+        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer bearer_1234567890';
+
+        // Check for cookie (has priority)
+        $value = $shortSession->getValue();
+        $this->assertEquals('cookie_1234567890', $value);
+
+        // Check for header
+        unset($_COOKIE['cbo_short_session']);
+        $value = $shortSession->getValue();
+        $this->assertEquals('bearer_1234567890', $value);
+    }
+
+    /**
      * @dataProvider provideJWTs
      * @throws Assert
      */
@@ -33,6 +61,7 @@ class ShortSessionTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
         $shortSession = new ShortSession(
+            'cbo_short_session',
             'https://auth.acme.com',
             'https://www.acme.com',
             'https://xxx', // does not matter because response is mocked

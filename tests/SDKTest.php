@@ -17,8 +17,8 @@ class SDKTest extends TestCase
     {
         $shortSessionMock = $this->createMock(ShortSessionInterface::class);
         $shortSessionMock->expects($this->once())
-                         ->method('validate')
-                         ->willReturn(null);
+                         ->method('getValue')
+                         ->willReturn('');
 
         $config = new Configuration();
         $config->setProjectID('pro-1')
@@ -29,14 +29,6 @@ class SDKTest extends TestCase
 
         $user = $sdk->getUser();
         $this->assertFalse($user->isAuthenticated());
-
-        // Fake cookie (JWT is irrelevant here because we mock the ShortSessionInterface)
-        $_COOKIE[$config->getShortSessionCookieName()] = '1234567890';
-
-        $user = $sdk->getUser();
-        $this->assertFalse($user->isAuthenticated());
-
-        unset($_COOKIE[$config->getShortSessionCookieName()]);
     }
 
     /**
@@ -47,7 +39,10 @@ class SDKTest extends TestCase
     public function testGetUserAuthenticated(): void
     {
         $shortSessionMock = $this->createMock(ShortSessionInterface::class);
-        $shortSessionMock->expects($this->exactly(2))
+        $shortSessionMock->expects($this->once())
+            ->method('getValue')
+            ->willReturn('1234567890'); // Does not have to be a valid JWT because validate() is mocked (see below)
+        $shortSessionMock->expects($this->once())
                          ->method('validate')
                          ->willReturn((object) ['sub' => 'user-1']);
 
@@ -58,20 +53,7 @@ class SDKTest extends TestCase
         $sdk = new SDK($config);
         $sdk->setShortSession($shortSessionMock);
 
-        // Fake cookie (JWT is irrelevant here because we mock the ShortSessionInterface)
-        $_COOKIE[$config->getShortSessionCookieName()] = '1234567890';
-
         $user = $sdk->getUser();
         $this->assertTrue($user->isAuthenticated());
-
-        unset($_COOKIE[$config->getShortSessionCookieName()]);
-
-        // Fake Authorization header (JWT is irrelevant here because we mock the ShortSessionInterface)
-        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer 1234567890';
-
-        $user = $sdk->getUser();
-        $this->assertTrue($user->isAuthenticated());
-
-        unset($_SERVER['HTTP_AUTHORIZATION']);
     }
 }
