@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Model;
+namespace Corbado\Classes\WebhookModels;
 
 class PasswordVerifyDataResponse
 {

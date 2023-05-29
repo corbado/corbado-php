@@ -1,7 +1,7 @@
 <?php
 
-use Corbado\Model\AuthMethodsDataResponse;
-use Corbado\Webhook;
+use Corbado\Classes\WebhookModels\AuthMethodsDataResponse;
+use Corbado\Classes\Webhook;
 
 require_once '../vendor/autoload.php';
 
