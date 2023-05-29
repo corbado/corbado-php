@@ -44,7 +44,7 @@ class SDKTest extends TestCase
             ->willReturn('1234567890'); // Does not have to be a valid JWT because validate() is mocked (see below)
         $shortSessionMock->expects($this->once())
                          ->method('validate')
-                         ->willReturn((object) ['sub' => 'user-1']);
+                         ->willReturn((object)['sub' => 'user-1', 'email' => 'email@email.com', 'name' => 'name']);
 
         $config = new Configuration();
         $config->setProjectID('pro-1')

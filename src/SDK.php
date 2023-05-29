@@ -145,7 +145,12 @@ class SDK
 
         $decoded = $this->shortSession()->validate($jwt);
         if ($decoded !== null) {
-            return new User(true, $decoded->sub);
+            return new User(
+                true,
+                $decoded->sub,
+                $decoded->email,
+                $decoded->name,
+            );
         }
 
         return $guest;

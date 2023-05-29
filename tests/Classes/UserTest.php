@@ -15,4 +15,15 @@ class UserTest  extends TestCase {
             $user = new User(true);
             $this->assertTrue($user->isAuthenticated());
         }
+
+    /**
+     * @throws \Corbado\Exceptions\Standard
+     */
+    public function testGetUserData() : void
+        {
+            $user = new User(true, 'user-id', 'email', 'name');
+            $this->assertEquals('user-id', $user->getUserID());
+            $this->assertEquals('email', $user->getEmail());
+            $this->assertEquals('name', $user->getName());
+        }
 }
