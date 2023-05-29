@@ -3,7 +3,6 @@
 namespace Corbado;
 
 use Corbado\Classes\Helper;
-use Corbado\Exceptions\Generic;
 use Corbado\Exceptions\Standard;
 use Corbado\Classes\Assert;
 
@@ -113,7 +112,7 @@ class Webhook
     public function handleAuthentication() : void
     {
         if ($this->authenticated) {
-            throw new Generic("Already authenticated, something is wrong");
+            throw new Standard("Already authenticated, something is wrong");
         }
 
         if ($this->checkAuthentication() === true) {
@@ -141,7 +140,7 @@ class Webhook
             return;
         }
 
-        throw new Generic("Missing authentication, call handleAuthentication() first");
+        throw new Standard("Missing authentication, call handleAuthentication() first");
     }
 
     /**
@@ -168,7 +167,7 @@ class Webhook
         $this->checkAutomaticAuthentication();
 
         if (empty($_SERVER['HTTP_X_CORBADO_ACTION'])) {
-            throw new Generic('Missing action header (X-CORBADO-ACTION)');
+            throw new Standard('Missing action header (X-CORBADO-ACTION)');
         }
 
         switch ($_SERVER['HTTP_X_CORBADO_ACTION']) {
@@ -179,7 +178,7 @@ class Webhook
                 return self::ACTION_PASSWORD_VERIFY;
 
             default:
-                throw new Generic('Invalid action ("' . $_SERVER['HTTP_X_CORBADO_ACTION'] . '")');
+                throw new Standard('Invalid action ("' . $_SERVER['HTTP_X_CORBADO_ACTION'] . '")');
         }
     }
 
@@ -299,12 +298,12 @@ class Webhook
      * Returns request body
      *
      * @return string
-     * @throws Generic
+     * @throws Standard
      */
     private function getRequestBody() : string {
         $body = file_get_contents('php://input');
         if ($body === false) {
-            throw new Generic('Could not read request body (POST request)');
+            throw new Standard('Could not read request body (POST request)');
         }
 
         return $body;
