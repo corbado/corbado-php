@@ -3,6 +3,13 @@
 namespace Corbado\Classes;
 
 class Assert {
+    /**
+     * Checks if string is not empty
+     *
+     * @param string $data
+     * @return void
+     * @throws \Corbado\Exceptions\Assert
+     */
     public static function stringNotEmpty(string $data) : void {
         if ($data == '') {
             throw new \Corbado\Exceptions\Assert('Assert failed: Given string is empty');
@@ -10,8 +17,29 @@ class Assert {
     }
 
     /**
-     * @param array<string,mixed> $data
+     * Checks if string is among the given possible values
+     *
+     * @param string $data
+     * @param array<string> $possibleValues
+     * @return void
+     * @throws \Corbado\Exceptions\Assert
+     */
+    public static function stringEquals(string $data, array $possibleValues) : void {
+        self::stringNotEmpty($data);
+
+        if (in_array($data, $possibleValues, true)) {
+            return;
+        }
+
+        throw new \Corbado\Exceptions\Assert('Assert failed: Invalid value "' . $data . '" given, only the following are allowed: ' . implode(', ', $possibleValues));
+    }
+
+    /**
+     * Checks if given keys exist in given data
+     *
+     * @param array<string, mixed> $data
      * @param array<string> $keys
+     * @return void
      * @throws \Corbado\Exceptions\Assert
      */
     public static function arrayKeysExist(array $data, array $keys) : void {

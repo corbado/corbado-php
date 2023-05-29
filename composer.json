@@ -13,7 +13,7 @@
     "psr-4": {"Corbado\\": "src/"}
   },
   "require": {
-    "guzzlehttp/guzzle": "^7.4",
+    "guzzlehttp/guzzle": "^7.5",
     "psr/cache": "2.0.*",
     "symfony/cache": "6.0.*",
     "firebase/php-jwt": "^6.4",
