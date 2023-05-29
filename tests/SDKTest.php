@@ -1,8 +1,8 @@
 <?php
 
 use Corbado\Classes\Apis\ShortSessionInterface;
+use Corbado\Classes\Exceptions\Assert;
 use Corbado\Configuration;
-use Corbado\Exceptions\Assert;
 use Corbado\SDK;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +10,7 @@ class SDKTest extends TestCase
 {
     /**
      * @throws Assert
-     * @throws \Corbado\Exceptions\Configuration
+     * @throws \Corbado\Classes\Exceptions\Configuration
      * @throws \PHPUnit\Framework\MockObject\Exception
      */
     public function testGetUserGuest(): void
@@ -33,7 +33,7 @@ class SDKTest extends TestCase
 
     /**
      * @throws Assert
-     * @throws \Corbado\Exceptions\Configuration
+     * @throws \Corbado\Classes\Exceptions\Configuration
      * @throws \PHPUnit\Framework\MockObject\Exception
      */
     public function testGetUserAuthenticated(): void

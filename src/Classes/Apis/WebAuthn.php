@@ -3,9 +3,9 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Exceptions\Http;
-use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
@@ -39,7 +39,7 @@ class WebAuthn
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws Standard
@@ -121,11 +121,11 @@ class WebAuthn
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
-     * @throws ClientExceptionInterface
+     * @return array<string, mixed>
+     *@throws ClientExceptionInterface
      * @throws Http
      * @throws Standard
-     * @return array<string, mixed>
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     protected function finish(string $endPoint, string $projectID, string $origin, string $publicKeyCredential, string $remoteAddress, string $userAgent, string $requestID = ''): array
     {
@@ -154,7 +154,7 @@ class WebAuthn
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws Standard
@@ -200,7 +200,7 @@ class WebAuthn
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws Standard
@@ -236,7 +236,7 @@ class WebAuthn
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws Standard

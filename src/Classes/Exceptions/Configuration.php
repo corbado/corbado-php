@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Exceptions;
+namespace Corbado\Classes\Exceptions;
 
 class Configuration extends \Exception {
 }

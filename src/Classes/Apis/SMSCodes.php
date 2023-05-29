@@ -3,9 +3,9 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Exceptions\Http;
-use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\SmsCodeSendReq;
@@ -36,7 +36,7 @@ class SMSCodes
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws Standard
@@ -83,7 +83,7 @@ class SMSCodes
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws ClientExceptionInterface
      * @throws GuzzleException

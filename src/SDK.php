@@ -9,8 +9,8 @@ use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
+use Corbado\Classes\Exceptions\Assert;
 use Corbado\Classes\User;
-use Corbado\Exceptions\Assert;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -26,7 +26,7 @@ class SDK
     private ?ShortSessionInterface $shortSession = null;
 
     /**
-     * @throws Exceptions\Configuration
+     * @throws \Corbado\Classes\Exceptions\Configuration
      */
     public function __construct(Configuration $config)
     {
@@ -34,11 +34,11 @@ class SDK
 
         if ($this->config->getHttpClient() === null) {
             if ($this->config->getProjectID() === '') {
-                throw new \Corbado\Exceptions\Configuration('No project ID set, use Configuration::setProjectID()');
+                throw new Classes\Exceptions\Configuration('No project ID set, use Configuration::setProjectID()');
             }
 
             if ($this->config->getApiSecret() === '') {
-                throw new \Corbado\Exceptions\Configuration('No API secret set, use Configuration::setApiSecret()');
+                throw new Classes\Exceptions\Configuration('No API secret set, use Configuration::setApiSecret()');
             }
 
             $this->client = new Client(
@@ -98,24 +98,24 @@ class SDK
     }
 
     /**
-     * @throws Exceptions\Configuration|Assert
+     * @throws \Corbado\Classes\Exceptions\Configuration|Assert
      */
     public function shortSession() : ShortSessionInterface {
         if ($this->shortSession === null) {
             if ($this->config->getJwksCachePool() === null) {
-                throw new \Corbado\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
+                throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
             if ($this->config->getIssuer() === '') {
-                throw new \Corbado\Exceptions\Configuration('No issuer set, use Configuration::setIssuer()');
+                throw new Classes\Exceptions\Configuration('No issuer set, use Configuration::setIssuer()');
             }
 
             if ($this->config->getAuthorizedParty() === '') {
-                throw new \Corbado\Exceptions\Configuration('No authorized party set, use Configuration::setAuthorizedParty()');
+                throw new Classes\Exceptions\Configuration('No authorized party set, use Configuration::setAuthorizedParty()');
             }
 
             if ($this->config->getJwksURI() === '') {
-                throw new \Corbado\Exceptions\Configuration('No JWKS URI set, use Configuration::setJwksURI()');
+                throw new Classes\Exceptions\Configuration('No JWKS URI set, use Configuration::setJwksURI()');
             }
 
             $this->shortSession = new ShortSession(
@@ -133,7 +133,7 @@ class SDK
 
     /**
      * @throws Assert
-     * @throws Exceptions\Configuration
+     * @throws \Corbado\Classes\Exceptions\Configuration
      */
     public function getUser() : User {
         $jwt = $this->shortSession()->getValue();

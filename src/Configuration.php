@@ -18,7 +18,7 @@ class Configuration {
     private string $jwksURI;
 
     /**
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function setBaseURI(string $baseURI) : self
     {
@@ -30,15 +30,15 @@ class Configuration {
     }
 
     /**
-     * @throws Exceptions\Assert
-     * @throws Exceptions\Configuration
+     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Configuration
      */
     public function setProjectID(string $projectID) : self
     {
         Assert::stringNotEmpty($projectID);
 
         if (!str_starts_with($projectID, 'pro-')) {
-            throw new Exceptions\Configuration('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
+            throw new Classes\Exceptions\Configuration('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
         $this->projectID = $projectID;
@@ -47,7 +47,7 @@ class Configuration {
     }
 
     /**
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function setApiSecret(string $apiSecret) : self
     {
@@ -81,7 +81,7 @@ class Configuration {
     }
 
     /**
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function setIssuer(string $issuer) : self
     {
@@ -93,7 +93,7 @@ class Configuration {
     }
 
     /**
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function setAuthorizedParty(string $authorizedParty) : self
     {
@@ -105,7 +105,7 @@ class Configuration {
     }
 
     /**
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function setJwksURI(string $jwksURI) : self
     {

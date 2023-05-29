@@ -2,7 +2,7 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Exceptions\Standard;
+use Corbado\Classes\Exceptions\Standard;
 
 class User {
     private bool $authenticated;

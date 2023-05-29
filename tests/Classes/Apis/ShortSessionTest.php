@@ -3,7 +3,7 @@
 namespace Classes\Apis;
 
 use Corbado\Classes\Apis\ShortSession;
-use Corbado\Exceptions\Assert;
+use Corbado\Classes\Exceptions\Assert;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;

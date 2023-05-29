@@ -1,8 +1,6 @@
 <?php
 
-namespace Corbado\Exceptions;
-
-use Throwable;
+namespace Corbado\Classes\Exceptions;
 
 class Http extends \Exception {
     private int $httpStatusCode;

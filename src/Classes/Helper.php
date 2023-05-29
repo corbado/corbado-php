@@ -2,8 +2,8 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Exceptions\Http;
-use Corbado\Exceptions\Standard;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\RequestData;
 
@@ -55,9 +55,9 @@ class Helper
     }
 
     /**
-     * @throws Http
-     * @throws \Corbado\Exceptions\Assert
      * @param array<mixed> $data
+     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws Http
      */
     public static function throwException(array $data) : void
     {
@@ -72,9 +72,9 @@ class Helper
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
      * @param array<mixed> $data
      * @return RequestData
+     *@throws \Corbado\Classes\Exceptions\Assert
      */
     public static function hydrateRequestData(array $data): RequestData
     {
@@ -88,8 +88,8 @@ class Helper
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
      * @param array<mixed> $data
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public static function hydrateResponse(array $data): GenericRsp
     {

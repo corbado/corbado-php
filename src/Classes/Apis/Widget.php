@@ -3,9 +3,9 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Exceptions\Http;
-use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\SessionTokenVerifyReq;
 use Corbado\Generated\Model\SessionTokenVerifyRsp;
@@ -25,7 +25,7 @@ class Widget
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws GuzzleException
      * @throws Standard

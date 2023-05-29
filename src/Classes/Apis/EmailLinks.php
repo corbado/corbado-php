@@ -3,9 +3,9 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Exceptions\Http;
-use Corbado\Exceptions\Standard;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailLinkSendReq;
 use Corbado\Generated\Model\EmailLinkSendRsp;
@@ -40,7 +40,7 @@ class EmailLinks
      * @throws GuzzleException
      * @throws ClientExceptionInterface
      * @throws Standard
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function send(string $projectID, string $email, string $templateName, string $redirect, string $remoteAddress, string $userAgent, bool $create = false, string $additionalPayload = "", ?string $requestID = ''): EmailLinkSendRsp
     {
@@ -89,7 +89,7 @@ class EmailLinks
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Http
      * @throws GuzzleException
      * @throws ClientExceptionInterface

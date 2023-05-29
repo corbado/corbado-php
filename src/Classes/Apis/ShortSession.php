@@ -22,7 +22,7 @@ class ShortSession implements ShortSessionInterface
     private CacheItemPoolInterface $jwksCachePool;
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function __construct(string $shortSessionCookieName, string $issuer, string $authorizedParty, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
@@ -40,7 +40,7 @@ class ShortSession implements ShortSessionInterface
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function getValue() : string
     {
@@ -93,7 +93,7 @@ class ShortSession implements ShortSessionInterface
     }
 
     /**
-     * @throws \Corbado\Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     private function extractBearerToken(string $authorizationHeader) : string {
         Assert::stringNotEmpty($authorizationHeader);

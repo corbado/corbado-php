@@ -2,9 +2,9 @@
 
 namespace Corbado;
 
-use Corbado\Classes\Helper;
-use Corbado\Exceptions\Standard;
 use Corbado\Classes\Assert;
+use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Helper;
 
 class Webhook
 {
@@ -41,7 +41,7 @@ class Webhook
      *
      * @param string $username
      * @param string $password
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function __construct(string $username, string $password)
     {
@@ -186,7 +186,7 @@ class Webhook
      * Returns auth methods request model
      *
      * @return Model\AuthMethodsRequest
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Standard
      */
     public function getAuthMethodsRequest() : Model\AuthMethodsRequest
@@ -216,7 +216,7 @@ class Webhook
      * @param string $status
      * @param bool $exit
      * @return void
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Standard
      */
     public function sendAuthMethodsResponse(string $status, bool $exit = true, string $responseID = '') : void
@@ -243,7 +243,7 @@ class Webhook
      * Returns password verify request model
      *
      * @return Model\PasswordVerifyRequest
-     * @throws Exceptions\Assert
+     * @throws \Corbado\Classes\Exceptions\Assert
      * @throws Standard
      */
     public function getPasswordVerifyRequest() : Model\PasswordVerifyRequest
