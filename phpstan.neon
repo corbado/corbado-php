@@ -1,5 +1,5 @@
 parameters:
-	checkGenericClassInNonGenericObjectType: false
-	excludePaths:
-		analyseAndScan:
-			- src/Generated
+    checkGenericClassInNonGenericObjectType: false
+    excludePaths:
+        analyseAndScan:
+            - src/Generated

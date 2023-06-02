@@ -4,7 +4,7 @@ use Corbado\Configuration;
 use Corbado\SDK;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
     $config = new Configuration();

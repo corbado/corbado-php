@@ -27,12 +27,12 @@ class EmailLinks
     }
 
     /**
-     * @param string $projectId
+     * @param string $projectID
      * @return string[]
      */
-    private function generateHeaders(string $projectId): array
+    private function generateHeaders(string $projectID): array
     {
-        return ['X-Corbado-ProjectID' => $projectId];
+        return ['X-Corbado-ProjectID' => $projectID];
     }
 
     /**

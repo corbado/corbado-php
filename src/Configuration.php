@@ -8,14 +8,14 @@ use Psr\Http\Client\ClientInterface;
 
 class Configuration {
     private string $baseURI = 'https://api.corbado.com/v1';
-    private string $projectID;
-    private string $apiSecret;
+    private string $projectID = '';
+    private string $apiSecret = '';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
-    private string $issuer;
-    private string $authorizedParty;
-    private string $jwksURI;
+    private string $issuer = '';
+    private string $authorizedParty = '';
+    private string $jwksURI = '';
 
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
