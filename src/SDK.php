@@ -148,8 +148,9 @@ class SDK
             return new User(
                 true,
                 $decoded->sub,
-                $decoded->email,
                 $decoded->name,
+                $decoded->email,
+                $decoded->phoneNumber
             );
         }
 

@@ -8,19 +8,33 @@ class User {
     private bool $authenticated;
     private string $userID;
 
-    private string $email;
-
     private string $name;
 
-    public function __construct(bool $authenticated, string $userID = '', string $email = '', string $name = '') {
+    private string $email;
+
+    private string $phoneNumber;
+
+    public function __construct(bool $authenticated, string $userID = '', string $name = '', string $email = '', string $phoneNumber = '') {
         $this->authenticated = $authenticated;
         $this->userID = $userID;
-        $this->email = $email;
         $this->name = $name;
+        $this->email = $email;
+        $this->phoneNumber = $phoneNumber;
     }
 
     public function isAuthenticated() : bool {
         return $this->authenticated;
+    }
+
+    /**
+     * @throws Standard
+     */
+    public function getName() : string {
+        if ($this->isAuthenticated() === false) {
+            throw new Standard('User is not authenticated');
+        }
+
+        return $this->name;
     }
 
     /**
@@ -48,11 +62,11 @@ class User {
     /**
      * @throws Standard
      */
-    public function getName() : string {
+    public function getPhoneNumber() : string {
         if ($this->isAuthenticated() === false) {
             throw new Standard('User is not authenticated');
         }
 
-        return $this->name;
+        return $this->phoneNumber;
     }
 }

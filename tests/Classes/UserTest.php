@@ -21,9 +21,10 @@ class UserTest  extends TestCase {
      */
     public function testGetUserData() : void
         {
-            $user = new User(true, 'user-id', 'email', 'name');
+            $user = new User(true, 'user-id', 'name', 'email', 'phone-number');
             $this->assertEquals('user-id', $user->getUserID());
-            $this->assertEquals('email', $user->getEmail());
             $this->assertEquals('name', $user->getName());
+            $this->assertEquals('email', $user->getEmail());
+            $this->assertEquals('phone-number', $user->getPhoneNumber());
         }
 }
