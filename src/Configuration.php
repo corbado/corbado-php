@@ -130,11 +130,11 @@ class Configuration {
             throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given');
         }
 
-        if ($parts['scheme'] !== 'https') {
+        if (isset($parts['scheme']) && $parts['scheme'] !== 'https') {
             throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, needs to be HTTPS');
         }
 
-        if ($parts['host'] === '') {
+        if (!isset($parts['host'])) {
             throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, host is empty');
         }
 

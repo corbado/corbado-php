@@ -7,6 +7,8 @@ class ConfigurationTest extends TestCase
 {
     /**
      * @dataProvider provideAuthenticationURLs
+     * @param string $authenticationURL
+     * @param bool $valid
      * @return void
      */
     public function testSetAuthenticationURL(string $authenticationURL, bool $valid) : void
@@ -23,7 +25,10 @@ class ConfigurationTest extends TestCase
         $this->assertEquals($valid, !$error);
     }
 
-    private function provideAuthenticationURLs() : array
+    /**
+     * @return array<int, array<int, bool|string>>
+     */
+    public function provideAuthenticationURLs() : array
     {
         return [
             ['', false],
