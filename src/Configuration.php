@@ -17,6 +17,8 @@ class Configuration {
     private string $authorizedParty = '';
     private string $jwksURI = '';
 
+    private string $authenticationURL = '';
+
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
      */
@@ -117,6 +119,51 @@ class Configuration {
     }
 
     /**
+     * @throws Classes\Exceptions\Assert
+     */
+    public function setAuthenticationURL(string $authenticationURL) : self
+    {
+        Assert::stringNotEmpty($authenticationURL);
+
+        $parts = parse_url($authenticationURL);
+        if ($parts === false) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given');
+        }
+
+        if ($parts['scheme'] !== 'https') {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, needs to be HTTPS');
+        }
+
+        if ($parts['host'] === '') {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, host is empty');
+        }
+
+        if (isset($parts['user'])) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, user needs to be empty');
+        }
+
+        if (isset($parts['pass'])) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, password needs to be empty');
+        }
+
+        if (isset($parts['path'])) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, path needs to be empty');
+        }
+
+        if (isset($parts['query'])) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, query needs to be empty');
+        }
+
+        if (isset($parts['fragment'])) {
+            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, fragment needs to be empty');
+        }
+
+        $this->authenticationURL = $authenticationURL;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getBaseURI(): string
@@ -177,5 +224,10 @@ class Configuration {
     public function getJwksURI() : string
     {
         return $this->jwksURI;
+    }
+
+    public function getAuthenticationURL() : string
+    {
+        return $this->authenticationURL;
     }
 }
