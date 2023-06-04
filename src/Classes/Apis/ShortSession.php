@@ -16,7 +16,6 @@ class ShortSession implements ShortSessionInterface
 
     private string $shortSessionCookieName;
     private string $issuer;
-    private string $authorizedParty;
     private string $jwksURI;
     private ClientInterface $client;
     private CacheItemPoolInterface $jwksCachePool;
@@ -24,16 +23,14 @@ class ShortSession implements ShortSessionInterface
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
      */
-    public function __construct(string $shortSessionCookieName, string $issuer, string $authorizedParty, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
+    public function __construct(string $shortSessionCookieName, string $issuer, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
         Assert::stringNotEmpty($shortSessionCookieName);
         Assert::stringNotEmpty($issuer);
-        Assert::stringNotEmpty($authorizedParty);
         Assert::stringNotEmpty($jwksURI);
 
         $this->shortSessionCookieName = $shortSessionCookieName;
         $this->issuer = $issuer;
-        $this->authorizedParty = $authorizedParty;
         $this->jwksURI = $jwksURI;
         $this->client = $client;
         $this->jwksCachePool = $jwksCachePool;
@@ -76,12 +73,7 @@ class ShortSession implements ShortSessionInterface
                 $issuerValid = true;
             }
 
-            $authorizedPartyValid = false;
-            if ($decoded->azp === $this->authorizedParty) {
-                $authorizedPartyValid = true;
-            }
-
-            if ($issuerValid === true && $authorizedPartyValid === true) {
+            if ($issuerValid === true) {
                 return $decoded;
             }
 

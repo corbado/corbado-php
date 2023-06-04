@@ -10,6 +10,7 @@ try {
     $config = new Configuration();
     $config->setProjectID('pro-1')
            ->setApiSecret('43jlk5j43lk5j34kl')
+           ->setAuthenticationURL('https://pro-1.auth.corbado.com')
            ->setJwksCachePool(new ArrayAdapter());
 
     $sdk = new SDK($config);

@@ -102,27 +102,18 @@ class SDK
      */
     public function shortSession() : ShortSessionInterface {
         if ($this->shortSession === null) {
+            if ($this->config->getAuthenticationURL() === '') {
+                throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
+            }
+
             if ($this->config->getJwksCachePool() === null) {
                 throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            if ($this->config->getIssuer() === '') {
-                throw new Classes\Exceptions\Configuration('No issuer set, use Configuration::setIssuer()');
-            }
-
-            if ($this->config->getAuthorizedParty() === '') {
-                throw new Classes\Exceptions\Configuration('No authorized party set, use Configuration::setAuthorizedParty()');
-            }
-
-            if ($this->config->getJwksURI() === '') {
-                throw new Classes\Exceptions\Configuration('No JWKS URI set, use Configuration::setJwksURI()');
-            }
-
             $this->shortSession = new ShortSession(
                 $this->config->getShortSessionCookieName(),
-                $this->config->getIssuer(),
-                $this->config->getAuthorizedParty(),
-                $this->config->getJwksURI(),
+                $this->config->getAuthenticationURL(),
+                $this->config->getAuthenticationURL() . '/.well-known/jwks.json',
                 $this->client,
                 $this->config->getJwksCachePool()
             );

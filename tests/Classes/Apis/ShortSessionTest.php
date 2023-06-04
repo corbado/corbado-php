@@ -24,7 +24,6 @@ class ShortSessionTest extends TestCase
         $shortSession = new ShortSession(
             'cbo_short_session',
             'https://auth.acme.com',
-            'https://www.acme.com',
             'https://xxx', // does not matter because response is mocked
             $client,
             new ArrayAdapter()
@@ -63,7 +62,6 @@ class ShortSessionTest extends TestCase
         $shortSession = new ShortSession(
             'cbo_short_session',
             'https://auth.acme.com',
-            'https://www.acme.com',
             'https://xxx', // does not matter because response is mocked
             $client,
             new ArrayAdapter()
@@ -93,27 +91,22 @@ class ShortSessionTest extends TestCase
             [
                 // Not before (nfb) in future
                 false,
-                self::generateJWT('https://auth.acme.com', 'https://www.acme.com', time() + 100, time() + 100)
+                self::generateJWT('https://auth.acme.com',  time() + 100, time() + 100)
             ],
             [
                 // Expired (exp)
                 false,
-                self::generateJWT('https://auth.acme.com', 'https://www.acme.com', time() - 100, time() - 100)
+                self::generateJWT('https://auth.acme.com',  time() - 100, time() - 100)
             ],
             [
                 // Invalid issuer (iss)
                 false,
-                self::generateJWT('https://invalid.com', 'https://www.acme.com', time() + 100, time() - 100)
-            ],
-            [
-                // Invalid authorized party (azp)
-                false,
-                self::generateJWT('https://auth.acme.com', 'https://invalid.com', time() + 100, time() - 100)
+                self::generateJWT('https://invalid.com',  time() + 100, time() - 100)
             ],
             [
                 // Success
                 true,
-                self::generateJWT('https://auth.acme.com', 'https://www.acme.com', time() + 100, time() - 100)
+                self::generateJWT('https://auth.acme.com',  time() + 100, time() - 100)
             ]
         ];
     }
@@ -121,11 +114,10 @@ class ShortSessionTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function generateJWT(string $iss, string $azp, int $exp, int $nbf): string
+    private static function generateJWT(string $iss, int $exp, int $nbf): string
     {
         $payload = [
             'iss' => $iss,
-            'azp' => $azp,
             'iat' => time(),
             'exp' => $exp,
             'nbf' => $nbf,

@@ -13,10 +13,6 @@ class Configuration {
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
-    private string $issuer = '';
-    private string $authorizedParty = '';
-    private string $jwksURI = '';
-
     private string $authenticationURL = '';
 
     /**
@@ -78,42 +74,6 @@ class Configuration {
     public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : self
     {
         $this->jwksCachePool = $jwksCachePool;
-
-        return $this;
-    }
-
-    /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     */
-    public function setIssuer(string $issuer) : self
-    {
-        Assert::stringNotEmpty($issuer);
-
-        $this->issuer = $issuer;
-
-        return $this;
-    }
-
-    /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     */
-    public function setAuthorizedParty(string $authorizedParty) : self
-    {
-        Assert::stringNotEmpty($authorizedParty);
-
-        $this->authorizedParty = $authorizedParty;
-
-        return $this;
-    }
-
-    /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     */
-    public function setJwksURI(string $jwksURI) : self
-    {
-        Assert::stringNotEmpty($jwksURI);
-
-        $this->jwksURI = $jwksURI;
 
         return $this;
     }
@@ -209,21 +169,6 @@ class Configuration {
     public function getJwksCachePool(): ?CacheItemPoolInterface
     {
         return $this->jwksCachePool;
-    }
-
-    public function getIssuer() : string
-    {
-        return $this->issuer;
-    }
-
-    public function getAuthorizedParty() : string
-    {
-        return $this->authorizedParty;
-    }
-
-    public function getJwksURI() : string
-    {
-        return $this->jwksURI;
     }
 
     public function getAuthenticationURL() : string
