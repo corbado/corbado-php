@@ -10,10 +10,10 @@ class Configuration {
     private string $baseURI = 'https://api.corbado.com/v1';
     private string $projectID = '';
     private string $apiSecret = '';
+    private string $authenticationURL = '';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
-    private string $authenticationURL = '';
 
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
@@ -52,28 +52,6 @@ class Configuration {
         Assert::stringNotEmpty($apiSecret);
 
         $this->apiSecret = $apiSecret;
-
-        return $this;
-    }
-
-    public function setShortSessionCookieName(string $shortSessionCookieName) : self
-    {
-        Assert::stringNotEmpty($shortSessionCookieName);
-
-        $this->shortSessionCookieName = $shortSessionCookieName;
-
-        return $this;
-    }
-
-    public function setHttpClient(ClientInterface $httpClient) : self {
-        $this->httpClient = $httpClient;
-
-        return $this;
-    }
-
-    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : self
-    {
-        $this->jwksCachePool = $jwksCachePool;
 
         return $this;
     }
@@ -123,6 +101,28 @@ class Configuration {
         return $this;
     }
 
+    public function setShortSessionCookieName(string $shortSessionCookieName) : self
+    {
+        Assert::stringNotEmpty($shortSessionCookieName);
+
+        $this->shortSessionCookieName = $shortSessionCookieName;
+
+        return $this;
+    }
+
+    public function setHttpClient(ClientInterface $httpClient) : self {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : self
+    {
+        $this->jwksCachePool = $jwksCachePool;
+
+        return $this;
+    }
+
     /**
      * @return string
      */
@@ -147,6 +147,11 @@ class Configuration {
         return $this->apiSecret;
     }
 
+    public function getAuthenticationURL() : string
+    {
+        return $this->authenticationURL;
+    }
+
     /**
      * @return string
      */
@@ -169,10 +174,5 @@ class Configuration {
     public function getJwksCachePool(): ?CacheItemPoolInterface
     {
         return $this->jwksCachePool;
-    }
-
-    public function getAuthenticationURL() : string
-    {
-        return $this->authenticationURL;
     }
 }
