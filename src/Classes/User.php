@@ -6,7 +6,7 @@ use Corbado\Classes\Exceptions\Standard;
 
 class User {
     private bool $authenticated;
-    private string $userID;
+    private string $id;
 
     private string $name;
 
@@ -14,9 +14,9 @@ class User {
 
     private string $phoneNumber;
 
-    public function __construct(bool $authenticated, string $userID = '', string $name = '', string $email = '', string $phoneNumber = '') {
+    public function __construct(bool $authenticated, string $id = '', string $name = '', string $email = '', string $phoneNumber = '') {
         $this->authenticated = $authenticated;
-        $this->userID = $userID;
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->phoneNumber = $phoneNumber;
@@ -29,23 +29,23 @@ class User {
     /**
      * @throws Standard
      */
+    public function getID() : string {
+        if ($this->isAuthenticated() === false) {
+            throw new Standard('User is not authenticated');
+        }
+
+        return $this->id;
+    }
+
+    /**
+     * @throws Standard
+     */
     public function getName() : string {
         if ($this->isAuthenticated() === false) {
             throw new Standard('User is not authenticated');
         }
 
         return $this->name;
-    }
-
-    /**
-     * @throws Standard
-     */
-    public function getUserID() : string {
-        if ($this->isAuthenticated() === false) {
-            throw new Standard('User is not authenticated');
-        }
-
-        return $this->userID;
     }
 
     /**

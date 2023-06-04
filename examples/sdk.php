@@ -17,7 +17,7 @@ try {
     $user = $sdk->getUser();
 
     if ($user->isAuthenticated()) {
-        echo 'User is authenticated (user ID: ' . $user->getUserID() . ')';
+        echo 'User is authenticated (user ID: ' . $user->getID() . ')';
     } else {
         echo 'User is not authenticated';
     }

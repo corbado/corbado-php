@@ -37,6 +37,8 @@ class ShortSession implements ShortSessionInterface
     }
 
     /**
+     * Returns the short session value from the cookie or the Authorization header
+     *
      * @throws \Corbado\Classes\Exceptions\Assert
      */
     public function getValue() : string
