@@ -13,8 +13,8 @@ try {
            ->setAuthenticationURL('https://pro-1.auth.corbado.com')
            ->setJwksCachePool(new ArrayAdapter());
 
-    $sdk = new SDK($config);
-    $user = $sdk->getUser();
+    $corbado = new SDK($config);
+    $user = $corbado->getUser();
 
     if ($user->isAuthenticated()) {
         echo 'User is authenticated (user ID: ' . $user->getID() . ')';

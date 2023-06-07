@@ -11,6 +11,7 @@ use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Exceptions\Assert;
 use Corbado\Classes\User;
+use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -24,6 +25,8 @@ class SDK
     private ?Validation $validation;
     private ?Widget $widget;
     private ?ShortSessionInterface $shortSession = null;
+
+    private ?UserApi $users;
 
     /**
      * @throws \Corbado\Classes\Exceptions\Configuration
@@ -120,6 +123,19 @@ class SDK
         }
 
         return $this->shortSession;
+    }
+
+    public function users() : UserApi {
+        if ($this->users === null) {
+            $config = new Generated\Configuration();
+            $config->setUsername($this->config->getProjectID());
+            $config->setPassword($this->config->getApiSecret());
+            $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
+
+            $this->users = new UserApi($this->client, $config);
+        }
+
+        return $this->users;
     }
 
     /**
