@@ -104,10 +104,12 @@ class SDK
         Assert::stringEquals($version, ['v1', 'v2']);
 
         if ($this->sessionVersion !== null && $this->sessionVersion != $version) {
-            throw new \LogicException('Called session with different version before');
+            throw new \LogicException('Called session with different version before (recreate SDK instance to use different version)');
         }
 
         if ($this->session === null) {
+            $this->sessionVersion = $version;
+
             if ($this->config->getAuthenticationURL() === '') {
                 throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
             }

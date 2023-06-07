@@ -34,7 +34,7 @@ class Session implements SessionInterface
      */
     public function __construct(string $version, string $shortSessionCookieName, string $issuer, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
-        Assert::stringNotEmpty($version);
+        Assert::stringEquals($version, ['v1', 'v2']);
         Assert::stringNotEmpty($shortSessionCookieName);
         Assert::stringNotEmpty($issuer);
         Assert::stringNotEmpty($jwksURI);
@@ -55,7 +55,7 @@ class Session implements SessionInterface
     public function getShortSessionValue() : string
     {
         if ($this->version === 'v1') {
-            throw new \LogicException('This is only available on session v2');
+            throw new \LogicException('getShortSessionValue() is only available in session v2');
         }
 
         if (!empty($_COOKIE[$this->shortSessionCookieName])) {
@@ -77,13 +77,13 @@ class Session implements SessionInterface
      */
     public function validateShortSessionValue(string $value) : ?stdClass
     {
+        Assert::stringNotEmpty($value);
+
         if ($this->version === 'v1') {
-            throw new \LogicException('This is only available on session v2');
+            throw new \LogicException('validateShortSessionValue() is only available in session v2');
         }
 
         try {
-            Assert::stringNotEmpty($value);
-
             $keySet = new CachedKeySet(
                 $this->jwksURI,
                 $this->client,
@@ -105,7 +105,7 @@ class Session implements SessionInterface
             }
 
             return null;
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return null;
         }
     }
@@ -115,7 +115,7 @@ class Session implements SessionInterface
     public function getCurrentUser() : User
     {
         if ($this->version === 'v1') {
-            throw new \LogicException('This is only available on session v2');
+            throw new \LogicException('getCurrentUser() is only available in session v2');
         }
 
         $guest = new User(false);
@@ -162,13 +162,13 @@ class Session implements SessionInterface
      */
     public function verify(string $sessionToken, string $remoteAddress, string $userAgent, string $requestID = ''): SessionTokenVerifyRsp
     {
-        if ($this->version === 'v2') {
-            throw new \LogicException('This is only available on session v1');
-        }
-
         Assert::stringNotEmpty($sessionToken);
         Assert::stringNotEmpty($remoteAddress);
         Assert::stringNotEmpty($userAgent);
+
+        if ($this->version === 'v2') {
+            throw new \LogicException('verify() is only available in session v1');
+        }
 
         $request = new SessionTokenVerifyReq();
         $request->setToken($sessionToken);

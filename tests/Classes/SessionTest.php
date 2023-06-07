@@ -129,6 +129,7 @@ class SessionTest extends TestCase
         $client = new Client(['handler' => $handlerStack]);
 
         return new Session(
+            'v2',
             'cbo_short_session',
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
