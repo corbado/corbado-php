@@ -24,46 +24,5 @@ class Widget
         $this->client = $client;
     }
 
-    /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws Http
-     * @throws GuzzleException
-     * @throws Standard
-     * @throws ClientExceptionInterface
-     */
-    public function sessionVerify(string $sessionToken, string $remoteAddress, string $userAgent, string $requestID = ''): SessionTokenVerifyRsp
-   {
-       Assert::stringNotEmpty($sessionToken);
-       Assert::stringNotEmpty($remoteAddress);
-       Assert::stringNotEmpty($userAgent);
 
-       $request = new SessionTokenVerifyReq();
-       $request->setToken($sessionToken);
-       $request->setRequestId($requestID);
-       $request->setClientInfo(
-           (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
-       );
-
-       $httpResponse = $this->client->sendRequest(
-           new Request(
-               'POST',
-               'sessions/verify',
-               ['body' => Helper::jsonEncode($request->jsonSerialize())]
-           )
-       );
-
-       $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
-       if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
-           Helper::throwException($json);
-       }
-
-       $data = new SessionTokenVerifyRspAllOfData();
-       $data->setUserId($json['data']['userID']);
-       $data->setUserData($json['data']['userData']);
-
-       $response = new SessionTokenVerifyRsp();
-       $response->setData($data);
-
-       return $response;
-   }
 }

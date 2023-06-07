@@ -6,8 +6,7 @@ use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
-use Corbado\Classes\Apis\Widget;
-use Corbado\Classes\Exceptions\Assert;
+use Corbado\Classes\Assert;
 use Corbado\Classes\Session;
 use Corbado\Classes\SessionInterface;
 use Corbado\Generated\Api\UserApi;
@@ -22,9 +21,9 @@ class SDK
     private ?SMSCodes $smsCodes;
     private ?WebAuthn $webAuthn;
     private ?Validation $validation;
-    private ?Widget $widget;
     private ?UserApi $users;
     private ?SessionInterface $session = null;
+    private ?string $sessionVersion = null;
 
     /**
      * @throws \Corbado\Classes\Exceptions\Configuration
@@ -86,14 +85,6 @@ class SDK
         return $this->validation;
     }
 
-    public function widget() : Widget {
-        if ($this->widget === null) {
-            $this->widget = new Widget($this->client);
-        }
-
-        return $this->widget;
-    }
-
     public function users() : UserApi {
         if ($this->users === null) {
             $config = new Generated\Configuration();
@@ -109,10 +100,13 @@ class SDK
         return $this->users;
     }
 
-    /**
-     * @throws \Corbado\Classes\Exceptions\Configuration|Assert
-     */
-    public function session() : SessionInterface {
+    public function session(string $version = 'v2') : SessionInterface {
+        Assert::stringEquals($version, ['v1', 'v2']);
+
+        if ($this->sessionVersion !== null && $this->sessionVersion != $version) {
+            throw new \LogicException('Called session with different version before');
+        }
+
         if ($this->session === null) {
             if ($this->config->getAuthenticationURL() === '') {
                 throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
@@ -123,6 +117,7 @@ class SDK
             }
 
             $this->session = new Session(
+                $version,
                 $this->config->getShortSessionCookieName(),
                 $this->config->getAuthenticationURL(),
                 $this->config->getAuthenticationURL() . '/.well-known/jwks.json',

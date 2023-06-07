@@ -2,10 +2,19 @@
 
 namespace Corbado\Classes;
 
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
+use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Model\SessionTokenVerifyReq;
+use Corbado\Generated\Model\SessionTokenVerifyRsp;
+use Corbado\Generated\Model\SessionTokenVerifyRspAllOfData;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\HttpFactory;
+use GuzzleHttp\Psr7\Request;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Throwable;
@@ -13,6 +22,7 @@ use Throwable;
 class Session implements SessionInterface
 {
 
+    private string $version;
     private string $shortSessionCookieName;
     private string $issuer;
     private string $jwksURI;
@@ -22,12 +32,14 @@ class Session implements SessionInterface
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
      */
-    public function __construct(string $shortSessionCookieName, string $issuer, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
+    public function __construct(string $version, string $shortSessionCookieName, string $issuer, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
     {
+        Assert::stringNotEmpty($version);
         Assert::stringNotEmpty($shortSessionCookieName);
         Assert::stringNotEmpty($issuer);
         Assert::stringNotEmpty($jwksURI);
 
+        $this->version = $version;
         $this->shortSessionCookieName = $shortSessionCookieName;
         $this->issuer = $issuer;
         $this->jwksURI = $jwksURI;
@@ -42,6 +54,10 @@ class Session implements SessionInterface
      */
     public function getShortSessionValue() : string
     {
+        if ($this->version === 'v1') {
+            throw new \LogicException('This is only available on session v2');
+        }
+
         if (!empty($_COOKIE[$this->shortSessionCookieName])) {
             return $_COOKIE[$this->shortSessionCookieName];
         }
@@ -61,6 +77,10 @@ class Session implements SessionInterface
      */
     public function validateShortSessionValue(string $value) : ?stdClass
     {
+        if ($this->version === 'v1') {
+            throw new \LogicException('This is only available on session v2');
+        }
+
         try {
             Assert::stringNotEmpty($value);
 
@@ -94,6 +114,10 @@ class Session implements SessionInterface
      */
     public function getCurrentUser() : User
     {
+        if ($this->version === 'v1') {
+            throw new \LogicException('This is only available on session v2');
+        }
+
         $guest = new User(false);
 
         $value = $this->getShortSessionValue();
@@ -126,5 +150,53 @@ class Session implements SessionInterface
         }
 
         return substr($authorizationHeader, 7);
+    }
+
+    /**
+     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws Http
+     * @throws GuzzleException
+     * @throws Standard
+     * @throws ClientExceptionInterface
+     * @deprecated
+     */
+    public function verify(string $sessionToken, string $remoteAddress, string $userAgent, string $requestID = ''): SessionTokenVerifyRsp
+    {
+        if ($this->version === 'v2') {
+            throw new \LogicException('This is only available on session v1');
+        }
+
+        Assert::stringNotEmpty($sessionToken);
+        Assert::stringNotEmpty($remoteAddress);
+        Assert::stringNotEmpty($userAgent);
+
+        $request = new SessionTokenVerifyReq();
+        $request->setToken($sessionToken);
+        $request->setRequestId($requestID);
+        $request->setClientInfo(
+            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+        );
+
+        $httpResponse = $this->client->sendRequest(
+            new Request(
+                'POST',
+                'sessions/verify',
+                ['body' => Helper::jsonEncode($request->jsonSerialize())]
+            )
+        );
+
+        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
+        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
+            Helper::throwException($json);
+        }
+
+        $data = new SessionTokenVerifyRspAllOfData();
+        $data->setUserId($json['data']['userID']);
+        $data->setUserData($json['data']['userData']);
+
+        $response = new SessionTokenVerifyRsp();
+        $response->setData($data);
+
+        return $response;
     }
 }
