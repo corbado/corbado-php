@@ -1,9 +1,9 @@
 <?php
 
-namespace Classes\Apis;
+namespace Classes;
 
-use Corbado\Classes\Apis\ShortSession;
 use Corbado\Classes\Exceptions\Assert;
+use Corbado\Classes\Session;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
@@ -13,15 +13,15 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-class ShortSessionTest extends TestCase
+class SessionTest extends TestCase
 {
     /**
      * @throws Assert
      */
-    public function testGetValue() : void
+    public function testGetShortSessionValue() : void
     {
         $client = new Client();
-        $shortSession = new ShortSession(
+        $session = new Session(
             'cbo_short_session',
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
@@ -33,12 +33,12 @@ class ShortSessionTest extends TestCase
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer bearer_1234567890';
 
         // Check for cookie (has priority)
-        $value = $shortSession->getValue();
+        $value = $session->getShortSessionValue();
         $this->assertEquals('cookie_1234567890', $value);
 
         // Check for header
         unset($_COOKIE['cbo_short_session']);
-        $value = $shortSession->getValue();
+        $value = $session->getShortSessionValue();
         $this->assertEquals('bearer_1234567890', $value);
     }
 
@@ -46,7 +46,7 @@ class ShortSessionTest extends TestCase
      * @dataProvider provideJWTs
      * @throws Assert
      */
-    public function testValidate(bool $expected, string $input): void
+    public function testValidateShortSessionValue(bool $expected, string $value): void
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         $this->assertNotFalse($jwks);
@@ -59,7 +59,7 @@ class ShortSessionTest extends TestCase
 
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
-        $shortSession = new ShortSession(
+        $session = new Session(
             'cbo_short_session',
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
@@ -67,7 +67,7 @@ class ShortSessionTest extends TestCase
             new ArrayAdapter()
         );
 
-        $result = $shortSession->validate($input);
+        $result = $session->validateShortSessionValue($value);
         $this->assertEquals($expected, $result !== null);
     }
 

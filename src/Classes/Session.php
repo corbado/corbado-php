@@ -1,8 +1,7 @@
 <?php
 
-namespace Corbado\Classes\Apis;
+namespace Corbado\Classes;
 
-use Corbado\Classes\Assert;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Psr7\HttpFactory;
@@ -11,7 +10,7 @@ use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Throwable;
 
-class ShortSession implements ShortSessionInterface
+class Session implements SessionInterface
 {
 
     private string $shortSessionCookieName;
@@ -37,11 +36,11 @@ class ShortSession implements ShortSessionInterface
     }
 
     /**
-     * Returns the short session value from the cookie or the Authorization header
+     * Returns the short-term session (represented as JWT) value from the cookie or the Authorization header
      *
      * @throws \Corbado\Classes\Exceptions\Assert
      */
-    public function getValue() : string
+    public function getShortSessionValue() : string
     {
         if (!empty($_COOKIE[$this->shortSessionCookieName])) {
             return $_COOKIE[$this->shortSessionCookieName];
@@ -54,10 +53,16 @@ class ShortSession implements ShortSessionInterface
         return '';
     }
 
-    public function validate(string $jwt) : ?stdClass
+    /**
+     * Validates the given short-term session (represented as JWT) value
+     *
+     * @param string $value Value (JWT)
+     * @return stdClass|null
+     */
+    public function validateShortSessionValue(string $value) : ?stdClass
     {
         try {
-            Assert::stringNotEmpty($jwt);
+            Assert::stringNotEmpty($value);
 
             $keySet = new CachedKeySet(
                 $this->jwksURI,
@@ -68,7 +73,7 @@ class ShortSession implements ShortSessionInterface
                 true
             );
 
-            $decoded = JWT::decode($jwt, $keySet);
+            $decoded = JWT::decode($value, $keySet);
 
             $issuerValid = false;
             if ($decoded->iss === $this->issuer) {

@@ -3,13 +3,13 @@
 namespace Corbado;
 
 use Corbado\Classes\Apis\EmailLinks;
-use Corbado\Classes\Apis\ShortSession;
-use Corbado\Classes\Apis\ShortSessionInterface;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Exceptions\Assert;
+use Corbado\Classes\Session;
+use Corbado\Classes\SessionInterface;
 use Corbado\Classes\User;
 use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
@@ -24,7 +24,7 @@ class SDK
     private ?WebAuthn $webAuthn;
     private ?Validation $validation;
     private ?Widget $widget;
-    private ?ShortSessionInterface $shortSession = null;
+    private ?SessionInterface $session = null;
 
     private ?UserApi $users;
 
@@ -96,15 +96,15 @@ class SDK
         return $this->widget;
     }
 
-    public function setShortSession(ShortSessionInterface $shortSession) : void {
-        $this->shortSession = $shortSession;
+    public function setSession(SessionInterface $session) : void {
+        $this->session = $session;
     }
 
     /**
      * @throws \Corbado\Classes\Exceptions\Configuration|Assert
      */
-    public function shortSession() : ShortSessionInterface {
-        if ($this->shortSession === null) {
+    public function session() : SessionInterface {
+        if ($this->session === null) {
             if ($this->config->getAuthenticationURL() === '') {
                 throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
             }
@@ -113,7 +113,7 @@ class SDK
                 throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->shortSession = new ShortSession(
+            $this->session = new Session(
                 $this->config->getShortSessionCookieName(),
                 $this->config->getAuthenticationURL(),
                 $this->config->getAuthenticationURL() . '/.well-known/jwks.json',
@@ -122,7 +122,7 @@ class SDK
             );
         }
 
-        return $this->shortSession;
+        return $this->session;
     }
 
     public function users() : UserApi {
@@ -143,14 +143,14 @@ class SDK
      * @throws \Corbado\Classes\Exceptions\Configuration
      */
     public function getUser() : User {
-        $jwt = $this->shortSession()->getValue();
+        $jwt = $this->session()->getShortSessionValue();
 
         $guest = new User(false);
         if (strlen($jwt) < 10) {
             return $guest;
         }
 
-        $decoded = $this->shortSession()->validate($jwt);
+        $decoded = $this->session()->validateShortSessionValue($jwt);
         if ($decoded !== null) {
             return new User(
                 true,
