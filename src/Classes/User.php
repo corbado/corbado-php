@@ -7,11 +7,8 @@ use Corbado\Classes\Exceptions\Standard;
 class User {
     private bool $authenticated;
     private string $id;
-
     private string $name;
-
     private string $email;
-
     private string $phoneNumber;
 
     public function __construct(bool $authenticated, string $id = '', string $name = '', string $email = '', string $phoneNumber = '') {

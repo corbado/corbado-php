@@ -24,7 +24,7 @@
     "phpstan/phpstan": "^1.10"
   },
   "scripts": {
-    "analyze": "vendor/bin/phpstan --memory-limit=1000000000 --level=8 analyze src examples tests",
+    "analyze": "vendor/bin/phpstan --memory-limit=1000000000 analyze src examples tests",
     "test": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests"
   }
 }
