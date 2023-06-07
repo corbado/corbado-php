@@ -17,17 +17,11 @@ class SessionTest extends TestCase
 {
     /**
      * @throws Assert
+     * @throws Exception
      */
     public function testGetShortSessionValue() : void
     {
-        $client = new Client();
-        $session = new Session(
-            'cbo_short_session',
-            'https://auth.acme.com',
-            'https://xxx', // does not matter because response is mocked
-            $client,
-            new ArrayAdapter()
-        );
+        $session = self::createSession();
 
         $_COOKIE['cbo_short_session'] = 'cookie_1234567890';
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer bearer_1234567890';
@@ -44,29 +38,11 @@ class SessionTest extends TestCase
 
     /**
      * @dataProvider provideJWTs
-     * @throws Assert
+     * @throws Exception
      */
     public function testValidateShortSessionValue(bool $expected, string $value): void
     {
-        $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
-        $this->assertNotFalse($jwks);
-
-        $mock = new MockHandler(
-            [
-                new Response(200, [], $jwks)
-            ]
-        );
-
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-        $session = new Session(
-            'cbo_short_session',
-            'https://auth.acme.com',
-            'https://xxx', // does not matter because response is mocked
-            $client,
-            new ArrayAdapter()
-        );
-
+        $session = self::createSession();
         $result = $session->validateShortSessionValue($value);
         $this->assertEquals($expected, $result !== null);
     }
@@ -114,6 +90,56 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testGetCurrentUseGuest() : void
+    {
+        $session = self::createSession();
+        $user = $session->getCurrentUser();
+        $this->assertFalse($user->isAuthenticated());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetCurrentUseAuthenticated() : void
+    {
+        $_COOKIE['cbo_short_session'] = self::generateJWT('https://auth.acme.com', time() + 100, time() - 100);
+
+        $session = self::createSession();
+        $user = $session->getCurrentUser();
+        $this->assertTrue($user->isAuthenticated());
+    }
+
+    /**
+     * @throws Exception
+     */
+    private static function createSession() : Session
+    {
+        $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
+        if ($jwks === false) {
+            throw new Exception('file_get_contents() failed');
+        }
+
+        $mock = new MockHandler(
+            [
+                new Response(200, [], $jwks)
+            ]
+        );
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        return new Session(
+            'cbo_short_session',
+            'https://auth.acme.com',
+            'https://xxx', // does not matter because response is mocked
+            $client,
+            new ArrayAdapter()
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
     private static function generateJWT(string $iss, int $exp, int $nbf): string
     {
         $payload = [
@@ -122,6 +148,9 @@ class SessionTest extends TestCase
             'exp' => $exp,
             'nbf' => $nbf,
             'sub' => '12345',
+            'name' => 'name',
+            'email' => 'email',
+            'phoneNumber' => 'phoneNumber'
         ];
 
         $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');

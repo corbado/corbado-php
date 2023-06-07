@@ -19,7 +19,6 @@ class ConfigurationTest extends TestCase
             $error = false;
         } catch (Throwable $e) {
             $error = true;
-            echo $e->getMessage();
         }
 
         $this->assertEquals($valid, !$error);

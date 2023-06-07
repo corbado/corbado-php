@@ -85,9 +85,34 @@ class Session implements SessionInterface
             }
 
             return null;
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             return null;
         }
+    }
+
+    /**
+     */
+    public function getCurrentUser() : User
+    {
+        $guest = new User(false);
+
+        $value = $this->getShortSessionValue();
+        if (strlen($value) < 10) {
+            return $guest;
+        }
+
+        $decoded = $this->validateShortSessionValue($value);
+        if ($decoded !== null) {
+            return new User(
+                true,
+                $decoded->sub,
+                $decoded->name,
+                $decoded->email,
+                $decoded->phoneNumber
+            );
+        }
+
+        return $guest;
     }
 
     /**

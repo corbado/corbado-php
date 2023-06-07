@@ -10,7 +10,6 @@ use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Exceptions\Assert;
 use Corbado\Classes\Session;
 use Corbado\Classes\SessionInterface;
-use Corbado\Classes\User;
 use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
@@ -24,9 +23,8 @@ class SDK
     private ?WebAuthn $webAuthn;
     private ?Validation $validation;
     private ?Widget $widget;
-    private ?SessionInterface $session = null;
-
     private ?UserApi $users;
+    private ?SessionInterface $session = null;
 
     /**
      * @throws \Corbado\Classes\Exceptions\Configuration
@@ -96,8 +94,19 @@ class SDK
         return $this->widget;
     }
 
-    public function setSession(SessionInterface $session) : void {
-        $this->session = $session;
+    public function users() : UserApi {
+        if ($this->users === null) {
+            $config = new Generated\Configuration();
+            $config->setUsername($this->config->getProjectID());
+            $config->setPassword($this->config->getApiSecret());
+            // @phpstan-ignore-next-line
+            $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
+
+            // @phpstan-ignore-next-line
+            $this->users = new UserApi($this->client, $config);
+        }
+
+        return $this->users;
     }
 
     /**
@@ -123,44 +132,5 @@ class SDK
         }
 
         return $this->session;
-    }
-
-    public function users() : UserApi {
-        if ($this->users === null) {
-            $config = new Generated\Configuration();
-            $config->setUsername($this->config->getProjectID());
-            $config->setPassword($this->config->getApiSecret());
-            $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
-
-            $this->users = new UserApi($this->client, $config);
-        }
-
-        return $this->users;
-    }
-
-    /**
-     * @throws Assert
-     * @throws \Corbado\Classes\Exceptions\Configuration
-     */
-    public function getUser() : User {
-        $jwt = $this->session()->getShortSessionValue();
-
-        $guest = new User(false);
-        if (strlen($jwt) < 10) {
-            return $guest;
-        }
-
-        $decoded = $this->session()->validateShortSessionValue($jwt);
-        if ($decoded !== null) {
-            return new User(
-                true,
-                $decoded->sub,
-                $decoded->name,
-                $decoded->email,
-                $decoded->phoneNumber
-            );
-        }
-
-        return $guest;
     }
 }
