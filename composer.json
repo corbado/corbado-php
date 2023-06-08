@@ -14,7 +14,7 @@
   },
   "require": {
     "guzzlehttp/guzzle": "^7.5",
-    "psr/cache": "^2.0",
+    "psr/cache": "^3.0",
     "firebase/php-jwt": "^6.4",
     "ext-openssl": "*"
   },
