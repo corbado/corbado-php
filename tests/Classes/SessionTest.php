@@ -13,7 +13,6 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 class SessionTest extends TestCase
 {
@@ -92,7 +91,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testGetCurrentUseGuest() : void
+    public function testGetCurrentUserGuest() : void
     {
         $session = self::createSession();
         $user = $session->getCurrentUser();
@@ -102,7 +101,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testGetCurrentUseAuthenticated() : void
+    public function testGetCurrentUserAuthenticated() : void
     {
         $_COOKIE['cbo_short_session'] = self::generateJWT('https://auth.acme.com', time() + 100, time() - 100);
 
@@ -130,84 +129,121 @@ class SessionTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $cacheItem = new class implements CacheItemInterface {
-            public function getKey(): string
-            {
-                return '';
-            }
-
-            public function get(): mixed
-            {
-                return null;
-            }
-
-            public function isHit(): bool
-            {
-                return false;
-            }
-
-            public function set(mixed $value): static
-            {
-                return new static();
-            }
-
-            public function expiresAt(?\DateTimeInterface $expiration): static
-            {
-                // TODO: Implement expiresAt() method.
-            }
-
-            public function expiresAfter(\DateInterval|int|null $time): static
-            {
-                // TODO: Implement expiresAfter() method.
-            }
-        }
-
         $cacheItemPool = new class implements CacheItemPoolInterface {
+            /**
+             * @var array <string, CacheItemInterface>
+             */
+            private array $items = [];
+
             public function getItem(string $key): CacheItemInterface
             {
-                return new $cacheItem();
+                if (array_key_exists($key, $this->items)) {
+                    return $this->items[$key];
+                }
+
+                return new class($key) implements CacheItemInterface {
+                    private string $key;
+                    private mixed $value;
+                    private bool $isHit;
+
+                    public function __construct(string $key)
+                    {
+                        $this->key = $key;
+                        $this->value = null;
+                        $this->isHit = false;
+                    }
+
+                    public function getKey(): string
+                    {
+                        return $this->key;
+                    }
+
+                    public function get(): mixed
+                    {
+                        return $this->value;
+                    }
+
+                    public function isHit(): bool
+                    {
+                        return $this->isHit;
+                    }
+
+                    public function set(mixed $value): static
+                    {
+                        $this->value = $value;
+                        $this->isHit = true;
+
+                        return $this;
+                    }
+
+                    public function expiresAt(?\DateTimeInterface $expiration): static
+                    {
+                        return $this;
+                    }
+
+                    public function expiresAfter(\DateInterval|int|null $time): static
+                    {
+                        return $this;
+                    }
+                };
             }
 
+            /**
+             * @param array<int, string> $keys
+             * @return iterable<string, CacheItemInterface>
+             */
             public function getItems(array $keys = []): iterable
             {
-                // TODO: Implement getItems() method.
+                return $this->items;
             }
 
             public function hasItem(string $key): bool
             {
-                // TODO: Implement hasItem() method.
+                return array_key_exists($key, $this->items);
             }
 
             public function clear(): bool
             {
-                // TODO: Implement clear() method.
+                $this->items = [];
+
+                return true;
             }
 
             public function deleteItem(string $key): bool
             {
-                // TODO: Implement deleteItem() method.
+                unset($this->items[$key]);
+
+                return true;
             }
 
             public function deleteItems(array $keys): bool
             {
-                // TODO: Implement deleteItems() method.
+                foreach ($keys as $key) {
+                    $this->deleteItem($key);
+                }
+
+                return true;
             }
 
             public function save(CacheItemInterface $item): bool
             {
-                // TODO: Implement save() method.
+                $this->items[$item->getKey()] = $item;
+
+                return true;
             }
 
             public function saveDeferred(CacheItemInterface $item): bool
             {
-                // TODO: Implement saveDeferred() method.
+                $this->save($item);
+
+                return true;
             }
 
             public function commit(): bool
             {
-                // TODO: Implement commit() method.
+                return true;
             }
-        }
+        };
 
         return new Session(
             'v2',
@@ -215,7 +251,7 @@ class SessionTest extends TestCase
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
             $client,
-            new ArrayAdapter()
+            $cacheItemPool
         );
     }
 
