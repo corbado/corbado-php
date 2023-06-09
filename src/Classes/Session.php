@@ -23,27 +23,30 @@ class Session implements SessionInterface
 {
 
     private string $version;
+    private ClientInterface $client;
     private string $shortSessionCookieName;
     private string $issuer;
     private string $jwksURI;
-    private ClientInterface $client;
     private CacheItemPoolInterface $jwksCachePool;
 
     /**
      * @throws \Corbado\Classes\Exceptions\Assert
      */
-    public function __construct(string $version, string $shortSessionCookieName, string $issuer, string $jwksURI, ClientInterface $client, CacheItemPoolInterface $jwksCachePool)
+    public function __construct(string $version, ClientInterface $client, string $shortSessionCookieName, string $issuer, string $jwksURI, CacheItemPoolInterface $jwksCachePool)
     {
         Assert::stringEquals($version, ['v1', 'v2']);
-        Assert::stringNotEmpty($shortSessionCookieName);
-        Assert::stringNotEmpty($issuer);
-        Assert::stringNotEmpty($jwksURI);
+
+        if ($version === 'v2') {
+            Assert::stringNotEmpty($shortSessionCookieName);
+            Assert::stringNotEmpty($issuer);
+            Assert::stringNotEmpty($jwksURI);
+        }
 
         $this->version = $version;
+        $this->client = $client;
         $this->shortSessionCookieName = $shortSessionCookieName;
         $this->issuer = $issuer;
         $this->jwksURI = $jwksURI;
-        $this->client = $client;
         $this->jwksCachePool = $jwksCachePool;
     }
 

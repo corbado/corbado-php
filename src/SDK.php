@@ -110,22 +110,33 @@ class SDK
         if ($this->session === null) {
             $this->sessionVersion = $version;
 
-            if ($this->config->getAuthenticationURL() === '') {
-                throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
-            }
+            if ($version === 'v2') {
+                if ($this->config->getAuthenticationURL() === '') {
+                    throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
+                }
 
-            if ($this->config->getJwksCachePool() === null) {
-                throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
-            }
+                if ($this->config->getJwksCachePool() === null) {
+                    throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
+                }
 
-            $this->session = new Session(
-                $version,
-                $this->config->getShortSessionCookieName(),
-                $this->config->getAuthenticationURL(),
-                $this->config->getAuthenticationURL() . '/.well-known/jwks.json',
-                $this->client,
-                $this->config->getJwksCachePool()
-            );
+                $this->session = new Session(
+                    $version,
+                    $this->client,
+                    $this->config->getShortSessionCookieName(),
+                    $this->config->getAuthenticationURL(),
+                    $this->config->getAuthenticationURL() . '/.well-known/jwks.json',
+                    $this->config->getJwksCachePool()
+                );
+            } else {
+                $this->session = new Session(
+                    $version,
+                    $this->client,
+                    '',
+                    '',
+                    '',
+                    null
+                );
+            }
         }
 
         return $this->session;
