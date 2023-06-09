@@ -59,7 +59,7 @@ class SMSCodes
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'POST',
-                'smsCodes',
+                '/v1/smsCodes',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );
@@ -107,7 +107,7 @@ class SMSCodes
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'PUT',
-                'smsCodes/' . $smsCodeID . '/validate',
+                '/v1/smsCodes/' . $smsCodeID . '/validate',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );

@@ -7,7 +7,7 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
 class Configuration {
-    private string $baseURI = 'https://api.corbado.com/v1';
+    private string $baseURI = 'https://api.corbado.com';
     private string $projectID = '';
     private string $apiSecret = '';
     private string $authenticationURL = '';
@@ -16,11 +16,16 @@ class Configuration {
     private ?CacheItemPoolInterface $jwksCachePool = null;
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\Configuration
      */
     public function setBaseURI(string $baseURI) : self
     {
         Assert::stringNotEmpty($baseURI);
+
+        if (str_ends_with($baseURI, '/')) {
+            throw new Classes\Exceptions\Configuration('Invalid base URI "' . $baseURI . '" given, needs to end without a slash');
+        }
 
         $this->baseURI = $baseURI;
 
@@ -28,8 +33,8 @@ class Configuration {
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws \Corbado\Classes\Exceptions\Configuration
+     * @throws Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\Configuration
      */
     public function setProjectID(string $projectID) : self
     {
@@ -45,7 +50,7 @@ class Configuration {
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\Assert
      */
     public function setApiSecret(string $apiSecret) : self
     {

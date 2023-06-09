@@ -52,7 +52,7 @@ class Validation
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'PUT',
-                'validate/email',
+                '/v1/validate/email',
                 ['body' => Helper::jsonEncode($request->jsonSerialize())]
             )
         );
@@ -115,7 +115,7 @@ class Validation
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'PUT',
-                'validate/phoneNumber',
+                '/v1/validate/phoneNumber',
                 ['body' => Helper::jsonEncode($request->jsonSerialize())]
             )
         );

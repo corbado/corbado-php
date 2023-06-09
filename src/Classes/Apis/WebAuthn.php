@@ -65,7 +65,7 @@ class WebAuthn
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'POST',
-                'webauthn/register/start',
+                '/v1/webauthn/register/start',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );
@@ -99,7 +99,7 @@ class WebAuthn
         Assert::stringNotEmpty($userAgent);
 
         $json = $this->finish(
-            'webauthn/register/finish',
+            '/v1/webauthn/register/finish',
             $projectID,
             $origin,
             $publicKeyCredential,
@@ -178,7 +178,7 @@ class WebAuthn
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'POST',
-                'webauthn/authenticate/start',
+                '/v1/webauthn/authenticate/start',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );
@@ -214,7 +214,7 @@ class WebAuthn
         Assert::stringNotEmpty($userAgent);
 
         $json = $this->finish(
-            'webauthn/authenticate/finish',
+            '/v1/webauthn/authenticate/finish',
             $projectID,
             $origin,
             $publicKeyCredential,
@@ -258,7 +258,7 @@ class WebAuthn
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'PUT',
-                'webauthn/credential/' . $credentialId,
+                '/v1/webauthn/credential/' . $credentialId,
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );

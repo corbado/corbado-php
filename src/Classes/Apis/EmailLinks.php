@@ -65,7 +65,7 @@ class EmailLinks
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'POST',
-                'emailLinks',
+                '/v1/emailLinks',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );
@@ -113,7 +113,7 @@ class EmailLinks
         $httpResponse = $this->client->sendRequest(
             new Request(
                 'PUT',
-                'emailLinks/' . $emailLinkID . '/validate',
+                '/v1/emailLinks/' . $emailLinkID . '/validate',
                 ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
             )
         );
