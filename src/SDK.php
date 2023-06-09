@@ -124,7 +124,7 @@ class SDK
                     $this->client,
                     $this->config->getShortSessionCookieName(),
                     $this->config->getAuthenticationURL(),
-                    $this->config->getAuthenticationURL() . '/.well-known/jwks.json',
+                    $this->config->getAuthenticationURL() . '/.well-known/jwks',
                     $this->config->getJwksCachePool()
                 );
             } else {
