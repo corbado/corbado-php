@@ -16,13 +16,13 @@ class SDK
 {
     private Configuration $config;
     private ClientInterface $client;
-    private ?EmailLinks $emailLinks;
-    private ?SMSCodes $smsCodes;
-    private ?WebAuthn $webAuthn;
-    private ?Validation $validation;
-    private ?UserApi $users;
-    private ?SessionV1 $sessionV1;
-    private ?SessionV2 $sessionV2;
+    private ?EmailLinks $emailLinks = null;
+    private ?SMSCodes $smsCodes = null;
+    private ?WebAuthn $webAuthn = null;
+    private ?Validation $validation = null;
+    private ?UserApi $users = null;
+    private ?SessionV1 $sessionV1 = null;
+    private ?SessionV2 $sessionV2 = null;
 
     /**
      * Constructor
