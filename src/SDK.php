@@ -6,9 +6,8 @@ use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
-use Corbado\Classes\Assert;
-use Corbado\Classes\Session;
-use Corbado\Classes\SessionInterface;
+use Corbado\Classes\SessionV2;
+use Corbado\Classes\SessionV1;
 use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
@@ -17,16 +16,19 @@ class SDK
 {
     private Configuration $config;
     private ClientInterface $client;
-    private ?EmailLinks $emailLinks;
-    private ?SMSCodes $smsCodes;
-    private ?WebAuthn $webAuthn;
-    private ?Validation $validation;
-    private ?UserApi $users;
-    private ?SessionInterface $session = null;
-    private ?string $sessionVersion = null;
+    private ?EmailLinks $emailLinks = null;
+    private ?SMSCodes $smsCodes = null;
+    private ?WebAuthn $webAuthn = null;
+    private ?Validation $validation = null;
+    private ?UserApi $users = null;
+    private ?SessionV1 $sessionV1 = null;
+    private ?SessionV2 $sessionV2 = null;
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Configuration
+     * Constructor
+     *
+     * @param Configuration $config
+     * @throws Classes\Exceptions\Configuration
      */
     public function __construct(Configuration $config)
     {
@@ -53,6 +55,11 @@ class SDK
         }
     }
 
+    /**
+     * Returns email links handling
+     *
+     * @return EmailLinks
+     */
     public function emailLinks() : EmailLinks {
         if ($this->emailLinks === null) {
             $this->emailLinks = new EmailLinks($this->client);
@@ -61,6 +68,11 @@ class SDK
         return $this->emailLinks;
     }
 
+    /**
+     * Returns SMS codes handling
+     *
+     * @return SMSCodes
+     */
     public function smsCodes() : SMSCodes {
         if ($this->smsCodes === null) {
             $this->smsCodes = new SMSCodes($this->client);
@@ -69,6 +81,11 @@ class SDK
         return $this->smsCodes;
     }
 
+    /**
+     * Returns WebAuthn handling
+     *
+     * @return WebAuthn
+     */
     public function webAuthn() : WebAuthn {
         if ($this->webAuthn === null) {
             $this->webAuthn = new WebAuthn($this->client);
@@ -77,6 +94,11 @@ class SDK
         return $this->webAuthn;
     }
 
+    /**
+     * Returns validation handling
+     *
+     * @return Validation
+     */
     public function validation() : Validation {
         if ($this->validation === null) {
             $this->validation = new Validation($this->client);
@@ -85,6 +107,11 @@ class SDK
         return $this->validation;
     }
 
+    /**
+     * Returns users handling
+     *
+     * @return UserApi
+     */
     public function users() : UserApi {
         if ($this->users === null) {
             $config = new Generated\Configuration();
@@ -100,45 +127,58 @@ class SDK
         return $this->users;
     }
 
-    public function session(string $version = 'v2') : SessionInterface {
-        Assert::stringEquals($version, ['v1', 'v2']);
-
-        if ($this->sessionVersion !== null && $this->sessionVersion != $version) {
-            throw new \LogicException('Called session with different version before (recreate SDK instance to use different version)');
-        }
-
-        if ($this->session === null) {
-            $this->sessionVersion = $version;
-
-            if ($version === 'v2') {
-                if ($this->config->getAuthenticationURL() === '') {
-                    throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
-                }
-
-                if ($this->config->getJwksCachePool() === null) {
-                    throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
-                }
-
-                $this->session = new Session(
-                    $version,
-                    $this->client,
-                    $this->config->getShortSessionCookieName(),
-                    $this->config->getAuthenticationURL(),
-                    $this->config->getAuthenticationURL() . '/.well-known/jwks',
-                    $this->config->getJwksCachePool()
-                );
-            } else {
-                $this->session = new Session(
-                    $version,
-                    $this->client,
-                    '',
-                    '',
-                    '',
-                    null
-                );
+    /**
+     * Returns session V2 handling
+     *
+     * V2 is the current implementation of session handling. V2 is
+     * automatically set on all new projects. For older projects
+     * you need to use V1 of session handling.
+     *
+     * @return SessionV2
+     * @throws Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\Configuration
+     * @link https://docs.corbado.com/sessions-v2-current/overview
+     * @see sessionV1()
+     */
+    public function session() : SessionV2 {
+        if ($this->sessionV2 === null) {
+            if ($this->config->getAuthenticationURL() === '') {
+                throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
             }
+
+            if ($this->config->getJwksCachePool() === null) {
+                throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
+            }
+
+            $this->sessionV2 = new SessionV2(
+                $this->client,
+                $this->config->getShortSessionCookieName(),
+                $this->config->getAuthenticationURL(),
+                $this->config->getAuthenticationURL() . '/.well-known/jwks',
+                $this->config->getJwksCachePool()
+            );
         }
 
-        return $this->session;
+        return $this->sessionV2;
+    }
+
+    /**
+     * Returns session V1 handling
+     *
+     * V1 is the old implementation of session handling. V1 was
+     * set on old projects. For newer projects you need to use
+     * V2 of session handling.
+     *
+     * @return SessionV1
+     * @link https://docs.corbado.com/sessions-v1-deprecated/overview
+     * @see sessionV2()
+     * @deprecated
+     */
+    public function sessionV1() : SessionV1 {
+        if ($this->sessionV1 === null) {
+            $this->sessionV1 = new SessionV1($this->client);
+        }
+
+        return $this->sessionV1;
     }
 }

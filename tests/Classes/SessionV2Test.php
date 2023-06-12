@@ -3,7 +3,7 @@
 namespace Classes;
 
 use Corbado\Classes\Exceptions\Assert;
-use Corbado\Classes\Session;
+use Corbado\Classes\SessionV2;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
-class SessionTest extends TestCase
+class SessionV2Test extends TestCase
 {
     /**
      * @throws Assert
@@ -113,7 +113,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function createSession() : Session
+    private static function createSession() : SessionV2
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         if ($jwks === false) {
@@ -245,12 +245,11 @@ class SessionTest extends TestCase
             }
         };
 
-        return new Session(
-            'v2',
+        return new SessionV2(
+            $client,
             'cbo_short_session',
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
-            $client,
             $cacheItemPool
         );
     }
