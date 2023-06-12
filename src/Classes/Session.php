@@ -133,9 +133,9 @@ class Session implements SessionInterface
             return new User(
                 true,
                 $decoded->sub,
-                $decoded->name,
-                $decoded->email,
-                $decoded->phoneNumber
+                $decoded->Name,
+                $decoded->Email,
+                $decoded->PhoneNumber
             );
         }
 
