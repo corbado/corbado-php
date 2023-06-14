@@ -6,18 +6,18 @@ use PHPUnit\Framework\TestCase;
 class ConfigurationTest extends TestCase
 {
     /**
-     * @dataProvider provideAuthenticationURLs
-     * @param string $authenticationURL
+     * @dataProvider provideURLs
+     * @param string $frontendAPI
      * @param bool $valid
      * @return void
      */
-    public function testSetAuthenticationURL(string $authenticationURL, bool $valid) : void
+    public function testSetFrontendAPI(string $frontendAPI, bool $valid) : void
     {
         try {
             $config = new Configuration();
-            $config->setAuthenticationURL($authenticationURL);
+            $config->setFrontendAPI($frontendAPI);
             $error = false;
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             $error = true;
         }
 
@@ -25,9 +25,36 @@ class ConfigurationTest extends TestCase
     }
 
     /**
+     * @dataProvider provideURLs
+     * @param string $backendAPI
+     * @param bool $valid
+     * @return void
+     */
+    public function testSetBackendAPI(string $backendAPI, bool $valid) : void
+    {
+        try {
+            $config = new Configuration();
+            $config->setBackendAPI($backendAPI);
+            $error = false;
+        } catch (Throwable) {
+            $error = true;
+        }
+
+        $this->assertEquals($valid, !$error);
+    }
+
+    public function testGetFrontendAPI() : void
+    {
+        $config = new Configuration();
+        $config->setProjectID('pro-123');
+
+        $this->assertEquals('https://pro-123.frontendapi.corbado.io', $config->getFrontendAPI());
+    }
+
+    /**
      * @return array<int, array<int, bool|string>>
      */
-    public function provideAuthenticationURLs() : array
+    public function provideURLs() : array
     {
         return [
             ['', false],

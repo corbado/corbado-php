@@ -45,7 +45,7 @@ class SDK
 
             $this->client = new Client(
                 [
-                    'base_uri' => $this->config->getBaseURI(),
+                    'base_uri' => $this->config->getBackendAPI(),
                     'http_errors' => false,
                     'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()]
                 ]
@@ -142,10 +142,6 @@ class SDK
      */
     public function session() : SessionV2 {
         if ($this->sessionV2 === null) {
-            if ($this->config->getAuthenticationURL() === '') {
-                throw new Classes\Exceptions\Configuration('No authentication URL set, use Configuration::setAuthenticationURL()');
-            }
-
             if ($this->config->getJwksCachePool() === null) {
                 throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
@@ -153,8 +149,8 @@ class SDK
             $this->sessionV2 = new SessionV2(
                 $this->client,
                 $this->config->getShortSessionCookieName(),
-                $this->config->getAuthenticationURL(),
-                $this->config->getAuthenticationURL() . '/.well-known/jwks',
+                $this->config->getFrontendAPI(),
+                $this->config->getFrontendAPI() . '/.well-known/jwks',
                 $this->config->getJwksCachePool()
             );
         }

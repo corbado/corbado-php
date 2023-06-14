@@ -7,30 +7,13 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
 class Configuration {
-    private string $baseURI = 'https://api.corbado.com';
     private string $projectID = '';
     private string $apiSecret = '';
-    private string $authenticationURL = '';
+    private string $frontendAPI = '';
+    private string $backendAPI = 'https://backendapi.corbado.io';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
-
-    /**
-     * @throws Classes\Exceptions\Assert
-     * @throws Classes\Exceptions\Configuration
-     */
-    public function setBaseURI(string $baseURI) : self
-    {
-        Assert::stringNotEmpty($baseURI);
-
-        if (str_ends_with($baseURI, '/')) {
-            throw new Classes\Exceptions\Configuration('Invalid base URI "' . $baseURI . '" given, needs to end without a slash');
-        }
-
-        $this->baseURI = $baseURI;
-
-        return $this;
-    }
 
     /**
      * @throws Classes\Exceptions\Assert
@@ -61,47 +44,20 @@ class Configuration {
         return $this;
     }
 
-    /**
-     * @throws Classes\Exceptions\Assert
-     */
-    public function setAuthenticationURL(string $authenticationURL) : self
+    public function setFrontendAPI(string $frontendAPI) : self
     {
-        Assert::stringNotEmpty($authenticationURL);
+        $this->assertURL($frontendAPI);
 
-        $parts = parse_url($authenticationURL);
-        if ($parts === false) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given');
-        }
+        $this->frontendAPI = $frontendAPI;
 
-        if (isset($parts['scheme']) && $parts['scheme'] !== 'https') {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, needs to be HTTPS');
-        }
+        return $this;
+    }
 
-        if (!isset($parts['host'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, host is empty');
-        }
+    public function setBackendAPI(string $backendAPI) : self
+    {
+        $this->assertURL($backendAPI);
 
-        if (isset($parts['user'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, user needs to be empty');
-        }
-
-        if (isset($parts['pass'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, password needs to be empty');
-        }
-
-        if (isset($parts['path'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, path needs to be empty');
-        }
-
-        if (isset($parts['query'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, query needs to be empty');
-        }
-
-        if (isset($parts['fragment'])) {
-            throw new Classes\Exceptions\Assert('Invalid authentication URL "' . $authenticationURL . '" given, fragment needs to be empty');
-        }
-
-        $this->authenticationURL = $authenticationURL;
+        $this->backendAPI = $backendAPI;
 
         return $this;
     }
@@ -131,14 +87,6 @@ class Configuration {
     /**
      * @return string
      */
-    public function getBaseURI(): string
-    {
-        return $this->baseURI;
-    }
-
-    /**
-     * @return string
-     */
     public function getProjectID(): string
     {
         return $this->projectID;
@@ -152,9 +100,22 @@ class Configuration {
         return $this->apiSecret;
     }
 
-    public function getAuthenticationURL() : string
+    public function getFrontendAPI() : string
     {
-        return $this->authenticationURL;
+        if ($this->frontendAPI === '') {
+            if ($this->projectID === '') {
+                throw new Classes\Exceptions\Configuration('ProjectID empty, use setProjectID() first');
+            }
+
+            $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.corbado.io';
+        }
+
+        return $this->frontendAPI;
+    }
+
+    public function getBackendAPI() : string
+    {
+        return $this->backendAPI;
     }
 
     /**
@@ -179,5 +140,46 @@ class Configuration {
     public function getJwksCachePool(): ?CacheItemPoolInterface
     {
         return $this->jwksCachePool;
+    }
+
+    /**
+     * @throws Classes\Exceptions\Assert
+     */
+    private function assertURL(string $url) : void
+    {
+        Assert::stringNotEmpty($url);
+
+        $parts = parse_url($url);
+        if ($parts === false) {
+            throw new Classes\Exceptions\Assert('Assert failed: parse_url() returned error');
+        }
+
+        if (isset($parts['scheme']) && $parts['scheme'] !== 'https') {
+            throw new Classes\Exceptions\Assert('Assert failed: scheme needs to be https');
+        }
+
+        if (!isset($parts['host'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: host is empty');
+        }
+
+        if (isset($parts['user'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: username needs to be empty');
+        }
+
+        if (isset($parts['pass'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: password needs to be empty');
+        }
+
+        if (isset($parts['path'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: path needs to be empty');
+        }
+
+        if (isset($parts['query'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: querystring needs to be empty');
+        }
+
+        if (isset($parts['fragment'])) {
+            throw new Classes\Exceptions\Assert('Assert failed: fragment needs to be empty');
+        }
     }
 }

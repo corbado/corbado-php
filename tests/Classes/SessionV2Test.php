@@ -265,9 +265,9 @@ class SessionV2Test extends TestCase
             'exp' => $exp,
             'nbf' => $nbf,
             'sub' => '12345',
-            'name' => 'name',
-            'email' => 'email',
-            'phoneNumber' => 'phoneNumber'
+            'Name' => 'name',
+            'Email' => 'email',
+            'PhoneNumber' => 'phoneNumber'
         ];
 
         $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');
