@@ -16,34 +16,35 @@ class Configuration {
     private ?CacheItemPoolInterface $jwksCachePool = null;
 
     /**
+     * Constructor
+     *
+     * Since project ID and API secret are always needed they are
+     * passed via the constructor. All other options can be set via
+     * setters.
+     *
      * @throws Classes\Exceptions\Assert
      * @throws Classes\Exceptions\Configuration
      */
-    public function setProjectID(string $projectID) : self
+    public function __construct(string $projectID, string $apiSecret)
     {
         Assert::stringNotEmpty($projectID);
+        Assert::stringNotEmpty($apiSecret);
 
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Classes\Exceptions\Configuration('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
-        $this->projectID = $projectID;
+        if (!str_starts_with($apiSecret, 'corbado1_')) {
+            throw new Classes\Exceptions\Configuration('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
+        }
 
-        return $this;
+        $this->projectID = $projectID;
+        $this->apiSecret = $apiSecret;
     }
 
     /**
      * @throws Classes\Exceptions\Assert
      */
-    public function setApiSecret(string $apiSecret) : self
-    {
-        Assert::stringNotEmpty($apiSecret);
-
-        $this->apiSecret = $apiSecret;
-
-        return $this;
-    }
-
     public function setFrontendAPI(string $frontendAPI) : self
     {
         $this->assertURL($frontendAPI);
@@ -53,6 +54,9 @@ class Configuration {
         return $this;
     }
 
+    /**
+     * @throws Classes\Exceptions\Assert
+     */
     public function setBackendAPI(string $backendAPI) : self
     {
         $this->assertURL($backendAPI);
@@ -62,6 +66,9 @@ class Configuration {
         return $this;
     }
 
+    /**
+     * @throws Classes\Exceptions\Assert
+     */
     public function setShortSessionCookieName(string $shortSessionCookieName) : self
     {
         Assert::stringNotEmpty($shortSessionCookieName);
@@ -100,6 +107,9 @@ class Configuration {
         return $this->apiSecret;
     }
 
+    /**
+     * @throws Classes\Exceptions\Configuration
+     */
     public function getFrontendAPI() : string
     {
         if ($this->frontendAPI === '') {

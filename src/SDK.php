@@ -6,6 +6,7 @@ use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
+use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Session;
 use Corbado\Classes\SessionV1;
 use Corbado\Generated\Api\UserApi;
@@ -20,8 +21,8 @@ class SDK
     private ?SMSCodes $smsCodes = null;
     private ?WebAuthn $webAuthn = null;
     private ?Validation $validation = null;
+    private ?Widget $widget = null;
     private ?UserApi $users = null;
-    private ?SessionV1 $sessionV1 = null;
     private ?Session $session = null;
 
     /**
@@ -107,6 +108,14 @@ class SDK
         return $this->validation;
     }
 
+    public function widget() : Widget {
+        if ($this->widget === null) {
+            $this->widget = new Widget($this->client);
+        }
+
+        return $this->widget;
+    }
+
     /**
      * Returns users handling
      *
@@ -151,25 +160,5 @@ class SDK
         }
 
         return $this->session;
-    }
-
-    /**
-     * Returns session V1 handling
-     *
-     * V1 is the old implementation of session handling. V1 was
-     * set on old projects. For newer projects you need to use
-     * V2 of session handling.
-     *
-     * @return SessionV1
-     * @link https://docs.corbado.com/sessions-v1-deprecated/overview
-     * @see sessionV2()
-     * @deprecated
-     */
-    public function sessionV1() : SessionV1 {
-        if ($this->sessionV1 === null) {
-            $this->sessionV1 = new SessionV1($this->client);
-        }
-
-        return $this->sessionV1;
     }
 }

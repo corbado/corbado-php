@@ -14,7 +14,7 @@ class ConfigurationTest extends TestCase
     public function testSetFrontendAPI(string $frontendAPI, bool $valid) : void
     {
         try {
-            $config = new Configuration();
+            $config = new Configuration('pro-123', 'corbado1_123');
             $config->setFrontendAPI($frontendAPI);
             $error = false;
         } catch (Throwable) {
@@ -33,7 +33,7 @@ class ConfigurationTest extends TestCase
     public function testSetBackendAPI(string $backendAPI, bool $valid) : void
     {
         try {
-            $config = new Configuration();
+            $config = new Configuration('pro-123', 'corbado1_123');
             $config->setBackendAPI($backendAPI);
             $error = false;
         } catch (Throwable) {
@@ -45,9 +45,7 @@ class ConfigurationTest extends TestCase
 
     public function testGetFrontendAPI() : void
     {
-        $config = new Configuration();
-        $config->setProjectID('pro-123');
-
+        $config = new Configuration('pro-123', 'corbado1_123');
         $this->assertEquals('https://pro-123.frontendapi.corbado.io', $config->getFrontendAPI());
     }
 
