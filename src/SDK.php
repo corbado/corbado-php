@@ -36,14 +36,6 @@ class SDK
         $this->config = $config;
 
         if ($this->config->getHttpClient() === null) {
-            if ($this->config->getProjectID() === '') {
-                throw new Classes\Exceptions\Configuration('No project ID set, use Configuration::setProjectID()');
-            }
-
-            if ($this->config->getApiSecret() === '') {
-                throw new Classes\Exceptions\Configuration('No API secret set, use Configuration::setApiSecret()');
-            }
-
             $this->client = new Client(
                 [
                     'base_uri' => $this->config->getBackendAPI(),
