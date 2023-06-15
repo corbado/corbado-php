@@ -6,7 +6,7 @@ use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
-use Corbado\Classes\SessionV2;
+use Corbado\Classes\Session;
 use Corbado\Classes\SessionV1;
 use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
@@ -22,7 +22,7 @@ class SDK
     private ?Validation $validation = null;
     private ?UserApi $users = null;
     private ?SessionV1 $sessionV1 = null;
-    private ?SessionV2 $sessionV2 = null;
+    private ?Session $session = null;
 
     /**
      * Constructor
@@ -128,25 +128,20 @@ class SDK
     }
 
     /**
-     * Returns session V2 handling
+     * Returns session handling
      *
-     * V2 is the current implementation of session handling. V2 is
-     * automatically set on all new projects. For older projects
-     * you need to use V1 of session handling.
-     *
-     * @return SessionV2
+     * @return Session
      * @throws Classes\Exceptions\Assert
      * @throws Classes\Exceptions\Configuration
-     * @link https://docs.corbado.com/sessions-v2-current/overview
-     * @see sessionV1()
+     * @link https://docs.corbado.com/sessions/overview
      */
-    public function session() : SessionV2 {
-        if ($this->sessionV2 === null) {
+    public function session() : Session {
+        if ($this->session === null) {
             if ($this->config->getJwksCachePool() === null) {
                 throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->sessionV2 = new SessionV2(
+            $this->session = new Session(
                 $this->client,
                 $this->config->getShortSessionCookieName(),
                 $this->config->getFrontendAPI(),
@@ -155,7 +150,7 @@ class SDK
             );
         }
 
-        return $this->sessionV2;
+        return $this->session;
     }
 
     /**

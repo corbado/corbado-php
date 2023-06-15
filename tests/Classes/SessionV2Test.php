@@ -3,7 +3,7 @@
 namespace Classes;
 
 use Corbado\Classes\Exceptions\Assert;
-use Corbado\Classes\SessionV2;
+use Corbado\Classes\Session;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
@@ -113,7 +113,7 @@ class SessionV2Test extends TestCase
     /**
      * @throws Exception
      */
-    private static function createSession() : SessionV2
+    private static function createSession() : Session
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         if ($jwks === false) {
@@ -245,7 +245,7 @@ class SessionV2Test extends TestCase
             }
         };
 
-        return new SessionV2(
+        return new Session(
             $client,
             'cbo_short_session',
             'https://auth.acme.com',

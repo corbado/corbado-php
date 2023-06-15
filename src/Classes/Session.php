@@ -10,7 +10,7 @@ use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Throwable;
 
-class SessionV2
+class Session
 {
     private ClientInterface $client;
     private string $shortSessionCookieName;
