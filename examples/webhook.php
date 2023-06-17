@@ -3,7 +3,7 @@
 use Corbado\Classes\WebhookModels\AuthMethodsDataResponse;
 use Corbado\Classes\Webhook;
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
     // Create new webhook instance with "webhookUsername" and "webhookPassword". Both must be
