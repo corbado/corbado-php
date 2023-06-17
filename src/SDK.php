@@ -8,7 +8,6 @@ use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Session;
-use Corbado\Classes\SessionV1;
 use Corbado\Generated\Api\UserApi;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;

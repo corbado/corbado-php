@@ -121,9 +121,9 @@ class Session
             return new User(
                 true,
                 $decoded->sub,
-                $decoded->Name,
-                $decoded->Email,
-                $decoded->PhoneNumber
+                $decoded->name,
+                $decoded->email,
+                $decoded->phone_number
             );
         }
 
