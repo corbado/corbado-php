@@ -1,5 +1,5 @@
 {
-  "name": "corbado/corbado-php",
+  "name": "corbado/php-sdk",
   "description": "This PHP SDK eases the integration of Corbado's passkey-first authentication solution.",
   "homepage": "https://www.corbado.com",
   "authors": [
