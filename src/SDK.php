@@ -23,6 +23,7 @@ class SDK
     private ?Widget $widget = null;
     private ?UserApi $users = null;
     private ?Session $session = null;
+    private mixed $authTokens = null;
 
     /**
      * Constructor
@@ -151,5 +152,18 @@ class SDK
         }
 
         return $this->session;
+    }
+
+    /**
+     * Returns auth tokens handling
+     *
+     * @return mixed
+     */
+    public function authTokens() : mixed {
+        if ($this->authTokens === null) {
+            $this->authTokens = 'xxx';
+        }
+
+        return $this->authTokens;
     }
 }
