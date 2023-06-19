@@ -113,10 +113,6 @@ class Configuration {
     public function getFrontendAPI() : string
     {
         if ($this->frontendAPI === '') {
-            if ($this->projectID === '') {
-                throw new Classes\Exceptions\Configuration('ProjectID empty, use setProjectID() first');
-            }
-
             $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.corbado.io';
         }
 
