@@ -135,12 +135,27 @@ class Session
 
         $decoded = $this->validateShortSessionValue($value);
         if ($decoded !== null) {
+            $name = '';
+            if (isset($decoded->name)) {
+                $name = $decoded->name;
+            }
+
+            $email = '';
+            if (isset($decoded->email)) {
+                $email = $decoded->email;
+            }
+
+            $phoneNumber = '';
+            if (isset($decoded->phone_number)) {
+                $phoneNumber = $decoded->phone_number;
+            }
+
             return new User(
                 true,
                 $decoded->sub,
-                $decoded->name,
-                $decoded->email,
-                $decoded->phone_number
+                $name,
+                $email,
+                $phoneNumber
             );
         }
 
