@@ -107,9 +107,6 @@ class Configuration {
         return $this->apiSecret;
     }
 
-    /**
-     * @throws Classes\Exceptions\Configuration
-     */
     public function getFrontendAPI() : string
     {
         if ($this->frontendAPI === '') {
