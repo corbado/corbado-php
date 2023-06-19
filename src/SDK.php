@@ -136,7 +136,7 @@ class SDK
      * @throws Classes\Exceptions\Configuration
      * @link https://docs.corbado.com/sessions/overview
      */
-    public function session() : Session {
+    public function sessions() : Session {
         if ($this->session === null) {
             if ($this->config->getJwksCachePool() === null) {
                 throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');

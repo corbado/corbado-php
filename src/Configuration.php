@@ -25,16 +25,15 @@ class Configuration {
      * @throws Classes\Exceptions\Assert
      * @throws Classes\Exceptions\Configuration
      */
-    public function __construct(string $projectID, string $apiSecret)
+    public function __construct(string $projectID, string $apiSecret = '')
     {
         Assert::stringNotEmpty($projectID);
-        Assert::stringNotEmpty($apiSecret);
 
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Classes\Exceptions\Configuration('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
-        if (!str_starts_with($apiSecret, 'corbado1_')) {
+        if ($apiSecret !== '' && !str_starts_with($apiSecret, 'corbado1_')) {
             throw new Classes\Exceptions\Configuration('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
         }
 
