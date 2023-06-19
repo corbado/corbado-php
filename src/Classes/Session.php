@@ -17,6 +17,7 @@ class Session
     private string $issuer;
     private string $jwksURI;
     private CacheItemPoolInterface $jwksCachePool;
+    private string $lastShortSessionValidationResult = '';
 
     /**
      * Constructor
@@ -64,7 +65,7 @@ class Session
      * Validates the given short-term session (represented as JWT) value
      *
      * @param string $value Value (JWT)
-     * @return stdClass|null
+     * @return stdClass|null Returns stdClass on success, otherwise null
      * @throws Exceptions\Assert
      */
     public function validateShortSessionValue(string $value) : ?stdClass
@@ -86,6 +87,8 @@ class Session
             $issuerValid = false;
             if ($decoded->iss === $this->issuer) {
                 $issuerValid = true;
+            } else {
+                $this->lastShortSessionValidationResult = sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT: "%s")', $this->issuer, $decoded->iss);
             }
 
             if ($issuerValid === true) {
@@ -93,9 +96,23 @@ class Session
             }
 
             return null;
-        } catch (Throwable) {
+        } catch (Throwable $e) {
+            $this->lastShortSessionValidationResult = sprintf('JWT validation failed: "%s"', $e->getMessage());
             return null;
         }
+    }
+
+    /**
+     * Returns the last short-term session validation result
+     *
+     * This method returns the exact reason why the last validation
+     * failed (for example expired or issuer mismatch).
+     *
+     * @return string
+     */
+    public function getLastShortSessionValidationResult() : string
+    {
+        return $this->lastShortSessionValidationResult;
     }
 
     /**
