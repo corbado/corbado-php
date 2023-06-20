@@ -2,21 +2,21 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Exceptions\Standard;
+use Corbado\Classes\Exceptions\Http;
+use Corbado\Classes\Exceptions\Standard;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\RequestData;
 
 class Helper
 {
-
     /**
      * JSON encode
      *
      * @param mixed $data
      * @return string
-     * @throws \Corbado\Webhook\Exceptions\Standard
+     * @throws Standard
      */
-    public static function jsonEncode($data): string
+    public static function jsonEncode(mixed $data): string
     {
         $json = \json_encode($data);
         if ($json === false || json_last_error() !== JSON_ERROR_NONE) {
@@ -32,7 +32,6 @@ class Helper
      * @param string $data
      * @return array<mixed>
      * @throws Standard
-     * @throws \Corbado\Webhook\Exceptions\Assert
      */
     public static function jsonDecode(string $data): array
     {
@@ -55,7 +54,12 @@ class Helper
         return true;
     }
 
-    public static function throwException(array $data)
+    /**
+     * @param array<mixed> $data
+     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws Http
+     */
+    public static function throwException(array $data) : void
     {
         Assert::arrayKeysExist($data, ['httpStatusCode', 'message', 'requestData', 'runtime']);
 
@@ -64,9 +68,14 @@ class Helper
            $data['error'] = [];
         }
 
-        throw new Standard($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
+        throw new Http($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
     }
 
+    /**
+     * @param array<mixed> $data
+     * @return RequestData
+     *@throws \Corbado\Classes\Exceptions\Assert
+     */
     public static function hydrateRequestData(array $data): RequestData
     {
         Assert::arrayKeysExist($data, ['requestID', 'link']);
@@ -78,6 +87,10 @@ class Helper
         return $requestData;
     }
 
+    /**
+     * @param array<mixed> $data
+     * @throws \Corbado\Classes\Exceptions\Assert
+     */
     public static function hydrateResponse(array $data): GenericRsp
     {
         Assert::arrayKeysExist($data, ['httpStatusCode', 'message', 'requestData', 'runtime']);

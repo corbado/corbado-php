@@ -1,6 +1,7 @@
 {
   "name": "corbado/php-sdk",
-  "version": "1.0.2",
+  "description": "This PHP SDK eases the integration of Corbado's passkey-first authentication solution.",
+  "version": "1.0.3",
   "description": "This client allows you to easy access API from Corbado GmbH",
   "homepage": "https://www.corbado.com",
   "authors": [
@@ -14,6 +15,17 @@
     "psr-4": {"Corbado\\": "src/"}
   },
   "require": {
-    "guzzlehttp/guzzle": "^7.5"
+    "guzzlehttp/guzzle": "^7.5",
+    "psr/cache": "^3.0",
+    "firebase/php-jwt": "^6.4",
+    "ext-openssl": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "phpstan/phpstan": "^1.10"
+  },
+  "scripts": {
+    "analyze": "vendor/bin/phpstan --memory-limit=1000000000 analyze src examples tests",
+    "test": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests"
   }
 }

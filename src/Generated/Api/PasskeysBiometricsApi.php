@@ -1,7 +1,7 @@
 <?php
 /**
  * PasskeysBiometricsApi
- * PHP version 7.3
+ * PHP version 7.4
  *
  * @category Class
  * @package  Corbado\Generated
@@ -10,14 +10,14 @@
  */
 
 /**
- * Corbado API
+ * Corbado Backend API
  *
- * # Introduction This documentation gives an overview of all Corbado API calls to implement passwordless authentication with Passkeys (Biometrics).  The Corbado API is organized around REST principles. It uses resource-oriented URLs with verbs (HTTP methods) and HTTP status codes. Requests need to be valid JSON payloads. We always return JSON.  The Corbado API specification is written in **OpenAPI Version 3.0.3**. You can download it via the download button at the top and use it to generate clients in languages we do not provide officially for example.  # Authentication To authenticate your API requests HTTP Basic Auth is used.  You need to set the projectID as username and the API secret as password. The authorization header looks as follows:  `Basic <<projectID>:<API secret>>`  The **authorization header** needs to be **Base64 encoded** to be working. If the authorization header is missing or incorrect, the API will respond with status code 401.  # Error types As mentioned above we make use of HTTP status codes. **4xx** errors indicate so called client errors, meaning the error occurred on client side and you need to fix it. **5xx** errors indicate server errors, which means the error occurred on server side and outside your control.  Besides HTTP status codes Corbado uses what we call error types which gives more details in error cases and help you to debug your request.  ## internal_error The error type **internal_error** is used when some internal error occurred at Corbado. You can retry your request but usually there is nothing you can do about it. All internal errors get logged and will triggert an alert to our operations team which takes care of the situation as soon as possible.  ## not_found The error type **not_found** is used when you try to get a resource which cannot be found. Most common case is that you provided a wrong ID.  ## method_not_allowed The error type **method_not_allowed** is used when you use a HTTP method (GET for example) on a resource/endpoint which it not supports.   ## validation_error The error type **validation_error** is used when there is validation error on the data you provided in the request payload or path. There will be detailed information in the JSON response about the validation error like what exactly went wrong on what field.   ## project_id_mismatch The error type **project_id_mismatch** is used when there is a project ID you provided mismatch.  ## login_error The error type **login_error** is used when the authentication failed. Most common case is that you provided a wrong pair of project ID and API secret. As mentioned above with use HTTP Basic Auth for authentication.  ## invalid_json The error type **invalid_json** is used when you send invalid JSON as request body. There will be detailed information in the JSON response about what went wrong.  ## rate_limited The error type **rate_limited** is used when ran into rate limiting of the Corbado API. Right now you can do a maximum of **2000 requests** within **10 seconds** from a **single IP**. Throttle your requests and try again. If you think you need more contact support@corbado.com.  ## invalid_origin The error type **invalid_origin** is used when the API has been called from a origin which is not authorized (CORS). Add the origin to your project at https://app.corbado.com/app/settings/restapi#origins.  ## already_exists The error type **already_exists** is used when you try create a resource which already exists. Most common case is that there is some unique constraint on one of the fields.  # Security and privacy Corbado services are designed, developed, monitored, and updated with security at our core to protect you and your customers’ data and privacy.  ## Security  ### Infrastructure security Corbado leverages highly available and secure cloud infrastructure to ensure that our services are always available and securely delivered. Corbado's services are operated in uvensyse GmbH's data centers in Germany and comply with ISO standard 27001. All data centers have redundant power and internet connections to avoid failure. The main location of the servers used is in Linden and offers 24/7 support. We do not use any AWS, GCP or Azure services.  Each server is monitored 24/7 and in the event of problems, automated information is sent via SMS and e-mail. The monitoring is done by the external service provider Serverguard24 GmbH.   All Corbado hardware and networking is routinely updated and audited to ensure systems are secure and that least privileged access is followed. Additionally we implement robust logging and audit protocols that allow us high visibility into system use.  ### Responsible disclosure program Here at Corbado, we take the security of our user’s data and of our services seriously. As such, we encourage responsible security research on Corbado services and products. If you believe you’ve discovered a potential vulnerability, please let us know by emailing us at [security@corbado.com](mailto:security@corbado.com). We will acknowledge your email within 2 business days. As public disclosures of a security vulnerability could put the entire Corbado community at risk, we ask that you keep such potential vulnerabilities confidential until we are able to address them. We aim to resolve critical issues within 30 days of disclosure. Please make a good faith effort to avoid violating privacy, destroying data, or interrupting or degrading the Corbado service. Please only interact with accounts you own or for which you have explicit permission from the account holder. While researching, please refrain from:  - Distributed Denial of Service (DDoS) - Spamming - Social engineering or phishing of Corbado employees or contractors - Any attacks against Corbado's physical property or data centers  Thank you for helping to keep Corbado and our users safe!  ### Rate limiting At Corbado, we apply rate limit policies on our APIs in order to protect your application and user management infrastructure, so your users will have a frictionless non-interrupted experience.  Corbado responds with HTTP status code 429 (too many requests) when the rate limits exceed. Your code logic should be able to handle such cases by checking the status code on the response and recovering from such cases. If a retry is needed, it is best to allow for a back-off to avoid going into an infinite retry loop.  The current rate limit for all our API endpoints is **max. 100 requests per 10 seconds**.  ## Privacy Corbado is committed to protecting the personal data of our customers and their customers. Corbado has in place appropriate data security measures that meet industry standards. We regularly review and make enhancements to our processes, products, documentation, and contracts to help support ours and our customers’ compliance for the processing of personal data.  We try to minimize the usage and processing of personally identifiable information. Therefore, all our services are constructed to avoid unnecessary data consumption.  To make our services work, we only require the following data: - any kind of identifier (e.g. UUID, phone number, email address) - IP address (only temporarily for rate limiting aspects) - User agent (for device management)
+ * # Introduction This documentation gives an overview of all Corbado Backend API calls to implement passwordless authentication with Passkeys.  The Corbado Backend API is organized around REST principles. It uses resource-oriented URLs with verbs (HTTP methods) and HTTP status codes. Requests need to be valid JSON payloads. We always return JSON.  The Corbado Backend API specification is written in **OpenAPI Version 3.0.3**. You can download it via the download button at the top and use it to generate clients in languages we do not provide officially for example.  # Authentication To authenticate your API requests HTTP Basic Auth is used.  You need to set the projectID as username and the API secret as password. The authorization header looks as follows:  `Basic <<projectID>:<API secret>>`  The **authorization header** needs to be **Base64 encoded** to be working. If the authorization header is missing or incorrect, the API will respond with status code 401.  # Error types As mentioned above we make use of HTTP status codes. **4xx** errors indicate so called client errors, meaning the error occurred on client side and you need to fix it. **5xx** errors indicate server errors, which means the error occurred on server side and outside your control.  Besides HTTP status codes Corbado uses what we call error types which gives more details in error cases and help you to debug your request.  ## internal_error The error type **internal_error** is used when some internal error occurred at Corbado. You can retry your request but usually there is nothing you can do about it. All internal errors get logged and will triggert an alert to our operations team which takes care of the situation as soon as possible.  ## not_found The error type **not_found** is used when you try to get a resource which cannot be found. Most common case is that you provided a wrong ID.  ## method_not_allowed The error type **method_not_allowed** is used when you use a HTTP method (GET for example) on a resource/endpoint which it not supports.   ## validation_error The error type **validation_error** is used when there is validation error on the data you provided in the request payload or path. There will be detailed information in the JSON response about the validation error like what exactly went wrong on what field.   ## project_id_mismatch The error type **project_id_mismatch** is used when there is a project ID you provided mismatch.  ## login_error The error type **login_error** is used when the authentication failed. Most common case is that you provided a wrong pair of project ID and API secret. As mentioned above with use HTTP Basic Auth for authentication.  ## invalid_json The error type **invalid_json** is used when you send invalid JSON as request body. There will be detailed information in the JSON response about what went wrong.  ## rate_limited The error type **rate_limited** is used when ran into rate limiting of the Corbado Backend API. Right now you can do a maximum of **2000 requests** within **10 seconds** from a **single IP**. Throttle your requests and try again. If you think you need more contact support@corbado.com.  ## invalid_origin The error type **invalid_origin** is used when the API has been called from a origin which is not authorized (CORS). Add the origin to your project at https://app.corbado.com/app/settings/credentials/authorized-origins.  ## already_exists The error type **already_exists** is used when you try create a resource which already exists. Most common case is that there is some unique constraint on one of the fields.  # Security and privacy Corbado services are designed, developed, monitored, and updated with security at our core to protect you and your customers’ data and privacy.  ## Security  ### Infrastructure security Corbado leverages highly available and secure cloud infrastructure to ensure that our services are always available and securely delivered. Corbado's services are operated in uvensys GmbH's data centers in Germany and comply with ISO standard 27001. All data centers have redundant power and internet connections to avoid failure. The main location of the servers used is in Linden and offers 24/7 support. We do not use any AWS, GCP or Azure services.  Each server is monitored 24/7 and in the event of problems, automated information is sent via SMS and e-mail. The monitoring is done by the external service provider Serverguard24 GmbH.   All Corbado hardware and networking is routinely updated and audited to ensure systems are secure and that least privileged access is followed. Additionally we implement robust logging and audit protocols that allow us high visibility into system use.  ### Responsible disclosure program Here at Corbado, we take the security of our user’s data and of our services seriously. As such, we encourage responsible security research on Corbado services and products. If you believe you’ve discovered a potential vulnerability, please let us know by emailing us at [security@corbado.com](mailto:security@corbado.com). We will acknowledge your email within 2 business days. As public disclosures of a security vulnerability could put the entire Corbado community at risk, we ask that you keep such potential vulnerabilities confidential until we are able to address them. We aim to resolve critical issues within 30 days of disclosure. Please make a good faith effort to avoid violating privacy, destroying data, or interrupting or degrading the Corbado service. Please only interact with accounts you own or for which you have explicit permission from the account holder. While researching, please refrain from:  - Distributed Denial of Service (DDoS) - Spamming - Social engineering or phishing of Corbado employees or contractors - Any attacks against Corbado's physical property or data centers  Thank you for helping to keep Corbado and our users safe!  ### Rate limiting At Corbado, we apply rate limit policies on our APIs in order to protect your application and user management infrastructure, so your users will have a frictionless non-interrupted experience.  Corbado responds with HTTP status code 429 (too many requests) when the rate limits exceed. Your code logic should be able to handle such cases by checking the status code on the response and recovering from such cases. If a retry is needed, it is best to allow for a back-off to avoid going into an infinite retry loop.  The current rate limit for all our API endpoints is **max. 100 requests per 10 seconds**.  ## Privacy Corbado is committed to protecting the personal data of our customers and their customers. Corbado has in place appropriate data security measures that meet industry standards. We regularly review and make enhancements to our processes, products, documentation, and contracts to help support ours and our customers’ compliance for the processing of personal data.  We try to minimize the usage and processing of personally identifiable information. Therefore, all our services are constructed to avoid unnecessary data consumption.  To make our services work, we only require the following data: - any kind of identifier (e.g. UUID, phone number, email address) - IP address (only temporarily for rate limiting aspects) - User agent (for device management)
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@corbado.com
  * Generated by: https://openapi-generator.tech
- * OpenAPI Generator version: 5.4.0
+ * OpenAPI Generator version: 6.6.0
  */
 
 /**
@@ -30,8 +30,8 @@ namespace Corbado\Generated\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
@@ -70,7 +70,47 @@ class PasskeysBiometricsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'webAuthnAuthenticateFinish' => [
+            'application/json',
+        ],
+        'webAuthnAuthenticateStart' => [
+            'application/json',
+        ],
+        'webAuthnCredentialList' => [
+            'application/json',
+        ],
+        'webAuthnCredentialUpdate' => [
+            'application/json',
+        ],
+        'webAuthnMediationStart' => [
+            'application/json',
+        ],
+        'webAuthnRegisterFinish' => [
+            'application/json',
+        ],
+        'webAuthnRegisterStart' => [
+            'application/json',
+        ],
+        'webAuthnSettingCreate' => [
+            'application/json',
+        ],
+        'webAuthnSettingDelete' => [
+            'application/json',
+        ],
+        'webAuthnSettingGet' => [
+            'application/json',
+        ],
+        'webAuthnSettingList' => [
+            'application/json',
+        ],
+        'webAuthnSettingPut' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -120,14 +160,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateFinish
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnAuthenticateFinish($web_authn_finish_req)
+    public function webAuthnAuthenticateFinish($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
-        list($response) = $this->webAuthnAuthenticateFinishWithHttpInfo($web_authn_finish_req);
+        list($response) = $this->webAuthnAuthenticateFinishWithHttpInfo($web_authn_finish_req, $contentType);
         return $response;
     }
 
@@ -135,14 +176,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateFinishWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnAuthenticateFinishWithHttpInfo($web_authn_finish_req)
+    public function webAuthnAuthenticateFinishWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
-        $request = $this->webAuthnAuthenticateFinishRequest($web_authn_finish_req);
+        $request = $this->webAuthnAuthenticateFinishRequest($web_authn_finish_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -185,6 +227,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -197,6 +242,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -211,6 +259,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -246,13 +297,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateFinishAsync
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnAuthenticateFinishAsync($web_authn_finish_req)
+    public function webAuthnAuthenticateFinishAsync($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
-        return $this->webAuthnAuthenticateFinishAsyncWithHttpInfo($web_authn_finish_req)
+        return $this->webAuthnAuthenticateFinishAsyncWithHttpInfo($web_authn_finish_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -264,14 +316,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateFinishAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnAuthenticateFinishAsyncWithHttpInfo($web_authn_finish_req)
+    public function webAuthnAuthenticateFinishAsyncWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp';
-        $request = $this->webAuthnAuthenticateFinishRequest($web_authn_finish_req);
+        $request = $this->webAuthnAuthenticateFinishRequest($web_authn_finish_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -281,6 +334,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -310,18 +366,21 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnAuthenticateFinish'
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnAuthenticateFinishRequest($web_authn_finish_req)
+    public function webAuthnAuthenticateFinishRequest($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnAuthenticateFinish'][0])
     {
+
         // verify the required parameter 'web_authn_finish_req' is set
         if ($web_authn_finish_req === null || (is_array($web_authn_finish_req) && count($web_authn_finish_req) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web_authn_finish_req when calling webAuthnAuthenticateFinish'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/authenticate/finish';
         $formParams = [];
@@ -334,21 +393,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_finish_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_finish_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_finish_req));
             } else {
                 $httpBody = $web_authn_finish_req;
             }
@@ -367,12 +422,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -397,10 +452,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -410,14 +466,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateStart
      *
      * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req web_authn_authenticate_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnAuthenticateStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnAuthenticateStart($web_authn_authenticate_start_req)
+    public function webAuthnAuthenticateStart($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
-        list($response) = $this->webAuthnAuthenticateStartWithHttpInfo($web_authn_authenticate_start_req);
+        list($response) = $this->webAuthnAuthenticateStartWithHttpInfo($web_authn_authenticate_start_req, $contentType);
         return $response;
     }
 
@@ -425,14 +482,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateStartWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnAuthenticateStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnAuthenticateStartWithHttpInfo($web_authn_authenticate_start_req)
+    public function webAuthnAuthenticateStartWithHttpInfo($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
-        $request = $this->webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req);
+        $request = $this->webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -475,6 +533,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -487,6 +548,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -501,6 +565,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -536,13 +603,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateStartAsync
      *
      * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnAuthenticateStartAsync($web_authn_authenticate_start_req)
+    public function webAuthnAuthenticateStartAsync($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
-        return $this->webAuthnAuthenticateStartAsyncWithHttpInfo($web_authn_authenticate_start_req)
+        return $this->webAuthnAuthenticateStartAsyncWithHttpInfo($web_authn_authenticate_start_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -554,14 +622,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnAuthenticateStartAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnAuthenticateStartAsyncWithHttpInfo($web_authn_authenticate_start_req)
+    public function webAuthnAuthenticateStartAsyncWithHttpInfo($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnAuthenticateStartRsp';
-        $request = $this->webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req);
+        $request = $this->webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -571,6 +640,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -600,18 +672,21 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnAuthenticateStart'
      *
      * @param  \Corbado\Generated\Model\WebAuthnAuthenticateStartReq $web_authn_authenticate_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnAuthenticateStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req)
+    public function webAuthnAuthenticateStartRequest($web_authn_authenticate_start_req, string $contentType = self::contentTypes['webAuthnAuthenticateStart'][0])
     {
+
         // verify the required parameter 'web_authn_authenticate_start_req' is set
         if ($web_authn_authenticate_start_req === null || (is_array($web_authn_authenticate_start_req) && count($web_authn_authenticate_start_req) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web_authn_authenticate_start_req when calling webAuthnAuthenticateStart'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/authenticate/start';
         $formParams = [];
@@ -624,21 +699,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_authenticate_start_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_authenticate_start_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_authenticate_start_req));
             } else {
                 $httpBody = $web_authn_authenticate_start_req;
             }
@@ -657,12 +728,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -687,10 +758,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -705,14 +777,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnCredentialListRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnCredentialList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnCredentialList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
-        list($response) = $this->webAuthnCredentialListWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        list($response) = $this->webAuthnCredentialListWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
         return $response;
     }
 
@@ -725,14 +798,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnCredentialListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnCredentialListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnCredentialListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
-        $request = $this->webAuthnCredentialListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        $request = $this->webAuthnCredentialListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -775,6 +849,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnCredentialListRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -787,6 +864,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -801,6 +881,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -841,13 +924,14 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnCredentialListAsync($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnCredentialListAsync($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
-        return $this->webAuthnCredentialListAsyncWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size)
+        return $this->webAuthnCredentialListAsyncWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -864,14 +948,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnCredentialListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnCredentialListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnCredentialListRsp';
-        $request = $this->webAuthnCredentialListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        $request = $this->webAuthnCredentialListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -881,6 +966,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -915,12 +1003,20 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnCredentialListRequest($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnCredentialListRequest($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnCredentialList'][0])
     {
+
+
+
+
+
+
+
 
         $resourcePath = '/v1/webauthn/credential';
         $formParams = [];
@@ -930,65 +1026,68 @@ class PasskeysBiometricsApi
         $multipart = false;
 
         // query params
-        if (is_array($remote_address)) {
-            $remote_address = ObjectSerializer::serializeCollection($remote_address, '', true);
-        }
-        if ($remote_address !== null) {
-            $queryParams['remoteAddress'] = $remote_address;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $remote_address,
+            'remoteAddress', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($user_agent)) {
-            $user_agent = ObjectSerializer::serializeCollection($user_agent, '', true);
-        }
-        if ($user_agent !== null) {
-            $queryParams['userAgent'] = $user_agent;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_agent,
+            'userAgent', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($sort)) {
-            $sort = ObjectSerializer::serializeCollection($sort, '', true);
-        }
-        if ($sort !== null) {
-            $queryParams['sort'] = $sort;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
         // query params
-        if ($filter !== null) {
-            if('form' === 'form' && is_array($filter)) {
-                foreach($filter as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filter[]'] = $filter;
-            }
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $filter,
+            'filter[]', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($page)) {
-            $page = ObjectSerializer::serializeCollection($page, '', true);
-        }
-        if ($page !== null) {
-            $queryParams['page'] = $page;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($page_size)) {
-            $page_size = ObjectSerializer::serializeCollection($page_size, '', true);
-        }
-        if ($page_size !== null) {
-            $queryParams['pageSize'] = $page_size;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page_size,
+            'pageSize', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1006,12 +1105,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -1019,14 +1118,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1040,10 +1139,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1054,14 +1154,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $credential_id ID of credential (required)
      * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req web_authn_credential_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnCredentialRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnCredentialUpdate($credential_id, $web_authn_credential_req)
+    public function webAuthnCredentialUpdate($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
-        list($response) = $this->webAuthnCredentialUpdateWithHttpInfo($credential_id, $web_authn_credential_req);
+        list($response) = $this->webAuthnCredentialUpdateWithHttpInfo($credential_id, $web_authn_credential_req, $contentType);
         return $response;
     }
 
@@ -1070,14 +1171,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $credential_id ID of credential (required)
      * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnCredentialRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnCredentialUpdateWithHttpInfo($credential_id, $web_authn_credential_req)
+    public function webAuthnCredentialUpdateWithHttpInfo($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
-        $request = $this->webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req);
+        $request = $this->webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1120,6 +1222,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnCredentialRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1132,6 +1237,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1146,6 +1254,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -1182,13 +1293,14 @@ class PasskeysBiometricsApi
      *
      * @param  string $credential_id ID of credential (required)
      * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnCredentialUpdateAsync($credential_id, $web_authn_credential_req)
+    public function webAuthnCredentialUpdateAsync($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
-        return $this->webAuthnCredentialUpdateAsyncWithHttpInfo($credential_id, $web_authn_credential_req)
+        return $this->webAuthnCredentialUpdateAsyncWithHttpInfo($credential_id, $web_authn_credential_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1201,14 +1313,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $credential_id ID of credential (required)
      * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnCredentialUpdateAsyncWithHttpInfo($credential_id, $web_authn_credential_req)
+    public function webAuthnCredentialUpdateAsyncWithHttpInfo($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnCredentialRsp';
-        $request = $this->webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req);
+        $request = $this->webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1218,6 +1331,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1248,24 +1364,28 @@ class PasskeysBiometricsApi
      *
      * @param  string $credential_id ID of credential (required)
      * @param  \Corbado\Generated\Model\WebAuthnCredentialReq $web_authn_credential_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnCredentialUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req)
+    public function webAuthnCredentialUpdateRequest($credential_id, $web_authn_credential_req, string $contentType = self::contentTypes['webAuthnCredentialUpdate'][0])
     {
+
         // verify the required parameter 'credential_id' is set
         if ($credential_id === null || (is_array($credential_id) && count($credential_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $credential_id when calling webAuthnCredentialUpdate'
             );
         }
+
         // verify the required parameter 'web_authn_credential_req' is set
         if ($web_authn_credential_req === null || (is_array($web_authn_credential_req) && count($web_authn_credential_req) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web_authn_credential_req when calling webAuthnCredentialUpdate'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/credential/{credentialID}';
         $formParams = [];
@@ -1286,21 +1406,17 @@ class PasskeysBiometricsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_credential_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_credential_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_credential_req));
             } else {
                 $httpBody = $web_authn_credential_req;
             }
@@ -1319,12 +1435,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -1349,10 +1465,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1362,14 +1479,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnMediationStart
      *
      * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req web_authn_mediation_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnMediationStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnMediationStart($web_authn_mediation_start_req)
+    public function webAuthnMediationStart($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
-        list($response) = $this->webAuthnMediationStartWithHttpInfo($web_authn_mediation_start_req);
+        list($response) = $this->webAuthnMediationStartWithHttpInfo($web_authn_mediation_start_req, $contentType);
         return $response;
     }
 
@@ -1377,14 +1495,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnMediationStartWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnMediationStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnMediationStartWithHttpInfo($web_authn_mediation_start_req)
+    public function webAuthnMediationStartWithHttpInfo($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
-        $request = $this->webAuthnMediationStartRequest($web_authn_mediation_start_req);
+        $request = $this->webAuthnMediationStartRequest($web_authn_mediation_start_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1427,6 +1546,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnMediationStartRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1439,6 +1561,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1453,6 +1578,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -1488,13 +1616,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnMediationStartAsync
      *
      * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnMediationStartAsync($web_authn_mediation_start_req)
+    public function webAuthnMediationStartAsync($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
-        return $this->webAuthnMediationStartAsyncWithHttpInfo($web_authn_mediation_start_req)
+        return $this->webAuthnMediationStartAsyncWithHttpInfo($web_authn_mediation_start_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1506,14 +1635,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnMediationStartAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnMediationStartAsyncWithHttpInfo($web_authn_mediation_start_req)
+    public function webAuthnMediationStartAsyncWithHttpInfo($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnMediationStartRsp';
-        $request = $this->webAuthnMediationStartRequest($web_authn_mediation_start_req);
+        $request = $this->webAuthnMediationStartRequest($web_authn_mediation_start_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1523,6 +1653,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1552,18 +1685,21 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnMediationStart'
      *
      * @param  \Corbado\Generated\Model\WebAuthnMediationStartReq $web_authn_mediation_start_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnMediationStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnMediationStartRequest($web_authn_mediation_start_req)
+    public function webAuthnMediationStartRequest($web_authn_mediation_start_req, string $contentType = self::contentTypes['webAuthnMediationStart'][0])
     {
+
         // verify the required parameter 'web_authn_mediation_start_req' is set
         if ($web_authn_mediation_start_req === null || (is_array($web_authn_mediation_start_req) && count($web_authn_mediation_start_req) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web_authn_mediation_start_req when calling webAuthnMediationStart'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/mediation/start';
         $formParams = [];
@@ -1576,21 +1712,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_mediation_start_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_mediation_start_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_mediation_start_req));
             } else {
                 $httpBody = $web_authn_mediation_start_req;
             }
@@ -1609,12 +1741,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -1639,10 +1771,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1652,14 +1785,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterFinish
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnRegisterFinishRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnRegisterFinish($web_authn_finish_req)
+    public function webAuthnRegisterFinish($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
-        list($response) = $this->webAuthnRegisterFinishWithHttpInfo($web_authn_finish_req);
+        list($response) = $this->webAuthnRegisterFinishWithHttpInfo($web_authn_finish_req, $contentType);
         return $response;
     }
 
@@ -1667,14 +1801,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterFinishWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnRegisterFinishRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnRegisterFinishWithHttpInfo($web_authn_finish_req)
+    public function webAuthnRegisterFinishWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
-        $request = $this->webAuthnRegisterFinishRequest($web_authn_finish_req);
+        $request = $this->webAuthnRegisterFinishRequest($web_authn_finish_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1717,6 +1852,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnRegisterFinishRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1729,6 +1867,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1743,6 +1884,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -1778,13 +1922,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterFinishAsync
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnRegisterFinishAsync($web_authn_finish_req)
+    public function webAuthnRegisterFinishAsync($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
-        return $this->webAuthnRegisterFinishAsyncWithHttpInfo($web_authn_finish_req)
+        return $this->webAuthnRegisterFinishAsyncWithHttpInfo($web_authn_finish_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1796,14 +1941,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterFinishAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnRegisterFinishAsyncWithHttpInfo($web_authn_finish_req)
+    public function webAuthnRegisterFinishAsyncWithHttpInfo($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnRegisterFinishRsp';
-        $request = $this->webAuthnRegisterFinishRequest($web_authn_finish_req);
+        $request = $this->webAuthnRegisterFinishRequest($web_authn_finish_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1813,6 +1959,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1842,18 +1991,21 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnRegisterFinish'
      *
      * @param  \Corbado\Generated\Model\WebAuthnFinishReq $web_authn_finish_req (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterFinish'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnRegisterFinishRequest($web_authn_finish_req)
+    public function webAuthnRegisterFinishRequest($web_authn_finish_req, string $contentType = self::contentTypes['webAuthnRegisterFinish'][0])
     {
+
         // verify the required parameter 'web_authn_finish_req' is set
         if ($web_authn_finish_req === null || (is_array($web_authn_finish_req) && count($web_authn_finish_req) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web_authn_finish_req when calling webAuthnRegisterFinish'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/register/finish';
         $formParams = [];
@@ -1866,21 +2018,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_finish_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_finish_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_finish_req));
             } else {
                 $httpBody = $web_authn_finish_req;
             }
@@ -1899,12 +2047,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -1929,10 +2077,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1942,14 +2091,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterStart
      *
      * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req web_authn_register_start_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebAuthnRegisterStartRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnRegisterStart($web_authn_register_start_req = null)
+    public function webAuthnRegisterStart($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
-        list($response) = $this->webAuthnRegisterStartWithHttpInfo($web_authn_register_start_req);
+        list($response) = $this->webAuthnRegisterStartWithHttpInfo($web_authn_register_start_req, $contentType);
         return $response;
     }
 
@@ -1957,14 +2107,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterStartWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebAuthnRegisterStartRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnRegisterStartWithHttpInfo($web_authn_register_start_req = null)
+    public function webAuthnRegisterStartWithHttpInfo($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
-        $request = $this->webAuthnRegisterStartRequest($web_authn_register_start_req);
+        $request = $this->webAuthnRegisterStartRequest($web_authn_register_start_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2007,6 +2158,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebAuthnRegisterStartRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2019,6 +2173,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2033,6 +2190,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -2068,13 +2228,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterStartAsync
      *
      * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnRegisterStartAsync($web_authn_register_start_req = null)
+    public function webAuthnRegisterStartAsync($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
-        return $this->webAuthnRegisterStartAsyncWithHttpInfo($web_authn_register_start_req)
+        return $this->webAuthnRegisterStartAsyncWithHttpInfo($web_authn_register_start_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2086,14 +2247,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnRegisterStartAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnRegisterStartAsyncWithHttpInfo($web_authn_register_start_req = null)
+    public function webAuthnRegisterStartAsyncWithHttpInfo($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebAuthnRegisterStartRsp';
-        $request = $this->webAuthnRegisterStartRequest($web_authn_register_start_req);
+        $request = $this->webAuthnRegisterStartRequest($web_authn_register_start_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2103,6 +2265,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2132,12 +2297,15 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnRegisterStart'
      *
      * @param  \Corbado\Generated\Model\WebAuthnRegisterStartReq $web_authn_register_start_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnRegisterStart'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnRegisterStartRequest($web_authn_register_start_req = null)
+    public function webAuthnRegisterStartRequest($web_authn_register_start_req = null, string $contentType = self::contentTypes['webAuthnRegisterStart'][0])
     {
+
+
 
         $resourcePath = '/v1/webauthn/register/start';
         $formParams = [];
@@ -2150,21 +2318,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($web_authn_register_start_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($web_authn_register_start_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($web_authn_register_start_req));
             } else {
                 $httpBody = $web_authn_register_start_req;
             }
@@ -2183,12 +2347,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -2213,10 +2377,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2226,14 +2391,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingCreate
      *
      * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req webauthn_setting_create_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebauthnSettingCreateRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnSettingCreate($webauthn_setting_create_req = null)
+    public function webAuthnSettingCreate($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
-        list($response) = $this->webAuthnSettingCreateWithHttpInfo($webauthn_setting_create_req);
+        list($response) = $this->webAuthnSettingCreateWithHttpInfo($webauthn_setting_create_req, $contentType);
         return $response;
     }
 
@@ -2241,14 +2407,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingCreateWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebauthnSettingCreateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnSettingCreateWithHttpInfo($webauthn_setting_create_req = null)
+    public function webAuthnSettingCreateWithHttpInfo($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
-        $request = $this->webAuthnSettingCreateRequest($webauthn_setting_create_req);
+        $request = $this->webAuthnSettingCreateRequest($webauthn_setting_create_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2291,6 +2458,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebauthnSettingCreateRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2303,6 +2473,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2317,6 +2490,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -2352,13 +2528,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingCreateAsync
      *
      * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingCreateAsync($webauthn_setting_create_req = null)
+    public function webAuthnSettingCreateAsync($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
-        return $this->webAuthnSettingCreateAsyncWithHttpInfo($webauthn_setting_create_req)
+        return $this->webAuthnSettingCreateAsyncWithHttpInfo($webauthn_setting_create_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2370,14 +2547,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingCreateAsyncWithHttpInfo
      *
      * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingCreateAsyncWithHttpInfo($webauthn_setting_create_req = null)
+    public function webAuthnSettingCreateAsyncWithHttpInfo($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebauthnSettingCreateRsp';
-        $request = $this->webAuthnSettingCreateRequest($webauthn_setting_create_req);
+        $request = $this->webAuthnSettingCreateRequest($webauthn_setting_create_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2387,6 +2565,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2416,12 +2597,15 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnSettingCreate'
      *
      * @param  \Corbado\Generated\Model\WebauthnSettingCreateReq $webauthn_setting_create_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnSettingCreateRequest($webauthn_setting_create_req = null)
+    public function webAuthnSettingCreateRequest($webauthn_setting_create_req = null, string $contentType = self::contentTypes['webAuthnSettingCreate'][0])
     {
+
+
 
         $resourcePath = '/v1/webauthn/settings';
         $formParams = [];
@@ -2434,21 +2618,17 @@ class PasskeysBiometricsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($webauthn_setting_create_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_create_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_create_req));
             } else {
                 $httpBody = $webauthn_setting_create_req;
             }
@@ -2467,12 +2647,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -2480,14 +2660,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2501,10 +2681,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2515,14 +2696,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req webauthn_setting_delete_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnSettingDelete($setting_id, $webauthn_setting_delete_req = null)
+    public function webAuthnSettingDelete($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
-        list($response) = $this->webAuthnSettingDeleteWithHttpInfo($setting_id, $webauthn_setting_delete_req);
+        list($response) = $this->webAuthnSettingDeleteWithHttpInfo($setting_id, $webauthn_setting_delete_req, $contentType);
         return $response;
     }
 
@@ -2531,14 +2713,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\GenericRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnSettingDeleteWithHttpInfo($setting_id, $webauthn_setting_delete_req = null)
+    public function webAuthnSettingDeleteWithHttpInfo($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
-        $request = $this->webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req);
+        $request = $this->webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2581,6 +2764,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\GenericRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2593,6 +2779,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2607,6 +2796,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -2643,13 +2835,14 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingDeleteAsync($setting_id, $webauthn_setting_delete_req = null)
+    public function webAuthnSettingDeleteAsync($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
-        return $this->webAuthnSettingDeleteAsyncWithHttpInfo($setting_id, $webauthn_setting_delete_req)
+        return $this->webAuthnSettingDeleteAsyncWithHttpInfo($setting_id, $webauthn_setting_delete_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2662,14 +2855,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingDeleteAsyncWithHttpInfo($setting_id, $webauthn_setting_delete_req = null)
+    public function webAuthnSettingDeleteAsyncWithHttpInfo($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
         $returnType = '\Corbado\Generated\Model\GenericRsp';
-        $request = $this->webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req);
+        $request = $this->webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2679,6 +2873,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2709,18 +2906,22 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingDeleteReq $webauthn_setting_delete_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req = null)
+    public function webAuthnSettingDeleteRequest($setting_id, $webauthn_setting_delete_req = null, string $contentType = self::contentTypes['webAuthnSettingDelete'][0])
     {
+
         // verify the required parameter 'setting_id' is set
         if ($setting_id === null || (is_array($setting_id) && count($setting_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $setting_id when calling webAuthnSettingDelete'
             );
         }
+
+
 
         $resourcePath = '/v1/webauthn/settings/{settingID}';
         $formParams = [];
@@ -2741,21 +2942,17 @@ class PasskeysBiometricsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($webauthn_setting_delete_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_delete_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_delete_req));
             } else {
                 $httpBody = $webauthn_setting_delete_req;
             }
@@ -2774,12 +2971,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -2787,14 +2984,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2808,10 +3005,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2821,14 +3019,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingGet
      *
      * @param  string $setting_id ID from create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebauthnSettingGetRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnSettingGet($setting_id)
+    public function webAuthnSettingGet($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
-        list($response) = $this->webAuthnSettingGetWithHttpInfo($setting_id);
+        list($response) = $this->webAuthnSettingGetWithHttpInfo($setting_id, $contentType);
         return $response;
     }
 
@@ -2836,14 +3035,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingGetWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebauthnSettingGetRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnSettingGetWithHttpInfo($setting_id)
+    public function webAuthnSettingGetWithHttpInfo($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
-        $request = $this->webAuthnSettingGetRequest($setting_id);
+        $request = $this->webAuthnSettingGetRequest($setting_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2886,6 +3086,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebauthnSettingGetRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2898,6 +3101,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -2912,6 +3118,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -2947,13 +3156,14 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingGetAsync
      *
      * @param  string $setting_id ID from create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingGetAsync($setting_id)
+    public function webAuthnSettingGetAsync($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
-        return $this->webAuthnSettingGetAsyncWithHttpInfo($setting_id)
+        return $this->webAuthnSettingGetAsyncWithHttpInfo($setting_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2965,14 +3175,15 @@ class PasskeysBiometricsApi
      * Operation webAuthnSettingGetAsyncWithHttpInfo
      *
      * @param  string $setting_id ID from create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingGetAsyncWithHttpInfo($setting_id)
+    public function webAuthnSettingGetAsyncWithHttpInfo($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebauthnSettingGetRsp';
-        $request = $this->webAuthnSettingGetRequest($setting_id);
+        $request = $this->webAuthnSettingGetRequest($setting_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2982,6 +3193,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3011,18 +3225,21 @@ class PasskeysBiometricsApi
      * Create request for operation 'webAuthnSettingGet'
      *
      * @param  string $setting_id ID from create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnSettingGetRequest($setting_id)
+    public function webAuthnSettingGetRequest($setting_id, string $contentType = self::contentTypes['webAuthnSettingGet'][0])
     {
+
         // verify the required parameter 'setting_id' is set
         if ($setting_id === null || (is_array($setting_id) && count($setting_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $setting_id when calling webAuthnSettingGet'
             );
         }
+
 
         $resourcePath = '/v1/webauthn/settings/{settingID}';
         $formParams = [];
@@ -3043,16 +3260,11 @@ class PasskeysBiometricsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -3070,12 +3282,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -3083,14 +3295,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -3104,10 +3316,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -3122,14 +3335,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebauthnSettingListRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnSettingList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnSettingList($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
-        list($response) = $this->webAuthnSettingListWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        list($response) = $this->webAuthnSettingListWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
         return $response;
     }
 
@@ -3142,14 +3356,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebauthnSettingListRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnSettingListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnSettingListWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
-        $request = $this->webAuthnSettingListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        $request = $this->webAuthnSettingListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3192,6 +3407,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebauthnSettingListRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3204,6 +3422,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3218,6 +3439,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -3258,13 +3482,14 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingListAsync($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnSettingListAsync($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
-        return $this->webAuthnSettingListAsyncWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size)
+        return $this->webAuthnSettingListAsyncWithHttpInfo($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3281,14 +3506,15 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnSettingListAsyncWithHttpInfo($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebauthnSettingListRsp';
-        $request = $this->webAuthnSettingListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size);
+        $request = $this->webAuthnSettingListRequest($remote_address, $user_agent, $sort, $filter, $page, $page_size, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3298,6 +3524,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3332,12 +3561,20 @@ class PasskeysBiometricsApi
      * @param  string[] $filter Field filtering (optional)
      * @param  int $page Page number (optional, default to 1)
      * @param  int $page_size Number of items per page (optional, default to 10)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnSettingListRequest($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10)
+    public function webAuthnSettingListRequest($remote_address = null, $user_agent = null, $sort = null, $filter = null, $page = 1, $page_size = 10, string $contentType = self::contentTypes['webAuthnSettingList'][0])
     {
+
+
+
+
+
+
+
 
         $resourcePath = '/v1/webauthn/settings';
         $formParams = [];
@@ -3347,65 +3584,68 @@ class PasskeysBiometricsApi
         $multipart = false;
 
         // query params
-        if (is_array($remote_address)) {
-            $remote_address = ObjectSerializer::serializeCollection($remote_address, '', true);
-        }
-        if ($remote_address !== null) {
-            $queryParams['remoteAddress'] = $remote_address;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $remote_address,
+            'remoteAddress', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($user_agent)) {
-            $user_agent = ObjectSerializer::serializeCollection($user_agent, '', true);
-        }
-        if ($user_agent !== null) {
-            $queryParams['userAgent'] = $user_agent;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_agent,
+            'userAgent', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($sort)) {
-            $sort = ObjectSerializer::serializeCollection($sort, '', true);
-        }
-        if ($sort !== null) {
-            $queryParams['sort'] = $sort;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
         // query params
-        if ($filter !== null) {
-            if('form' === 'form' && is_array($filter)) {
-                foreach($filter as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['filter[]'] = $filter;
-            }
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $filter,
+            'filter[]', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($page)) {
-            $page = ObjectSerializer::serializeCollection($page, '', true);
-        }
-        if ($page !== null) {
-            $queryParams['page'] = $page;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
         // query params
-        if (is_array($page_size)) {
-            $page_size = ObjectSerializer::serializeCollection($page_size, '', true);
-        }
-        if ($page_size !== null) {
-            $queryParams['pageSize'] = $page_size;
-        }
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page_size,
+            'pageSize', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -3423,12 +3663,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -3436,14 +3676,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -3457,10 +3697,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -3471,14 +3712,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req webauthn_setting_update_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Corbado\Generated\Model\WebauthnSettingUpdateRsp|\Corbado\Generated\Model\ErrorRsp
      */
-    public function webAuthnSettingPut($setting_id, $webauthn_setting_update_req = null)
+    public function webAuthnSettingPut($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
-        list($response) = $this->webAuthnSettingPutWithHttpInfo($setting_id, $webauthn_setting_update_req);
+        list($response) = $this->webAuthnSettingPutWithHttpInfo($setting_id, $webauthn_setting_update_req, $contentType);
         return $response;
     }
 
@@ -3487,14 +3729,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \Corbado\Generated\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Corbado\Generated\Model\WebauthnSettingUpdateRsp|\Corbado\Generated\Model\ErrorRsp, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webAuthnSettingPutWithHttpInfo($setting_id, $webauthn_setting_update_req = null)
+    public function webAuthnSettingPutWithHttpInfo($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
-        $request = $this->webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req);
+        $request = $this->webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3537,6 +3780,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\WebauthnSettingUpdateRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3549,6 +3795,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\Corbado\Generated\Model\ErrorRsp' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3563,6 +3812,9 @@ class PasskeysBiometricsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -3599,13 +3851,14 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingPutAsync($setting_id, $webauthn_setting_update_req = null)
+    public function webAuthnSettingPutAsync($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
-        return $this->webAuthnSettingPutAsyncWithHttpInfo($setting_id, $webauthn_setting_update_req)
+        return $this->webAuthnSettingPutAsyncWithHttpInfo($setting_id, $webauthn_setting_update_req, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3618,14 +3871,15 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webAuthnSettingPutAsyncWithHttpInfo($setting_id, $webauthn_setting_update_req = null)
+    public function webAuthnSettingPutAsyncWithHttpInfo($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
         $returnType = '\Corbado\Generated\Model\WebauthnSettingUpdateRsp';
-        $request = $this->webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req);
+        $request = $this->webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3635,6 +3889,9 @@ class PasskeysBiometricsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -3665,18 +3922,22 @@ class PasskeysBiometricsApi
      *
      * @param  string $setting_id ID from create (required)
      * @param  \Corbado\Generated\Model\WebauthnSettingUpdateReq $webauthn_setting_update_req (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webAuthnSettingPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req = null)
+    public function webAuthnSettingPutRequest($setting_id, $webauthn_setting_update_req = null, string $contentType = self::contentTypes['webAuthnSettingPut'][0])
     {
+
         // verify the required parameter 'setting_id' is set
         if ($setting_id === null || (is_array($setting_id) && count($setting_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $setting_id when calling webAuthnSettingPut'
             );
         }
+
+
 
         $resourcePath = '/v1/webauthn/settings/{settingID}';
         $formParams = [];
@@ -3697,21 +3958,17 @@ class PasskeysBiometricsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($webauthn_setting_update_req)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_update_req));
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($webauthn_setting_update_req));
             } else {
                 $httpBody = $webauthn_setting_update_req;
             }
@@ -3730,12 +3987,12 @@ class PasskeysBiometricsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -3743,14 +4000,14 @@ class PasskeysBiometricsApi
         if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Corbado-ProjectID');
         if ($apiKey !== null) {
             $headers['X-Corbado-ProjectID'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -3764,10 +4021,11 @@ class PasskeysBiometricsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
