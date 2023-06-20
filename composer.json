@@ -1,8 +1,7 @@
 {
   "name": "corbado/php-sdk",
   "description": "This PHP SDK eases the integration of Corbado's passkey-first authentication solution.",
-  "version": "1.0.3",
-  "description": "This client allows you to easy access API from Corbado GmbH",
+  "version": "1.0.4",
   "homepage": "https://www.corbado.com",
   "authors": [
     {
