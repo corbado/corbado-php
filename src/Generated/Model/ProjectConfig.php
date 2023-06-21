@@ -89,6 +89,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'bool',
         'has_started_using_passkeys' => 'bool',
         'environment' => 'string',
+        'backend_api_url' => 'string',
+        'frontend_api_url' => 'string',
         'application_url' => 'string',
         'use_cli' => 'bool',
         'double_opt_in' => 'bool',
@@ -138,6 +140,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => null,
         'has_started_using_passkeys' => null,
         'environment' => null,
+        'backend_api_url' => null,
+        'frontend_api_url' => null,
         'application_url' => null,
         'use_cli' => null,
         'double_opt_in' => null,
@@ -185,6 +189,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 		'has_generated_session' => false,
 		'has_started_using_passkeys' => false,
 		'environment' => false,
+		'backend_api_url' => false,
+		'frontend_api_url' => false,
 		'application_url' => false,
 		'use_cli' => false,
 		'double_opt_in' => false,
@@ -312,6 +318,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'hasGeneratedSession',
         'has_started_using_passkeys' => 'hasStartedUsingPasskeys',
         'environment' => 'environment',
+        'backend_api_url' => 'backendAPIUrl',
+        'frontend_api_url' => 'frontendAPIUrl',
         'application_url' => 'applicationUrl',
         'use_cli' => 'useCli',
         'double_opt_in' => 'doubleOptIn',
@@ -359,6 +367,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'setHasGeneratedSession',
         'has_started_using_passkeys' => 'setHasStartedUsingPasskeys',
         'environment' => 'setEnvironment',
+        'backend_api_url' => 'setBackendApiUrl',
+        'frontend_api_url' => 'setFrontendApiUrl',
         'application_url' => 'setApplicationUrl',
         'use_cli' => 'setUseCli',
         'double_opt_in' => 'setDoubleOptIn',
@@ -406,6 +416,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'getHasGeneratedSession',
         'has_started_using_passkeys' => 'getHasStartedUsingPasskeys',
         'environment' => 'getEnvironment',
+        'backend_api_url' => 'getBackendApiUrl',
+        'frontend_api_url' => 'getFrontendApiUrl',
         'application_url' => 'getApplicationUrl',
         'use_cli' => 'getUseCli',
         'double_opt_in' => 'getDoubleOptIn',
@@ -544,6 +556,8 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('has_generated_session', $data ?? [], null);
         $this->setIfExists('has_started_using_passkeys', $data ?? [], null);
         $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('backend_api_url', $data ?? [], null);
+        $this->setIfExists('frontend_api_url', $data ?? [], null);
         $this->setIfExists('application_url', $data ?? [], null);
         $this->setIfExists('use_cli', $data ?? [], null);
         $this->setIfExists('double_opt_in', $data ?? [], null);
@@ -641,6 +655,12 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['backend_api_url'] === null) {
+            $invalidProperties[] = "'backend_api_url' can't be null";
+        }
+        if ($this->container['frontend_api_url'] === null) {
+            $invalidProperties[] = "'frontend_api_url' can't be null";
+        }
         if ($this->container['application_url'] === null) {
             $invalidProperties[] = "'application_url' can't be null";
         }
@@ -1533,6 +1553,60 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['environment'] = $environment;
+
+        return $this;
+    }
+
+    /**
+     * Gets backend_api_url
+     *
+     * @return string
+     */
+    public function getBackendApiUrl()
+    {
+        return $this->container['backend_api_url'];
+    }
+
+    /**
+     * Sets backend_api_url
+     *
+     * @param string $backend_api_url backend_api_url
+     *
+     * @return self
+     */
+    public function setBackendApiUrl($backend_api_url)
+    {
+        if (is_null($backend_api_url)) {
+            throw new \InvalidArgumentException('non-nullable backend_api_url cannot be null');
+        }
+        $this->container['backend_api_url'] = $backend_api_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets frontend_api_url
+     *
+     * @return string
+     */
+    public function getFrontendApiUrl()
+    {
+        return $this->container['frontend_api_url'];
+    }
+
+    /**
+     * Sets frontend_api_url
+     *
+     * @param string $frontend_api_url frontend_api_url
+     *
+     * @return self
+     */
+    public function setFrontendApiUrl($frontend_api_url)
+    {
+        if (is_null($frontend_api_url)) {
+            throw new \InvalidArgumentException('non-nullable frontend_api_url cannot be null');
+        }
+        $this->container['frontend_api_url'] = $frontend_api_url;
 
         return $this;
     }
