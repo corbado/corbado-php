@@ -6,7 +6,6 @@ use Corbado\Classes\Assert;
 use Corbado\Classes\Exceptions\Http;
 use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\WebAuthnAuthenticateFinishRsp;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartReq;
 use Corbado\Generated\Model\WebAuthnAuthenticateStartRsp;
@@ -16,6 +15,7 @@ use Corbado\Generated\Model\WebAuthnFinishReq;
 use Corbado\Generated\Model\WebAuthnRegisterFinishRsp;
 use Corbado\Generated\Model\WebAuthnRegisterStartReq;
 use Corbado\Generated\Model\WebAuthnRegisterStartRsp;
+use Corbado\SDK;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -59,7 +59,7 @@ class WebAuthn
         $request->setCredentialStatus($credentialStatus);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -134,7 +134,7 @@ class WebAuthn
         $request->setPublicKeyCredential($publicKeyCredential);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -172,7 +172,7 @@ class WebAuthn
         $request->setRequestId($requestID);
         $request->setUsername($username);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -252,7 +252,7 @@ class WebAuthn
         $request->setRequestId($requestID);
         $request->setStatus($status);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(

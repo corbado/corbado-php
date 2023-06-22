@@ -7,8 +7,10 @@ use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\Validation;
 use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
+use Corbado\Classes\Assert;
 use Corbado\Classes\Session;
 use Corbado\Generated\Api\UserApi;
+use Corbado\Generated\Model\ClientInfo;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -165,5 +167,17 @@ class SDK
         }
 
         return $this->authTokens;
+    }
+
+    public static function createClientInfo($remoteAddress, $userAgent) : ClientInfo {
+        Assert::stringNotEmpty($remoteAddress);
+        Assert::stringNotEmpty($userAgent);
+
+        $client = new ClientInfo();
+        $client
+            ->setRemoteAddress($remoteAddress)
+            ->setUserAgent($userAgent);
+
+        return $client;
     }
 }
