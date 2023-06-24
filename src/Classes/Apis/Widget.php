@@ -10,6 +10,7 @@ use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\SessionTokenVerifyReq;
 use Corbado\Generated\Model\SessionTokenVerifyRsp;
 use Corbado\Generated\Model\SessionTokenVerifyRspAllOfData;
+use Corbado\SDK;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -39,7 +40,7 @@ class Widget
         $request->setToken($sessionToken);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(

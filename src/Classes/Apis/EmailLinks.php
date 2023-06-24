@@ -6,12 +6,12 @@ use Corbado\Classes\Assert;
 use Corbado\Classes\Exceptions\Http;
 use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailLinkSendReq;
 use Corbado\Generated\Model\EmailLinkSendRsp;
 use Corbado\Generated\Model\EmailLinkSendRspAllOfData;
 use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
+use Corbado\SDK;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -59,7 +59,7 @@ class EmailLinks
         $request->setCreate($create);
         $request->setAdditionalPayload($additionalPayload);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -107,7 +107,7 @@ class EmailLinks
         $request->setToken($token);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(

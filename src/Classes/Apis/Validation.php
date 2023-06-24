@@ -6,7 +6,6 @@ use Corbado\Classes\Assert;
 use Corbado\Classes\Exceptions\Http;
 use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\EmailValidationResult;
 use Corbado\Generated\Model\PhoneNumberValidationResult;
 use Corbado\Generated\Model\ValidateEmailReq;
@@ -15,6 +14,7 @@ use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Generated\Model\ValidationEmail;
 use Corbado\Generated\Model\ValidationPhoneNumber;
+use Corbado\SDK;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -46,7 +46,7 @@ class Validation
         $request->setSuggestDomain($suggestDomain);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -109,7 +109,7 @@ class Validation
         $request->setRegionCode($regionCode);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(

@@ -6,12 +6,12 @@ use Corbado\Classes\Assert;
 use Corbado\Classes\Exceptions\Http;
 use Corbado\Classes\Exceptions\Standard;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;
 use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
 use Corbado\Generated\Model\SmsCodeValidateReq;
+use Corbado\SDK;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -53,7 +53,7 @@ class SMSCodes
         $request->setRequestId($requestID);
         $request->setCreate($create);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
@@ -101,7 +101,7 @@ class SMSCodes
         $request->setSmsCode($smsCode);
         $request->setRequestId($requestID);
         $request->setClientInfo(
-            (new ClientInfo())->setRemoteAddress($remoteAddress)->setUserAgent($userAgent)
+            SDK::createClientInfo($remoteAddress, $userAgent)
         );
 
         $httpResponse = $this->client->sendRequest(
