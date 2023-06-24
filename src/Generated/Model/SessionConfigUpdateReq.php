@@ -59,7 +59,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'version' => 'string',
-        'active' => 'bool',
         'short_lifetime_minutes' => 'int',
         'short_cookie_domain' => 'string',
         'short_cookie_secure' => 'bool',
@@ -81,7 +80,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'version' => null,
-        'active' => null,
         'short_lifetime_minutes' => null,
         'short_cookie_domain' => null,
         'short_cookie_secure' => null,
@@ -101,7 +99,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'version' => false,
-		'active' => false,
 		'short_lifetime_minutes' => false,
 		'short_cookie_domain' => false,
 		'short_cookie_secure' => false,
@@ -201,7 +198,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'version' => 'version',
-        'active' => 'active',
         'short_lifetime_minutes' => 'shortLifetimeMinutes',
         'short_cookie_domain' => 'shortCookieDomain',
         'short_cookie_secure' => 'shortCookieSecure',
@@ -221,7 +217,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'version' => 'setVersion',
-        'active' => 'setActive',
         'short_lifetime_minutes' => 'setShortLifetimeMinutes',
         'short_cookie_domain' => 'setShortCookieDomain',
         'short_cookie_secure' => 'setShortCookieSecure',
@@ -241,7 +236,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'version' => 'getVersion',
-        'active' => 'getActive',
         'short_lifetime_minutes' => 'getShortLifetimeMinutes',
         'short_cookie_domain' => 'getShortCookieDomain',
         'short_cookie_secure' => 'getShortCookieSecure',
@@ -359,7 +353,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('version', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('short_lifetime_minutes', $data ?? [], null);
         $this->setIfExists('short_cookie_domain', $data ?? [], null);
         $this->setIfExists('short_cookie_secure', $data ?? [], null);
@@ -464,33 +457,6 @@ class SessionConfigUpdateReq implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
-
-        return $this;
-    }
-
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool|null $active active
-     *
-     * @return self
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
 
         return $this;
     }

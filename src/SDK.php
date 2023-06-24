@@ -186,7 +186,10 @@ class SDK
         return $config;
     }
 
-    public static function createClientInfo($remoteAddress, $userAgent) : ClientInfo {
+    /**
+     * @throws Classes\Exceptions\Assert
+     */
+    public static function createClientInfo(string $remoteAddress, string $userAgent) : ClientInfo {
         Assert::stringNotEmpty($remoteAddress);
         Assert::stringNotEmpty($userAgent);
 

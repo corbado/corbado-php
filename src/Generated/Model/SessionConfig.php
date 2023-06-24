@@ -60,7 +60,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'project_id' => 'string',
         'version' => 'string',
-        'active' => 'bool',
         'short_lifetime_minutes' => 'int',
         'short_cookie_domain' => 'string',
         'short_cookie_secure' => 'bool',
@@ -83,7 +82,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'project_id' => null,
         'version' => null,
-        'active' => null,
         'short_lifetime_minutes' => null,
         'short_cookie_domain' => null,
         'short_cookie_secure' => null,
@@ -104,7 +102,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'project_id' => false,
 		'version' => false,
-		'active' => false,
 		'short_lifetime_minutes' => false,
 		'short_cookie_domain' => false,
 		'short_cookie_secure' => false,
@@ -205,7 +202,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'project_id' => 'projectID',
         'version' => 'version',
-        'active' => 'active',
         'short_lifetime_minutes' => 'shortLifetimeMinutes',
         'short_cookie_domain' => 'shortCookieDomain',
         'short_cookie_secure' => 'shortCookieSecure',
@@ -226,7 +222,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'project_id' => 'setProjectId',
         'version' => 'setVersion',
-        'active' => 'setActive',
         'short_lifetime_minutes' => 'setShortLifetimeMinutes',
         'short_cookie_domain' => 'setShortCookieDomain',
         'short_cookie_secure' => 'setShortCookieSecure',
@@ -247,7 +242,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'project_id' => 'getProjectId',
         'version' => 'getVersion',
-        'active' => 'getActive',
         'short_lifetime_minutes' => 'getShortLifetimeMinutes',
         'short_cookie_domain' => 'getShortCookieDomain',
         'short_cookie_secure' => 'getShortCookieSecure',
@@ -370,7 +364,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('project_id', $data ?? [], null);
         $this->setIfExists('version', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('short_lifetime_minutes', $data ?? [], null);
         $this->setIfExists('short_cookie_domain', $data ?? [], null);
         $this->setIfExists('short_cookie_secure', $data ?? [], null);
@@ -415,9 +408,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['version'] === null) {
             $invalidProperties[] = "'version' can't be null";
-        }
-        if ($this->container['active'] === null) {
-            $invalidProperties[] = "'active' can't be null";
         }
         if ($this->container['short_lifetime_minutes'] === null) {
             $invalidProperties[] = "'short_lifetime_minutes' can't be null";
@@ -541,33 +531,6 @@ class SessionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
-
-        return $this;
-    }
-
-    /**
-     * Gets active
-     *
-     * @return bool
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool $active active
-     *
-     * @return self
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
 
         return $this;
     }

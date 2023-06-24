@@ -97,6 +97,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_full_name_required' => 'bool',
         'webauthn_rpid' => 'string',
         'web_component_debug' => 'bool',
+        'smtp_use_custom' => 'bool',
+        'smtp_host' => 'string',
+        'smtp_port' => 'int',
+        'smtp_username' => 'string',
         'created' => 'string',
         'updated' => 'string'
     ];
@@ -148,6 +152,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_full_name_required' => null,
         'webauthn_rpid' => null,
         'web_component_debug' => null,
+        'smtp_use_custom' => null,
+        'smtp_host' => null,
+        'smtp_port' => null,
+        'smtp_username' => null,
         'created' => null,
         'updated' => null
     ];
@@ -197,6 +205,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 		'user_full_name_required' => false,
 		'webauthn_rpid' => false,
 		'web_component_debug' => false,
+		'smtp_use_custom' => false,
+		'smtp_host' => false,
+		'smtp_port' => false,
+		'smtp_username' => false,
 		'created' => false,
 		'updated' => false
     ];
@@ -326,6 +338,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_full_name_required' => 'userFullNameRequired',
         'webauthn_rpid' => 'webauthnRPID',
         'web_component_debug' => 'webComponentDebug',
+        'smtp_use_custom' => 'smtpUseCustom',
+        'smtp_host' => 'smtpHost',
+        'smtp_port' => 'smtpPort',
+        'smtp_username' => 'smtpUsername',
         'created' => 'created',
         'updated' => 'updated'
     ];
@@ -375,6 +391,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_full_name_required' => 'setUserFullNameRequired',
         'webauthn_rpid' => 'setWebauthnRpid',
         'web_component_debug' => 'setWebComponentDebug',
+        'smtp_use_custom' => 'setSmtpUseCustom',
+        'smtp_host' => 'setSmtpHost',
+        'smtp_port' => 'setSmtpPort',
+        'smtp_username' => 'setSmtpUsername',
         'created' => 'setCreated',
         'updated' => 'setUpdated'
     ];
@@ -424,6 +444,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_full_name_required' => 'getUserFullNameRequired',
         'webauthn_rpid' => 'getWebauthnRpid',
         'web_component_debug' => 'getWebComponentDebug',
+        'smtp_use_custom' => 'getSmtpUseCustom',
+        'smtp_host' => 'getSmtpHost',
+        'smtp_port' => 'getSmtpPort',
+        'smtp_username' => 'getSmtpUsername',
         'created' => 'getCreated',
         'updated' => 'getUpdated'
     ];
@@ -564,6 +588,10 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('user_full_name_required', $data ?? [], null);
         $this->setIfExists('webauthn_rpid', $data ?? [], null);
         $this->setIfExists('web_component_debug', $data ?? [], null);
+        $this->setIfExists('smtp_use_custom', $data ?? [], null);
+        $this->setIfExists('smtp_host', $data ?? [], null);
+        $this->setIfExists('smtp_port', $data ?? [], null);
+        $this->setIfExists('smtp_username', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
     }
@@ -1769,6 +1797,114 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable web_component_debug cannot be null');
         }
         $this->container['web_component_debug'] = $web_component_debug;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_use_custom
+     *
+     * @return bool|null
+     */
+    public function getSmtpUseCustom()
+    {
+        return $this->container['smtp_use_custom'];
+    }
+
+    /**
+     * Sets smtp_use_custom
+     *
+     * @param bool|null $smtp_use_custom smtp_use_custom
+     *
+     * @return self
+     */
+    public function setSmtpUseCustom($smtp_use_custom)
+    {
+        if (is_null($smtp_use_custom)) {
+            throw new \InvalidArgumentException('non-nullable smtp_use_custom cannot be null');
+        }
+        $this->container['smtp_use_custom'] = $smtp_use_custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_host
+     *
+     * @return string|null
+     */
+    public function getSmtpHost()
+    {
+        return $this->container['smtp_host'];
+    }
+
+    /**
+     * Sets smtp_host
+     *
+     * @param string|null $smtp_host smtp_host
+     *
+     * @return self
+     */
+    public function setSmtpHost($smtp_host)
+    {
+        if (is_null($smtp_host)) {
+            throw new \InvalidArgumentException('non-nullable smtp_host cannot be null');
+        }
+        $this->container['smtp_host'] = $smtp_host;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_port
+     *
+     * @return int|null
+     */
+    public function getSmtpPort()
+    {
+        return $this->container['smtp_port'];
+    }
+
+    /**
+     * Sets smtp_port
+     *
+     * @param int|null $smtp_port smtp_port
+     *
+     * @return self
+     */
+    public function setSmtpPort($smtp_port)
+    {
+        if (is_null($smtp_port)) {
+            throw new \InvalidArgumentException('non-nullable smtp_port cannot be null');
+        }
+        $this->container['smtp_port'] = $smtp_port;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_username
+     *
+     * @return string|null
+     */
+    public function getSmtpUsername()
+    {
+        return $this->container['smtp_username'];
+    }
+
+    /**
+     * Sets smtp_username
+     *
+     * @param string|null $smtp_username smtp_username
+     *
+     * @return self
+     */
+    public function setSmtpUsername($smtp_username)
+    {
+        if (is_null($smtp_username)) {
+            throw new \InvalidArgumentException('non-nullable smtp_username cannot be null');
+        }
+        $this->container['smtp_username'] = $smtp_username;
 
         return $this;
     }
