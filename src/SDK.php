@@ -178,6 +178,7 @@ class SDK
         }
 
         $config = new Generated\Configuration();
+        $config->setHost($this->config->getBackendAPI());
         $config->setUsername($this->config->getProjectID());
         $config->setPassword($this->config->getApiSecret());
         // @phpstan-ignore-next-line
