@@ -93,6 +93,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         'webauthn_rpid' => 'string',
         'environment' => 'string',
         'web_component_debug' => 'bool',
+        'smtp_use_custom' => 'bool',
+        'smtp_host' => 'string',
+        'smtp_port' => 'int',
+        'smtp_username' => 'string',
+        'smtp_password' => 'string',
         'request_id' => 'string',
         'client_info' => '\Corbado\Generated\Model\ClientInfo'
     ];
@@ -140,6 +145,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         'webauthn_rpid' => null,
         'environment' => null,
         'web_component_debug' => null,
+        'smtp_use_custom' => null,
+        'smtp_host' => null,
+        'smtp_port' => null,
+        'smtp_username' => null,
+        'smtp_password' => null,
         'request_id' => null,
         'client_info' => null
     ];
@@ -185,6 +195,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
 		'webauthn_rpid' => false,
 		'environment' => false,
 		'web_component_debug' => false,
+		'smtp_use_custom' => false,
+		'smtp_host' => false,
+		'smtp_port' => false,
+		'smtp_username' => false,
+		'smtp_password' => false,
 		'request_id' => false,
 		'client_info' => false
     ];
@@ -310,6 +325,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         'webauthn_rpid' => 'webauthnRPID',
         'environment' => 'environment',
         'web_component_debug' => 'webComponentDebug',
+        'smtp_use_custom' => 'smtpUseCustom',
+        'smtp_host' => 'smtpHost',
+        'smtp_port' => 'smtpPort',
+        'smtp_username' => 'smtpUsername',
+        'smtp_password' => 'smtpPassword',
         'request_id' => 'requestID',
         'client_info' => 'clientInfo'
     ];
@@ -355,6 +375,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         'webauthn_rpid' => 'setWebauthnRpid',
         'environment' => 'setEnvironment',
         'web_component_debug' => 'setWebComponentDebug',
+        'smtp_use_custom' => 'setSmtpUseCustom',
+        'smtp_host' => 'setSmtpHost',
+        'smtp_port' => 'setSmtpPort',
+        'smtp_username' => 'setSmtpUsername',
+        'smtp_password' => 'setSmtpPassword',
         'request_id' => 'setRequestId',
         'client_info' => 'setClientInfo'
     ];
@@ -400,6 +425,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         'webauthn_rpid' => 'getWebauthnRpid',
         'environment' => 'getEnvironment',
         'web_component_debug' => 'getWebComponentDebug',
+        'smtp_use_custom' => 'getSmtpUseCustom',
+        'smtp_host' => 'getSmtpHost',
+        'smtp_port' => 'getSmtpPort',
+        'smtp_username' => 'getSmtpUsername',
+        'smtp_password' => 'getSmtpPassword',
         'request_id' => 'getRequestId',
         'client_info' => 'getClientInfo'
     ];
@@ -551,6 +581,11 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('webauthn_rpid', $data ?? [], null);
         $this->setIfExists('environment', $data ?? [], null);
         $this->setIfExists('web_component_debug', $data ?? [], null);
+        $this->setIfExists('smtp_use_custom', $data ?? [], null);
+        $this->setIfExists('smtp_host', $data ?? [], null);
+        $this->setIfExists('smtp_port', $data ?? [], null);
+        $this->setIfExists('smtp_username', $data ?? [], null);
+        $this->setIfExists('smtp_password', $data ?? [], null);
         $this->setIfExists('request_id', $data ?? [], null);
         $this->setIfExists('client_info', $data ?? [], null);
     }
@@ -1604,6 +1639,141 @@ class ProjectConfigSaveReq implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable web_component_debug cannot be null');
         }
         $this->container['web_component_debug'] = $web_component_debug;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_use_custom
+     *
+     * @return bool|null
+     */
+    public function getSmtpUseCustom()
+    {
+        return $this->container['smtp_use_custom'];
+    }
+
+    /**
+     * Sets smtp_use_custom
+     *
+     * @param bool|null $smtp_use_custom smtp_use_custom
+     *
+     * @return self
+     */
+    public function setSmtpUseCustom($smtp_use_custom)
+    {
+        if (is_null($smtp_use_custom)) {
+            throw new \InvalidArgumentException('non-nullable smtp_use_custom cannot be null');
+        }
+        $this->container['smtp_use_custom'] = $smtp_use_custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_host
+     *
+     * @return string|null
+     */
+    public function getSmtpHost()
+    {
+        return $this->container['smtp_host'];
+    }
+
+    /**
+     * Sets smtp_host
+     *
+     * @param string|null $smtp_host smtp_host
+     *
+     * @return self
+     */
+    public function setSmtpHost($smtp_host)
+    {
+        if (is_null($smtp_host)) {
+            throw new \InvalidArgumentException('non-nullable smtp_host cannot be null');
+        }
+        $this->container['smtp_host'] = $smtp_host;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_port
+     *
+     * @return int|null
+     */
+    public function getSmtpPort()
+    {
+        return $this->container['smtp_port'];
+    }
+
+    /**
+     * Sets smtp_port
+     *
+     * @param int|null $smtp_port smtp_port
+     *
+     * @return self
+     */
+    public function setSmtpPort($smtp_port)
+    {
+        if (is_null($smtp_port)) {
+            throw new \InvalidArgumentException('non-nullable smtp_port cannot be null');
+        }
+        $this->container['smtp_port'] = $smtp_port;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_username
+     *
+     * @return string|null
+     */
+    public function getSmtpUsername()
+    {
+        return $this->container['smtp_username'];
+    }
+
+    /**
+     * Sets smtp_username
+     *
+     * @param string|null $smtp_username smtp_username
+     *
+     * @return self
+     */
+    public function setSmtpUsername($smtp_username)
+    {
+        if (is_null($smtp_username)) {
+            throw new \InvalidArgumentException('non-nullable smtp_username cannot be null');
+        }
+        $this->container['smtp_username'] = $smtp_username;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_password
+     *
+     * @return string|null
+     */
+    public function getSmtpPassword()
+    {
+        return $this->container['smtp_password'];
+    }
+
+    /**
+     * Sets smtp_password
+     *
+     * @param string|null $smtp_password smtp_password
+     *
+     * @return self
+     */
+    public function setSmtpPassword($smtp_password)
+    {
+        if (is_null($smtp_password)) {
+            throw new \InvalidArgumentException('non-nullable smtp_password cannot be null');
+        }
+        $this->container['smtp_password'] = $smtp_password;
 
         return $this;
     }

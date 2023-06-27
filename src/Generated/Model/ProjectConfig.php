@@ -89,12 +89,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'bool',
         'has_started_using_passkeys' => 'bool',
         'environment' => 'string',
+        'backend_api_url' => 'string',
+        'frontend_api_url' => 'string',
         'application_url' => 'string',
         'use_cli' => 'bool',
         'double_opt_in' => 'bool',
         'user_full_name_required' => 'bool',
         'webauthn_rpid' => 'string',
         'web_component_debug' => 'bool',
+        'smtp_use_custom' => 'bool',
+        'smtp_host' => 'string',
+        'smtp_port' => 'int',
+        'smtp_username' => 'string',
         'created' => 'string',
         'updated' => 'string'
     ];
@@ -138,12 +144,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => null,
         'has_started_using_passkeys' => null,
         'environment' => null,
+        'backend_api_url' => null,
+        'frontend_api_url' => null,
         'application_url' => null,
         'use_cli' => null,
         'double_opt_in' => null,
         'user_full_name_required' => null,
         'webauthn_rpid' => null,
         'web_component_debug' => null,
+        'smtp_use_custom' => null,
+        'smtp_host' => null,
+        'smtp_port' => null,
+        'smtp_username' => null,
         'created' => null,
         'updated' => null
     ];
@@ -185,12 +197,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 		'has_generated_session' => false,
 		'has_started_using_passkeys' => false,
 		'environment' => false,
+		'backend_api_url' => false,
+		'frontend_api_url' => false,
 		'application_url' => false,
 		'use_cli' => false,
 		'double_opt_in' => false,
 		'user_full_name_required' => false,
 		'webauthn_rpid' => false,
 		'web_component_debug' => false,
+		'smtp_use_custom' => false,
+		'smtp_host' => false,
+		'smtp_port' => false,
+		'smtp_username' => false,
 		'created' => false,
 		'updated' => false
     ];
@@ -312,12 +330,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'hasGeneratedSession',
         'has_started_using_passkeys' => 'hasStartedUsingPasskeys',
         'environment' => 'environment',
+        'backend_api_url' => 'backendAPIUrl',
+        'frontend_api_url' => 'frontendAPIUrl',
         'application_url' => 'applicationUrl',
         'use_cli' => 'useCli',
         'double_opt_in' => 'doubleOptIn',
         'user_full_name_required' => 'userFullNameRequired',
         'webauthn_rpid' => 'webauthnRPID',
         'web_component_debug' => 'webComponentDebug',
+        'smtp_use_custom' => 'smtpUseCustom',
+        'smtp_host' => 'smtpHost',
+        'smtp_port' => 'smtpPort',
+        'smtp_username' => 'smtpUsername',
         'created' => 'created',
         'updated' => 'updated'
     ];
@@ -359,12 +383,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'setHasGeneratedSession',
         'has_started_using_passkeys' => 'setHasStartedUsingPasskeys',
         'environment' => 'setEnvironment',
+        'backend_api_url' => 'setBackendApiUrl',
+        'frontend_api_url' => 'setFrontendApiUrl',
         'application_url' => 'setApplicationUrl',
         'use_cli' => 'setUseCli',
         'double_opt_in' => 'setDoubleOptIn',
         'user_full_name_required' => 'setUserFullNameRequired',
         'webauthn_rpid' => 'setWebauthnRpid',
         'web_component_debug' => 'setWebComponentDebug',
+        'smtp_use_custom' => 'setSmtpUseCustom',
+        'smtp_host' => 'setSmtpHost',
+        'smtp_port' => 'setSmtpPort',
+        'smtp_username' => 'setSmtpUsername',
         'created' => 'setCreated',
         'updated' => 'setUpdated'
     ];
@@ -406,12 +436,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         'has_generated_session' => 'getHasGeneratedSession',
         'has_started_using_passkeys' => 'getHasStartedUsingPasskeys',
         'environment' => 'getEnvironment',
+        'backend_api_url' => 'getBackendApiUrl',
+        'frontend_api_url' => 'getFrontendApiUrl',
         'application_url' => 'getApplicationUrl',
         'use_cli' => 'getUseCli',
         'double_opt_in' => 'getDoubleOptIn',
         'user_full_name_required' => 'getUserFullNameRequired',
         'webauthn_rpid' => 'getWebauthnRpid',
         'web_component_debug' => 'getWebComponentDebug',
+        'smtp_use_custom' => 'getSmtpUseCustom',
+        'smtp_host' => 'getSmtpHost',
+        'smtp_port' => 'getSmtpPort',
+        'smtp_username' => 'getSmtpUsername',
         'created' => 'getCreated',
         'updated' => 'getUpdated'
     ];
@@ -544,12 +580,18 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('has_generated_session', $data ?? [], null);
         $this->setIfExists('has_started_using_passkeys', $data ?? [], null);
         $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('backend_api_url', $data ?? [], null);
+        $this->setIfExists('frontend_api_url', $data ?? [], null);
         $this->setIfExists('application_url', $data ?? [], null);
         $this->setIfExists('use_cli', $data ?? [], null);
         $this->setIfExists('double_opt_in', $data ?? [], null);
         $this->setIfExists('user_full_name_required', $data ?? [], null);
         $this->setIfExists('webauthn_rpid', $data ?? [], null);
         $this->setIfExists('web_component_debug', $data ?? [], null);
+        $this->setIfExists('smtp_use_custom', $data ?? [], null);
+        $this->setIfExists('smtp_host', $data ?? [], null);
+        $this->setIfExists('smtp_port', $data ?? [], null);
+        $this->setIfExists('smtp_username', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('updated', $data ?? [], null);
     }
@@ -641,6 +683,12 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['backend_api_url'] === null) {
+            $invalidProperties[] = "'backend_api_url' can't be null";
+        }
+        if ($this->container['frontend_api_url'] === null) {
+            $invalidProperties[] = "'frontend_api_url' can't be null";
+        }
         if ($this->container['application_url'] === null) {
             $invalidProperties[] = "'application_url' can't be null";
         }
@@ -1538,6 +1586,60 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets backend_api_url
+     *
+     * @return string
+     */
+    public function getBackendApiUrl()
+    {
+        return $this->container['backend_api_url'];
+    }
+
+    /**
+     * Sets backend_api_url
+     *
+     * @param string $backend_api_url backend_api_url
+     *
+     * @return self
+     */
+    public function setBackendApiUrl($backend_api_url)
+    {
+        if (is_null($backend_api_url)) {
+            throw new \InvalidArgumentException('non-nullable backend_api_url cannot be null');
+        }
+        $this->container['backend_api_url'] = $backend_api_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets frontend_api_url
+     *
+     * @return string
+     */
+    public function getFrontendApiUrl()
+    {
+        return $this->container['frontend_api_url'];
+    }
+
+    /**
+     * Sets frontend_api_url
+     *
+     * @param string $frontend_api_url frontend_api_url
+     *
+     * @return self
+     */
+    public function setFrontendApiUrl($frontend_api_url)
+    {
+        if (is_null($frontend_api_url)) {
+            throw new \InvalidArgumentException('non-nullable frontend_api_url cannot be null');
+        }
+        $this->container['frontend_api_url'] = $frontend_api_url;
+
+        return $this;
+    }
+
+    /**
      * Gets application_url
      *
      * @return string
@@ -1695,6 +1797,114 @@ class ProjectConfig implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable web_component_debug cannot be null');
         }
         $this->container['web_component_debug'] = $web_component_debug;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_use_custom
+     *
+     * @return bool|null
+     */
+    public function getSmtpUseCustom()
+    {
+        return $this->container['smtp_use_custom'];
+    }
+
+    /**
+     * Sets smtp_use_custom
+     *
+     * @param bool|null $smtp_use_custom smtp_use_custom
+     *
+     * @return self
+     */
+    public function setSmtpUseCustom($smtp_use_custom)
+    {
+        if (is_null($smtp_use_custom)) {
+            throw new \InvalidArgumentException('non-nullable smtp_use_custom cannot be null');
+        }
+        $this->container['smtp_use_custom'] = $smtp_use_custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_host
+     *
+     * @return string|null
+     */
+    public function getSmtpHost()
+    {
+        return $this->container['smtp_host'];
+    }
+
+    /**
+     * Sets smtp_host
+     *
+     * @param string|null $smtp_host smtp_host
+     *
+     * @return self
+     */
+    public function setSmtpHost($smtp_host)
+    {
+        if (is_null($smtp_host)) {
+            throw new \InvalidArgumentException('non-nullable smtp_host cannot be null');
+        }
+        $this->container['smtp_host'] = $smtp_host;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_port
+     *
+     * @return int|null
+     */
+    public function getSmtpPort()
+    {
+        return $this->container['smtp_port'];
+    }
+
+    /**
+     * Sets smtp_port
+     *
+     * @param int|null $smtp_port smtp_port
+     *
+     * @return self
+     */
+    public function setSmtpPort($smtp_port)
+    {
+        if (is_null($smtp_port)) {
+            throw new \InvalidArgumentException('non-nullable smtp_port cannot be null');
+        }
+        $this->container['smtp_port'] = $smtp_port;
+
+        return $this;
+    }
+
+    /**
+     * Gets smtp_username
+     *
+     * @return string|null
+     */
+    public function getSmtpUsername()
+    {
+        return $this->container['smtp_username'];
+    }
+
+    /**
+     * Sets smtp_username
+     *
+     * @param string|null $smtp_username smtp_username
+     *
+     * @return self
+     */
+    public function setSmtpUsername($smtp_username)
+    {
+        if (is_null($smtp_username)) {
+            throw new \InvalidArgumentException('non-nullable smtp_username cannot be null');
+        }
+        $this->container['smtp_username'] = $smtp_username;
 
         return $this;
     }

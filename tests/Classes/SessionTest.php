@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
-class SessionV2Test extends TestCase
+class SessionTest extends TestCase
 {
     /**
      * @throws Assert

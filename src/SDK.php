@@ -9,6 +9,7 @@ use Corbado\Classes\Apis\WebAuthn;
 use Corbado\Classes\Apis\Widget;
 use Corbado\Classes\Assert;
 use Corbado\Classes\Session;
+use Corbado\Generated\Api\AuthTokensApi;
 use Corbado\Generated\Api\UserApi;
 use Corbado\Generated\Model\ClientInfo;
 use GuzzleHttp\Client;
@@ -25,7 +26,7 @@ class SDK
     private ?Widget $widget = null;
     private ?UserApi $users = null;
     private ?Session $session = null;
-    private mixed $authTokens = null;
+    private ?AuthTokensApi $authTokens = null;
 
     /**
      * Constructor
@@ -113,18 +114,13 @@ class SDK
     /**
      * Returns users handling
      *
+     * @throws Classes\Exceptions\Configuration
      * @return UserApi
      */
     public function users() : UserApi {
         if ($this->users === null) {
-            $config = new Generated\Configuration();
-            $config->setUsername($this->config->getProjectID());
-            $config->setPassword($this->config->getApiSecret());
             // @phpstan-ignore-next-line
-            $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
-
-            // @phpstan-ignore-next-line
-            $this->users = new UserApi($this->client, $config);
+            $this->users = new UserApi($this->client, $this->createGeneratedConfiguration());
         }
 
         return $this->users;
@@ -159,17 +155,42 @@ class SDK
     /**
      * Returns auth tokens handling
      *
-     * @return mixed
+     * @throws Classes\Exceptions\Configuration
+     * @return AuthTokensApi
      */
-    public function authTokens() : mixed {
+    public function authTokens() : AuthTokensApi {
         if ($this->authTokens === null) {
-            $this->authTokens = 'xxx';
+            // @phpstan-ignore-next-line
+            $this->authTokens = new AuthTokensApi($this->client, $this->createGeneratedConfiguration());
         }
 
         return $this->authTokens;
     }
 
-    public static function createClientInfo($remoteAddress, $userAgent) : ClientInfo {
+    /**
+     * @return Generated\Configuration
+     * @throws Classes\Exceptions\Configuration
+     */
+    private function createGeneratedConfiguration() : Generated\Configuration
+    {
+        if ($this->config->getApiSecret() == '') {
+            throw new Classes\Exceptions\Configuration('No API secret set, pass in constructor of configuration');
+        }
+
+        $config = new Generated\Configuration();
+        $config->setHost($this->config->getBackendAPI());
+        $config->setUsername($this->config->getProjectID());
+        $config->setPassword($this->config->getApiSecret());
+        // @phpstan-ignore-next-line
+        $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
+
+        return $config;
+    }
+
+    /**
+     * @throws Classes\Exceptions\Assert
+     */
+    public static function createClientInfo(string $remoteAddress, string $userAgent) : ClientInfo {
         Assert::stringNotEmpty($remoteAddress);
         Assert::stringNotEmpty($userAgent);
 
