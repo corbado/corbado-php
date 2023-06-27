@@ -36,9 +36,9 @@ $corbado = new Corbado\SDK($config);
 
 The Corbado SDK provides a range of services including:
 
-- `AuthToken`
+- `AuthTokens`
 - `EmailLinks`
-- `Session`
+- `Sessions`
 - `SMSCodes`
 - `Validation`
 - `WebAuthn`
@@ -49,20 +49,20 @@ The Corbado SDK provides a range of services including:
 To use a specific service, such as Session, invoke it as shown below:
 
 ```PHP
-$corbado->session->getCurrentUser();
+$corbado->sessions()->getCurrentUser();
 ```
 
 ### Corbado session management
 
 Corbado offers an efficient and secure session management system (refer to
-the [documentation](https://docs.corbado.com/overview/welcome) for more details).
+the [documentation](https://docs.corbado.com/sessions/overview) for more details).
 
 To validate a user after authentication, call `getCurrentUser()` which returns a user object with
 all information about the current user. This object contains the current authentication state as well as user's id,
 name, email and phone number.
 
 ```PHP
-$user = $corbado->session->getCurrentUser();
+$user = $corbado->sessions()->getCurrentUser();
 if ($user->isAuthenticated()) {
     // Do anything with authenticated user
 } else {
