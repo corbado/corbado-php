@@ -2,6 +2,8 @@
 
 namespace Corbado;
 
+use Corbado\Classes\Apis\AuthTokens;
+use Corbado\Classes\Apis\AuthTokensInterface;
 use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\EmailLinksInterface;
 use Corbado\Classes\Apis\SMSCodes;
@@ -30,7 +32,7 @@ class SDK
     private ?ValidationsInterface $validations = null;
     private ?UserApi $users = null;
     private ?Session $session = null;
-    private ?AuthTokensApi $authTokens = null;
+    private ?AuthTokensInterface $authTokens = null;
 
     /**
      * Constructor
@@ -152,13 +154,16 @@ class SDK
     /**
      * Returns auth tokens handling
      *
-     * @return AuthTokensApi
+     * @return AuthTokensInterface
      * @throws ConfigurationException
+     * @throws AssertException
      */
-    public function authTokens() : AuthTokensApi {
+    public function authTokens() : AuthTokensInterface {
         if ($this->authTokens === null) {
-            // @phpstan-ignore-next-line
-            $this->authTokens = new AuthTokensApi($this->client, $this->createGeneratedConfiguration());
+            $this->authTokens = new AuthTokens(
+                // @phpstan-ignore-next-line
+                new AuthTokensApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
         return $this->authTokens;

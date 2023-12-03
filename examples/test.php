@@ -20,8 +20,7 @@ try {
     $request->setToken($corbadoAuthToken);
     $request->setClientInfo(SDK::createClientInfo($remoteAddress, $userAgent));
 
-    /** @var AuthTokenValidateRsp $response */
-    $response = $corbado->authTokens()->authTokenValidate($request);
+    $response = $corbado->authTokens()->validate($request);
 
     echo $response->getData()->getUserId();
 
