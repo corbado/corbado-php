@@ -2,8 +2,10 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Classes\Exceptions\Http;
-use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Exceptions\AssertException;
+use Corbado\Classes\Exceptions\ServerException;
+use Corbado\Classes\Exceptions\StandardException;
+use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\RequestData;
 
@@ -14,13 +16,13 @@ class Helper
      *
      * @param mixed $data
      * @return string
-     * @throws Standard
+     * @throws StandardException
      */
     public static function jsonEncode(mixed $data): string
     {
         $json = \json_encode($data);
         if ($json === false || json_last_error() !== JSON_ERROR_NONE) {
-            throw new Standard('json_encode() failed: ' . json_last_error_msg());
+            throw new StandardException('json_encode() failed: ' . json_last_error_msg());
         }
 
         return $json;
@@ -31,7 +33,7 @@ class Helper
      *
      * @param string $data
      * @return array<mixed>
-     * @throws Standard
+     * @throws StandardException
      */
     public static function jsonDecode(string $data): array
     {
@@ -39,7 +41,7 @@ class Helper
 
         $json = \json_decode($data, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Standard('json_decode() failed: ' . json_last_error_msg());
+            throw new StandardException('json_decode() failed: ' . json_last_error_msg());
         }
 
         return $json;
@@ -56,10 +58,10 @@ class Helper
 
     /**
      * @param array<mixed> $data
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws Http
+     * @throws AssertException
+     * @throws ServerException
      */
-    public static function throwException(array $data) : void
+    public static function throwServerExceptionOld(array $data) : void
     {
         Assert::arrayKeysExist($data, ['httpStatusCode', 'message', 'requestData', 'runtime']);
 
@@ -68,13 +70,28 @@ class Helper
            $data['error'] = [];
         }
 
-        throw new Http($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
+        throw new ServerException($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
+    }
+
+    /**
+     * @throws StandardException
+     */
+    public static function convertToServerException(ApiException $e) : ServerException
+    {
+        $body = $e->getResponseBody();
+        if (!is_string($body)) {
+            throw new StandardException('Response body is not a string');
+        }
+
+        $data = self::jsonDecode($body);
+
+        return new ServerException($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
     }
 
     /**
      * @param array<mixed> $data
      * @return RequestData
-     *@throws \Corbado\Classes\Exceptions\Assert
+     * @throws AssertException
      */
     public static function hydrateRequestData(array $data): RequestData
     {
@@ -89,7 +106,7 @@ class Helper
 
     /**
      * @param array<mixed> $data
-     * @throws \Corbado\Classes\Exceptions\Assert
+     * @throws AssertException
      */
     public static function hydrateResponse(array $data): GenericRsp
     {

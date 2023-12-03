@@ -17,7 +17,7 @@ class UserTest  extends TestCase {
         }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Standard
+     * @throws \Corbado\Classes\Exceptions\StandardException
      */
     public function testGetUserData() : void
         {

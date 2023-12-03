@@ -1,25 +1,31 @@
 <?php
 
+use Corbado\Configuration;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Model\AuthTokenValidateReq;
+use Corbado\Generated\Model\AuthTokenValidateRsp;
+use Corbado\SDK;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$config = new \Corbado\Configuration('pro-771306541694234650', 'xxx');
-$corbado = new \Corbado\SDK($config);
+$config = new Configuration('pro-771306541694234650', 'xxx');
+$corbado = new SDK($config);
 
 $corbadoAuthToken = '6GQd8ZgoCLlWld5lY25Dc8wYGLksvvRyaoxYrStX3o4WvKwcKGXWHiHtziTrEYss';
 $remoteAddress = $_SERVER['HTTP_USER_AGENT'];
 $userAgent = $_SERVER['REMOTE_ADDR'];
 
 try {
-    $request = new \Corbado\Generated\Model\AuthTokenValidateReq();
+    $request = new AuthTokenValidateReq();
     $request->setToken($corbadoAuthToken);
-    $request->setClientInfo(\Corbado\SDK::createClientInfo($remoteAddress, $userAgent));
+    $request->setClientInfo(SDK::createClientInfo($remoteAddress, $userAgent));
 
-    /** @var \Corbado\Generated\Model\AuthTokenValidateRsp $response */
+    /** @var AuthTokenValidateRsp $response */
     $response = $corbado->authTokens()->authTokenValidate($request);
 
     echo $response->getData()->getUserId();
 
-} catch (\Corbado\Generated\ApiException $e) {
+} catch (ApiException $e) {
     echo $e->getMessage();
     echo "\n";
 

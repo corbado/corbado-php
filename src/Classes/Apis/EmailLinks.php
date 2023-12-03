@@ -3,133 +3,73 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\Http;
-use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Exceptions\AssertException;
+use Corbado\Classes\Exceptions\ServerException;
+use Corbado\Classes\Exceptions\StandardException;
 use Corbado\Classes\Helper;
+use Corbado\Generated\Api\EmailMagicLinksApi;
+use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\EmailLinkSendReq;
 use Corbado\Generated\Model\EmailLinkSendRsp;
-use Corbado\Generated\Model\EmailLinkSendRspAllOfData;
 use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
-use Corbado\SDK;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Request;
-use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\ClientInterface;
+use Corbado\Generated\Model\ErrorRsp;
 
-class EmailLinks
+class EmailLinks implements EmailLinksInterface
 {
-    private ClientInterface $client;
+    private EmailMagicLinksApi $api;
 
-    public function __construct(ClientInterface $client)
+    /**
+     * @throws AssertException
+     */
+    public function __construct(EmailMagicLinksApi $api)
     {
-        $this->client = $client;
+        Assert::notNull($api);
+        $this->api = $api;
     }
 
     /**
-     * @param string $projectID
-     * @return string[]
+     * @throws AssertException
+     * @throws ServerException
+     * @throws StandardException
      */
-    private function generateHeaders(string $projectID): array
+    public function send(EmailLinkSendReq $req): EmailLinkSendRsp
     {
-        return ['X-Corbado-ProjectID' => $projectID];
-    }
+        Assert::notNull($req);
 
-    /**
-     * @throws Http
-     * @throws GuzzleException
-     * @throws ClientExceptionInterface
-     * @throws Standard
-     * @throws \Corbado\Classes\Exceptions\Assert
-     */
-    public function send(string $projectID, string $email, string $templateName, string $redirect, string $remoteAddress, string $userAgent, bool $create = false, string $additionalPayload = "", ?string $requestID = ''): EmailLinkSendRsp
-    {
-        Assert::stringNotEmpty($projectID);
-        Assert::stringNotEmpty($email);
-        Assert::stringNotEmpty($templateName);
-        Assert::stringNotEmpty($redirect);
-        Assert::stringNotEmpty($remoteAddress);
-        Assert::stringNotEmpty($userAgent);
-
-        $request = new EmailLinkSendReq();
-        $request->setEmail($email);
-        $request->setTemplateName($templateName);
-        $request->setRedirect($redirect);
-        $request->setRequestId($requestID);
-        $request->setCreate($create);
-        $request->setAdditionalPayload($additionalPayload);
-        $request->setClientInfo(
-            SDK::createClientInfo($remoteAddress, $userAgent)
-        );
-
-        $httpResponse = $this->client->sendRequest(
-            new Request(
-                'POST',
-                '/v1/emailLinks',
-                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
-            )
-        );
-
-        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
-        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
-            Helper::throwException($json);
+        try {
+            $rsp = $this->api->emailLinkSend($req);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
         }
 
-        $data = new EmailLinkSendRspAllOfData();
-        $data->setEmailLinkId($json['data']['emailLinkID']);
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
 
-        $response = new EmailLinkSendRsp();
-        $response->setHttpStatusCode($json['httpStatusCode']);
-        $response->setMessage($json['message']);
-        $response->setRequestData(Helper::hydrateRequestData($json['requestData']));
-        $response->setRuntime($json['runtime']);
-        $response->setData($data);
-
-        return $response;
+        return $rsp;
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws Http
-     * @throws GuzzleException
-     * @throws ClientExceptionInterface
-     * @throws Standard
+     * @throws AssertException
+     * @throws ServerException
+     * @throws StandardException
      */
-    public function validate(string $projectID, string $emailLinkID, string $token, string $remoteAddress, string $userAgent, ?string $requestID = ''): EmailLinkValidateRsp
+    public function validate(string $id, EmailLinksValidateReq $req): EmailLinkValidateRsp
     {
-        Assert::stringNotEmpty($projectID);
-        Assert::stringNotEmpty($emailLinkID);
-        Assert::stringNotEmpty($token);
-        Assert::stringNotEmpty($remoteAddress);
-        Assert::stringNotEmpty($userAgent);
+        Assert::stringNotEmpty($id);
+        Assert::notNull($req);
 
-        $request = new EmailLinksValidateReq();
-        $request->setToken($token);
-        $request->setRequestId($requestID);
-        $request->setClientInfo(
-            SDK::createClientInfo($remoteAddress, $userAgent)
-        );
-
-        $httpResponse = $this->client->sendRequest(
-            new Request(
-                'PUT',
-                '/v1/emailLinks/' . $emailLinkID . '/validate',
-                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
-            )
-        );
-
-        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
-        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
-            Helper::throwException($json);
+        try {
+            $rsp = $this->api->emailLinkValidate($id, $req);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
         }
 
-        $response = new EmailLinkValidateRsp();
-        $response->setHttpStatusCode($json['httpStatusCode']);
-        $response->setMessage($json['message']);
-        $response->setRequestData(Helper::hydrateRequestData($json['requestData']));
-        $response->setRuntime($json['runtime']);
-        $response->setAdditionalPayload($json['additionalPayload']);
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
 
-        return $response;
+        return $rsp;
     }
 }

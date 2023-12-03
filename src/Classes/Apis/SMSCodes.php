@@ -3,120 +3,73 @@
 namespace Corbado\Classes\Apis;
 
 use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\Http;
-use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Exceptions\AssertException;
+use Corbado\Classes\Exceptions\ServerException;
+use Corbado\Classes\Exceptions\StandardException;
 use Corbado\Classes\Helper;
-use Corbado\Generated\Model\GenericRsp;
+use Corbado\Generated\Api\SMSOTPApi;
+use Corbado\Generated\ApiException;
+use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;
-use Corbado\Generated\Model\SmsCodeSendRspAllOfData;
 use Corbado\Generated\Model\SmsCodeValidateReq;
-use Corbado\SDK;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Request;
-use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\ClientInterface;
+use Corbado\Generated\Model\SmsCodeValidateRsp;
 
-class SMSCodes
+class SMSCodes implements SMSCodesInterface
 {
-    private ClientInterface $client;
+    private SMSOTPApi $api;
 
     /**
-     * @param string $projectId
-     * @return string[]
+     * @throws AssertException
      */
-    private function generateHeaders(string $projectId): array
+    public function __construct(SMSOTPApi $api)
     {
-        return ['X-Corbado-ProjectID' => $projectId];
-    }
-
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
+        Assert::notNull($api);
+        $this->api = $api;
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws Http
-     * @throws ClientExceptionInterface
-     * @throws Standard
+     * @throws AssertException
+     * @throws ServerException
+     * @throws StandardException
      */
-    public function send(string $projectID, string $phoneNumber, string $remoteAddress, string $userAgent, bool $create = false, ?string $requestID = ''): SmsCodeSendRsp
+    public function send(SmsCodeSendReq $req): SmsCodeSendRsp
     {
-        Assert::stringNotEmpty($projectID);
-        Assert::stringNotEmpty($phoneNumber);
-        Assert::stringNotEmpty($remoteAddress);
-        Assert::stringNotEmpty($userAgent);
+        Assert::notNull($req);
 
-        $request = new SmsCodeSendReq();
-        $request->setPhoneNumber($phoneNumber);
-        $request->setRequestId($requestID);
-        $request->setCreate($create);
-        $request->setClientInfo(
-            SDK::createClientInfo($remoteAddress, $userAgent)
-        );
-
-        $httpResponse = $this->client->sendRequest(
-            new Request(
-                'POST',
-                '/v1/smsCodes',
-                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
-            )
-        );
-
-        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
-        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
-            Helper::throwException($json);
+        try {
+            $rsp = $this->api->smsCodeSend($req);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
         }
 
-        $data = new SmsCodeSendRspAllOfData();
-        $data->setSmsCodeId($json['data']['smsCodeID']);
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
 
-        $response = new SmsCodeSendRsp();
-        $response->setHttpStatusCode($json['httpStatusCode']);
-        $response->setMessage($json['message']);
-        $response->setRequestData(Helper::hydrateRequestData($json['requestData']));
-        $response->setRuntime($json['runtime']);
-        $response->setData($data);
-
-        return $response;
+        return $rsp;
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\Assert
-     * @throws Http
-     * @throws ClientExceptionInterface
-     * @throws GuzzleException
-     * @throws Standard
+     * @throws StandardException
+     * @throws AssertException
+     * @throws ServerException
      */
-    public function validate(string $projectID, string $smsCodeID, string $smsCode, string $remoteAddress, string $userAgent, ?string $requestID = ''): GenericRsp
+    public function validate(string $id, SmsCodeValidateReq $req): SmsCodeValidateRsp
     {
-        Assert::stringNotEmpty($projectID);
-        Assert::stringNotEmpty($smsCodeID);
-        Assert::stringNotEmpty($smsCode);
-        Assert::stringNotEmpty($remoteAddress);
-        Assert::stringNotEmpty($userAgent);
+        Assert::stringNotEmpty($id);
+        Assert::notNull($req);
 
-        $request = new SmsCodeValidateReq();
-        $request->setSmsCode($smsCode);
-        $request->setRequestId($requestID);
-        $request->setClientInfo(
-            SDK::createClientInfo($remoteAddress, $userAgent)
-        );
-
-        $httpResponse = $this->client->sendRequest(
-            new Request(
-                'PUT',
-                '/v1/smsCodes/' . $smsCodeID . '/validate',
-                ['body' => Helper::jsonEncode($request->jsonSerialize()), 'headers' => $this->generateHeaders($projectID)]
-            )
-        );
-
-        $json = Helper::jsonDecode($httpResponse->getBody()->getContents());
-        if (Helper::isErrorHttpStatusCode($json['httpStatusCode'])) {
-            Helper::throwException($json);
+        try {
+            $rsp = $this->api->smsCodeValidate($id, $req);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
         }
 
-        return Helper::hydrateResponse($json);
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
+
+        return $rsp;
     }
 }

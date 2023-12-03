@@ -3,7 +3,7 @@
 namespace Corbado\Classes;
 
 use Corbado\Classes;
-use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Exceptions\StandardException;
 use Corbado\Model;
 
 class Webhook
@@ -41,7 +41,7 @@ class Webhook
      *
      * @param string $username
      * @param string $password
-     * @throws Classes\Exceptions\Assert
+     * @throws Classes\Exceptions\AssertException
      */
     public function __construct(string $username, string $password)
     {
@@ -107,12 +107,12 @@ class Webhook
      * Handles authentication
      *
      * @return void
-     * @throws Standard
+     * @throws StandardException
      */
     public function handleAuthentication() : void
     {
         if ($this->authenticated) {
-            throw new Standard("Already authenticated, something is wrong");
+            throw new StandardException("Already authenticated, something is wrong");
         }
 
         if ($this->checkAuthentication() === true) {
@@ -128,7 +128,7 @@ class Webhook
      * Checks automatic authentication
      *
      * @return void
-     * @throws Standard
+     * @throws StandardException
      */
     private function checkAutomaticAuthentication() : void
     {
@@ -140,14 +140,14 @@ class Webhook
             return;
         }
 
-        throw new Standard("Missing authentication, call handleAuthentication() first");
+        throw new StandardException("Missing authentication, call handleAuthentication() first");
     }
 
     /**
      * Checks if request method is POST (the only supported method from Corbado)
      *
      * @return bool
-     * @throws Standard
+     * @throws StandardException
      */
     public function isPost() : bool
     {
@@ -160,14 +160,14 @@ class Webhook
      * Returns webhook action (by reading the header field X-Corbado-Action)
      *
      * @return string
-     * @throws Standard
+     * @throws StandardException
      */
     public function getAction() : string
     {
         $this->checkAutomaticAuthentication();
 
         if (empty($_SERVER['HTTP_X_CORBADO_ACTION'])) {
-            throw new Standard('Missing action header (X-CORBADO-ACTION)');
+            throw new StandardException('Missing action header (X-CORBADO-ACTION)');
         }
 
         switch ($_SERVER['HTTP_X_CORBADO_ACTION']) {
@@ -178,7 +178,7 @@ class Webhook
                 return self::ACTION_PASSWORD_VERIFY;
 
             default:
-                throw new Standard('Invalid action ("' . $_SERVER['HTTP_X_CORBADO_ACTION'] . '")');
+                throw new StandardException('Invalid action ("' . $_SERVER['HTTP_X_CORBADO_ACTION'] . '")');
         }
     }
 
@@ -186,8 +186,8 @@ class Webhook
      * Returns auth methods request model
      *
      * @return \Corbado\Classes\WebhookModels\AuthMethodsRequest
-     * @throws Classes\Exceptions\Assert
-     * @throws Standard
+     * @throws Classes\Exceptions\AssertException
+     * @throws StandardException
      */
     public function getAuthMethodsRequest() : \Corbado\Classes\WebhookModels\AuthMethodsRequest
     {
@@ -216,8 +216,8 @@ class Webhook
      * @param string $status
      * @param bool $exit
      * @return void
-     * @throws Standard
-     * @throws Classes\Exceptions\Assert
+     * @throws StandardException
+     * @throws Classes\Exceptions\AssertException
      */
     public function sendAuthMethodsResponse(string $status, bool $exit = true, string $responseID = '') : void
     {
@@ -243,8 +243,8 @@ class Webhook
      * Returns password verify request model
      *
      * @return \Corbado\Classes\WebhookModels\PasswordVerifyRequest
-     * @throws Standard
-     * @throws Classes\Exceptions\Assert
+     * @throws StandardException
+     * @throws Classes\Exceptions\AssertException
      */
     public function getPasswordVerifyRequest() : \Corbado\Classes\WebhookModels\PasswordVerifyRequest
     {
@@ -274,7 +274,7 @@ class Webhook
      * @param bool $success
      * @param bool $exit
      * @return void
-     * @throws Standard
+     * @throws StandardException
      */
     public function sendPasswordVerifyResponse(bool $success, bool $exit = true, string $responseID = '') : void
     {
@@ -298,12 +298,12 @@ class Webhook
      * Returns request body
      *
      * @return string
-     * @throws Standard
+     * @throws StandardException
      */
     private function getRequestBody() : string {
         $body = file_get_contents('php://input');
         if ($body === false) {
-            throw new Standard('Could not read request body (POST request)');
+            throw new StandardException('Could not read request body (POST request)');
         }
 
         return $body;
@@ -314,7 +314,7 @@ class Webhook
      *
      * @param mixed $response
      * @return void
-     * @throws Standard
+     * @throws StandardException
      */
     private function sendResponse($response) : void {
         header('Content-Type: application/json; charset=utf-8');

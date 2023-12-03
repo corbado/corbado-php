@@ -2,7 +2,7 @@
 
 namespace Corbado\Classes\Exceptions;
 
-class Http extends \Exception {
+class ServerException extends \Exception {
     private int $httpStatusCode;
 
     /**

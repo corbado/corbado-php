@@ -2,5 +2,5 @@
 
 namespace Corbado\Classes\Exceptions;
 
-class Standard extends \Exception {
+class AssertException extends \Exception {
 }

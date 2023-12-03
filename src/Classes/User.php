@@ -2,7 +2,7 @@
 
 namespace Corbado\Classes;
 
-use Corbado\Classes\Exceptions\Standard;
+use Corbado\Classes\Exceptions\StandardException;
 
 class User {
     private bool $authenticated;
@@ -24,44 +24,44 @@ class User {
     }
 
     /**
-     * @throws Standard
+     * @throws StandardException
      */
     public function getID() : string {
         if ($this->isAuthenticated() === false) {
-            throw new Standard('User is not authenticated');
+            throw new StandardException('User is not authenticated');
         }
 
         return $this->id;
     }
 
     /**
-     * @throws Standard
+     * @throws StandardException
      */
     public function getName() : string {
         if ($this->isAuthenticated() === false) {
-            throw new Standard('User is not authenticated');
+            throw new StandardException('User is not authenticated');
         }
 
         return $this->name;
     }
 
     /**
-     * @throws Standard
+     * @throws StandardException
      */
     public function getEmail() : string {
         if ($this->isAuthenticated() === false) {
-            throw new Standard('User is not authenticated');
+            throw new StandardException('User is not authenticated');
         }
 
         return $this->email;
     }
 
     /**
-     * @throws Standard
+     * @throws StandardException
      */
     public function getPhoneNumber() : string {
         if ($this->isAuthenticated() === false) {
-            throw new Standard('User is not authenticated');
+            throw new StandardException('User is not authenticated');
         }
 
         return $this->phoneNumber;

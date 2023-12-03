@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-use Corbado\Classes\Exceptions\Assert;
+use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Session;
 use Exception;
 use Firebase\JWT\JWT;
@@ -17,7 +17,7 @@ use Psr\Cache\CacheItemPoolInterface;
 class SessionTest extends TestCase
 {
     /**
-     * @throws Assert
+     * @throws AssertException
      * @throws Exception
      */
     public function testGetShortSessionValue() : void
