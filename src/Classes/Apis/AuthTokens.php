@@ -20,7 +20,8 @@ class AuthTokens implements AuthTokensInterface
     /**
      * @throws AssertException
      */
-    public function __construct(AuthTokensApi $api) {
+    public function __construct(AuthTokensApi $api)
+    {
         Assert::notNull($api);
         $this->api = $api;
     }
@@ -32,7 +33,8 @@ class AuthTokens implements AuthTokensInterface
      * @throws StandardException
      * @throws ServerException
      */
-    public function validate(AuthTokenValidateReq $req): AuthTokenValidateRsp {
+    public function validate(AuthTokenValidateReq $req): AuthTokenValidateRsp
+    {
         Assert::notNull($req);
 
         try {
