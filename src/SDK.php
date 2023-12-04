@@ -57,7 +57,6 @@ class SDK
         } else {
             $this->client = $this->config->getHttpClient();
         }
-
     }
 
     /**
@@ -67,7 +66,8 @@ class SDK
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function emailLinks() : EmailLinksInterface {
+    public function emailLinks(): EmailLinksInterface
+    {
         if ($this->emailLinks === null) {
             $this->emailLinks = new EmailLinks(
                 // @phpstan-ignore-next-line
@@ -85,7 +85,8 @@ class SDK
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function smsCodes() : SMSCodesInterface {
+    public function smsCodes(): SMSCodesInterface
+    {
         if ($this->smsCodes === null) {
             $this->smsCodes = new SMSCodes(
                 // @phpstan-ignore-next-line
@@ -103,7 +104,8 @@ class SDK
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function validations() : ValidationsInterface {
+    public function validations(): ValidationsInterface
+    {
         if ($this->validations === null) {
             $this->validations = new Validations(
                 // @phpstan-ignore-next-line
@@ -120,7 +122,8 @@ class SDK
      * @return UserApi
      * @throws ConfigurationException
      */
-    public function users() : UserApi {
+    public function users(): UserApi
+    {
         if ($this->users === null) {
             // @phpstan-ignore-next-line
             $this->users = new UserApi($this->client, $this->createGeneratedConfiguration());
@@ -137,7 +140,8 @@ class SDK
      * @throws AssertException
      * @link https://docs.corbado.com/sessions/overview
      */
-    public function sessions() : Session {
+    public function sessions(): Session
+    {
         if ($this->session === null) {
             if ($this->config->getJwksCachePool() === null) {
                 throw new ConfigurationException('No JWKS cache pool set, use Configuration::setJwksCachePool()');
@@ -162,7 +166,8 @@ class SDK
      * @throws ConfigurationException
      * @throws AssertException
      */
-    public function authTokens() : AuthTokensInterface {
+    public function authTokens(): AuthTokensInterface
+    {
         if ($this->authTokens === null) {
             $this->authTokens = new AuthTokens(
                 // @phpstan-ignore-next-line
@@ -177,7 +182,7 @@ class SDK
      * @return Generated\Configuration
      * @throws Classes\Exceptions\ConfigurationException
      */
-    private function createGeneratedConfiguration() : Generated\Configuration
+    private function createGeneratedConfiguration(): Generated\Configuration
     {
         if ($this->config->getApiSecret() == '') {
             throw new Classes\Exceptions\ConfigurationException('No API secret set, pass in constructor of configuration');
@@ -196,7 +201,8 @@ class SDK
     /**
      * @throws Classes\Exceptions\AssertException
      */
-    public static function createClientInfo(string $remoteAddress, string $userAgent) : ClientInfo {
+    public static function createClientInfo(string $remoteAddress, string $userAgent): ClientInfo
+    {
         Assert::stringNotEmpty($remoteAddress);
         Assert::stringNotEmpty($userAgent);
 
