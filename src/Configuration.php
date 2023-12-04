@@ -6,7 +6,8 @@ use Corbado\Classes\Assert;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
-class Configuration {
+class Configuration
+{
     private string $projectID = '';
     private string $apiSecret = '';
     private string $frontendAPI = '';
@@ -44,7 +45,7 @@ class Configuration {
     /**
      * @throws Classes\Exceptions\AssertException
      */
-    public function setFrontendAPI(string $frontendAPI) : self
+    public function setFrontendAPI(string $frontendAPI): self
     {
         $this->assertURL($frontendAPI);
 
@@ -56,7 +57,7 @@ class Configuration {
     /**
      * @throws Classes\Exceptions\AssertException
      */
-    public function setBackendAPI(string $backendAPI) : self
+    public function setBackendAPI(string $backendAPI): self
     {
         $this->assertURL($backendAPI);
 
@@ -68,7 +69,7 @@ class Configuration {
     /**
      * @throws Classes\Exceptions\AssertException
      */
-    public function setShortSessionCookieName(string $shortSessionCookieName) : self
+    public function setShortSessionCookieName(string $shortSessionCookieName): self
     {
         Assert::stringNotEmpty($shortSessionCookieName);
 
@@ -77,13 +78,14 @@ class Configuration {
         return $this;
     }
 
-    public function setHttpClient(ClientInterface $httpClient) : self {
+    public function setHttpClient(ClientInterface $httpClient): self
+    {
         $this->httpClient = $httpClient;
 
         return $this;
     }
 
-    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool) : self
+    public function setJwksCachePool(CacheItemPoolInterface $jwksCachePool): self
     {
         $this->jwksCachePool = $jwksCachePool;
 
@@ -106,7 +108,7 @@ class Configuration {
         return $this->apiSecret;
     }
 
-    public function getFrontendAPI() : string
+    public function getFrontendAPI(): string
     {
         if ($this->frontendAPI === '') {
             $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.corbado.io';
@@ -115,7 +117,7 @@ class Configuration {
         return $this->frontendAPI;
     }
 
-    public function getBackendAPI() : string
+    public function getBackendAPI(): string
     {
         return $this->backendAPI;
     }
@@ -123,7 +125,7 @@ class Configuration {
     /**
      * @return string
      */
-    public function getShortSessionCookieName() : string
+    public function getShortSessionCookieName(): string
     {
         return $this->shortSessionCookieName;
     }
@@ -147,7 +149,7 @@ class Configuration {
     /**
      * @throws Classes\Exceptions\AssertException
      */
-    private function assertURL(string $url) : void
+    private function assertURL(string $url): void
     {
         Assert::stringNotEmpty($url);
 
