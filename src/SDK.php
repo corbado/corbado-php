@@ -34,6 +34,8 @@ class SDK
     private ?Session $session = null;
     private ?AuthTokensInterface $authTokens = null;
 
+    const VERSION = '1.0.0';
+
     /**
      * Constructor
      *
@@ -48,12 +50,14 @@ class SDK
                 [
                     'base_uri' => $this->config->getBackendAPI(),
                     'http_errors' => false,
-                    'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()]
+                    'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()],
+                    'headers' => ['X-Corbado-SDK-Version' => 'PHP SDK ' . self::VERSION],
                 ]
             );
         } else {
             $this->client = $this->config->getHttpClient();
         }
+
     }
 
     /**
