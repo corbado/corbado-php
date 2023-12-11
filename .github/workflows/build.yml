@@ -52,3 +52,6 @@ jobs:
 
       - name: Run unit tests
         run: composer unittests
+
+      - name: Run integration tests
+        run: composer integrationtests
