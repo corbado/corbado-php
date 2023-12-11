@@ -48,7 +48,7 @@ class Session
      * @return string
      * @throws Exceptions\AssertException
      */
-    public function getShortSessionValue() : string
+    public function getShortSessionValue(): string
     {
         if (!empty($_COOKIE[$this->shortSessionCookieName])) {
             return $_COOKIE[$this->shortSessionCookieName];
@@ -68,7 +68,7 @@ class Session
      * @return stdClass|null Returns stdClass on success, otherwise null
      * @throws Exceptions\AssertException
      */
-    public function validateShortSessionValue(string $value) : ?stdClass
+    public function validateShortSessionValue(string $value): ?stdClass
     {
         Assert::stringNotEmpty($value);
 
@@ -110,7 +110,7 @@ class Session
      *
      * @return string
      */
-    public function getLastShortSessionValidationResult() : string
+    public function getLastShortSessionValidationResult(): string
     {
         return $this->lastShortSessionValidationResult;
     }
@@ -124,7 +124,7 @@ class Session
      * @return User
      * @throws Exceptions\AssertException
      */
-    public function getCurrentUser() : User
+    public function getCurrentUser(): User
     {
         $guest = new User(false);
 
@@ -169,7 +169,8 @@ class Session
      * @return string
      * @throws Exceptions\AssertException
      */
-    private function extractBearerToken(string $authorizationHeader) : string {
+    private function extractBearerToken(string $authorizationHeader): string
+    {
         Assert::stringNotEmpty($authorizationHeader);
 
         if (!str_starts_with($authorizationHeader, 'Bearer ')) {

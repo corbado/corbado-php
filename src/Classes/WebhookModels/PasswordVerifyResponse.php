@@ -6,4 +6,3 @@ class PasswordVerifyResponse extends CommonResponse
 {
     public PasswordVerifyDataResponse $data;
 }
-

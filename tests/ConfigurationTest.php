@@ -11,7 +11,7 @@ class ConfigurationTest extends TestCase
      * @param bool $valid
      * @return void
      */
-    public function testSetFrontendAPI(string $frontendAPI, bool $valid) : void
+    public function testSetFrontendAPI(string $frontendAPI, bool $valid): void
     {
         try {
             $config = new Configuration('pro-123', 'corbado1_123');
@@ -30,7 +30,7 @@ class ConfigurationTest extends TestCase
      * @param bool $valid
      * @return void
      */
-    public function testSetBackendAPI(string $backendAPI, bool $valid) : void
+    public function testSetBackendAPI(string $backendAPI, bool $valid): void
     {
         try {
             $config = new Configuration('pro-123', 'corbado1_123');
@@ -43,7 +43,7 @@ class ConfigurationTest extends TestCase
         $this->assertEquals($valid, !$error);
     }
 
-    public function testGetFrontendAPI() : void
+    public function testGetFrontendAPI(): void
     {
         $config = new Configuration('pro-123', 'corbado1_123');
         $this->assertEquals('https://pro-123.frontendapi.corbado.io', $config->getFrontendAPI());
@@ -52,7 +52,7 @@ class ConfigurationTest extends TestCase
     /**
      * @return array<int, array<int, bool|string>>
      */
-    public function provideURLs() : array
+    public function provideURLs(): array
     {
         return [
             ['', false],

@@ -6,4 +6,3 @@ class AuthMethodsResponse extends CommonResponse
 {
     public AuthMethodsDataResponse $data;
 }
-

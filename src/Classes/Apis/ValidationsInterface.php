@@ -7,7 +7,8 @@ use Corbado\Generated\Model\ValidateEmailRsp;
 use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 
-interface ValidationsInterface {
+interface ValidationsInterface
+{
     public function validateEmail(ValidateEmailReq $req): ValidateEmailRsp;
     public function validatePhoneNumber(ValidatePhoneNumberReq $req): ValidatePhoneNumberRsp;
 }

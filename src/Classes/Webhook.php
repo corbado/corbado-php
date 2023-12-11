@@ -32,9 +32,9 @@ class Webhook
      */
     private bool $authenticated = false;
 
-    const ACTION_AUTH_METHODS = 'auth_methods';
-    const ACTION_PASSWORD_VERIFY = 'password_verify';
-    const STANDARD_FIELDS = ['id', 'projectID', 'action', 'data'];
+    public const ACTION_AUTH_METHODS = 'auth_methods';
+    public const ACTION_PASSWORD_VERIFY = 'password_verify';
+    public const STANDARD_FIELDS = ['id', 'projectID', 'action', 'data'];
 
     /**
      * Constructor
@@ -60,7 +60,7 @@ class Webhook
      *
      * @return void
      */
-    public function disableAutomaticAuthenticationHandling() : void
+    public function disableAutomaticAuthenticationHandling(): void
     {
         $this->automaticAuthenticationHandling = false;
     }
@@ -70,7 +70,8 @@ class Webhook
      *
      * @return bool
      */
-    public function checkAuthentication() : bool {
+    public function checkAuthentication(): bool
+    {
         if (empty($_SERVER['PHP_AUTH_USER'])) {
             return false;
         }
@@ -92,7 +93,7 @@ class Webhook
      * @param bool $exit If true the methods exists, default is true
      * @return void
      */
-    public function sendUnauthorizedResponse(bool $exit = true) : void
+    public function sendUnauthorizedResponse(bool $exit = true): void
     {
         header('WWW-Authenticate: Basic realm="Webhook"');
         header('HTTP/1.0 401 Unauthorized');
@@ -109,7 +110,7 @@ class Webhook
      * @return void
      * @throws StandardException
      */
-    public function handleAuthentication() : void
+    public function handleAuthentication(): void
     {
         if ($this->authenticated) {
             throw new StandardException("Already authenticated, something is wrong");
@@ -130,7 +131,7 @@ class Webhook
      * @return void
      * @throws StandardException
      */
-    private function checkAutomaticAuthentication() : void
+    private function checkAutomaticAuthentication(): void
     {
         if ($this->automaticAuthenticationHandling === false) {
             return;
@@ -149,7 +150,7 @@ class Webhook
      * @return bool
      * @throws StandardException
      */
-    public function isPost() : bool
+    public function isPost(): bool
     {
         $this->checkAutomaticAuthentication();
 
@@ -162,7 +163,7 @@ class Webhook
      * @return string
      * @throws StandardException
      */
-    public function getAction() : string
+    public function getAction(): string
     {
         $this->checkAutomaticAuthentication();
 
@@ -189,7 +190,7 @@ class Webhook
      * @throws Classes\Exceptions\AssertException
      * @throws StandardException
      */
-    public function getAuthMethodsRequest() : \Corbado\Classes\WebhookModels\AuthMethodsRequest
+    public function getAuthMethodsRequest(): \Corbado\Classes\WebhookModels\AuthMethodsRequest
     {
         $this->checkAutomaticAuthentication();
 
@@ -219,7 +220,7 @@ class Webhook
      * @throws StandardException
      * @throws Classes\Exceptions\AssertException
      */
-    public function sendAuthMethodsResponse(string $status, bool $exit = true, string $responseID = '') : void
+    public function sendAuthMethodsResponse(string $status, bool $exit = true, string $responseID = ''): void
     {
         Assert::stringEquals($status, ['exists', 'not_exists', 'blocked']);
 
@@ -246,7 +247,7 @@ class Webhook
      * @throws StandardException
      * @throws Classes\Exceptions\AssertException
      */
-    public function getPasswordVerifyRequest() : \Corbado\Classes\WebhookModels\PasswordVerifyRequest
+    public function getPasswordVerifyRequest(): \Corbado\Classes\WebhookModels\PasswordVerifyRequest
     {
         $this->checkAutomaticAuthentication();
 
@@ -276,7 +277,7 @@ class Webhook
      * @return void
      * @throws StandardException
      */
-    public function sendPasswordVerifyResponse(bool $success, bool $exit = true, string $responseID = '') : void
+    public function sendPasswordVerifyResponse(bool $success, bool $exit = true, string $responseID = ''): void
     {
         $this->checkAutomaticAuthentication();
 
@@ -300,7 +301,8 @@ class Webhook
      * @return string
      * @throws StandardException
      */
-    private function getRequestBody() : string {
+    private function getRequestBody(): string
+    {
         $body = file_get_contents('php://input');
         if ($body === false) {
             throw new StandardException('Could not read request body (POST request)');
@@ -316,7 +318,8 @@ class Webhook
      * @return void
      * @throws StandardException
      */
-    private function sendResponse($response) : void {
+    private function sendResponse($response): void
+    {
         header('Content-Type: application/json; charset=utf-8');
         echo Helper::jsonEncode($response);
     }

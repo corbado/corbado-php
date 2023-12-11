@@ -2,8 +2,8 @@
 
 namespace Corbado\Classes;
 
-class Assert {
-
+class Assert
+{
     /**
      * Checks if given data is not null
      *
@@ -11,7 +11,8 @@ class Assert {
      * @return void
      * @throws \Corbado\Classes\Exceptions\AssertException
      */
-    public static function notNull(mixed $data) : void {
+    public static function notNull(mixed $data): void
+    {
         if ($data === null) {
             throw new Exceptions\AssertException('Assert failed: Given data is null');
         }
@@ -24,7 +25,8 @@ class Assert {
      * @return void
      * @throws \Corbado\Classes\Exceptions\AssertException
      */
-    public static function stringNotEmpty(string $data) : void {
+    public static function stringNotEmpty(string $data): void
+    {
         if ($data == '') {
             throw new Exceptions\AssertException('Assert failed: Given string is empty');
         }
@@ -38,7 +40,8 @@ class Assert {
      * @return void
      * @throws \Corbado\Classes\Exceptions\AssertException
      */
-    public static function stringEquals(string $data, array $possibleValues) : void {
+    public static function stringEquals(string $data, array $possibleValues): void
+    {
         self::stringNotEmpty($data);
 
         if (in_array($data, $possibleValues, true)) {
@@ -56,7 +59,8 @@ class Assert {
      * @return void
      * @throws \Corbado\Classes\Exceptions\AssertException
      */
-    public static function arrayKeysExist(array $data, array $keys) : void {
+    public static function arrayKeysExist(array $data, array $keys): void
+    {
         foreach ($keys as $key) {
             if (!array_key_exists($key, $data)) {
                 throw new Exceptions\AssertException('Assert failed: Given array has no key "' . $key . '"');

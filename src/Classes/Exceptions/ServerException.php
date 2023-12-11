@@ -2,7 +2,8 @@
 
 namespace Corbado\Classes\Exceptions;
 
-class ServerException extends \Exception {
+class ServerException extends \Exception
+{
     private int $httpStatusCode;
 
     /**
@@ -30,25 +31,29 @@ class ServerException extends \Exception {
         $this->error = $error;
     }
 
-    public function getHttpStatusCode(): int {
+    public function getHttpStatusCode(): int
+    {
         return $this->httpStatusCode;
     }
 
     /**
      * @return array<mixed>
      */
-    public function getRequestData(): array {
+    public function getRequestData(): array
+    {
         return $this->requestData;
     }
 
-    public function getRuntime(): float {
+    public function getRuntime(): float
+    {
         return $this->runtime;
     }
 
     /**
      * @return array<mixed>
      */
-    public function getError(): array {
+    public function getError(): array
+    {
         return $this->error;
     }
 }

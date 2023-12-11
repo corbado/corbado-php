@@ -20,7 +20,7 @@ class SessionTest extends TestCase
      * @throws AssertException
      * @throws Exception
      */
-    public function testGetShortSessionValue() : void
+    public function testGetShortSessionValue(): void
     {
         $session = self::createSession();
 
@@ -68,22 +68,22 @@ class SessionTest extends TestCase
             [
                 // Not before (nfb) in future
                 false,
-                self::generateJWT('https://auth.acme.com',  time() + 100, time() + 100)
+                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100)
             ],
             [
                 // Expired (exp)
                 false,
-                self::generateJWT('https://auth.acme.com',  time() - 100, time() - 100)
+                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100)
             ],
             [
                 // Invalid issuer (iss)
                 false,
-                self::generateJWT('https://invalid.com',  time() + 100, time() - 100)
+                self::generateJWT('https://invalid.com', time() + 100, time() - 100)
             ],
             [
                 // Success
                 true,
-                self::generateJWT('https://auth.acme.com',  time() + 100, time() - 100)
+                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100)
             ]
         ];
     }
@@ -91,7 +91,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testGetCurrentUserGuest() : void
+    public function testGetCurrentUserGuest(): void
     {
         $session = self::createSession();
         $user = $session->getCurrentUser();
@@ -101,7 +101,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testGetCurrentUserAuthenticated() : void
+    public function testGetCurrentUserAuthenticated(): void
     {
         $_COOKIE['cbo_short_session'] = self::generateJWT('https://auth.acme.com', time() + 100, time() - 100);
 
@@ -113,7 +113,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function createSession() : Session
+    private static function createSession(): Session
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         if ($jwks === false) {
@@ -129,7 +129,7 @@ class SessionTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $cacheItemPool = new class implements CacheItemPoolInterface {
+        $cacheItemPool = new class () implements CacheItemPoolInterface {
             /**
              * @var array <string, CacheItemInterface>
              */
@@ -141,7 +141,7 @@ class SessionTest extends TestCase
                     return $this->items[$key];
                 }
 
-                return new class($key) implements CacheItemInterface {
+                return new class ($key) implements CacheItemInterface {
                     private string $key;
                     private mixed $value;
                     private bool $isHit;

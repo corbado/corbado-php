@@ -56,7 +56,7 @@ class Users implements UsersInterface
      * @throws AssertException
      * @throws ServerException
      */
-    public function delete(string $id, UserDeleteReq $req) : GenericRsp
+    public function delete(string $id, UserDeleteReq $req): GenericRsp
     {
         Assert::stringNotEmpty($id);
         Assert::notNull($req);
@@ -79,7 +79,7 @@ class Users implements UsersInterface
      * @throws AssertException
      * @throws ServerException
      */
-    public function get(string $id, string $remoteAddr = '', string $userAgent = '') : UserGetRsp
+    public function get(string $id, string $remoteAddr = '', string $userAgent = ''): UserGetRsp
     {
         Assert::stringNotEmpty($id);
 

@@ -2,5 +2,6 @@
 
 namespace Corbado\Classes\Exceptions;
 
-class StandardException extends \Exception {
+class StandardException extends \Exception
+{
 }

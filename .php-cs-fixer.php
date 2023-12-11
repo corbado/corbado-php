@@ -1,8 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(['vendor', 'src/Generated'])
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->notPath('src/Generated');
 
 $config = new PhpCsFixer\Config();
 $config->setFinder($finder);

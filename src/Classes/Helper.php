@@ -61,13 +61,13 @@ class Helper
      * @throws AssertException
      * @throws ServerException
      */
-    public static function throwServerExceptionOld(array $data) : void
+    public static function throwServerExceptionOld(array $data): void
     {
         Assert::arrayKeysExist($data, ['httpStatusCode', 'message', 'requestData', 'runtime']);
 
         // Check for error data, not existent for 404 for example
         if (!array_key_exists('error', $data)) {
-           $data['error'] = [];
+            $data['error'] = [];
         }
 
         throw new ServerException($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
@@ -76,7 +76,7 @@ class Helper
     /**
      * @throws StandardException
      */
-    public static function convertToServerException(ApiException $e) : ServerException
+    public static function convertToServerException(ApiException $e): ServerException
     {
         $body = $e->getResponseBody();
         if (!is_string($body)) {
