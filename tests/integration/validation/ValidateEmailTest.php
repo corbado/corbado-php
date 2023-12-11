@@ -2,13 +2,14 @@
 
 namespace integration\validation;
 
+use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
 class ValidateEmailTest extends TestCase
 {
     public function testValidateEmail(): void
     {
-        $email = '';
-        $this->assertEmpty($email);
+        $res = Utils::SDK()->validations()->validateEmail(null);
+        $this->assertTrue($res);
     }
 }
