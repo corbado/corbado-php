@@ -17,15 +17,15 @@ use Corbado\Generated\Model\SmsCodeValidateRsp;
 
 class SMSCodes implements SMSCodesInterface
 {
-    private SMSOTPApi $api;
+    private SMSOTPApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(SMSOTPApi $api)
+    public function __construct(SMSOTPApi $client)
     {
-        Assert::notNull($api);
-        $this->api = $api;
+        Assert::notNull($client);
+        $this->client = $client;
     }
 
     /**
@@ -38,7 +38,7 @@ class SMSCodes implements SMSCodesInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->smsCodeSend($req);
+            $rsp = $this->client->smsCodeSend($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -61,7 +61,7 @@ class SMSCodes implements SMSCodesInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->smsCodeValidate($id, $req);
+            $rsp = $this->client->smsCodeValidate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

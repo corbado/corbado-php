@@ -17,15 +17,15 @@ use Corbado\Generated\Model\ErrorRsp;
 
 class EmailLinks implements EmailLinksInterface
 {
-    private EmailMagicLinksApi $api;
+    private EmailMagicLinksApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(EmailMagicLinksApi $api)
+    public function __construct(EmailMagicLinksApi $client)
     {
-        Assert::notNull($api);
-        $this->api = $api;
+        Assert::notNull($client);
+        $this->client = $client;
     }
 
     /**
@@ -38,7 +38,7 @@ class EmailLinks implements EmailLinksInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->emailLinkSend($req);
+            $rsp = $this->client->emailLinkSend($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -61,7 +61,7 @@ class EmailLinks implements EmailLinksInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->emailLinkValidate($id, $req);
+            $rsp = $this->client->emailLinkValidate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

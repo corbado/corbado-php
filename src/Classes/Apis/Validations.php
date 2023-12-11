@@ -26,15 +26,15 @@ use Psr\Http\Client\ClientInterface;
 
 class Validations implements ValidationsInterface
 {
-    private ValidationApi $api;
+    private ValidationApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(ValidationApi $api)
+    public function __construct(ValidationApi $client)
     {
-        Assert::notNull($api);
-        $this->api = $api;
+        Assert::notNull($client);
+        $this->client = $client;
     }
 
     /**
@@ -49,7 +49,7 @@ class Validations implements ValidationsInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->validateEmail($req);
+            $rsp = $this->client->validateEmail($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -73,7 +73,7 @@ class Validations implements ValidationsInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->validatePhoneNumber($req);
+            $rsp = $this->client->validatePhoneNumber($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

@@ -18,15 +18,15 @@ use Corbado\Generated\Model\UserGetRsp;
 
 class Users implements UsersInterface
 {
-    private UserApi $api;
+    private UserApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(UserApi $api)
+    public function __construct(UserApi $client)
     {
-        Assert::notNull($api);
-        $this->api = $api;
+        Assert::notNull($client);
+        $this->client = $client;
     }
 
     /**
@@ -39,7 +39,7 @@ class Users implements UsersInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->userCreate($req);
+            $rsp = $this->client->userCreate($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -62,7 +62,7 @@ class Users implements UsersInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->userDelete($id, $req);
+            $rsp = $this->client->userDelete($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -84,7 +84,7 @@ class Users implements UsersInterface
         Assert::stringNotEmpty($id);
 
         try {
-            $rsp = $this->api->userGet($id, $remoteAddr, $userAgent);
+            $rsp = $this->client->userGet($id, $remoteAddr, $userAgent);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

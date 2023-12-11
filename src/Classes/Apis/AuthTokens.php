@@ -15,15 +15,15 @@ use Corbado\Generated\Model\ErrorRsp;
 
 class AuthTokens implements AuthTokensInterface
 {
-    private AuthTokensApi $api;
+    private AuthTokensApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(AuthTokensApi $api)
+    public function __construct(AuthTokensApi $client)
     {
-        Assert::notNull($api);
-        $this->api = $api;
+        Assert::notNull($client);
+        $this->client = $client;
     }
 
     /**
@@ -38,7 +38,7 @@ class AuthTokens implements AuthTokensInterface
         Assert::notNull($req);
 
         try {
-            $rsp = $this->api->authTokenValidate($req);
+            $rsp = $this->client->authTokenValidate($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
