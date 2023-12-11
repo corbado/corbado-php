@@ -1,5 +1,7 @@
 <?php
 
+namespace unit\Classes;
+
 use Corbado\Classes\User;
 use PHPUnit\Framework\TestCase;
 

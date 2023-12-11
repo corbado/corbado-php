@@ -1,7 +1,10 @@
 <?php
 
+namespace unit;
+
 use Corbado\Configuration;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class ConfigurationTest extends TestCase
 {

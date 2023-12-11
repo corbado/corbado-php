@@ -25,8 +25,9 @@
   },
   "scripts": {
     "analyze": "vendor/bin/phpstan --memory-limit=1000000000 analyze src examples tests",
-    "test": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests",
-    "cs": "vendor/bin/php-cs-fixer check --diff --config=.php-cs-fixer.php",
+    "unittests": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests/unit",
+    "integrationtests": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests/integration",
+    "cs-check": "vendor/bin/php-cs-fixer check --diff --config=.php-cs-fixer.php",
     "cs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php"
   }
 }

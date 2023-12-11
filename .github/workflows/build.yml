@@ -47,8 +47,8 @@ jobs:
       - name: Run analyze
         run: composer analyze
 
-      - name: Run cs
-        run: composer cs
+      - name: Run cs check
+        run: composer cs-check
 
-      - name: Run tests
-        run: composer test
+      - name: Run unit tests
+        run: composer unittests

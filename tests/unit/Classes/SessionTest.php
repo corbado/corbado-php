@@ -1,6 +1,6 @@
 <?php
 
-namespace Classes;
+namespace unit\Classes;
 
 use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Session;
