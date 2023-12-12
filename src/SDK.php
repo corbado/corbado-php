@@ -55,6 +55,7 @@ class SDK
                 ]
             );
         } else {
+            // SDK version might be missing, okay for now (auth needs to be set)
             $this->client = $this->config->getHttpClient();
         }
     }
