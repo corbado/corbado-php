@@ -1,18 +1,17 @@
 # Corbado PHP SDK
 
-This SDK facilitates effortless integration of Corbado's Backend API within your PHP applications.
+PHP SDK for Corbado Backend API
 
-## Documentation
-
-For a detailed understanding of how to use the Corbado Backend API, refer to
-the [Corbado Backend API Reference](https://api.corbado.com/docs/api/)
-and [Corbado API-only integration guide](https://docs.corbado.com/integrations/api-only).
+[![Test Status](https://github.com/corbado/corbado-php/workflows/build/badge.svg)](https://github.com/corbado/corbado-php/actions?query=workflow%3Abuild)
+[![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
+[![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/corbado-php)
+[![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
 
 ## Requirements
 
-Ensure your environment runs PHP 7.2 or higher.
+The SDK supports PHP Version 7.2 and above.
 
-## Installation
+## Usage
 
 Use the following command to install the Corbado PHP SDK:
 
@@ -20,19 +19,14 @@ Use the following command to install the Corbado PHP SDK:
 composer require corbado/php-sdk
 ```
 
-## Usage
-
-To initialize the SDK, supply it with your Corbado account's ```Project ID``` and ```API secret```. You can obtain these
-parameters from the [Corbado developer panel](https://app.corbado.com).
-
-## Initialization
+Now create a new SDK client:
 
 ```PHP
 $config = new Corbado\Configuration("<Project ID>", "<API secret>");
 $corbado = new Corbado\SDK($config);
 ```
 
-### Services
+## Services
 
 The Corbado SDK provides a range of services including:
 
@@ -41,10 +35,7 @@ The Corbado SDK provides a range of services including:
 - `Sessions`
 - `SMSCodes`
 - `Validation`
-- `WebAuthn`
-- `Widget`
-
-- `UserApi`
+- `Users`
 
 To use a specific service, such as Session, invoke it as shown below:
 
@@ -52,7 +43,7 @@ To use a specific service, such as Session, invoke it as shown below:
 $corbado->sessions()->getCurrentUser();
 ```
 
-### Corbado session management
+## Corbado session management
 
 Corbado offers an efficient and secure session management system (refer to
 the [documentation](https://docs.corbado.com/sessions/overview) for more details).
