@@ -4,18 +4,19 @@ namespace integration\Validation;
 
 use Corbado\Classes\Exceptions\ServerException;
 use Corbado\Generated\Model\ValidateEmailReq;
+use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class ValidateEmailTest extends TestCase
+class ValidatePhoneNumberTest extends TestCase
 {
-    public function testValidateEmailValidationError(): void
+    public function testValidatePhoneNumberValidationError(): void
     {
         $res = null;
         $exception = null;
 
         try {
-            $res = Utils::SDK()->validations()->validateEmail((new ValidateEmailReq())->setEmail(''));
+            $res = Utils::SDK()->validations()->validatePhoneNumber((new ValidatePhoneNumberReq())->setPhoneNumber(''));
         } catch (ServerException $e) {
             $exception = $e;
         } catch (\Throwable $e) {
@@ -25,13 +26,13 @@ class ValidateEmailTest extends TestCase
         $this->assertNull($res);
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals('email: cannot be blank', $exception->getValidationMessage());
+        $this->assertEquals('phoneNumber: cannot be blank', $exception->getValidationMessage());
     }
 
-    public function testValidateEmailSuccess(): void
+    public function testValidatePhoneNumberSuccess(): void
     {
         try {
-            $res = Utils::SDK()->validations()->validateEmail((new ValidateEmailReq())->setEmail('info@corbado.com'));
+            $res = Utils::SDK()->validations()->validatePhoneNumber((new ValidatePhoneNumberReq())->setPhoneNumber('+49 151 12345678'));
         } catch (\Throwable $e) {
             $this->fail('Unexpected exception: ' . $e->getMessage());
         }
