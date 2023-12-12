@@ -10,7 +10,10 @@
   ],
   "license": "MIT",
   "autoload": {
-    "psr-4": {"Corbado\\": "src/"}
+    "psr-4": {
+      "Corbado\\": "src/",
+      "integration\\": "tests/integration/"
+    }
   },
   "require": {
     "guzzlehttp/guzzle": "^7.5",

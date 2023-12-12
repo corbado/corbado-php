@@ -56,4 +56,18 @@ class ServerException extends \Exception
     {
         return $this->error;
     }
+
+    public function getValidationMessage(): string
+    {
+        if (empty($this->error)) {
+            return '';
+        }
+
+        $messages = [];
+        foreach ($this->error['validation'] as $item) {
+            $messages[] = $item['field'] . ': ' . $item['message'];
+        }
+
+        return implode('; ', $messages);
+    }
 }
