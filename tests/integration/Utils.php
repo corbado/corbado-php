@@ -76,14 +76,4 @@ class Utils
 
         return $rsp->getData()->getUserId();
     }
-
-    public static function createExceptionFailMessage(\Throwable $e): string
-    {
-        if ($e instanceof ServerException) {
-            return 'Unexpected server exception: ' . $e->getMessage() . ' (' . $e->getValidationMessage() . ')';
-        }
-
-        return 'Unexpected exception: ' . $e->getMessage();
-    }
-
 }

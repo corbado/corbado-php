@@ -23,12 +23,14 @@ class ServerException extends \Exception
      */
     public function __construct(int $httpStatusCode, string $message, array $requestData, float $runtime, array $error)
     {
-        parent::__construct($message, $httpStatusCode);
-
         $this->httpStatusCode = $httpStatusCode;
         $this->requestData = $requestData;
         $this->runtime = $runtime;
         $this->error = $error;
+
+        $message = $message . ' (HTTP status code: ' . $httpStatusCode . ', validation message: ' . $this->getValidationMessage() . ')';
+
+        parent::__construct($message, $httpStatusCode);
     }
 
     public function getHttpStatusCode(): int
@@ -60,6 +62,10 @@ class ServerException extends \Exception
     public function getValidationMessage(): string
     {
         if (empty($this->error)) {
+            return '';
+        }
+
+        if (empty($this->error['validation'])) {
             return '';
         }
 

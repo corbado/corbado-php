@@ -2,49 +2,46 @@
 
 namespace integration\User;
 
+use _PHPStan_f73a165d5\Nette\Neon\Exception;
+use Corbado\Classes\Exceptions\AssertException;
+use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
 class UserListTest extends TestCase
 {
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
     public function testUserListValidationError(): void
     {
-        $rsp = null;
-        $exception = null;
-
         try {
-            $rsp = Utils::SDK()->users()->list('', '', 'foo:bar');
+            Utils::SDK()->users()->list('', '', 'foo:bar');
         } catch (ServerException $e) {
-            $exception = $e;
-        } catch (\Throwable $e) {
-            $this->fail(Utils::createExceptionFailMessage($e));
+            $this->assertEquals(422, $e->getHttpStatusCode());
+            $this->assertEquals('sort: Invalid order direction \'bar\'', $e->getValidationMessage());
         }
-
-        $this->assertNull($rsp);
-        $this->assertNotNull($exception);
-        $this->assertEquals(422, $exception->getHttpStatusCode());
-        $this->assertEquals('sort: Invalid order direction \'bar\'', $exception->getValidationMessage());
     }
 
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
     public function testUserListSuccess(): void
     {
-        try {
-            $userID = Utils::createUser();
+        $userID = Utils::createUser();
+        $rsp = Utils::SDK()->users()->list('', '', 'created:desc');
 
-            $rsp = Utils::SDK()->users()->list();
-
-            $found = false;
-            foreach ($rsp->getData()->getUsers() as $user) {
-                if ($user->getId() === $userID) {
-                    $found = true;
-                    break;
-                }
+        $found = false;
+        foreach ($rsp->getData()->getUsers() as $user) {
+            if ($user->getId() === $userID) {
+                $found = true;
+                break;
             }
-
-            $this->assertTrue($found);
-        } catch (\Throwable $e) {
-            $this->fail(Utils::createExceptionFailMessage($e));
         }
+
+        $this->assertTrue($found);
     }
 }
