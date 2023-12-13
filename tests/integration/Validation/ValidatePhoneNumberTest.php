@@ -12,18 +12,21 @@ class ValidatePhoneNumberTest extends TestCase
 {
     public function testValidatePhoneNumberValidationError(): void
     {
-        $res = null;
+        $rsp = null;
         $exception = null;
 
         try {
-            $res = Utils::SDK()->validations()->validatePhoneNumber((new ValidatePhoneNumberReq())->setPhoneNumber(''));
+            $req = new ValidatePhoneNumberReq();
+            $req->setPhoneNumber('');
+
+            $rsp = Utils::SDK()->validations()->validatePhoneNumber($req);
         } catch (ServerException $e) {
             $exception = $e;
         } catch (\Throwable $e) {
-            $this->fail('Unexpected exception: ' . $e->getMessage());
+            $this->fail(Utils::createExceptionFailMessage($e));
         }
 
-        $this->assertNull($res);
+        $this->assertNull($rsp);
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
         $this->assertEquals('phoneNumber: cannot be blank', $exception->getValidationMessage());
@@ -32,11 +35,14 @@ class ValidatePhoneNumberTest extends TestCase
     public function testValidatePhoneNumberSuccess(): void
     {
         try {
-            $res = Utils::SDK()->validations()->validatePhoneNumber((new ValidatePhoneNumberReq())->setPhoneNumber('+49 151 12345678'));
+            $req = new ValidatePhoneNumberReq();
+            $req->setPhoneNumber('+49 151 12345678');
+
+            $rsp = Utils::SDK()->validations()->validatePhoneNumber($req);
         } catch (\Throwable $e) {
-            $this->fail('Unexpected exception: ' . $e->getMessage());
+            $this->fail(Utils::createExceptionFailMessage($e));
         }
 
-        $this->assertTrue($res->getData()->getIsValid());
+        $this->assertTrue($rsp->getData()->getIsValid());
     }
 }

@@ -8,6 +8,8 @@ use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\EmailLinksInterface;
 use Corbado\Classes\Apis\SMSCodes;
 use Corbado\Classes\Apis\SMSCodesInterface;
+use Corbado\Classes\Apis\Users;
+use Corbado\Classes\Apis\UsersInterface;
 use Corbado\Classes\Apis\Validations;
 use Corbado\Classes\Apis\ValidationsInterface;
 use Corbado\Classes\Assert;
@@ -30,7 +32,7 @@ class SDK
     private ?EmailLinksInterface $emailLinks = null;
     private ?SMSCodesInterface $smsCodes = null;
     private ?ValidationsInterface $validations = null;
-    private ?UserApi $users = null;
+    private ?UsersInterface $users = null;
     private ?Session $session = null;
     private ?AuthTokensInterface $authTokens = null;
 
@@ -120,14 +122,17 @@ class SDK
     /**
      * Returns users handling
      *
-     * @return UserApi
+     * @return UsersInterface
+     * @throws AssertException
      * @throws ConfigurationException
      */
-    public function users(): UserApi
+    public function users(): UsersInterface
     {
         if ($this->users === null) {
-            // @phpstan-ignore-next-line
-            $this->users = new UserApi($this->client, $this->createGeneratedConfiguration());
+            $this->users = new Users(
+                // @phpstan-ignore-next-line
+                new UserApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
         return $this->users;

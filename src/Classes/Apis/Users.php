@@ -15,6 +15,7 @@ use Corbado\Generated\Model\UserCreateReq;
 use Corbado\Generated\Model\UserCreateRsp;
 use Corbado\Generated\Model\UserDeleteReq;
 use Corbado\Generated\Model\UserGetRsp;
+use Corbado\Generated\Model\UserListRsp;
 
 class Users implements UsersInterface
 {
@@ -85,6 +86,26 @@ class Users implements UsersInterface
 
         try {
             $rsp = $this->client->userGet($id, $remoteAddr, $userAgent);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
+        }
+
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
+
+        return $rsp;
+    }
+
+    /**
+     * @param array<string> $filter
+     * @throws ServerException
+     * @throws StandardException
+     */
+    public function list(string $remoteAddr = '', string $userAgent = '', string $sort = '', array $filter = [], int $page = 1, int $pageSize = 10): UserListRsp
+    {
+        try {
+            $rsp = $this->client->userList($remoteAddr, $userAgent, $sort, $filter, $page, $pageSize);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

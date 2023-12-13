@@ -11,18 +11,21 @@ class ValidateEmailTest extends TestCase
 {
     public function testValidateEmailValidationError(): void
     {
-        $res = null;
+        $rsp = null;
         $exception = null;
 
         try {
-            $res = Utils::SDK()->validations()->validateEmail((new ValidateEmailReq())->setEmail(''));
+            $req = new ValidateEmailReq();
+            $req->setEmail('');
+
+            $rsp = Utils::SDK()->validations()->validateEmail($req);
         } catch (ServerException $e) {
             $exception = $e;
         } catch (\Throwable $e) {
-            $this->fail('Unexpected exception: ' . $e->getMessage());
+            $this->fail(Utils::createExceptionFailMessage($e));
         }
 
-        $this->assertNull($res);
+        $this->assertNull($rsp);
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
         $this->assertEquals('email: cannot be blank', $exception->getValidationMessage());
@@ -31,11 +34,14 @@ class ValidateEmailTest extends TestCase
     public function testValidateEmailSuccess(): void
     {
         try {
-            $res = Utils::SDK()->validations()->validateEmail((new ValidateEmailReq())->setEmail('info@corbado.com'));
+            $req = new ValidateEmailReq();
+            $req->setEmail('info@corbado.com');
+
+            $rsp = Utils::SDK()->validations()->validateEmail($req);
         } catch (\Throwable $e) {
-            $this->fail('Unexpected exception: ' . $e->getMessage());
+            $this->fail(Utils::createExceptionFailMessage($e));
         }
 
-        $this->assertTrue($res->getData()->getIsValid());
+        $this->assertTrue($rsp->getData()->getIsValid());
     }
 }
