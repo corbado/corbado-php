@@ -17,12 +17,17 @@ class UserListTest extends TestCase
      */
     public function testUserListValidationError(): void
     {
+        $exception = null;
+
         try {
             Utils::SDK()->users()->list('', '', 'foo:bar');
         } catch (ServerException $e) {
-            $this->assertEquals(422, $e->getHttpStatusCode());
-            $this->assertEquals('sort: Invalid order direction \'bar\'', $e->getValidationMessage());
+            $exception = $e;
         }
+
+        $this->assertNotNull($exception);
+        $this->assertEquals(422, $exception->getHttpStatusCode());
+        $this->assertEquals('sort: Invalid order direction \'bar\'', $exception->getValidationMessage());
     }
 
     /**

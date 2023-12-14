@@ -52,12 +52,12 @@ class Utils
         return $string;
     }
 
-    private static function createRandomTestName(): string
+    public static function createRandomTestName(): string
     {
         return self::generateString(10);
     }
 
-    private static function createRandomTestEmail(): string
+    public static function createRandomTestEmail(): string
     {
         return self::generateString(10) . '@test.de';
     }

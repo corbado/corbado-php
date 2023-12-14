@@ -5,40 +5,46 @@ namespace integration\User;
 use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Generated\Model\UserDeleteReq;
+use Corbado\Generated\Model\UserCreateReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class UserDeleteTest extends TestCase
+class UserCreateTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserDeleteNotFound(): void
+    public function testUserCreateValidationError(): void
     {
         $exception = null;
 
         try {
-            Utils::SDK()->users()->delete('usr-123456789', new UserDeleteReq());
+            $req = new UserCreateReq();
+            $req->setName('');
+            $req->setEmail('');
+
+            Utils::SDK()->users()->create($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals('userID: does not exist', $exception->getValidationMessage());
+        $this->assertEquals('name: cannot be blank', $exception->getValidationMessage());
     }
 
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserDeleteSuccess(): void
+    public function testUserCreateSuccess(): void
     {
-        $userID = Utils::createUser();
+        $req = new UserCreateReq();
+        $req->setName(Utils::createRandomTestName());
+        $req->setEmail(Utils::createRandomTestEmail());
 
-        $rsp = Utils::SDK()->users()->delete($userID, new UserDeleteReq());
+        $rsp = Utils::SDK()->users()->create($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

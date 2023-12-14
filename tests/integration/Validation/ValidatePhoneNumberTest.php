@@ -17,15 +17,20 @@ class ValidatePhoneNumberTest extends TestCase
      */
     public function testValidatePhoneNumberValidationError(): void
     {
+        $exception = null;
+
         try {
             $req = new ValidatePhoneNumberReq();
             $req->setPhoneNumber('');
 
             Utils::SDK()->validations()->validatePhoneNumber($req);
         } catch (ServerException $e) {
-            $this->assertEquals(400, $e->getHttpStatusCode());
-            $this->assertEquals('phoneNumber: cannot be blank', $e->getValidationMessage());
+            $exception = $e;
         }
+
+        $this->assertNotNull($e);
+        $this->assertEquals(400, $exception->getHttpStatusCode());
+        $this->assertEquals('phoneNumber: cannot be blank', $exception->getValidationMessage());
     }
 
     /**

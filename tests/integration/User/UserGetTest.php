@@ -17,11 +17,16 @@ class UserGetTest extends TestCase
      */
     public function testUserGetNotFound(): void
     {
+        $exception = null;
+
         try {
             Utils::SDK()->users()->get('usr-123456789');
         } catch (ServerException $e) {
-            $this->assertEquals(404, $e->getHttpStatusCode());
+            $exception = $e;
         }
+
+        $this->assertNotNull($exception);
+        $this->assertEquals(404, $exception->getHttpStatusCode());
     }
 
     /**

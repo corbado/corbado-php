@@ -17,15 +17,20 @@ class ValidateEmailTest extends TestCase
      */
     public function testValidateEmailValidationError(): void
     {
+        $exception = null;
+
         try {
             $req = new ValidateEmailReq();
             $req->setEmail('');
 
             Utils::SDK()->validations()->validateEmail($req);
         } catch (ServerException $e) {
-            $this->assertEquals(400, $e->getHttpStatusCode());
-            $this->assertEquals('email: cannot be blank', $e->getValidationMessage());
+            $exception = $e;
         }
+
+        $this->assertNotNull($exception);
+        $this->assertEquals(400, $exception->getHttpStatusCode());
+        $this->assertEquals('email: cannot be blank', $exception->getValidationMessage());
     }
 
     /**
