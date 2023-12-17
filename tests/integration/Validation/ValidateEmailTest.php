@@ -30,7 +30,7 @@ class ValidateEmailTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals(['email: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['email: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**

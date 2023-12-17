@@ -6,6 +6,7 @@ use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
 use Corbado\Configuration;
+use Corbado\Generated\Model\ClientInfo;
 use Corbado\Generated\Model\UserCreateReq;
 use Corbado\SDK;
 use Exception;
@@ -94,4 +95,14 @@ class Utils
 
         return $rsp->getData()->getUserId();
     }
+
+    public static function createClientInfo(): ClientInfo
+    {
+        $clientInfo = new ClientInfo();
+        $clientInfo->setUserAgent('Integration Test');
+        $clientInfo->setRemoteAddress('127.0.0.1');
+
+        return $clientInfo;
+    }
+
 }

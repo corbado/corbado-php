@@ -31,7 +31,7 @@ class UserCreateTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals(['name: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['name: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**

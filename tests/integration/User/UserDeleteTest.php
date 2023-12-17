@@ -27,7 +27,7 @@ class UserDeleteTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals(['userID: does not exist'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['userID: does not exist'], $exception->getValidationMessages());
     }
 
     /**

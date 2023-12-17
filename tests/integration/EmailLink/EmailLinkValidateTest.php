@@ -29,7 +29,7 @@ class EmailLinkValidateTest extends TestCase
         }
 
         $this->assertNotNull($exception);
-        $this->assertEquals(['token: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['token: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**
