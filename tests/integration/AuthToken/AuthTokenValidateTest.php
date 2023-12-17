@@ -8,6 +8,7 @@ use Corbado\Classes\Exceptions\ServerException;
 use Corbado\Generated\Model\AuthTokenValidateReq;
 use Corbado\Generated\Model\EmailCodeValidateReq;
 use Corbado\Generated\Model\EmailLinksValidateReq;
+use Corbado\SDK;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
@@ -24,7 +25,7 @@ class AuthTokenValidateTest extends TestCase
         try {
             $req = new AuthTokenValidateReq();
             $req->setToken('');
-            $req->setClientInfo(Utils::createClientInfo());
+            $req->setClientInfo(SDK::createClientInfo('124.0.0.1', 'IntegrationTest'));
 
             Utils::SDK()->authTokens()->validate($req);
         } catch (ServerException $e) {

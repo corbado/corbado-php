@@ -95,14 +95,4 @@ class Utils
 
         return $rsp->getData()->getUserId();
     }
-
-    public static function createClientInfo(): ClientInfo
-    {
-        $clientInfo = new ClientInfo();
-        $clientInfo->setUserAgent('Integration Test');
-        $clientInfo->setRemoteAddress('127.0.0.1');
-
-        return $clientInfo;
-    }
-
 }
