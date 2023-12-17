@@ -10,7 +10,6 @@ cd .gen
 curl -s -O https://api.corbado.com/docs/api/openapi/backend_api_public.yml
 docker pull openapitools/openapi-generator-cli
 docker run -v ${PWD}:/local openapitools/openapi-generator-cli generate -i /local/backend_api_public.yml -g php -o /local --additional-properties=invokerPackage=Corbado\\Generated
-
 cp -r lib/* ../../src/Generated
 
 echo " done!"
