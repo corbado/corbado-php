@@ -31,6 +31,7 @@
     "unittests": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests/unit",
     "integrationtests": "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php tests/integration",
     "cs-check": "vendor/bin/php-cs-fixer check --diff --config=.php-cs-fixer.php",
-    "cs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php"
+    "cs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php",
+    "generate-openapi": "sh scripts/generate-openapi.sh"
   }
 }
