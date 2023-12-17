@@ -1,50 +1,48 @@
 <?php
 
-namespace integration\User;
+namespace integration\EmailCode;
 
 use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Generated\Model\UserCreateReq;
+use Corbado\Generated\Model\EmailCodeSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class UserCreateTest extends TestCase
+class EmailCodeSendTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserCreateValidationError(): void
+    public function testEmailCodeSendValidationError(): void
     {
         $exception = null;
 
         try {
-            $req = new UserCreateReq();
-            $req->setName('');
+            $req = new EmailCodeSendReq();
             $req->setEmail('');
 
-            Utils::SDK()->users()->create($req);
+            Utils::SDK()->emailCodes()->send($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
 
         $this->assertNotNull($exception);
-        $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals(['name: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['email: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserCreateSuccess(): void
+    public function testEmailCodeSendSuccess(): void
     {
-        $req = new UserCreateReq();
-        $req->setName(Utils::createRandomTestName());
+        $req = new EmailCodeSendReq();
         $req->setEmail(Utils::createRandomTestEmail());
+        $req->setCreate(true);
 
-        $rsp = Utils::SDK()->users()->create($req);
+        $rsp = Utils::SDK()->emailCodes()->send($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

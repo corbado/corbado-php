@@ -28,9 +28,9 @@ class ValidatePhoneNumberTest extends TestCase
             $exception = $e;
         }
 
-        $this->assertNotNull($e);
+        $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals('phoneNumber: cannot be blank', $exception->getValidationMessage());
+        $this->assertEquals(['phoneNumber: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**

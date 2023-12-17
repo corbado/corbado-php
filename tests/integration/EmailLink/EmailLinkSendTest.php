@@ -1,50 +1,50 @@
 <?php
 
-namespace integration\User;
+namespace integration\EmailLink;
 
 use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Generated\Model\UserCreateReq;
+use Corbado\Generated\Model\EmailLinkSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class UserCreateTest extends TestCase
+class EmailLinkSendTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserCreateValidationError(): void
+    public function testEmailLinkSendValidationError(): void
     {
         $exception = null;
 
         try {
-            $req = new UserCreateReq();
-            $req->setName('');
+            $req = new EmailLinkSendReq();
             $req->setEmail('');
+            $req->setRedirect('');
 
-            Utils::SDK()->users()->create($req);
+            Utils::SDK()->emailLinks()->send($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
 
         $this->assertNotNull($exception);
-        $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEquals(['name: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['email: cannot be blank', 'redirect: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testUserCreateSuccess(): void
+    public function testEmailLinkSendSuccess(): void
     {
-        $req = new UserCreateReq();
-        $req->setName(Utils::createRandomTestName());
+        $req = new EmailLinkSendReq();
         $req->setEmail(Utils::createRandomTestEmail());
+        $req->setRedirect('https://example.com');
+        $req->setCreate(true);
 
-        $rsp = Utils::SDK()->users()->create($req);
+        $rsp = Utils::SDK()->emailLinks()->send($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

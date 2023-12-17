@@ -27,7 +27,7 @@ class UserListTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(422, $exception->getHttpStatusCode());
-        $this->assertEquals('sort: Invalid order direction \'bar\'', $exception->getValidationMessage());
+        $this->assertEquals(['sort: Invalid order direction \'bar\''], $exception->getValidationMessages());
     }
 
     /**

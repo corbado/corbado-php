@@ -28,7 +28,7 @@ class ServerException extends \Exception
         $this->runtime = $runtime;
         $this->error = $error;
 
-        $message = $message . ' (HTTP status code: ' . $httpStatusCode . ', validation message: ' . $this->getValidationMessage() . ')';
+        $message = $message . ' (HTTP status code: ' . $httpStatusCode . ', validation message: ' . implode('; ', $this->getValidationMessages()) . ')';
 
         parent::__construct($message, $httpStatusCode);
     }
@@ -59,14 +59,17 @@ class ServerException extends \Exception
         return $this->error;
     }
 
-    public function getValidationMessage(): string
+    /**
+     * @return array<string>
+     */
+    public function getValidationMessages(): array
     {
         if (empty($this->error)) {
-            return '';
+            return [];
         }
 
         if (empty($this->error['validation'])) {
-            return '';
+            return [];
         }
 
         $messages = [];
@@ -74,6 +77,6 @@ class ServerException extends \Exception
             $messages[] = $item['field'] . ': ' . $item['message'];
         }
 
-        return implode('; ', $messages);
+        return $messages;
     }
 }

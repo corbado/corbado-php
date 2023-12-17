@@ -52,6 +52,19 @@ class Utils
         return $string;
     }
 
+    private static function generateNumber(int $length): string
+    {
+        $characters = '0123456789';
+        $charactersLength = strlen($characters);
+
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $string;
+    }
+
     public static function createRandomTestName(): string
     {
         return self::generateString(10);
@@ -60,6 +73,11 @@ class Utils
     public static function createRandomTestEmail(): string
     {
         return self::generateString(10) . '@test.de';
+    }
+
+    public static function createRandomTestPhoneNumber(): string
+    {
+        return '+49' . self::generateNumber(13);
     }
 
     /**
