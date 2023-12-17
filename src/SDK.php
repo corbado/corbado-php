@@ -4,6 +4,8 @@ namespace Corbado;
 
 use Corbado\Classes\Apis\AuthTokens;
 use Corbado\Classes\Apis\AuthTokensInterface;
+use Corbado\Classes\Apis\EmailCodes;
+use Corbado\Classes\Apis\EmailCodesInterface;
 use Corbado\Classes\Apis\EmailLinks;
 use Corbado\Classes\Apis\EmailLinksInterface;
 use Corbado\Classes\Apis\SMSCodes;
@@ -18,6 +20,7 @@ use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Session;
 use Corbado\Generated\Api\AuthTokensApi;
 use Corbado\Generated\Api\EmailMagicLinksApi;
+use Corbado\Generated\Api\EmailOTPApi;
 use Corbado\Generated\Api\SMSOTPApi;
 use Corbado\Generated\Api\UserApi;
 use Corbado\Generated\Api\ValidationApi;
@@ -35,6 +38,7 @@ class SDK
     private ?UsersInterface $users = null;
     private ?Session $session = null;
     private ?AuthTokensInterface $authTokens = null;
+    private ?EmailCodesInterface $emailCodes = null;
 
     public const VERSION = '1.0.0';
 
@@ -182,6 +186,22 @@ class SDK
         }
 
         return $this->authTokens;
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
+    public function emailCodes(): EmailCodesInterface
+    {
+        if ($this->emailCodes === null) {
+            $this->emailCodes = new EmailCodes(
+                // @phpstan-ignore-next-line
+                new EmailOTPApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->emailCodes;
     }
 
     /**
