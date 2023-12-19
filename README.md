@@ -1,3 +1,6 @@
+<img width="1070" alt="GitHub Repo Cover" src="https://github.com/corbado/corbado-php/assets/18458907/5615d54e-f0a5-4aa1-a787-e4be0a3c0b9d">
+
+
 # Corbado PHP SDK
 
 [![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/corbado-php)
