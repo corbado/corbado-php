@@ -4,11 +4,11 @@
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
 [![Test Status](https://github.com/corbado/corbado-php/actions/workflows/build.yml/badge.svg)](https://github.com/corbado/corbado-php/actions)
 [![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
-[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://corbado.slack.com)
+[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ)
 
 The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the [Corbado Backend API](https://api.corbado.com/docs/api/) from applications written in the PHP language.
 
-# Getting started
+# :rocket: Getting started
 
 ## Requirements
 
@@ -51,7 +51,7 @@ If you encounter any bugs or have suggestions, please [open an issue](https://gi
 
 Join our Slack channel to discuss questions or ideas with the Corbado team and other developers.
 
-[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://corbado.slack.com)
+[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ)
 
 ## Email
 
