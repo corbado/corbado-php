@@ -1,17 +1,20 @@
 # Corbado PHP SDK
 
-PHP SDK for Corbado Backend API
-
 [![Test Status](https://github.com/corbado/corbado-php/workflows/build/badge.svg)](https://github.com/corbado/corbado-php/actions?query=workflow%3Abuild)
 [![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
 [![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/corbado-php)
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
 
+The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the [Corbado Backend API](https://api.corbado.com/docs/api/) from applications written in the PHP language.
+
+# Getting started
+
 ## Requirements
 
-The SDK supports PHP Version 7.2 and above.
+- PHP 7.2 or later
+- [Composer](https://getcomposer.org/)
 
-## Usage
+## Installation
 
 Use the following command to install the Corbado PHP SDK:
 
@@ -19,44 +22,40 @@ Use the following command to install the Corbado PHP SDK:
 composer require corbado/php-sdk
 ```
 
-Now create a new SDK client:
+## Usage
+
+To create a Corbado PHP SDK instance you need to provide your `project ID` and `API secret` which can be found at the [Developer Panel](https://app.corbado.com).
 
 ```PHP
 $config = new Corbado\Configuration("<Project ID>", "<API secret>");
 $corbado = new Corbado\SDK($config);
 ```
 
-## Services
+# Advanced
 
-The Corbado SDK provides a range of services including:
+## Error handling
 
-- `AuthTokens`
-- `EmailLinks`
-- `Sessions`
-- `SMSCodes`
-- `Validation`
-- `Users`
+The Corbado PHP SDK throws exceptions for all errors. The following exceptions are thrown:
 
-To use a specific service, such as Session, invoke it as shown below:
+- `Corbado\ApiException` for any API errors
+- TODO
 
-```PHP
-$corbado->sessions()->getCurrentUser();
-```
+# Support & Feedback
 
-## Corbado session management
+## Raise an issue
 
-Corbado offers an efficient and secure session management system (refer to
-the [documentation](https://docs.corbado.com/sessions/overview) for more details).
+If you encounter any bugs or have suggestions, please [open an issue](https://github.com/corbado/corbado-php/issues/new).
 
-To validate a user after authentication, call `getCurrentUser()` which returns a user object with
-all information about the current user. This object contains the current authentication state as well as user's id,
-name, email and phone number.
+## Slack channel
 
-```PHP
-$user = $corbado->sessions()->getCurrentUser();
-if ($user->isAuthenticated()) {
-    // Do anything with authenticated user
-} else {
-    // Perform login ceremony
-}
-```
+Join our Slack channel to discuss questions or ideas with the Corbado team and other developers.
+
+[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://corbado.slack.com)
+
+## Email
+
+You can also reach out to us via email at vincent.delitz@corbado.com.
+
+## Vulnerability Reporting
+
+Please report suspected security vulnerabilities in private to security@corbado.com. Please do NOT create publicly viewable issues for suspected security vulnerabilities.
