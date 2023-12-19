@@ -1,6 +1,6 @@
 # Corbado PHP SDK
 
-[![Test Status](https://github.com/corbado/corbado-php/workflows/build/badge.svg)](https://github.com/corbado/corbado-php/actions?query=workflow%3Abuild)
+[![Test Status](https://github.com/corbado/corbado-php/actions/workflows/build.yml/badge.svg)](https://github.com/corbado/corbado-php/actions)
 [![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
 [![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/corbado-php)
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
@@ -56,6 +56,6 @@ Join our Slack channel to discuss questions or ideas with the Corbado team and o
 
 You can also reach out to us via email at vincent.delitz@corbado.com.
 
-## Vulnerability Reporting
+## Vulnerability reporting
 
 Please report suspected security vulnerabilities in private to security@corbado.com. Please do NOT create publicly viewable issues for suspected security vulnerabilities.
