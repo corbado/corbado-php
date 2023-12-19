@@ -1,4 +1,5 @@
-<img width="1070" alt="GitHub Repo Cover" src="https://github.com/corbado/corbado-php/assets/18458907/5615d54e-f0a5-4aa1-a787-e4be0a3c0b9d">
+<img width="1070" alt="GitHub Repo Cover" src="https://github.com/corbado/corbado-php/assets/18458907/aa4f9df6-980b-4b24-bb2f-d71c0f480971">
+
 
 
 # Corbado PHP SDK
