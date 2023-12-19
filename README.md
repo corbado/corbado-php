@@ -32,7 +32,7 @@ $config = new Corbado\Configuration("<Project ID>", "<API secret>");
 $corbado = new Corbado\SDK($config);
 ```
 
-# Advanced
+# :books: Advanced
 
 ## Error handling
 
@@ -41,7 +41,7 @@ The Corbado PHP SDK throws exceptions for all errors. The following exceptions a
 - `Corbado\ApiException` for any API errors
 - TODO
 
-# Support & Feedback
+# :speech_balloon: Support & Feedback
 
 ## Raise an issue
 
