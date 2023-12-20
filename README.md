@@ -80,7 +80,7 @@ try {
 
 # :speech_balloon: Support & Feedback
 
-## Raise an issue
+## Report an issue
 
 If you encounter any bugs or have suggestions, please [open an issue](https://github.com/corbado/corbado-php/issues/new).
 
