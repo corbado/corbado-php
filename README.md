@@ -42,7 +42,11 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 # :speedboat: Services
 
-TODO
+The Corbado PHP SDK provides the following services:
+
+- `EmailLinks` for managing email links
+- `EmailOTPs` for managing email OTPs
+- `SMSOTPs` for managing SMS OTPs
 
 # :books: Advanced
 
