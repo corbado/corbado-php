@@ -31,8 +31,12 @@ To create a Corbado PHP SDK instance you need to provide your `project ID` and `
 
 ```PHP
 $config = new Corbado\Configuration("<Project ID>", "<API secret>");
-$corbado = new Corbado\SDK($config);
+$sdk = new Corbado\SDK($config);
 ```
+
+## Examples
+
+A list of Corbado PHP SDK examples can be found in the integration tests [here](tests/integration).
 
 # :books: Advanced
 
