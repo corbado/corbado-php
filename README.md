@@ -44,13 +44,13 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
-- `emailMagicLinks` for managing email links ([examples](tests/integration/EmailLink))
-- `emailOTPs` for managing email OTPs ([examples](tests/integration/todo))
-- `smsOTPs` for managing SMS OTPs ([examples](tests/integration/todo))
-- `sessions` for managing sessions ([examples](tests/integration/todo))
-- `users` for managing users ([examples](tests/integration/todo))
-- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/todo))
-- `validations` for validating email addresses and phone numbers ([examples](tests/integration/todo))
+- `emailMagicLinks` for managing email links ([examples](tests/integration/EmailMagicLink))
+- `emailOTPs` for managing email OTPs ([examples](tests/integration/EmailOTP))
+- `smsOTPs` for managing SMS OTPs ([examples](tests/integration/SmsOTP))
+- `sessions` for managing sessions
+- `users` for managing users ([examples](tests/integration/User))
+- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/AuthToken))
+- `validations` for validating email addresses and phone numbers ([examples](tests/integration/Validation))
 
 To use a specific service, such as `sessions`, invoke it as shown below:
 

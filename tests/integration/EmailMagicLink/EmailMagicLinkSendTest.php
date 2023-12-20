@@ -1,6 +1,6 @@
 <?php
 
-namespace integration\EmailLink;
+namespace integration\EmailMagicLink;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
@@ -9,13 +9,13 @@ use Corbado\Generated\Model\EmailLinkSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class EmailLinkSendTest extends TestCase
+class EmailMagicLinkSendTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailLinkSendValidationError(): void
+    public function testEmailMagicLinkSendValidationError(): void
     {
         $exception = null;
 
@@ -37,7 +37,7 @@ class EmailLinkSendTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailLinkSendSuccess(): void
+    public function testEmailMagicLinkSendSuccess(): void
     {
         $req = new EmailLinkSendReq();
         $req->setEmail(Utils::createRandomTestEmail());

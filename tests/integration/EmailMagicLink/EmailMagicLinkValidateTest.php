@@ -1,6 +1,6 @@
 <?php
 
-namespace integration\EmailLink;
+namespace integration\EmailMagicLink;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
@@ -9,13 +9,13 @@ use Corbado\Generated\Model\EmailLinksValidateReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class EmailLinkValidateTest extends TestCase
+class EmailMagicLinkValidateTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailLinkValidateValidationErrorEmptyToken(): void
+    public function testEmailMagicLinkValidateValidationErrorEmptyToken(): void
     {
         $exception = null;
 
@@ -36,7 +36,7 @@ class EmailLinkValidateTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailLinkValidateValidationErrorInvalidID(): void
+    public function testEmailMagicLinkValidateValidationErrorInvalidID(): void
     {
         $exception = null;
 
