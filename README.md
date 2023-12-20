@@ -44,7 +44,7 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
-- `emailMagicLinks` for managing email links ([examples](tests/integration/EmailMagicLink))
+- `emailMagicLinks` for managing email magic links ([examples](tests/integration/EmailMagicLink))
 - `emailOTPs` for managing email OTPs ([examples](tests/integration/EmailOTP))
 - `smsOTPs` for managing SMS OTPs ([examples](tests/integration/SmsOTP))
 - `sessions` for managing sessions
