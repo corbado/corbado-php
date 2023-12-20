@@ -2,7 +2,7 @@
 
 # Corbado PHP SDK
 
-[![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/corbado-php)
+[![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/php-sdk)
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
 [![Test Status](https://github.com/corbado/corbado-php/actions/workflows/build.yml/badge.svg)](https://github.com/corbado/corbado-php/actions)
 [![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
