@@ -10,6 +10,8 @@
 
 The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the [Corbado Backend API](https://api.corbado.com/docs/api/) from applications written in the PHP language.
 
+[Getting started](#rocket-getting-started) | [Services](#speedboat-services) | [Advanced](#books-advanced) | [Support & Feedback](#speech_balloon-support--feedback)
+
 # :rocket: Getting started
 
 ## Requirements
