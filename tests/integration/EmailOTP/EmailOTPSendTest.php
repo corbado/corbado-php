@@ -1,6 +1,6 @@
 <?php
 
-namespace integration\EmailCode;
+namespace integration\EmailOTP;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
@@ -9,13 +9,13 @@ use Corbado\Generated\Model\EmailCodeSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class EmailCodeSendTest extends TestCase
+class EmailOTPSendTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailCodeSendValidationError(): void
+    public function testEmailOTPSendValidationError(): void
     {
         $exception = null;
 
@@ -36,7 +36,7 @@ class EmailCodeSendTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testEmailCodeSendSuccess(): void
+    public function testEmailOTPSendSuccess(): void
     {
         $req = new EmailCodeSendReq();
         $req->setEmail(Utils::createRandomTestEmail());

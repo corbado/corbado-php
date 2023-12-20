@@ -1,6 +1,6 @@
 <?php
 
-namespace integration\SMSCode;
+namespace integration\SmsOTP;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
@@ -9,13 +9,13 @@ use Corbado\Generated\Model\SmsCodeSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
-class SMSCodeSendTest extends TestCase
+class SmsOTPSendTest extends TestCase
 {
     /**
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testSMSCodeSendValidationError(): void
+    public function testSmsOTPSendValidationError(): void
     {
         $exception = null;
 
@@ -36,7 +36,7 @@ class SMSCodeSendTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function testSMSCodeSendSuccess(): void
+    public function testSmsOTPSendSuccess(): void
     {
         $req = new SMSCodeSendReq();
         $req->setPhoneNumber(Utils::createRandomTestPhoneNumber());
