@@ -23,7 +23,7 @@ class EmailLinkValidateTest extends TestCase
             $req = new EmailLinksValidateReq();
             $req->setToken('');
 
-            Utils::SDK()->emailLinks()->validate('eml-123456789', $req);
+            Utils::SDK()->emailMagicLinks()->validate('eml-123456789', $req);
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -44,7 +44,7 @@ class EmailLinkValidateTest extends TestCase
             $req = new EmailLinksValidateReq();
             $req->setToken('fdfdsfdss1fdfdsfdss1');
 
-            Utils::SDK()->emailLinks()->validate('eml-123456789', $req);
+            Utils::SDK()->emailMagicLinks()->validate('eml-123456789', $req);
         } catch (ServerException $e) {
             $exception = $e;
         }

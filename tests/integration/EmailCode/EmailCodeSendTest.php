@@ -23,7 +23,7 @@ class EmailCodeSendTest extends TestCase
             $req = new EmailCodeSendReq();
             $req->setEmail('');
 
-            Utils::SDK()->emailCodes()->send($req);
+            Utils::SDK()->emailOTPs()->send($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -42,7 +42,7 @@ class EmailCodeSendTest extends TestCase
         $req->setEmail(Utils::createRandomTestEmail());
         $req->setCreate(true);
 
-        $rsp = Utils::SDK()->emailCodes()->send($req);
+        $rsp = Utils::SDK()->emailOTPs()->send($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

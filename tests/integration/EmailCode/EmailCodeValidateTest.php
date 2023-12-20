@@ -23,7 +23,7 @@ class EmailCodeValidateTest extends TestCase
             $req = new EmailCodeValidateReq();
             $req->setCode('');
 
-            Utils::SDK()->emailCodes()->validate('emc-123456789', $req);
+            Utils::SDK()->emailOTPs()->validate('emc-123456789', $req);
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -44,7 +44,7 @@ class EmailCodeValidateTest extends TestCase
             $req = new EmailCodeValidateReq();
             $req->setCode('123456');
 
-            Utils::SDK()->emailCodes()->validate('emc-123456789', $req);
+            Utils::SDK()->emailOTPs()->validate('emc-123456789', $req);
         } catch (ServerException $e) {
             $exception = $e;
         }

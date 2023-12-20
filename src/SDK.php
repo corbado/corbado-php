@@ -4,12 +4,12 @@ namespace Corbado;
 
 use Corbado\Services\AuthTokens;
 use Corbado\Services\AuthTokensInterface;
-use Corbado\Services\EmailCodes;
-use Corbado\Services\EmailCodesInterface;
-use Corbado\Services\EmailLinks;
-use Corbado\Services\EmailLinksInterface;
-use Corbado\Services\SMSCodes;
-use Corbado\Services\SMSCodesInterface;
+use Corbado\Services\EmailOTPs;
+use Corbado\Services\EmailOTPsInterface;
+use Corbado\Services\EmailMagicMagicLinks;
+use Corbado\Services\EmailMagicLinksInterface;
+use Corbado\Services\SmsOTPs;
+use Corbado\Services\SmsOTPsInterface;
 use Corbado\Services\Users;
 use Corbado\Services\UsersInterface;
 use Corbado\Services\Validations;
@@ -32,13 +32,13 @@ class SDK
 {
     private Configuration $config;
     private ClientInterface $client;
-    private ?EmailLinksInterface $emailLinks = null;
-    private ?SMSCodesInterface $smsCodes = null;
+    private ?EmailMagicLinksInterface $emailMagicLinks = null;
+    private ?SmsOTPsInterface $smsOTPs = null;
     private ?ValidationsInterface $validations = null;
     private ?UsersInterface $users = null;
     private ?Session $session = null;
     private ?AuthTokensInterface $authTokens = null;
-    private ?EmailCodesInterface $emailCodes = null;
+    private ?EmailOTPsInterface $emailOTPs = null;
 
     public const VERSION = '1.0.0';
 
@@ -67,41 +67,41 @@ class SDK
     }
 
     /**
-     * Returns email links handling
+     * Returns email magic link handling
      *
-     * @return EmailLinksInterface
+     * @return EmailMagicLinksInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function emailLinks(): EmailLinksInterface
+    public function emailMagicLinks(): EmailMagicLinksInterface
     {
-        if ($this->emailLinks === null) {
-            $this->emailLinks = new EmailLinks(
+        if ($this->emailMagicLinks === null) {
+            $this->emailMagicLinks = new EmailMagicMagicLinks(
                 // @phpstan-ignore-next-line
                 new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
             );
         }
 
-        return $this->emailLinks;
+        return $this->emailMagicLinks;
     }
 
     /**
-     * Returns SMS codes handling
+     * Returns SMS OTP handling
      *
-     * @return SMSCodesInterface
+     * @return SmsOTPsInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function smsCodes(): SMSCodesInterface
+    public function smsOTPs(): SmsOTPsInterface
     {
-        if ($this->smsCodes === null) {
-            $this->smsCodes = new SMSCodes(
+        if ($this->smsOTPs === null) {
+            $this->smsOTPs = new SmsOTPs(
                 // @phpstan-ignore-next-line
                 new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
             );
         }
 
-        return $this->smsCodes;
+        return $this->smsOTPs;
     }
 
     /**
@@ -124,7 +124,7 @@ class SDK
     }
 
     /**
-     * Returns users handling
+     * Returns user handling
      *
      * @return UsersInterface
      * @throws AssertException
@@ -170,7 +170,7 @@ class SDK
     }
 
     /**
-     * Returns auth tokens handling
+     * Returns auth token handling
      *
      * @return AuthTokensInterface
      * @throws ConfigurationException
@@ -189,24 +189,26 @@ class SDK
     }
 
     /**
+     * Returns email OTP handling
+     *
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function emailCodes(): EmailCodesInterface
+    public function emailOTPs(): EmailOTPsInterface
     {
-        if ($this->emailCodes === null) {
-            $this->emailCodes = new EmailCodes(
+        if ($this->emailOTPs === null) {
+            $this->emailOTPs = new EmailOTPs(
                 // @phpstan-ignore-next-line
                 new EmailOTPApi($this->client, $this->createGeneratedConfiguration())
             );
         }
 
-        return $this->emailCodes;
+        return $this->emailOTPs;
     }
 
     /**
      * @return Generated\Configuration
-     * @throws \Corbado\Exceptions\ConfigurationException
+     * @throws ConfigurationException
      */
     private function createGeneratedConfiguration(): Generated\Configuration
     {
@@ -225,7 +227,7 @@ class SDK
     }
 
     /**
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public static function createClientInfo(string $remoteAddress, string $userAgent): ClientInfo
     {

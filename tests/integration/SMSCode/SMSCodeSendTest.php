@@ -23,7 +23,7 @@ class SMSCodeSendTest extends TestCase
             $req = new SMSCodeSendReq();
             $req->setPhoneNumber('');
 
-            Utils::SDK()->smsCodes()->send($req);
+            Utils::SDK()->smsOTPs()->send($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -42,7 +42,7 @@ class SMSCodeSendTest extends TestCase
         $req->setPhoneNumber(Utils::createRandomTestPhoneNumber());
         $req->setCreate(true);
 
-        $rsp = Utils::SDK()->smsCodes()->send($req);
+        $rsp = Utils::SDK()->smsOTPs()->send($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

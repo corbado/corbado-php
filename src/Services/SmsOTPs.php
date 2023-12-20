@@ -5,24 +5,24 @@ namespace Corbado\Services;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\EmailMagicLinksApi;
+use Corbado\Generated\Api\SMSOTPApi;
 use Corbado\Generated\ApiException;
-use Corbado\Generated\Model\EmailLinkSendReq;
-use Corbado\Generated\Model\EmailLinkSendRsp;
-use Corbado\Generated\Model\EmailLinksValidateReq;
-use Corbado\Generated\Model\EmailLinkValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
+use Corbado\Generated\Model\SmsCodeSendReq;
+use Corbado\Generated\Model\SmsCodeSendRsp;
+use Corbado\Generated\Model\SmsCodeValidateReq;
+use Corbado\Generated\Model\SmsCodeValidateRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class EmailLinks implements EmailLinksInterface
+class SmsOTPs implements SmsOTPsInterface
 {
-    private EmailMagicLinksApi $client;
+    private SMSOTPApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(EmailMagicLinksApi $client)
+    public function __construct(SMSOTPApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
@@ -33,12 +33,12 @@ class EmailLinks implements EmailLinksInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function send(EmailLinkSendReq $req): EmailLinkSendRsp
+    public function send(SmsCodeSendReq $req): SmsCodeSendRsp
     {
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->emailLinkSend($req);
+            $rsp = $this->client->smsCodeSend($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -51,17 +51,17 @@ class EmailLinks implements EmailLinksInterface
     }
 
     /**
+     * @throws StandardException
      * @throws AssertException
      * @throws ServerException
-     * @throws StandardException
      */
-    public function validate(string $id, EmailLinksValidateReq $req): EmailLinkValidateRsp
+    public function validate(string $id, SmsCodeValidateReq $req): SmsCodeValidateRsp
     {
         Assert::stringNotEmpty($id);
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->emailLinkValidate($id, $req);
+            $rsp = $this->client->smsCodeValidate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

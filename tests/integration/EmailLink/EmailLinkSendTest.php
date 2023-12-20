@@ -24,7 +24,7 @@ class EmailLinkSendTest extends TestCase
             $req->setEmail('');
             $req->setRedirect('');
 
-            Utils::SDK()->emailLinks()->send($req);
+            Utils::SDK()->emailMagicLinks()->send($req);
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -44,7 +44,7 @@ class EmailLinkSendTest extends TestCase
         $req->setRedirect('https://example.com');
         $req->setCreate(true);
 
-        $rsp = Utils::SDK()->emailLinks()->send($req);
+        $rsp = Utils::SDK()->emailMagicLinks()->send($req);
         $this->assertEquals(200, $rsp->getHttpStatusCode());
     }
 }

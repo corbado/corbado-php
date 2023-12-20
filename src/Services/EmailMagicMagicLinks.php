@@ -5,24 +5,24 @@ namespace Corbado\Services;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\EmailOTPApi;
+use Corbado\Generated\Api\EmailMagicLinksApi;
 use Corbado\Generated\ApiException;
-use Corbado\Generated\Model\EmailCodeSendReq;
-use Corbado\Generated\Model\EmailCodeSendRsp;
-use Corbado\Generated\Model\EmailCodeValidateReq;
-use Corbado\Generated\Model\EmailCodeValidateRsp;
+use Corbado\Generated\Model\EmailLinkSendReq;
+use Corbado\Generated\Model\EmailLinkSendRsp;
+use Corbado\Generated\Model\EmailLinksValidateReq;
+use Corbado\Generated\Model\EmailLinkValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class EmailCodes implements EmailCodesInterface
+class EmailMagicMagicLinks implements EmailMagicLinksInterface
 {
-    private EmailOTPApi $client;
+    private EmailMagicLinksApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(EmailOTPApi $client)
+    public function __construct(EmailMagicLinksApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
@@ -33,12 +33,12 @@ class EmailCodes implements EmailCodesInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function send(EmailCodeSendReq $req): EmailCodeSendRsp
+    public function send(EmailLinkSendReq $req): EmailLinkSendRsp
     {
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->emailCodeSend($req);
+            $rsp = $this->client->emailLinkSend($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -51,17 +51,17 @@ class EmailCodes implements EmailCodesInterface
     }
 
     /**
-     * @throws StandardException
      * @throws AssertException
      * @throws ServerException
+     * @throws StandardException
      */
-    public function validate(string $id, EmailCodeValidateReq $req): EmailCodeValidateRsp
+    public function validate(string $id, EmailLinksValidateReq $req): EmailLinkValidateRsp
     {
         Assert::stringNotEmpty($id);
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->emailCodeValidate($id, $req);
+            $rsp = $this->client->emailLinkValidate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
