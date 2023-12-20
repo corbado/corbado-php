@@ -5,7 +5,6 @@ namespace integration\User;
 use Corbado\Classes\Exceptions\AssertException;
 use Corbado\Classes\Exceptions\ConfigurationException;
 use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Generated\Model\UserDeleteReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
