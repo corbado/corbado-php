@@ -2,18 +2,18 @@
 
 namespace Corbado;
 
-use Corbado\Classes\Apis\AuthTokens;
-use Corbado\Classes\Apis\AuthTokensInterface;
-use Corbado\Classes\Apis\EmailCodes;
-use Corbado\Classes\Apis\EmailCodesInterface;
-use Corbado\Classes\Apis\EmailLinks;
-use Corbado\Classes\Apis\EmailLinksInterface;
-use Corbado\Classes\Apis\SMSCodes;
-use Corbado\Classes\Apis\SMSCodesInterface;
-use Corbado\Classes\Apis\Users;
-use Corbado\Classes\Apis\UsersInterface;
-use Corbado\Classes\Apis\Validations;
-use Corbado\Classes\Apis\ValidationsInterface;
+use Corbado\Services\AuthTokens;
+use Corbado\Services\AuthTokensInterface;
+use Corbado\Services\EmailCodes;
+use Corbado\Services\EmailCodesInterface;
+use Corbado\Services\EmailLinks;
+use Corbado\Services\EmailLinksInterface;
+use Corbado\Services\SMSCodes;
+use Corbado\Services\SMSCodesInterface;
+use Corbado\Services\Users;
+use Corbado\Services\UsersInterface;
+use Corbado\Services\Validations;
+use Corbado\Services\ValidationsInterface;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
 use Corbado\Generated\Api\AuthTokensApi;

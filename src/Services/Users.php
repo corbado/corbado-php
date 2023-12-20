@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes\Apis;
+namespace Corbado\Services;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes\Apis;
+namespace Corbado\Services;
 
 use Corbado\Generated\Model\ValidateEmailReq;
 use Corbado\Generated\Model\ValidateEmailRsp;

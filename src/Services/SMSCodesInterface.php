@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes\Apis;
+namespace Corbado\Services;
 
 use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeSendRsp;

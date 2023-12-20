@@ -1,47 +1,44 @@
 <?php
 
-namespace Corbado\Classes\Apis;
+namespace Corbado\Services;
 
-use Corbado\Classes\Exceptions\Http;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\ValidationApi;
+use Corbado\Generated\Api\EmailMagicLinksApi;
 use Corbado\Generated\ApiException;
+use Corbado\Generated\Model\EmailLinkSendReq;
+use Corbado\Generated\Model\EmailLinkSendRsp;
+use Corbado\Generated\Model\EmailLinksValidateReq;
+use Corbado\Generated\Model\EmailLinkValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
-use Corbado\Generated\Model\ValidateEmailReq;
-use Corbado\Generated\Model\ValidateEmailRsp;
-use Corbado\Generated\Model\ValidatePhoneNumberReq;
-use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class Validations implements ValidationsInterface
+class EmailLinks implements EmailLinksInterface
 {
-    private ValidationApi $client;
+    private EmailMagicLinksApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(ValidationApi $client)
+    public function __construct(EmailMagicLinksApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
     }
 
     /**
-     * Validates email address
-     *
      * @throws AssertException
      * @throws ServerException
      * @throws StandardException
      */
-    public function validateEmail(ValidateEmailReq $req): ValidateEmailRsp
+    public function send(EmailLinkSendReq $req): EmailLinkSendRsp
     {
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->validateEmail($req);
+            $rsp = $this->client->emailLinkSend($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -54,18 +51,17 @@ class Validations implements ValidationsInterface
     }
 
     /**
-     * Validates phone number
-     *
      * @throws AssertException
-     * @throws StandardException
      * @throws ServerException
+     * @throws StandardException
      */
-    public function validatePhoneNumber(ValidatePhoneNumberReq $req): ValidatePhoneNumberRsp
+    public function validate(string $id, EmailLinksValidateReq $req): EmailLinkValidateRsp
     {
+        Assert::stringNotEmpty($id);
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->validatePhoneNumber($req);
+            $rsp = $this->client->emailLinkValidate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
