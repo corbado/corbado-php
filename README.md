@@ -44,13 +44,19 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
-- `EmailLinks` for managing email links ([examples](tests/integration/EmailLink))
-- `EmailOTPs` for managing email OTPs ([examples](tests/integration/todo))
+- `emailLinks` for managing email links ([examples](tests/integration/EmailLink))
+- `emailOTPs` for managing email OTPs ([examples](tests/integration/todo))
 - `SMSOTPs` for managing SMS OTPs ([examples](tests/integration/todo))
-- `Sessions` for managing sessions ([examples](tests/integration/todo))
-- `Users` for managing users ([examples](tests/integration/todo))
-- `AuthTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/todo))
-- `Validations` for validating email addresses and phone numbers ([examples](tests/integration/todo))
+- `sessions` for managing sessions ([examples](tests/integration/todo))
+- `users` for managing users ([examples](tests/integration/todo))
+- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/todo))
+- `validations` for validating email addresses and phone numbers ([examples](tests/integration/todo))
+
+To use a specific service, such as `sessions`, invoke it as shown below:
+
+```PHP
+$user = $sdk->sessions()->getCurrentUser();
+``` 
 
 # :books: Advanced
 
