@@ -36,7 +36,7 @@ $sdk = new Corbado\SDK($config);
 
 ## Examples
 
-A list of Corbado PHP SDK examples can be found in the integration tests [here](tests/integration).
+A list of examples can be found in the integration tests [here](tests/integration).
 
 # :books: Advanced
 
