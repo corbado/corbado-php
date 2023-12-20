@@ -2,7 +2,7 @@
 
 namespace Corbado;
 
-use Corbado\Classes\Assert;
+use Corbado\Helper\Assert;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
@@ -23,19 +23,19 @@ class Configuration
      * passed via the constructor. All other options can be set via
      * setters.
      *
-     * @throws Classes\Exceptions\AssertException
-     * @throws Classes\Exceptions\ConfigurationException
+     * @throws \Corbado\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\ConfigurationException
      */
     public function __construct(string $projectID, string $apiSecret = '')
     {
         Assert::stringNotEmpty($projectID);
 
         if (!str_starts_with($projectID, 'pro-')) {
-            throw new Classes\Exceptions\ConfigurationException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
+            throw new Exceptions\ConfigurationException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
         if ($apiSecret !== '' && !str_starts_with($apiSecret, 'corbado1_')) {
-            throw new Classes\Exceptions\ConfigurationException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
+            throw new Exceptions\ConfigurationException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
         }
 
         $this->projectID = $projectID;
@@ -43,7 +43,7 @@ class Configuration
     }
 
     /**
-     * @throws Classes\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function setFrontendAPI(string $frontendAPI): self
     {
@@ -55,7 +55,7 @@ class Configuration
     }
 
     /**
-     * @throws Classes\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function setBackendAPI(string $backendAPI): self
     {
@@ -67,7 +67,7 @@ class Configuration
     }
 
     /**
-     * @throws Classes\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function setShortSessionCookieName(string $shortSessionCookieName): self
     {
@@ -147,7 +147,7 @@ class Configuration
     }
 
     /**
-     * @throws Classes\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     private function assertURL(string $url): void
     {
@@ -155,35 +155,35 @@ class Configuration
 
         $parts = parse_url($url);
         if ($parts === false) {
-            throw new Classes\Exceptions\AssertException('Assert failed: parse_url() returned error');
+            throw new Exceptions\AssertException('Assert failed: parse_url() returned error');
         }
 
         if (isset($parts['scheme']) && $parts['scheme'] !== 'https') {
-            throw new Classes\Exceptions\AssertException('Assert failed: scheme needs to be https');
+            throw new Exceptions\AssertException('Assert failed: scheme needs to be https');
         }
 
         if (!isset($parts['host'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: host is empty');
+            throw new Exceptions\AssertException('Assert failed: host is empty');
         }
 
         if (isset($parts['user'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: username needs to be empty');
+            throw new Exceptions\AssertException('Assert failed: username needs to be empty');
         }
 
         if (isset($parts['pass'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: password needs to be empty');
+            throw new Exceptions\AssertException('Assert failed: password needs to be empty');
         }
 
         if (isset($parts['path'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: path needs to be empty');
+            throw new Exceptions\AssertException('Assert failed: path needs to be empty');
         }
 
         if (isset($parts['query'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: querystring needs to be empty');
+            throw new Exceptions\AssertException('Assert failed: querystring needs to be empty');
         }
 
         if (isset($parts['fragment'])) {
-            throw new Classes\Exceptions\AssertException('Assert failed: fragment needs to be empty');
+            throw new Exceptions\AssertException('Assert failed: fragment needs to be empty');
         }
     }
 }

@@ -2,16 +2,16 @@
 
 namespace Corbado\Classes\Apis;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Classes\Exceptions\StandardException;
-use Corbado\Classes\Helper;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ServerException;
+use Corbado\Exceptions\StandardException;
 use Corbado\Generated\Api\AuthTokensApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\AuthTokenValidateReq;
 use Corbado\Generated\Model\AuthTokenValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
+use Corbado\Helper\Assert;
+use Corbado\Helper\Helper;
 
 class AuthTokens implements AuthTokensInterface
 {

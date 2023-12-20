@@ -2,11 +2,9 @@
 
 namespace Corbado\Classes\Apis;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Classes\Exceptions\StandardException;
-use Corbado\Classes\Helper;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ServerException;
+use Corbado\Exceptions\StandardException;
 use Corbado\Generated\Api\EmailOTPApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\EmailCodeSendReq;
@@ -14,6 +12,8 @@ use Corbado\Generated\Model\EmailCodeSendRsp;
 use Corbado\Generated\Model\EmailCodeValidateReq;
 use Corbado\Generated\Model\EmailCodeValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
+use Corbado\Helper\Assert;
+use Corbado\Helper\Helper;
 
 class EmailCodes implements EmailCodesInterface
 {

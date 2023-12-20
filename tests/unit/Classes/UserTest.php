@@ -2,7 +2,7 @@
 
 namespace unit\Classes;
 
-use Corbado\Classes\User;
+use Corbado\Session\User;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -20,7 +20,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * @throws \Corbado\Classes\Exceptions\StandardException
+     * @throws \Corbado\Exceptions\StandardException
      */
     public function testGetUserData(): void
     {

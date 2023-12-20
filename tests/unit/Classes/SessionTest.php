@@ -2,8 +2,8 @@
 
 namespace unit\Classes;
 
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Session;
+use Corbado\Exceptions\AssertException;
+use Corbado\Session\Session;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;

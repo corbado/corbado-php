@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes\Exceptions;
+namespace Corbado\Exceptions;
 
 class ServerException extends \Exception
 {

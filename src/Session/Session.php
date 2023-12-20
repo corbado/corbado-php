@@ -1,7 +1,8 @@
 <?php
 
-namespace Corbado\Classes;
+namespace Corbado\Session;
 
+use Corbado\Helper\Assert;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Psr7\HttpFactory;
@@ -27,7 +28,7 @@ class Session
      * @param string $issuer
      * @param string $jwksURI
      * @param CacheItemPoolInterface $jwksCachePool
-     * @throws Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function __construct(ClientInterface $client, string $shortSessionCookieName, string $issuer, string $jwksURI, CacheItemPoolInterface $jwksCachePool)
     {
@@ -46,7 +47,7 @@ class Session
      * Returns the short-term session (represented as JWT) value from the cookie or the Authorization header
      *
      * @return string
-     * @throws Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function getShortSessionValue(): string
     {
@@ -66,7 +67,7 @@ class Session
      *
      * @param string $value Value (JWT)
      * @return stdClass|null Returns stdClass on success, otherwise null
-     * @throws Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function validateShortSessionValue(string $value): ?stdClass
     {
@@ -122,7 +123,7 @@ class Session
      * authenticated ("guest").
      *
      * @return User
-     * @throws Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public function getCurrentUser(): User
     {
@@ -167,7 +168,7 @@ class Session
      *
      * @param string $authorizationHeader
      * @return string
-     * @throws Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     private function extractBearerToken(string $authorizationHeader): string
     {

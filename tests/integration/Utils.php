@@ -2,11 +2,9 @@
 
 namespace integration;
 
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ConfigurationException;
-use Corbado\Classes\Exceptions\ServerException;
 use Corbado\Configuration;
-use Corbado\Generated\Model\ClientInfo;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigurationException;
 use Corbado\Generated\Model\UserCreateReq;
 use Corbado\SDK;
 use Exception;

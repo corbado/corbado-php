@@ -14,10 +14,8 @@ use Corbado\Classes\Apis\Users;
 use Corbado\Classes\Apis\UsersInterface;
 use Corbado\Classes\Apis\Validations;
 use Corbado\Classes\Apis\ValidationsInterface;
-use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\ConfigurationException;
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Session;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigurationException;
 use Corbado\Generated\Api\AuthTokensApi;
 use Corbado\Generated\Api\EmailMagicLinksApi;
 use Corbado\Generated\Api\EmailOTPApi;
@@ -25,6 +23,8 @@ use Corbado\Generated\Api\SMSOTPApi;
 use Corbado\Generated\Api\UserApi;
 use Corbado\Generated\Api\ValidationApi;
 use Corbado\Generated\Model\ClientInfo;
+use Corbado\Helper\Assert;
+use Corbado\Session\Session;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -206,12 +206,12 @@ class SDK
 
     /**
      * @return Generated\Configuration
-     * @throws Classes\Exceptions\ConfigurationException
+     * @throws \Corbado\Exceptions\ConfigurationException
      */
     private function createGeneratedConfiguration(): Generated\Configuration
     {
         if ($this->config->getApiSecret() == '') {
-            throw new Classes\Exceptions\ConfigurationException('No API secret set, pass in constructor of configuration');
+            throw new Exceptions\ConfigurationException('No API secret set, pass in constructor of configuration');
         }
 
         $config = new Generated\Configuration();
@@ -225,7 +225,7 @@ class SDK
     }
 
     /**
-     * @throws Classes\Exceptions\AssertException
+     * @throws \Corbado\Exceptions\AssertException
      */
     public static function createClientInfo(string $remoteAddress, string $userAgent): ClientInfo
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Corbado\Classes;
+namespace Corbado\Session;
 
-use Corbado\Classes\Exceptions\StandardException;
+use Corbado\Exceptions\StandardException;
 
 class User
 {

@@ -2,10 +2,9 @@
 
 namespace integration\User;
 
-use _PHPStan_f73a165d5\Nette\Neon\Exception;
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ConfigurationException;
-use Corbado\Classes\Exceptions\ServerException;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ServerException;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 

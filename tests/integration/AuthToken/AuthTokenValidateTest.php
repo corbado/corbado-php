@@ -2,12 +2,10 @@
 
 namespace integration\AuthToken;
 
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ConfigurationException;
-use Corbado\Classes\Exceptions\ServerException;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\AuthTokenValidateReq;
-use Corbado\Generated\Model\EmailCodeValidateReq;
-use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\SDK;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;

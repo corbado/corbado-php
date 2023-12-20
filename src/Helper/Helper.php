@@ -1,10 +1,10 @@
 <?php
 
-namespace Corbado\Classes;
+namespace Corbado\Helper;
 
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Classes\Exceptions\StandardException;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ServerException;
+use Corbado\Exceptions\StandardException;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\RequestData;

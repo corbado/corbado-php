@@ -2,10 +2,9 @@
 
 namespace integration\SMSCode;
 
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ConfigurationException;
-use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Generated\Model\EmailCodeSendReq;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\SmsCodeSendReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;

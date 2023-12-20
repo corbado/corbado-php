@@ -2,11 +2,9 @@
 
 namespace Corbado\Classes\Apis;
 
-use Corbado\Classes\Assert;
-use Corbado\Classes\Exceptions\AssertException;
-use Corbado\Classes\Exceptions\ServerException;
-use Corbado\Classes\Exceptions\StandardException;
-use Corbado\Classes\Helper;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ServerException;
+use Corbado\Exceptions\StandardException;
 use Corbado\Generated\Api\EmailMagicLinksApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\EmailLinkSendReq;
@@ -14,6 +12,8 @@ use Corbado\Generated\Model\EmailLinkSendRsp;
 use Corbado\Generated\Model\EmailLinksValidateReq;
 use Corbado\Generated\Model\EmailLinkValidateRsp;
 use Corbado\Generated\Model\ErrorRsp;
+use Corbado\Helper\Assert;
+use Corbado\Helper\Helper;
 
 class EmailLinks implements EmailLinksInterface
 {
