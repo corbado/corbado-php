@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes;
+namespace Corbado\Webhook;
 
 use Corbado\Exceptions\StandardException;
 use Corbado\Helper\Assert;
@@ -187,11 +187,11 @@ class Webhook
     /**
      * Returns auth methods request model
      *
-     * @return \Corbado\Classes\WebhookModels\AuthMethodsRequest
+     * @return \Corbado\Webhook\Entities\AuthMethodsRequest
      * @throws \Corbado\Exceptions\AssertException
      * @throws StandardException
      */
-    public function getAuthMethodsRequest(): \Corbado\Classes\WebhookModels\AuthMethodsRequest
+    public function getAuthMethodsRequest(): Entities\AuthMethodsRequest
     {
         $this->checkAutomaticAuthentication();
 
@@ -200,10 +200,10 @@ class Webhook
         Assert::arrayKeysExist($data, self::STANDARD_FIELDS);
         Assert::arrayKeysExist($data['data'], ['username']);
 
-        $dataRequest = new \Corbado\Classes\WebhookModels\AuthMethodsDataRequest();
+        $dataRequest = new Entities\AuthMethodsDataRequest();
         $dataRequest->username = $data['data']['username'];
 
-        $request = new \Corbado\Classes\WebhookModels\AuthMethodsRequest();
+        $request = new Entities\AuthMethodsRequest();
         $request->id = $data['id'];
         $request->projectID = $data['projectID'];
         $request->action = self::ACTION_AUTH_METHODS;
@@ -227,10 +227,10 @@ class Webhook
 
         $this->checkAutomaticAuthentication();
 
-        $dataResponse = new \Corbado\Classes\WebhookModels\AuthMethodsDataResponse();
+        $dataResponse = new Entities\AuthMethodsDataResponse();
         $dataResponse->status = $status;
 
-        $response = new \Corbado\Classes\WebhookModels\AuthMethodsResponse();
+        $response = new Entities\AuthMethodsResponse();
         $response->responseID = $responseID;
         $response->data = $dataResponse;
 
@@ -244,11 +244,11 @@ class Webhook
     /**
      * Returns password verify request model
      *
-     * @return \Corbado\Classes\WebhookModels\PasswordVerifyRequest
+     * @return \Corbado\Webhook\Entities\PasswordVerifyRequest
      * @throws StandardException
      * @throws \Corbado\Exceptions\AssertException
      */
-    public function getPasswordVerifyRequest(): \Corbado\Classes\WebhookModels\PasswordVerifyRequest
+    public function getPasswordVerifyRequest(): Entities\PasswordVerifyRequest
     {
         $this->checkAutomaticAuthentication();
 
@@ -257,11 +257,11 @@ class Webhook
         Assert::arrayKeysExist($data, self::STANDARD_FIELDS);
         Assert::arrayKeysExist($data['data'], ['username', 'password']);
 
-        $dataRequest = new \Corbado\Classes\WebhookModels\PasswordVerifyDataRequest();
+        $dataRequest = new Entities\PasswordVerifyDataRequest();
         $dataRequest->username = $data['data']['username'];
         $dataRequest->password = $data['data']['password'];
 
-        $request = new \Corbado\Classes\WebhookModels\PasswordVerifyRequest();
+        $request = new Entities\PasswordVerifyRequest();
         $request->id = $data['id'];
         $request->projectID = $data['projectID'];
         $request->action = self::ACTION_PASSWORD_VERIFY;
@@ -282,10 +282,10 @@ class Webhook
     {
         $this->checkAutomaticAuthentication();
 
-        $dataResponse = new \Corbado\Classes\WebhookModels\PasswordVerifyDataResponse();
+        $dataResponse = new Entities\PasswordVerifyDataResponse();
         $dataResponse->success = $success;
 
-        $response = new \Corbado\Classes\WebhookModels\PasswordVerifyResponse();
+        $response = new Entities\PasswordVerifyResponse();
         $response->responseID = $responseID;
         $response->data = $dataResponse;
 

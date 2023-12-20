@@ -1,6 +1,6 @@
 <?php
 
-namespace Corbado\Classes\WebhookModels;
+namespace Corbado\Webhook\Entities;
 
 class CommonResponse
 {
