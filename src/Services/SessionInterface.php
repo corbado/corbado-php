@@ -1,6 +1,7 @@
 <?php
 
 namespace Corbado\Services;
+
 use Corbado\Entities\UserEntity;
 
 interface SessionInterface
