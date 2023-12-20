@@ -46,6 +46,11 @@ class ServerException extends \Exception
         return $this->requestData;
     }
 
+    public function getRequestID(): string
+    {
+        return $this->requestData['requestID'] ?? '';
+    }
+
     public function getRuntime(): float
     {
         return $this->runtime;

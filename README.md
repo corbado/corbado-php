@@ -44,8 +44,37 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK throws exceptions for all errors. The following exceptions are thrown:
 
-- `Corbado\ApiException` for any API errors
-- TODO
+- `AssertException` for failed assertions (client side)
+- `ConfigurationException` for configuration errors (client side)
+- `ServerException` for server errors (server side)
+- `StandardException` for everything else (client side)
+
+If the Backend API returns a HTTP status code other than 200, the Corbado PHP SDK throws a `ServerException`. The `ServerException`class provides convenient methods to access all important data:
+
+```PHP
+try {
+    // Try to get non-existing user with ID 'usr-123456789'
+    $user = $sdk->users()->get('usr-123456789');
+} catch (ServerException $e) {
+    // Show HTTP status code (404 in this case)
+    echo $e->getHttpStatusCode() . PHP_EOL;
+    
+    // Show request ID (can be used in developer panel to look up the full request and response, see https://app.corbado.com/app/logs/requests)
+    echo $e->getRequestID() . PHP_EOL;
+    
+    // Show full request data
+    var_dump($e->getRequestData());
+    
+    // Show runtime of request in seconds (server side)
+    echo $e->getRuntime() . PHP_EOL;
+    
+    // Show validation error messages (server side validation in case of HTTP status code 400 (Bad Request))
+    var_dump($e->getValidationMessages());
+    
+    // Show full error data
+    var_dump($e->getError());
+}
+```
 
 # :speech_balloon: Support & Feedback
 
