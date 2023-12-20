@@ -59,7 +59,8 @@ try {
     // Show HTTP status code (404 in this case)
     echo $e->getHttpStatusCode() . PHP_EOL;
     
-    // Show request ID (can be used in developer panel to look up the full request and response, see https://app.corbado.com/app/logs/requests)
+    // Show request ID (can be used in developer panel to look up the full request
+    // and response, see https://app.corbado.com/app/logs/requests)
     echo $e->getRequestID() . PHP_EOL;
     
     // Show full request data
@@ -68,7 +69,8 @@ try {
     // Show runtime of request in seconds (server side)
     echo $e->getRuntime() . PHP_EOL;
     
-    // Show validation error messages (server side validation in case of HTTP status code 400 (Bad Request))
+    // Show validation error messages (server side validation in case of HTTP
+    // status code 400 (Bad Request))
     var_dump($e->getValidationMessages());
     
     // Show full error data
