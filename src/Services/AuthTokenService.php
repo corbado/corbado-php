@@ -13,7 +13,7 @@ use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class AuthTokens implements AuthTokensInterface
+class AuthTokenService implements AuthTokenInterface
 {
     private AuthTokensApi $client;
 

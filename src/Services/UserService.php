@@ -17,7 +17,7 @@ use Corbado\Generated\Model\UserListRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class Users implements UsersInterface
+class UserService implements UserInterface
 {
     private UserApi $client;
 

@@ -9,7 +9,7 @@ use Corbado\Generated\Model\UserDeleteReq;
 use Corbado\Generated\Model\UserGetRsp;
 use Corbado\Generated\Model\UserListRsp;
 
-interface UsersInterface
+interface UserInterface
 {
     public function create(UserCreateReq $req): UserCreateRsp;
     public function delete(string $id, UserDeleteReq $req): GenericRsp;

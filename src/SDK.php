@@ -2,18 +2,18 @@
 
 namespace Corbado;
 
-use Corbado\Services\AuthTokens;
-use Corbado\Services\AuthTokensInterface;
-use Corbado\Services\EmailOTPs;
-use Corbado\Services\EmailOTPsInterface;
-use Corbado\Services\EmailMagicLinks;
-use Corbado\Services\EmailMagicLinksInterface;
-use Corbado\Services\SmsOTPs;
-use Corbado\Services\SmsOTPsInterface;
-use Corbado\Services\Users;
-use Corbado\Services\UsersInterface;
-use Corbado\Services\Validations;
-use Corbado\Services\ValidationsInterface;
+use Corbado\Services\AuthTokenService;
+use Corbado\Services\AuthTokenInterface;
+use Corbado\Services\EmailOTPService;
+use Corbado\Services\EmailOTPInterface;
+use Corbado\Services\EmailMagicLinkService;
+use Corbado\Services\EmailMagicLinkInterface;
+use Corbado\Services\SmsOTPService;
+use Corbado\Services\SmsOTPInterface;
+use Corbado\Services\UserService;
+use Corbado\Services\UserInterface;
+use Corbado\Services\ValidationService;
+use Corbado\Services\ValidationInterface;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
 use Corbado\Generated\Api\AuthTokensApi;
@@ -32,13 +32,13 @@ class SDK
 {
     private Configuration $config;
     private ClientInterface $client;
-    private ?EmailMagicLinksInterface $emailMagicLinks = null;
-    private ?SmsOTPsInterface $smsOTPs = null;
-    private ?ValidationsInterface $validations = null;
-    private ?UsersInterface $users = null;
+    private ?EmailMagicLinkInterface $emailMagicLinks = null;
+    private ?SmsOTPInterface $smsOTPs = null;
+    private ?ValidationInterface $validations = null;
+    private ?UserInterface $users = null;
     private ?Session $session = null;
-    private ?AuthTokensInterface $authTokens = null;
-    private ?EmailOTPsInterface $emailOTPs = null;
+    private ?AuthTokenInterface $authTokens = null;
+    private ?EmailOTPInterface $emailOTPs = null;
 
     public const VERSION = '1.0.0';
 
@@ -69,14 +69,14 @@ class SDK
     /**
      * Returns email magic link handling
      *
-     * @return EmailMagicLinksInterface
+     * @return EmailMagicLinkInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function emailMagicLinks(): EmailMagicLinksInterface
+    public function emailMagicLinks(): EmailMagicLinkInterface
     {
         if ($this->emailMagicLinks === null) {
-            $this->emailMagicLinks = new EmailMagicLinks(
+            $this->emailMagicLinks = new EmailMagicLinkService(
                 // @phpstan-ignore-next-line
                 new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
             );
@@ -88,14 +88,14 @@ class SDK
     /**
      * Returns SMS OTP handling
      *
-     * @return SmsOTPsInterface
+     * @return SmsOTPInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function smsOTPs(): SmsOTPsInterface
+    public function smsOTPs(): SmsOTPInterface
     {
         if ($this->smsOTPs === null) {
-            $this->smsOTPs = new SmsOTPs(
+            $this->smsOTPs = new SmsOTPService(
                 // @phpstan-ignore-next-line
                 new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
             );
@@ -107,14 +107,14 @@ class SDK
     /**
      * Returns validation handling
      *
-     * @return ValidationsInterface
+     * @return ValidationInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function validations(): ValidationsInterface
+    public function validations(): ValidationInterface
     {
         if ($this->validations === null) {
-            $this->validations = new Validations(
+            $this->validations = new ValidationService(
                 // @phpstan-ignore-next-line
                 new ValidationApi($this->client, $this->createGeneratedConfiguration())
             );
@@ -126,14 +126,14 @@ class SDK
     /**
      * Returns user handling
      *
-     * @return UsersInterface
+     * @return UserInterface
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function users(): UsersInterface
+    public function users(): UserInterface
     {
         if ($this->users === null) {
-            $this->users = new Users(
+            $this->users = new UserService(
                 // @phpstan-ignore-next-line
                 new UserApi($this->client, $this->createGeneratedConfiguration())
             );
@@ -172,14 +172,14 @@ class SDK
     /**
      * Returns auth token handling
      *
-     * @return AuthTokensInterface
+     * @return AuthTokenInterface
      * @throws ConfigurationException
      * @throws AssertException
      */
-    public function authTokens(): AuthTokensInterface
+    public function authTokens(): AuthTokenInterface
     {
         if ($this->authTokens === null) {
-            $this->authTokens = new AuthTokens(
+            $this->authTokens = new AuthTokenService(
                 // @phpstan-ignore-next-line
                 new AuthTokensApi($this->client, $this->createGeneratedConfiguration())
             );
@@ -194,10 +194,10 @@ class SDK
      * @throws AssertException
      * @throws ConfigurationException
      */
-    public function emailOTPs(): EmailOTPsInterface
+    public function emailOTPs(): EmailOTPInterface
     {
         if ($this->emailOTPs === null) {
-            $this->emailOTPs = new EmailOTPs(
+            $this->emailOTPs = new EmailOTPService(
                 // @phpstan-ignore-next-line
                 new EmailOTPApi($this->client, $this->createGeneratedConfiguration())
             );

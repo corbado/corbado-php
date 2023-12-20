@@ -2,43 +2,46 @@
 
 namespace Corbado\Services;
 
+use Corbado\Classes\Exceptions\Http;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\SMSOTPApi;
+use Corbado\Generated\Api\ValidationApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\ErrorRsp;
-use Corbado\Generated\Model\SmsCodeSendReq;
-use Corbado\Generated\Model\SmsCodeSendRsp;
-use Corbado\Generated\Model\SmsCodeValidateReq;
-use Corbado\Generated\Model\SmsCodeValidateRsp;
+use Corbado\Generated\Model\ValidateEmailReq;
+use Corbado\Generated\Model\ValidateEmailRsp;
+use Corbado\Generated\Model\ValidatePhoneNumberReq;
+use Corbado\Generated\Model\ValidatePhoneNumberRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class SmsOTPs implements SmsOTPsInterface
+class ValidationService implements ValidationInterface
 {
-    private SMSOTPApi $client;
+    private ValidationApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(SMSOTPApi $client)
+    public function __construct(ValidationApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
     }
 
     /**
+     * Validates email address
+     *
      * @throws AssertException
      * @throws ServerException
      * @throws StandardException
      */
-    public function send(SmsCodeSendReq $req): SmsCodeSendRsp
+    public function validateEmail(ValidateEmailReq $req): ValidateEmailRsp
     {
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->smsCodeSend($req);
+            $rsp = $this->client->validateEmail($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
@@ -51,17 +54,18 @@ class SmsOTPs implements SmsOTPsInterface
     }
 
     /**
-     * @throws StandardException
+     * Validates phone number
+     *
      * @throws AssertException
+     * @throws StandardException
      * @throws ServerException
      */
-    public function validate(string $id, SmsCodeValidateReq $req): SmsCodeValidateRsp
+    public function validatePhoneNumber(ValidatePhoneNumberReq $req): ValidatePhoneNumberRsp
     {
-        Assert::stringNotEmpty($id);
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->smsCodeValidate($id, $req);
+            $rsp = $this->client->validatePhoneNumber($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
