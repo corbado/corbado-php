@@ -44,9 +44,13 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
-- `EmailLinks` for managing email links
+- `EmailLinks` for managing email links ([example](tests/integration/EmailLink))
 - `EmailOTPs` for managing email OTPs
 - `SMSOTPs` for managing SMS OTPs
+- `Sessions` for managing sessions
+- `Users` for managing users
+- `AuthTokens` for managing authentication tokens needed for own session management
+- `Validations` for validating email addresses and phone numbers
 
 # :books: Advanced
 
