@@ -2,18 +2,6 @@
 
 namespace Corbado;
 
-use Corbado\Services\AuthTokenService;
-use Corbado\Services\AuthTokenInterface;
-use Corbado\Services\EmailOTPService;
-use Corbado\Services\EmailOTPInterface;
-use Corbado\Services\EmailMagicLinkService;
-use Corbado\Services\EmailMagicLinkInterface;
-use Corbado\Services\SmsOTPService;
-use Corbado\Services\SmsOTPInterface;
-use Corbado\Services\UserService;
-use Corbado\Services\UserInterface;
-use Corbado\Services\ValidationService;
-use Corbado\Services\ValidationInterface;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
 use Corbado\Generated\Api\AuthTokensApi;
@@ -24,7 +12,20 @@ use Corbado\Generated\Api\UserApi;
 use Corbado\Generated\Api\ValidationApi;
 use Corbado\Generated\Model\ClientInfo;
 use Corbado\Helper\Assert;
-use Corbado\Session\Session;
+use Corbado\Services\AuthTokenInterface;
+use Corbado\Services\AuthTokenService;
+use Corbado\Services\EmailMagicLinkInterface;
+use Corbado\Services\EmailMagicLinkService;
+use Corbado\Services\EmailOTPInterface;
+use Corbado\Services\EmailOTPService;
+use Corbado\Services\SessionInterface;
+use Corbado\Services\SessionService;
+use Corbado\Services\SmsOTPInterface;
+use Corbado\Services\SmsOTPService;
+use Corbado\Services\UserInterface;
+use Corbado\Services\UserService;
+use Corbado\Services\ValidationInterface;
+use Corbado\Services\ValidationService;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -36,7 +37,7 @@ class SDK
     private ?SmsOTPInterface $smsOTPs = null;
     private ?ValidationInterface $validations = null;
     private ?UserInterface $users = null;
-    private ?Session $session = null;
+    private ?SessionInterface $session = null;
     private ?AuthTokenInterface $authTokens = null;
     private ?EmailOTPInterface $emailOTPs = null;
 
@@ -145,19 +146,19 @@ class SDK
     /**
      * Returns session handling
      *
-     * @return Session
+     * @return SessionInterface
      * @throws ConfigurationException
      * @throws AssertException
      * @link https://docs.corbado.com/sessions/overview
      */
-    public function sessions(): Session
+    public function sessions(): SessionInterface
     {
         if ($this->session === null) {
             if ($this->config->getJwksCachePool() === null) {
                 throw new ConfigurationException('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->session = new Session(
+            $this->session = new SessionService(
                 $this->client,
                 $this->config->getShortSessionCookieName(),
                 $this->config->getFrontendAPI(),

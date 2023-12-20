@@ -1,10 +1,10 @@
 <?php
 
-namespace Corbado\Session;
+namespace Corbado\Entities;
 
 use Corbado\Exceptions\StandardException;
 
-class User
+class UserEntity
 {
     private bool $authenticated;
     private string $id;

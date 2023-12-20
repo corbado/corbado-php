@@ -1,7 +1,9 @@
 <?php
 
-namespace Corbado\Session;
+namespace Corbado\Services;
 
+use Corbado\Entities\UserEntity;
+use Corbado\Exceptions\AssertException;
 use Corbado\Helper\Assert;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
@@ -11,7 +13,7 @@ use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Throwable;
 
-class Session
+class SessionService implements SessionInterface
 {
     private ClientInterface $client;
     private string $shortSessionCookieName;
@@ -28,7 +30,7 @@ class Session
      * @param string $issuer
      * @param string $jwksURI
      * @param CacheItemPoolInterface $jwksCachePool
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function __construct(ClientInterface $client, string $shortSessionCookieName, string $issuer, string $jwksURI, CacheItemPoolInterface $jwksCachePool)
     {
@@ -47,7 +49,7 @@ class Session
      * Returns the short-term session (represented as JWT) value from the cookie or the Authorization header
      *
      * @return string
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function getShortSessionValue(): string
     {
@@ -67,7 +69,7 @@ class Session
      *
      * @param string $value Value (JWT)
      * @return stdClass|null Returns stdClass on success, otherwise null
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function validateShortSessionValue(string $value): ?stdClass
     {
@@ -122,12 +124,12 @@ class Session
      * If the user is not logged in, the user is marked as not
      * authenticated ("guest").
      *
-     * @return User
-     * @throws \Corbado\Exceptions\AssertException
+     * @return UserEntity
+     * @throws AssertException
      */
-    public function getCurrentUser(): User
+    public function getCurrentUser(): UserEntity
     {
-        $guest = new User(false);
+        $guest = new UserEntity(false);
 
         $value = $this->getShortSessionValue();
         if (strlen($value) < 10) {
@@ -151,7 +153,7 @@ class Session
                 $phoneNumber = $decoded->phone_number;
             }
 
-            return new User(
+            return new UserEntity(
                 true,
                 $decoded->sub,
                 $name,
@@ -168,7 +170,7 @@ class Session
      *
      * @param string $authorizationHeader
      * @return string
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     private function extractBearerToken(string $authorizationHeader): string
     {

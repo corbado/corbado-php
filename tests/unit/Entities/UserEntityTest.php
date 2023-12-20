@@ -1,21 +1,21 @@
 <?php
 
-namespace unit\Classes;
+namespace unit\Entities;
 
-use Corbado\Session\User;
+use Corbado\Entities\UserEntity;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class UserEntityTest extends TestCase
 {
     public function testIsGuest(): void
     {
-        $user = new User(false);
+        $user = new UserEntity(false);
         $this->assertFalse($user->isAuthenticated());
     }
 
     public function testIsAuthenticated(): void
     {
-        $user = new User(true);
+        $user = new UserEntity(true);
         $this->assertTrue($user->isAuthenticated());
     }
 
@@ -24,7 +24,7 @@ class UserTest extends TestCase
      */
     public function testGetUserData(): void
     {
-        $user = new User(true, 'id', 'name', 'email', 'phone-number');
+        $user = new UserEntity(true, 'id', 'name', 'email', 'phone-number');
         $this->assertEquals('id', $user->getID());
         $this->assertEquals('name', $user->getName());
         $this->assertEquals('email', $user->getEmail());

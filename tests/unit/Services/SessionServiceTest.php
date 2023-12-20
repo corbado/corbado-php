@@ -1,9 +1,9 @@
 <?php
 
-namespace unit\Classes;
+namespace unit\Services;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Session\Session;
+use Corbado\Services\SessionService;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
-class SessionTest extends TestCase
+class SessionServiceTest extends TestCase
 {
     /**
      * @throws AssertException
@@ -113,7 +113,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function createSession(): Session
+    private static function createSession(): SessionService
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         if ($jwks === false) {
@@ -245,7 +245,7 @@ class SessionTest extends TestCase
             }
         };
 
-        return new Session(
+        return new SessionService(
             $client,
             'cbo_short_session',
             'https://auth.acme.com',
