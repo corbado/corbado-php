@@ -15,7 +15,7 @@ use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class EmailMagicMagicLinks implements EmailMagicLinksInterface
+class EmailMagicLinks implements EmailMagicLinksInterface
 {
     private EmailMagicLinksApi $client;
 

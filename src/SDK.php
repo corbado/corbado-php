@@ -6,7 +6,7 @@ use Corbado\Services\AuthTokens;
 use Corbado\Services\AuthTokensInterface;
 use Corbado\Services\EmailOTPs;
 use Corbado\Services\EmailOTPsInterface;
-use Corbado\Services\EmailMagicMagicLinks;
+use Corbado\Services\EmailMagicLinks;
 use Corbado\Services\EmailMagicLinksInterface;
 use Corbado\Services\SmsOTPs;
 use Corbado\Services\SmsOTPsInterface;
@@ -76,7 +76,7 @@ class SDK
     public function emailMagicLinks(): EmailMagicLinksInterface
     {
         if ($this->emailMagicLinks === null) {
-            $this->emailMagicLinks = new EmailMagicMagicLinks(
+            $this->emailMagicLinks = new EmailMagicLinks(
                 // @phpstan-ignore-next-line
                 new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
             );
