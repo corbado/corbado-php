@@ -12,14 +12,14 @@ The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the
 
 :rocket: [Getting started](#rocket-getting-started) | :speedboat: [Services](#speedboat-services) | :books: [Advanced](#books-advanced) | :speech_balloon: [Support & Feedback](#speech_balloon-support--feedback)
 
-# :rocket: Getting started
+## :rocket: Getting started
 
-## Requirements
+### Requirements
 
 - PHP 7.2 or later
 - [Composer](https://getcomposer.org/)
 
-## Installation
+### Installation
 
 Use the following command to install the Corbado PHP SDK:
 
@@ -27,7 +27,7 @@ Use the following command to install the Corbado PHP SDK:
 composer require corbado/php-sdk
 ```
 
-## Usage
+### Usage
 
 To create a Corbado PHP SDK instance you need to provide your `project ID` and `API secret` which can be found at the [Developer Panel](https://app.corbado.com).
 
@@ -36,11 +36,11 @@ $config = new Corbado\Configuration("<Project ID>", "<API secret>");
 $sdk = new Corbado\SDK($config);
 ```
 
-## Examples
+### Examples
 
 A list of examples can be found in the integration tests [here](tests/integration).
 
-# :speedboat: Services
+## :speedboat: Services
 
 The Corbado PHP SDK provides the following services:
 
@@ -58,9 +58,9 @@ To use a specific service, such as `sessions`, invoke it as shown below:
 $user = $sdk->sessions()->getCurrentUser();
 ``` 
 
-# :books: Advanced
+## :books: Advanced
 
-## Error handling
+### Error handling
 
 The Corbado PHP SDK throws exceptions for all errors. The following exceptions are thrown:
 
@@ -98,22 +98,22 @@ try {
 }
 ```
 
-# :speech_balloon: Support & Feedback
+## :speech_balloon: Support & Feedback
 
-## Report an issue
+### Report an issue
 
 If you encounter any bugs or have suggestions, please [open an issue](https://github.com/corbado/corbado-php/issues/new).
 
-## Slack channel
+### Slack channel
 
 Join our Slack channel to discuss questions or ideas with the Corbado team and other developers.
 
 [![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ)
 
-## Email
+### Email
 
 You can also reach out to us via email at vincent.delitz@corbado.com.
 
-## Vulnerability reporting
+### Vulnerability reporting
 
 Please report suspected security vulnerabilities in private to security@corbado.com. Please do NOT create publicly viewable issues for suspected security vulnerabilities.
