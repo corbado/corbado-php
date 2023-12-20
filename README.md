@@ -38,6 +38,10 @@ $sdk = new Corbado\SDK($config);
 
 A list of examples can be found in the integration tests [here](tests/integration).
 
+# :speedboat: Services
+
+TODO
+
 # :books: Advanced
 
 ## Error handling
@@ -80,7 +84,7 @@ try {
 
 # :speech_balloon: Support & Feedback
 
-## Raise an issue
+## Report an issue
 
 If you encounter any bugs or have suggestions, please [open an issue](https://github.com/corbado/corbado-php/issues/new).
 
