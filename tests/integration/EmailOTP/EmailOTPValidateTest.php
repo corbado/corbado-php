@@ -36,6 +36,27 @@ class EmailOTPValidateTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
+    public function testEmailOTPValidateValidationErrorInvalidCode(): void
+    {
+        $exception = null;
+
+        try {
+            $req = new EmailCodeValidateReq();
+            $req->setCode('1');
+
+            Utils::SDK()->emailOTPs()->validate('emc-123456789', $req);
+        } catch (ServerException $e) {
+            $exception = $e;
+        }
+
+        $this->assertNotNull($exception);
+        $this->assertEqualsCanonicalizing(['code: the length must be exactly 6'], $exception->getValidationMessages());
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
     public function testEmailOTPValidateValidationErrorInvalidID(): void
     {
         $exception = null;

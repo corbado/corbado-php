@@ -37,7 +37,7 @@ class Utils
         return $value;
     }
 
-    private static function generateString(int $length): string
+    public static function generateString(int $length): string
     {
         // Removed I, 1, 0 and O because of risk of confusion
         $characters = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijklmnopwrstuvwxyz23456789';

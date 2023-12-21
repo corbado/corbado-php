@@ -29,7 +29,7 @@ composer require corbado/php-sdk
 
 ### Usage
 
-To create a Corbado PHP SDK instance you need to provide your `project ID` and `API secret` which can be found at the [Developer Panel](https://app.corbado.com).
+To create a Corbado PHP SDK instance you need to provide your `Project ID` and `API secret` which can be found at the [Developer Panel](https://app.corbado.com).
 
 ```PHP
 $config = new Corbado\Configuration("<Project ID>", "<API secret>");

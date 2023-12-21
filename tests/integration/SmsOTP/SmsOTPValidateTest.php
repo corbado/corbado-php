@@ -37,6 +37,27 @@ class SmsOTPValidateTest extends TestCase
      * @throws AssertException
      * @throws ConfigurationException
      */
+    public function testSmsOTPValidateValidationErrorInvalidCode(): void
+    {
+        $exception = null;
+
+        try {
+            $req = new SmsCodeValidateReq();
+            $req->setSmsCode('1');
+
+            Utils::SDK()->smsOTPs()->validate('sms-123456789', $req);
+        } catch (ServerException $e) {
+            $exception = $e;
+        }
+
+        $this->assertNotNull($exception);
+        $this->assertEqualsCanonicalizing(['smsCode: the length must be exactly 6'], $exception->getValidationMessages());
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
     public function testSmsOTPValidateValidationErrorInvalidID(): void
     {
         $exception = null;
