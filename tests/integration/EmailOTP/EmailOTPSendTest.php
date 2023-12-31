@@ -28,7 +28,7 @@ class EmailOTPSendTest extends TestCase
             $exception = $e;
         }
 
-        $this->assertNull($exception);
+        $this->assertNotNull($exception);
         $this->assertEqualsCanonicalizing(['email: cannot be blank'], $exception->getValidationMessages());
     }
 
