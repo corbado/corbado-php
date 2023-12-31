@@ -71,12 +71,12 @@ class Utils
 
     public static function createRandomTestEmail(): string
     {
-        return self::generateString(10) . '@test.de';
+        return 'integration-test-' . self::generateString(10) . '@corbado.com';
     }
 
     public static function createRandomTestPhoneNumber(): string
     {
-        return '+49' . self::generateNumber(13);
+        return '+491509' . self::generateNumber(7);
     }
 
     /**

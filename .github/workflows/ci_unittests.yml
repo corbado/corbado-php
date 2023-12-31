@@ -1,31 +1,29 @@
-name: Build workflow
+name: unittests
 
 on:
-  push:
-    branches: '*'
+  workflow_call:
 
 jobs:
-  build:
-    name: Build
+  unittests:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         php:
           - '8.0'
           - '8.1'
           - '8.2'
+          - '8.3'
 
     steps:
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - uses: actions/checkout@v3
+
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
 
       - name: Check PHP version
         run: php -v
-
-      - name: Checkout code
-        uses: actions/checkout@v3
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -42,18 +40,5 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Run analyze
-        run: composer analyze
-
-      - name: Run cs check
-        run: composer cs-check
-
       - name: Run unit tests
         run: composer unittests
-
-      - name: Run integration tests
-        env:
-          CORBADO_BACKEND_API: ${{ secrets.CORBADO_BACKEND_API }}
-          CORBADO_PROJECT_ID: ${{ secrets.CORBADO_PROJECT_ID }}
-          CORBADO_API_SECRET: ${{ secrets.CORBADO_API_SECRET }}
-        run: composer integrationtests
