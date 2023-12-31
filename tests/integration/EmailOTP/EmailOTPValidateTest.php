@@ -5,6 +5,7 @@ namespace integration\EmailOTP;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
 use Corbado\Exceptions\ServerException;
+use Corbado\Generated\Model\EmailCodeSendReq;
 use Corbado\Generated\Model\EmailCodeValidateReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
@@ -72,5 +73,24 @@ class EmailOTPValidateTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(404, $exception->getHttpStatusCode());
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
+    public function testEmailOTPValidateSuccess(): void
+    {
+        $req = new EmailCodeSendReq();
+        $req->setEmail(Utils::createRandomTestEmail());
+        $req->setCreate(true);
+
+        $rsp = Utils::SDK()->emailOTPs()->send($req);
+        $this->assertEquals(200, $rsp->getHttpStatusCode());
+
+        $req = new EmailCodeValidateReq();
+        $req->setCode('150919');
+
+        Utils::SDK()->emailOTPs()->validate($rsp->getData()->getEmailCodeId(), $req);
     }
 }

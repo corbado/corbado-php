@@ -5,7 +5,9 @@ namespace integration\SmsOTP;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigurationException;
 use Corbado\Exceptions\ServerException;
+use Corbado\Generated\Model\EmailCodeSendReq;
 use Corbado\Generated\Model\EmailCodeValidateReq;
+use Corbado\Generated\Model\SmsCodeSendReq;
 use Corbado\Generated\Model\SmsCodeValidateReq;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
@@ -73,5 +75,24 @@ class SmsOTPValidateTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(404, $exception->getHttpStatusCode());
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ConfigurationException
+     */
+    public function testSmsOTPValidateSuccess(): void
+    {
+        $req = new SmsCodeSendReq();
+        $req->setPhoneNumber(Utils::createRandomTestPhoneNumber());
+        $req->setCreate(true);
+
+        $rsp = Utils::SDK()->smsOTPs()->send($req);
+        $this->assertEquals(200, $rsp->getHttpStatusCode());
+
+        $req = new SmsCodeValidateReq();
+        $req->setSmsCode('150919');
+
+        Utils::SDK()->smsOTPs()->validate($rsp->getData()->getSmsCodeId(), $req);
     }
 }
