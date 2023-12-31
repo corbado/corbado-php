@@ -4,7 +4,7 @@
 
 [![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/php-sdk)
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
-[![Test Status](https://github.com/corbado/corbado-php/actions/workflows/build.yml/badge.svg)](https://github.com/corbado/corbado-php/actions)
+[![Test Status](https://github.com/corbado/corbado-php/workflows/tests/badge.svg)](https://github.com/corbado/corbado-php/actions?query=workflow%3Atests)
 [![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://api.corbado.com/docs/api/)
 [![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ)
 
