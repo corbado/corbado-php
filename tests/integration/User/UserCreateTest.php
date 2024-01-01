@@ -3,7 +3,7 @@
 namespace integration\User;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\UserCreateReq;
 use integration\Utils;
@@ -13,7 +13,7 @@ class UserCreateTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserCreateValidationError(): void
     {
@@ -36,7 +36,7 @@ class UserCreateTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserCreateSuccess(): void
     {

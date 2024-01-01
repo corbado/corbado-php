@@ -3,7 +3,7 @@
 namespace Corbado;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Generated\Api\AuthTokensApi;
 use Corbado\Generated\Api\EmailMagicLinksApi;
 use Corbado\Generated\Api\EmailOTPApi;
@@ -31,24 +31,24 @@ use Psr\Http\Client\ClientInterface;
 
 class SDK
 {
-    private Configuration $config;
+    private Config $config;
     private ClientInterface $client;
-    private ?EmailMagicLinkInterface $emailMagicLinks = null;
-    private ?SmsOTPInterface $smsOTPs = null;
-    private ?ValidationInterface $validations = null;
-    private ?UserInterface $users = null;
-    private ?SessionInterface $session = null;
     private ?AuthTokenInterface $authTokens = null;
+    private ?EmailMagicLinkInterface $emailMagicLinks = null;
     private ?EmailOTPInterface $emailOTPs = null;
+    private ?SessionInterface $session = null;
+    private ?SmsOTPInterface $smsOTPs = null;
+    private ?UserInterface $users = null;
+    private ?ValidationInterface $validations = null;
 
     public const VERSION = '1.0.0';
 
     /**
      * Constructor
      *
-     * @param Configuration $config
+     * @param Config $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(Config $config)
     {
         $this->config = $config;
 
@@ -68,113 +68,10 @@ class SDK
     }
 
     /**
-     * Returns email magic link handling
-     *
-     * @return EmailMagicLinkInterface
-     * @throws AssertException
-     * @throws ConfigurationException
-     */
-    public function emailMagicLinks(): EmailMagicLinkInterface
-    {
-        if ($this->emailMagicLinks === null) {
-            $this->emailMagicLinks = new EmailMagicLinkService(
-                // @phpstan-ignore-next-line
-                new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->emailMagicLinks;
-    }
-
-    /**
-     * Returns SMS OTP handling
-     *
-     * @return SmsOTPInterface
-     * @throws AssertException
-     * @throws ConfigurationException
-     */
-    public function smsOTPs(): SmsOTPInterface
-    {
-        if ($this->smsOTPs === null) {
-            $this->smsOTPs = new SmsOTPService(
-                // @phpstan-ignore-next-line
-                new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->smsOTPs;
-    }
-
-    /**
-     * Returns validation handling
-     *
-     * @return ValidationInterface
-     * @throws AssertException
-     * @throws ConfigurationException
-     */
-    public function validations(): ValidationInterface
-    {
-        if ($this->validations === null) {
-            $this->validations = new ValidationService(
-                // @phpstan-ignore-next-line
-                new ValidationApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->validations;
-    }
-
-    /**
-     * Returns user handling
-     *
-     * @return UserInterface
-     * @throws AssertException
-     * @throws ConfigurationException
-     */
-    public function users(): UserInterface
-    {
-        if ($this->users === null) {
-            $this->users = new UserService(
-                // @phpstan-ignore-next-line
-                new UserApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->users;
-    }
-
-    /**
-     * Returns session handling
-     *
-     * @return SessionInterface
-     * @throws ConfigurationException
-     * @throws AssertException
-     * @link https://docs.corbado.com/sessions/overview
-     */
-    public function sessions(): SessionInterface
-    {
-        if ($this->session === null) {
-            if ($this->config->getJwksCachePool() === null) {
-                throw new ConfigurationException('No JWKS cache pool set, use Configuration::setJwksCachePool()');
-            }
-
-            $this->session = new SessionService(
-                $this->client,
-                $this->config->getShortSessionCookieName(),
-                $this->config->getFrontendAPI(),
-                $this->config->getFrontendAPI() . '/.well-known/jwks',
-                $this->config->getJwksCachePool()
-            );
-        }
-
-        return $this->session;
-    }
-
-    /**
      * Returns auth token handling
      *
      * @return AuthTokenInterface
-     * @throws ConfigurationException
+     * @throws ConfigException
      * @throws AssertException
      */
     public function authTokens(): AuthTokenInterface
@@ -190,10 +87,29 @@ class SDK
     }
 
     /**
+     * Returns email magic link handling
+     *
+     * @return EmailMagicLinkInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function emailMagicLinks(): EmailMagicLinkInterface
+    {
+        if ($this->emailMagicLinks === null) {
+            $this->emailMagicLinks = new EmailMagicLinkService(
+                // @phpstan-ignore-next-line
+                new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->emailMagicLinks;
+    }
+
+    /**
      * Returns email OTP handling
      *
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function emailOTPs(): EmailOTPInterface
     {
@@ -208,13 +124,97 @@ class SDK
     }
 
     /**
+     * Returns session handling
+     *
+     * @return SessionInterface
+     * @throws ConfigException
+     * @throws AssertException
+     * @link https://docs.corbado.com/sessions/overview
+     */
+    public function sessions(): SessionInterface
+    {
+        if ($this->session === null) {
+            if ($this->config->getJwksCachePool() === null) {
+                throw new ConfigException('No JWKS cache pool set, use Configuration::setJwksCachePool()');
+            }
+
+            $this->session = new SessionService(
+                $this->client,
+                $this->config->getShortSessionCookieName(),
+                $this->config->getFrontendAPI(),
+                $this->config->getFrontendAPI() . '/.well-known/jwks',
+                $this->config->getJwksCachePool()
+            );
+        }
+
+        return $this->session;
+    }
+
+    /**
+     * Returns SMS OTP handling
+     *
+     * @return SmsOTPInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function smsOTPs(): SmsOTPInterface
+    {
+        if ($this->smsOTPs === null) {
+            $this->smsOTPs = new SmsOTPService(
+                // @phpstan-ignore-next-line
+                new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->smsOTPs;
+    }
+
+    /**
+     * Returns user handling
+     *
+     * @return UserInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function users(): UserInterface
+    {
+        if ($this->users === null) {
+            $this->users = new UserService(
+                // @phpstan-ignore-next-line
+                new UserApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->users;
+    }
+
+    /**
+     * Returns validation handling
+     *
+     * @return ValidationInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function validations(): ValidationInterface
+    {
+        if ($this->validations === null) {
+            $this->validations = new ValidationService(
+                // @phpstan-ignore-next-line
+                new ValidationApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->validations;
+    }
+
+    /**
      * @return Generated\Configuration
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     private function createGeneratedConfiguration(): Generated\Configuration
     {
         if ($this->config->getApiSecret() == '') {
-            throw new Exceptions\ConfigurationException('No API secret set, pass in constructor of configuration');
+            throw new Exceptions\ConfigException('No API secret set, pass in constructor of configuration');
         }
 
         $config = new Generated\Configuration();

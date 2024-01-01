@@ -3,7 +3,7 @@
 namespace integration\SmsOTP;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\SmsCodeSendReq;
 use integration\Utils;
@@ -13,7 +13,7 @@ class SmsOTPSendTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testSmsOTPSendValidationError(): void
     {
@@ -34,7 +34,7 @@ class SmsOTPSendTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testSmsOTPSendSuccess(): void
     {

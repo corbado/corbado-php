@@ -3,7 +3,7 @@
 namespace integration\EmailOTP;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\EmailCodeSendReq;
 use integration\Utils;
@@ -13,7 +13,7 @@ class EmailOTPSendTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testEmailOTPSendValidationError(): void
     {
@@ -34,7 +34,7 @@ class EmailOTPSendTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testEmailOTPSendSuccess(): void
     {

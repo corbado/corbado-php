@@ -2,11 +2,13 @@
 
 namespace Corbado;
 
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Helper\Assert;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
-class Configuration
+class Config
 {
     private string $projectID = '';
     private string $apiSecret = '';
@@ -23,19 +25,19 @@ class Configuration
      * passed via the constructor. All other options can be set via
      * setters.
      *
-     * @throws \Corbado\Exceptions\AssertException
-     * @throws \Corbado\Exceptions\ConfigurationException
+     * @throws AssertException
+     * @throws ConfigException
      */
     public function __construct(string $projectID, string $apiSecret = '')
     {
         Assert::stringNotEmpty($projectID);
 
         if (!str_starts_with($projectID, 'pro-')) {
-            throw new Exceptions\ConfigurationException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
+            throw new Exceptions\ConfigException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
         if ($apiSecret !== '' && !str_starts_with($apiSecret, 'corbado1_')) {
-            throw new Exceptions\ConfigurationException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
+            throw new Exceptions\ConfigException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
         }
 
         $this->projectID = $projectID;
@@ -43,7 +45,7 @@ class Configuration
     }
 
     /**
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function setFrontendAPI(string $frontendAPI): self
     {
@@ -55,7 +57,7 @@ class Configuration
     }
 
     /**
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function setBackendAPI(string $backendAPI): self
     {
@@ -67,7 +69,7 @@ class Configuration
     }
 
     /**
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     public function setShortSessionCookieName(string $shortSessionCookieName): self
     {
@@ -147,7 +149,7 @@ class Configuration
     }
 
     /**
-     * @throws \Corbado\Exceptions\AssertException
+     * @throws AssertException
      */
     private function assertURL(string $url): void
     {

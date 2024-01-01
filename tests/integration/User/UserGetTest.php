@@ -3,7 +3,7 @@
 namespace integration\User;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +12,7 @@ class UserGetTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserGetNotFound(): void
     {
@@ -30,7 +30,7 @@ class UserGetTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserGetSuccess(): void
     {

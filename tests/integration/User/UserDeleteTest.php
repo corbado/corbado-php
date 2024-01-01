@@ -3,7 +3,7 @@
 namespace integration\User;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\UserDeleteReq;
 use integration\Utils;
@@ -13,7 +13,7 @@ class UserDeleteTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserDeleteNotFound(): void
     {
@@ -32,7 +32,7 @@ class UserDeleteTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testUserDeleteSuccess(): void
     {

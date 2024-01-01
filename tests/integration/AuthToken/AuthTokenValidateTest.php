@@ -3,7 +3,7 @@
 namespace integration\AuthToken;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\AuthTokenValidateReq;
 use Corbado\SDK;
@@ -14,7 +14,7 @@ class AuthTokenValidateTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testAuthTokenValidateValidationErrorEmptyToken(): void
     {

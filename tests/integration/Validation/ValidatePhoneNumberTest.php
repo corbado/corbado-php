@@ -3,7 +3,7 @@
 namespace integration\Validation;
 
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\ValidatePhoneNumberReq;
 use integration\Utils;
@@ -13,7 +13,7 @@ class ValidatePhoneNumberTest extends TestCase
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testValidatePhoneNumberValidationError(): void
     {
@@ -35,7 +35,7 @@ class ValidatePhoneNumberTest extends TestCase
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public function testValidatePhoneNumberSuccess(): void
     {

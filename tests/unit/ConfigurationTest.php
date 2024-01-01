@@ -2,7 +2,7 @@
 
 namespace unit;
 
-use Corbado\Configuration;
+use Corbado\Config;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -17,7 +17,7 @@ class ConfigurationTest extends TestCase
     public function testSetFrontendAPI(string $frontendAPI, bool $valid): void
     {
         try {
-            $config = new Configuration('pro-123', 'corbado1_123');
+            $config = new Config('pro-123', 'corbado1_123');
             $config->setFrontendAPI($frontendAPI);
             $error = false;
         } catch (Throwable) {
@@ -36,7 +36,7 @@ class ConfigurationTest extends TestCase
     public function testSetBackendAPI(string $backendAPI, bool $valid): void
     {
         try {
-            $config = new Configuration('pro-123', 'corbado1_123');
+            $config = new Config('pro-123', 'corbado1_123');
             $config->setBackendAPI($backendAPI);
             $error = false;
         } catch (Throwable) {
@@ -48,7 +48,7 @@ class ConfigurationTest extends TestCase
 
     public function testGetFrontendAPI(): void
     {
-        $config = new Configuration('pro-123', 'corbado1_123');
+        $config = new Config('pro-123', 'corbado1_123');
         $this->assertEquals('https://pro-123.frontendapi.corbado.io', $config->getFrontendAPI());
     }
 

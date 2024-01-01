@@ -2,9 +2,9 @@
 
 namespace integration;
 
-use Corbado\Configuration;
+use Corbado\Config;
 use Corbado\Exceptions\AssertException;
-use Corbado\Exceptions\ConfigurationException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Generated\Model\UserCreateReq;
 use Corbado\SDK;
 use Exception;
@@ -13,12 +13,12 @@ class Utils
 {
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      * @throws Exception
      */
     public static function SDK(): SDK
     {
-        $config = new Configuration(self::getEnv('CORBADO_PROJECT_ID'), self::getEnv('CORBADO_API_SECRET'));
+        $config = new Config(self::getEnv('CORBADO_PROJECT_ID'), self::getEnv('CORBADO_API_SECRET'));
         $config->setBackendAPI(self::getEnv('CORBADO_BACKEND_API'));
 
         return new SDK($config);
@@ -81,7 +81,7 @@ class Utils
 
     /**
      * @throws AssertException
-     * @throws ConfigurationException
+     * @throws ConfigException
      */
     public static function createUser(): string
     {

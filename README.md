@@ -32,7 +32,7 @@ composer require corbado/php-sdk
 To create a Corbado PHP SDK instance you need to provide your `Project ID` and `API secret` which can be found at the [Developer Panel](https://app.corbado.com).
 
 ```PHP
-$config = new Corbado\Configuration("<Project ID>", "<API secret>");
+$config = new Corbado\Config("<Project ID>", "<API secret>");
 $sdk = new Corbado\SDK($config);
 ```
 
@@ -44,12 +44,12 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
+- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/AuthToken))
 - `emailMagicLinks` for managing email magic links ([examples](tests/integration/EmailMagicLink))
 - `emailOTPs` for managing email OTPs ([examples](tests/integration/EmailOTP))
-- `smsOTPs` for managing SMS OTPs ([examples](tests/integration/SmsOTP))
 - `sessions` for managing sessions
+- `smsOTPs` for managing SMS OTPs ([examples](tests/integration/SmsOTP))
 - `users` for managing users ([examples](tests/integration/User))
-- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/AuthToken))
 - `validations` for validating email addresses and phone numbers ([examples](tests/integration/Validation))
 
 To use a specific service, such as `sessions`, invoke it as shown below:
@@ -65,7 +65,7 @@ $user = $sdk->sessions()->getCurrentUser();
 The Corbado PHP SDK throws exceptions for all errors. The following exceptions are thrown:
 
 - `AssertException` for failed assertions (client side)
-- `ConfigurationException` for configuration errors (client side)
+- `ConfigException` for configuration errors (client side)
 - `ServerException` for server errors (server side)
 - `StandardException` for everything else (client side)
 
