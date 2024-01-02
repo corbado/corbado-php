@@ -58,11 +58,13 @@ class SDK
                     'base_uri' => $this->config->getBackendAPI(),
                     'http_errors' => false,
                     'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()],
-                    'headers' => ['X-Corbado-SDK-Version' => 'PHP SDK ' . self::VERSION],
+                    'headers' => ['X-Corbado-SDK' => json_encode(
+                        ['name' => 'PHP SDK', 'sdkVersion' => self::VERSION, 'languageVersion' => PHP_VERSION]
+                    )]
                 ]
             );
         } else {
-            // SDK version might be missing, okay for now (auth needs to be set)
+            // SDK information might be missing, okay for now (auth needs to be set)
             $this->client = $this->config->getHttpClient();
         }
     }
