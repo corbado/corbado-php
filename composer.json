@@ -1,11 +1,11 @@
 {
   "name": "corbado/php-sdk",
   "description": "Add passkeys to your PHP application with the Corbado PHP SDK.",
-  "homepage": "https://www.corbado.com",
+  "homepage": "https://www.corbado.com/passkeys/php",
   "authors": [
     {
-      "name": "Tobias Albrecht",
-      "email": "tobias.albrecht@corbado.com"
+      "name": "Vincent Delitz",
+      "email": "vincent.delitz@corbado.com"
     }
   ],
   "license": "MIT",

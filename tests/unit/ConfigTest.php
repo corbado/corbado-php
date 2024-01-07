@@ -6,7 +6,7 @@ use Corbado\Config;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
-class ConfigurationTest extends TestCase
+class ConfigTest extends TestCase
 {
     /**
      * @dataProvider provideURLs
