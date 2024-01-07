@@ -155,6 +155,8 @@ class Config
     {
         Assert::stringNotEmpty($url);
 
+        // @todo Add url value to exceptions
+
         $parts = parse_url($url);
         if ($parts === false) {
             throw new Exceptions\AssertException('Assert failed: parse_url() returned error');
