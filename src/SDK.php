@@ -41,7 +41,7 @@ class SDK
     private ?UserInterface $users = null;
     private ?ValidationInterface $validations = null;
 
-    public const VERSION = '1.0.0';
+    public const VERSION = '3.0.0';
 
     /**
      * Constructor
