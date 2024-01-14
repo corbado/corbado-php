@@ -2,39 +2,53 @@
 
 namespace Corbado;
 
-use Corbado\Classes\Apis\EmailLinks;
-use Corbado\Classes\Apis\SMSCodes;
-use Corbado\Classes\Apis\Validation;
-use Corbado\Classes\Apis\WebAuthn;
-use Corbado\Classes\Apis\Widget;
-use Corbado\Classes\Assert;
-use Corbado\Classes\Session;
+use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ConfigException;
 use Corbado\Generated\Api\AuthTokensApi;
+use Corbado\Generated\Api\EmailMagicLinksApi;
+use Corbado\Generated\Api\EmailOTPApi;
+use Corbado\Generated\Api\SMSOTPApi;
 use Corbado\Generated\Api\UserApi;
+use Corbado\Generated\Api\ValidationApi;
 use Corbado\Generated\Model\ClientInfo;
+use Corbado\Helper\Assert;
+use Corbado\Services\AuthTokenInterface;
+use Corbado\Services\AuthTokenService;
+use Corbado\Services\EmailMagicLinkInterface;
+use Corbado\Services\EmailMagicLinkService;
+use Corbado\Services\EmailOTPInterface;
+use Corbado\Services\EmailOTPService;
+use Corbado\Services\SessionInterface;
+use Corbado\Services\SessionService;
+use Corbado\Services\SmsOTPInterface;
+use Corbado\Services\SmsOTPService;
+use Corbado\Services\UserInterface;
+use Corbado\Services\UserService;
+use Corbado\Services\ValidationInterface;
+use Corbado\Services\ValidationService;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
 class SDK
 {
-    private Configuration $config;
+    private Config $config;
     private ClientInterface $client;
-    private ?EmailLinks $emailLinks = null;
-    private ?SMSCodes $smsCodes = null;
-    private ?WebAuthn $webAuthn = null;
-    private ?Validation $validation = null;
-    private ?Widget $widget = null;
-    private ?UserApi $users = null;
-    private ?Session $session = null;
-    private ?AuthTokensApi $authTokens = null;
+    private ?AuthTokenInterface $authTokens = null;
+    private ?EmailMagicLinkInterface $emailMagicLinks = null;
+    private ?EmailOTPInterface $emailOTPs = null;
+    private ?SessionInterface $session = null;
+    private ?SmsOTPInterface $smsOTPs = null;
+    private ?UserInterface $users = null;
+    private ?ValidationInterface $validations = null;
+
+    public const VERSION = '3.0.0';
 
     /**
      * Constructor
      *
-     * @param Configuration $config
-     * @throws Classes\Exceptions\Configuration
+     * @param Config $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(Config $config)
     {
         $this->config = $config;
 
@@ -43,104 +57,90 @@ class SDK
                 [
                     'base_uri' => $this->config->getBackendAPI(),
                     'http_errors' => false,
-                    'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()]
+                    'auth' => [$this->config->getProjectID(), $this->config->getApiSecret()],
+                    'headers' => ['X-Corbado-SDK' => json_encode(
+                        ['name' => 'PHP SDK', 'sdkVersion' => self::VERSION, 'languageVersion' => PHP_VERSION]
+                    )]
                 ]
             );
         } else {
+            // SDK information might be missing, okay for now (auth needs to be set)
             $this->client = $this->config->getHttpClient();
         }
     }
 
     /**
-     * Returns email links handling
+     * Returns auth token handling
      *
-     * @return EmailLinks
+     * @return AuthTokenInterface
+     * @throws ConfigException
+     * @throws AssertException
      */
-    public function emailLinks() : EmailLinks {
-        if ($this->emailLinks === null) {
-            $this->emailLinks = new EmailLinks($this->client);
+    public function authTokens(): AuthTokenInterface
+    {
+        if ($this->authTokens === null) {
+            $this->authTokens = new AuthTokenService(
+                // @phpstan-ignore-next-line
+                new AuthTokensApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
-        return $this->emailLinks;
+        return $this->authTokens;
     }
 
     /**
-     * Returns SMS codes handling
+     * Returns email magic link handling
      *
-     * @return SMSCodes
+     * @return EmailMagicLinkInterface
+     * @throws AssertException
+     * @throws ConfigException
      */
-    public function smsCodes() : SMSCodes {
-        if ($this->smsCodes === null) {
-            $this->smsCodes = new SMSCodes($this->client);
+    public function emailMagicLinks(): EmailMagicLinkInterface
+    {
+        if ($this->emailMagicLinks === null) {
+            $this->emailMagicLinks = new EmailMagicLinkService(
+                // @phpstan-ignore-next-line
+                new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
-        return $this->smsCodes;
+        return $this->emailMagicLinks;
     }
 
     /**
-     * Returns WebAuthn handling
+     * Returns email OTP handling
      *
-     * @return WebAuthn
+     * @throws AssertException
+     * @throws ConfigException
      */
-    public function webAuthn() : WebAuthn {
-        if ($this->webAuthn === null) {
-            $this->webAuthn = new WebAuthn($this->client);
+    public function emailOTPs(): EmailOTPInterface
+    {
+        if ($this->emailOTPs === null) {
+            $this->emailOTPs = new EmailOTPService(
+                // @phpstan-ignore-next-line
+                new EmailOTPApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
-        return $this->webAuthn;
-    }
-
-    /**
-     * Returns validation handling
-     *
-     * @return Validation
-     */
-    public function validation() : Validation {
-        if ($this->validation === null) {
-            $this->validation = new Validation($this->client);
-        }
-
-        return $this->validation;
-    }
-
-    public function widget() : Widget {
-        if ($this->widget === null) {
-            $this->widget = new Widget($this->client);
-        }
-
-        return $this->widget;
-    }
-
-    /**
-     * Returns users handling
-     *
-     * @throws Classes\Exceptions\Configuration
-     * @return UserApi
-     */
-    public function users() : UserApi {
-        if ($this->users === null) {
-            // @phpstan-ignore-next-line
-            $this->users = new UserApi($this->client, $this->createGeneratedConfiguration());
-        }
-
-        return $this->users;
+        return $this->emailOTPs;
     }
 
     /**
      * Returns session handling
      *
-     * @return Session
-     * @throws Classes\Exceptions\Assert
-     * @throws Classes\Exceptions\Configuration
+     * @return SessionInterface
+     * @throws ConfigException
+     * @throws AssertException
      * @link https://docs.corbado.com/sessions/overview
      */
-    public function sessions() : Session {
+    public function sessions(): SessionInterface
+    {
         if ($this->session === null) {
             if ($this->config->getJwksCachePool() === null) {
-                throw new Classes\Exceptions\Configuration('No JWKS cache pool set, use Configuration::setJwksCachePool()');
+                throw new ConfigException('No JWKS cache pool set, use Configuration::setJwksCachePool()');
             }
 
-            $this->session = new Session(
+            $this->session = new SessionService(
                 $this->client,
                 $this->config->getShortSessionCookieName(),
                 $this->config->getFrontendAPI(),
@@ -153,28 +153,70 @@ class SDK
     }
 
     /**
-     * Returns auth tokens handling
+     * Returns SMS OTP handling
      *
-     * @throws Classes\Exceptions\Configuration
-     * @return AuthTokensApi
+     * @return SmsOTPInterface
+     * @throws AssertException
+     * @throws ConfigException
      */
-    public function authTokens() : AuthTokensApi {
-        if ($this->authTokens === null) {
-            // @phpstan-ignore-next-line
-            $this->authTokens = new AuthTokensApi($this->client, $this->createGeneratedConfiguration());
+    public function smsOTPs(): SmsOTPInterface
+    {
+        if ($this->smsOTPs === null) {
+            $this->smsOTPs = new SmsOTPService(
+                // @phpstan-ignore-next-line
+                new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
+            );
         }
 
-        return $this->authTokens;
+        return $this->smsOTPs;
+    }
+
+    /**
+     * Returns user handling
+     *
+     * @return UserInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function users(): UserInterface
+    {
+        if ($this->users === null) {
+            $this->users = new UserService(
+                // @phpstan-ignore-next-line
+                new UserApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->users;
+    }
+
+    /**
+     * Returns validation handling
+     *
+     * @return ValidationInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function validations(): ValidationInterface
+    {
+        if ($this->validations === null) {
+            $this->validations = new ValidationService(
+                // @phpstan-ignore-next-line
+                new ValidationApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->validations;
     }
 
     /**
      * @return Generated\Configuration
-     * @throws Classes\Exceptions\Configuration
+     * @throws ConfigException
      */
-    private function createGeneratedConfiguration() : Generated\Configuration
+    private function createGeneratedConfiguration(): Generated\Configuration
     {
         if ($this->config->getApiSecret() == '') {
-            throw new Classes\Exceptions\Configuration('No API secret set, pass in constructor of configuration');
+            throw new Exceptions\ConfigException('No API secret set, pass in constructor of configuration');
         }
 
         $config = new Generated\Configuration();
@@ -188,9 +230,10 @@ class SDK
     }
 
     /**
-     * @throws Classes\Exceptions\Assert
+     * @throws AssertException
      */
-    public static function createClientInfo(string $remoteAddress, string $userAgent) : ClientInfo {
+    public static function createClientInfo(string $remoteAddress, string $userAgent): ClientInfo
+    {
         Assert::stringNotEmpty($remoteAddress);
         Assert::stringNotEmpty($userAgent);
 

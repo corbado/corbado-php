@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  push:
+    branches: '*'
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unittests:
+    uses: "./.github/workflows/ci_unittests.yml"
+    secrets: inherit
+
+  integrationtests:
+    uses: "./.github/workflows/ci_integrationtests.yml"
+    secrets: inherit
+
+  analyze:
+    uses: "./.github/workflows/ci_analyze.yml"
+    secrets: inherit
+
+  cs-check:
+    uses: "./.github/workflows/ci_cs_check.yml"
+    secrets: inherit

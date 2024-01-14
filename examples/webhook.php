@@ -1,7 +1,7 @@
 <?php
 
-use Corbado\Classes\WebhookModels\AuthMethodsDataResponse;
-use Corbado\Classes\Webhook;
+use Corbado\Webhook\Entities\AuthMethodsDataResponse;
+use Corbado\Webhook\Webhook;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -38,8 +38,8 @@ try {
 
             break;
 
-        // Handle the "passwordVerify" action which basically checks
-        // if the given username and password are valid.
+            // Handle the "passwordVerify" action which basically checks
+            // if the given username and password are valid.
         case $webhook::ACTION_PASSWORD_VERIFY:
             $request = $webhook->getPasswordVerifyRequest();
 
@@ -80,7 +80,8 @@ try {
  * @param string $username
  * @return string
  */
-function getUserStatus(string $username) : string {
+function getUserStatus(string $username): string
+{
     /////////////////////////////////////
     // Implement your logic here!
     ////////////////////////////////////
@@ -102,7 +103,8 @@ function getUserStatus(string $username) : string {
  * @param string $password
  * @return bool
  */
-function verifyPassword(string $username, string $password) : bool {
+function verifyPassword(string $username, string $password): bool
+{
     /////////////////////////////////////
     // Implement your logic here!
     ////////////////////////////////////
