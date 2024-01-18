@@ -71,7 +71,7 @@ class Utils
 
     public static function createRandomTestEmail(): string
     {
-        return 'integration-test-' . self::generateString(10) . '@corbado.com';
+        return 'integration-test+' . self::generateString(10) . '@corbado.com';
     }
 
     public static function createRandomTestPhoneNumber(): string
