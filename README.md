@@ -1,4 +1,4 @@
-<img width="1070" alt="GitHub Repo Cover" src="https://github.com/corbado/corbado-php/assets/18458907/aa4f9df6-980b-4b24-bb2f-d71c0f480971">
+![corbado-php]([https://cdn.auth0.com/website/sdks/banners/auth0-php-banner.png](https://github.com/corbado/corbado-php/assets/18458907/aa4f9df6-980b-4b24-bb2f-d71c0f480971))
 
 # Corbado PHP SDK
 
