@@ -46,6 +46,26 @@ class Config
 
     /**
      * @throws AssertException
+     * @throws ConfigException
+     */
+    public static function fromEnv(): self
+    {
+        $projectID = getenv('CORBADO_PROJECT_ID');
+        $apiSecret = getenv('CORBADO_API_SECRET');
+
+        if ($projectID === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_PROJECT_ID" not set');
+        }
+
+        if ($apiSecret === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_API_SECRET" not set');
+        }
+
+        return new self($projectID, $apiSecret);
+    }
+
+    /**
+     * @throws AssertException
      */
     public function setFrontendAPI(string $frontendAPI): self
     {
