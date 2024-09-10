@@ -11,14 +11,16 @@ class UserEntity
     private string $name;
     private string $email;
     private string $phoneNumber;
+    private string $orig;
 
-    public function __construct(bool $authenticated, string $id = '', string $name = '', string $email = '', string $phoneNumber = '')
+    public function __construct(bool $authenticated, string $id = '', string $name = '', string $email = '', string $phoneNumber = '', string $orig = '')
     {
         $this->authenticated = $authenticated;
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->phoneNumber = $phoneNumber;
+        $this->orig = $orig;
     }
 
     public function isAuthenticated(): bool
@@ -72,5 +74,17 @@ class UserEntity
         }
 
         return $this->phoneNumber;
+    }
+
+    /**
+     * @throws StandardException
+     */
+    public function getOrig(): string
+    {
+        if ($this->isAuthenticated() === false) {
+            throw new StandardException('User is not authenticated');
+        }
+
+        return $this->orig;
     }
 }

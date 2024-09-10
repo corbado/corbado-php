@@ -108,6 +108,9 @@ class SessionServiceTest extends TestCase
         $session = self::createSession();
         $user = $session->getCurrentUser();
         $this->assertTrue($user->isAuthenticated());
+        $this->assertEquals('name', $user->getName());
+        $this->assertEquals('email', $user->getEmail());
+        $this->assertEquals('orig', $user->getOrig());
     }
 
     /**
@@ -267,7 +270,8 @@ class SessionServiceTest extends TestCase
             'sub' => '12345',
             'name' => 'name',
             'email' => 'email',
-            'phone_number' => 'phoneNumber'
+            'phone_number' => 'phoneNumber',
+            'orig' => 'orig',
         ];
 
         $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');

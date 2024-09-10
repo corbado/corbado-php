@@ -153,12 +153,18 @@ class SessionService implements SessionInterface
                 $phoneNumber = $decoded->phone_number;
             }
 
+            $orig = '';
+            if (isset($decoded->orig)) {
+                $orig = $decoded->orig;
+            }
+
             return new UserEntity(
                 true,
                 $decoded->sub,
                 $name,
                 $email,
-                $phoneNumber
+                $phoneNumber,
+                $orig
             );
         }
 
