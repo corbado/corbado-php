@@ -108,6 +108,8 @@ class SessionServiceTest extends TestCase
         $session = self::createSession();
         $user = $session->getCurrentUser();
         $this->assertTrue($user->isAuthenticated());
+        $this->assertEquals('name', $user->getName());
+        $this->assertEquals('email', $user->getEmail());
     }
 
     /**
