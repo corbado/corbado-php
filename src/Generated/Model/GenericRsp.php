@@ -299,14 +299,6 @@ class GenericRsp implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['http_status_code'] === null) {
             $invalidProperties[] = "'http_status_code' can't be null";
         }
-        if (($this->container['http_status_code'] > 599)) {
-            $invalidProperties[] = "invalid value for 'http_status_code', must be smaller than or equal to 599.";
-        }
-
-        if (($this->container['http_status_code'] < 200)) {
-            $invalidProperties[] = "invalid value for 'http_status_code', must be bigger than or equal to 200.";
-        }
-
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
         }
@@ -353,14 +345,6 @@ class GenericRsp implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($http_status_code)) {
             throw new \InvalidArgumentException('non-nullable http_status_code cannot be null');
         }
-
-        if (($http_status_code > 599)) {
-            throw new \InvalidArgumentException('invalid value for $http_status_code when calling GenericRsp., must be smaller than or equal to 599.');
-        }
-        if (($http_status_code < 200)) {
-            throw new \InvalidArgumentException('invalid value for $http_status_code when calling GenericRsp., must be bigger than or equal to 200.');
-        }
-
         $this->container['http_status_code'] = $http_status_code;
 
         return $this;

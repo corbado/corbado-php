@@ -5,26 +5,23 @@ namespace Corbado\Services;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\UserApi;
+use Corbado\Generated\Api\UsersApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\UserCreateReq;
-use Corbado\Generated\Model\UserCreateRsp;
-use Corbado\Generated\Model\UserDeleteReq;
-use Corbado\Generated\Model\UserGetRsp;
-use Corbado\Generated\Model\UserListRsp;
+use Corbado\Generated\Model\User;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
 class UserService implements UserInterface
 {
-    private UserApi $client;
+    private UsersApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(UserApi $client)
+    public function __construct(UsersApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
@@ -35,21 +32,21 @@ class UserService implements UserInterface
      * @throws StandardException
      * @throws ServerException
      */
-    public function create(UserCreateReq $req): UserCreateRsp
+    public function create(UserCreateReq $req): User
     {
         Assert::notNull($req);
 
         try {
-            $rsp = $this->client->userCreate($req);
+            $user = $this->client->userCreate($req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
 
-        if ($rsp instanceof ErrorRsp) {
+        if ($user instanceof ErrorRsp) {
             throw new StandardException('Got unexpected ErrorRsp');
         }
 
-        return $rsp;
+        return $user;
     }
 
     /**
@@ -57,22 +54,20 @@ class UserService implements UserInterface
      * @throws AssertException
      * @throws ServerException
      */
-    public function delete(string $id, UserDeleteReq $req): GenericRsp
+    public function delete(string $id): void
     {
         Assert::stringNotEmpty($id);
-        Assert::notNull($req);
 
         try {
-            $rsp = $this->client->userDelete($id, $req);
+            // userDelete() returns a "GenericRsp" (see OpenAPI specs) if the
+            // deletion was successful. But it does not contain any data so we
+            // "swallow" it here (delete() returns void). A better approach would
+            // be that the Backend API V2 returns 204 No Content with no body but
+            // this was too much work to change for now.
+            $this->client->userDelete($id);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
-
-        if ($rsp instanceof ErrorRsp) {
-            throw new StandardException('Got unexpected ErrorRsp');
-        }
-
-        return $rsp;
     }
 
     /**
@@ -80,40 +75,20 @@ class UserService implements UserInterface
      * @throws AssertException
      * @throws ServerException
      */
-    public function get(string $id, string $remoteAddr = '', string $userAgent = ''): UserGetRsp
+    public function get(string $id): User
     {
         Assert::stringNotEmpty($id);
 
         try {
-            $rsp = $this->client->userGet($id, $remoteAddr, $userAgent);
+            $user = $this->client->userGet($id);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
 
-        if ($rsp instanceof ErrorRsp) {
+        if ($user instanceof ErrorRsp) {
             throw new StandardException('Got unexpected ErrorRsp');
         }
 
-        return $rsp;
-    }
-
-    /**
-     * @param array<string> $filter
-     * @throws ServerException
-     * @throws StandardException
-     */
-    public function list(string $remoteAddr = '', string $userAgent = '', string $sort = '', array $filter = [], int $page = 1, int $pageSize = 10): UserListRsp
-    {
-        try {
-            $rsp = $this->client->userList($remoteAddr, $userAgent, $sort, $filter, $page, $pageSize);
-        } catch (ApiException $e) {
-            throw Helper::convertToServerException($e);
-        }
-
-        if ($rsp instanceof ErrorRsp) {
-            throw new StandardException('Got unexpected ErrorRsp');
-        }
-
-        return $rsp;
+        return $user;
     }
 }

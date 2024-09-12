@@ -6,6 +6,7 @@ use Corbado\Config;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
 use Corbado\Generated\Model\UserCreateReq;
+use Corbado\Generated\Model\UserStatus;
 use Corbado\SDK;
 use Exception;
 
@@ -86,11 +87,11 @@ class Utils
     public static function createUser(): string
     {
         $req = new UserCreateReq();
-        $req->setName(self::createRandomTestName());
-        $req->setEmail(self::createRandomTestEmail());
+        // @phpstan-ignore-next-line
+        $req->setStatus(UserStatus::ACTIVE);
 
-        $rsp = self::SDK()->users()->create($req);
+        $user = self::SDK()->users()->create($req);
 
-        return $rsp->getData()->getUserId();
+        return $user->getUserId();
     }
 }

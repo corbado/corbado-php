@@ -6,6 +6,7 @@ use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Generated\Model\UserCreateReq;
+use Corbado\Generated\Model\UserStatus;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
@@ -21,8 +22,6 @@ class UserCreateTest extends TestCase
 
         try {
             $req = new UserCreateReq();
-            $req->setName('');
-            $req->setEmail('');
 
             Utils::SDK()->users()->create($req);
         } catch (ServerException $e) {
@@ -31,7 +30,7 @@ class UserCreateTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEqualsCanonicalizing(['name: cannot be blank'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['status: cannot be blank'], $exception->getValidationMessages());
     }
 
     /**
@@ -41,10 +40,10 @@ class UserCreateTest extends TestCase
     public function testUserCreateSuccess(): void
     {
         $req = new UserCreateReq();
-        $req->setName(Utils::createRandomTestName());
-        $req->setEmail(Utils::createRandomTestEmail());
+        // @phpstan-ignore-next-line
+        $req->setStatus(UserStatus::ACTIVE);
 
-        $rsp = Utils::SDK()->users()->create($req);
-        $this->assertEquals(200, $rsp->getHttpStatusCode());
+        $user = Utils::SDK()->users()->create($req);
+        $this->assertTrue($user->getUserId() != '');
     }
 }

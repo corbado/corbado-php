@@ -4,28 +4,12 @@ namespace Corbado;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
-use Corbado\Generated\Api\AuthTokensApi;
-use Corbado\Generated\Api\EmailMagicLinksApi;
-use Corbado\Generated\Api\EmailOTPApi;
-use Corbado\Generated\Api\SMSOTPApi;
-use Corbado\Generated\Api\UserApi;
-use Corbado\Generated\Api\ValidationApi;
-use Corbado\Generated\Model\ClientInfo;
+use Corbado\Generated\Api\UsersApi;
 use Corbado\Helper\Assert;
-use Corbado\Services\AuthTokenInterface;
-use Corbado\Services\AuthTokenService;
-use Corbado\Services\EmailMagicLinkInterface;
-use Corbado\Services\EmailMagicLinkService;
-use Corbado\Services\EmailOTPInterface;
-use Corbado\Services\EmailOTPService;
 use Corbado\Services\SessionInterface;
 use Corbado\Services\SessionService;
-use Corbado\Services\SmsOTPInterface;
-use Corbado\Services\SmsOTPService;
 use Corbado\Services\UserInterface;
 use Corbado\Services\UserService;
-use Corbado\Services\ValidationInterface;
-use Corbado\Services\ValidationService;
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
 
@@ -103,7 +87,7 @@ class SDK
         if ($this->users === null) {
             $this->users = new UserService(
                 // @phpstan-ignore-next-line
-                new UserApi($this->client, $this->createGeneratedConfiguration())
+                new UsersApi($this->client, $this->createGeneratedConfiguration())
             );
         }
 
@@ -128,21 +112,5 @@ class SDK
         $config->setAccessToken(null); // Need to null this out, otherwise it will try to use it
 
         return $config;
-    }
-
-    /**
-     * @throws AssertException
-     */
-    public static function createClientInfo(string $remoteAddress, string $userAgent): ClientInfo
-    {
-        Assert::stringNotEmpty($remoteAddress);
-        Assert::stringNotEmpty($userAgent);
-
-        $client = new ClientInfo();
-        $client
-            ->setRemoteAddress($remoteAddress)
-            ->setUserAgent($userAgent);
-
-        return $client;
     }
 }

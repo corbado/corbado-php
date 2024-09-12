@@ -20,7 +20,7 @@ class UserDeleteTest extends TestCase
         $exception = null;
 
         try {
-            Utils::SDK()->users()->delete('usr-123456789', new UserDeleteReq());
+            Utils::SDK()->users()->delete('usr-123456789');
         } catch (ServerException $e) {
             $exception = $e;
         }
@@ -37,8 +37,9 @@ class UserDeleteTest extends TestCase
     public function testUserDeleteSuccess(): void
     {
         $userID = Utils::createUser();
+        Utils::SDK()->users()->delete($userID);
 
-        $rsp = Utils::SDK()->users()->delete($userID, new UserDeleteReq());
-        $this->assertEquals(200, $rsp->getHttpStatusCode());
+        // Otherwise this test is marked as risky
+        $this->assertTrue(true);
     }
 }
