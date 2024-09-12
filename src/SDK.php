@@ -33,13 +33,8 @@ class SDK
 {
     private Config $config;
     private ClientInterface $client;
-    private ?AuthTokenInterface $authTokens = null;
-    private ?EmailMagicLinkInterface $emailMagicLinks = null;
-    private ?EmailOTPInterface $emailOTPs = null;
     private ?SessionInterface $session = null;
-    private ?SmsOTPInterface $smsOTPs = null;
     private ?UserInterface $users = null;
-    private ?ValidationInterface $validations = null;
 
     public const VERSION = '3.1.0';
 
@@ -70,62 +65,6 @@ class SDK
     }
 
     /**
-     * Returns auth token handling
-     *
-     * @return AuthTokenInterface
-     * @throws ConfigException
-     * @throws AssertException
-     */
-    public function authTokens(): AuthTokenInterface
-    {
-        if ($this->authTokens === null) {
-            $this->authTokens = new AuthTokenService(
-                // @phpstan-ignore-next-line
-                new AuthTokensApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->authTokens;
-    }
-
-    /**
-     * Returns email magic link handling
-     *
-     * @return EmailMagicLinkInterface
-     * @throws AssertException
-     * @throws ConfigException
-     */
-    public function emailMagicLinks(): EmailMagicLinkInterface
-    {
-        if ($this->emailMagicLinks === null) {
-            $this->emailMagicLinks = new EmailMagicLinkService(
-                // @phpstan-ignore-next-line
-                new EmailMagicLinksApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->emailMagicLinks;
-    }
-
-    /**
-     * Returns email OTP handling
-     *
-     * @throws AssertException
-     * @throws ConfigException
-     */
-    public function emailOTPs(): EmailOTPInterface
-    {
-        if ($this->emailOTPs === null) {
-            $this->emailOTPs = new EmailOTPService(
-                // @phpstan-ignore-next-line
-                new EmailOTPApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->emailOTPs;
-    }
-
-    /**
      * Returns session handling
      *
      * @return SessionInterface
@@ -153,25 +92,6 @@ class SDK
     }
 
     /**
-     * Returns SMS OTP handling
-     *
-     * @return SmsOTPInterface
-     * @throws AssertException
-     * @throws ConfigException
-     */
-    public function smsOTPs(): SmsOTPInterface
-    {
-        if ($this->smsOTPs === null) {
-            $this->smsOTPs = new SmsOTPService(
-                // @phpstan-ignore-next-line
-                new SMSOTPApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->smsOTPs;
-    }
-
-    /**
      * Returns user handling
      *
      * @return UserInterface
@@ -188,25 +108,6 @@ class SDK
         }
 
         return $this->users;
-    }
-
-    /**
-     * Returns validation handling
-     *
-     * @return ValidationInterface
-     * @throws AssertException
-     * @throws ConfigException
-     */
-    public function validations(): ValidationInterface
-    {
-        if ($this->validations === null) {
-            $this->validations = new ValidationService(
-                // @phpstan-ignore-next-line
-                new ValidationApi($this->client, $this->createGeneratedConfiguration())
-            );
-        }
-
-        return $this->validations;
     }
 
     /**
