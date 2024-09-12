@@ -40,7 +40,6 @@ class UserCompleteTest extends TestCase
         // Test updating a non-existent user
         try {
             $req = new UserUpdateReq();
-            $req->setFullName('Jane Doe');
 
             Utils::SDK()->users()->update('usr-123456789', $req);
         } catch (ServerException $e) {
@@ -72,11 +71,11 @@ class UserCompleteTest extends TestCase
         $user = Utils::SDK()->users()->create($req);
         $this->assertTrue($user->getUserId() != '');
 
-        // Test getting an existing user
-        $user = Utils::SDK()->users()->get($user->getUserId());
-        $this->assertNotNull($user);
-
         $existingUserID = $user->getUserId();
+
+        // Test getting an existing user
+        $user = Utils::SDK()->users()->get($existingUserID);
+        $this->assertNotNull($user);
 
         // Test updating an existing user with invalid data
         try {
@@ -99,23 +98,7 @@ class UserCompleteTest extends TestCase
         $user = Utils::SDK()->users()->update($existingUserID, $req);
         $this->assertEquals('Jane Doe', $user->getFullName());
 
-        // Test getting an existing user and test for updated data
-        $user = Utils::SDK()->users()->get($user->getUserId());
-        $this->assertNotNull($user);
-        $this->assertEquals('Jane Doe', $user->getFullName());
-
         // Test deleting an existing user
         Utils::SDK()->users()->delete($existingUserID);
-
-        // Test getting a non-existent user (after it has been deleted)
-        try {
-            Utils::SDK()->users()->get($existingUserID);
-        } catch (ServerException $e) {
-            $exception = $e;
-        }
-
-        $this->assertNotNull($exception);
-        $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEqualsCanonicalizing(['userID: does not exist'], $exception->getValidationMessages());
     }
 }

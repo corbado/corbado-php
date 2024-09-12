@@ -4,8 +4,11 @@ namespace Corbado;
 
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
+use Corbado\Generated\Api\IdentifiersApi;
 use Corbado\Generated\Api\UsersApi;
 use Corbado\Helper\Assert;
+use Corbado\Services\IdentifierInterface;
+use Corbado\Services\IdentifierService;
 use Corbado\Services\SessionInterface;
 use Corbado\Services\SessionService;
 use Corbado\Services\UserInterface;
@@ -19,6 +22,7 @@ class SDK
     private ClientInterface $client;
     private ?SessionInterface $session = null;
     private ?UserInterface $users = null;
+    private ?IdentifierInterface $identifiers = null;
 
     public const VERSION = '3.1.0';
 
@@ -92,6 +96,25 @@ class SDK
         }
 
         return $this->users;
+    }
+
+    /**
+     * Returns identifier handling
+     *
+     * @return IdentifierInterface
+     * @throws AssertException
+     * @throws ConfigException
+     */
+    public function identifiers(): IdentifierInterface
+    {
+        if ($this->identifiers === null) {
+            $this->identifiers = new IdentifierService(
+                // @phpstan-ignore-next-line
+                new IdentifiersApi($this->client, $this->createGeneratedConfiguration())
+            );
+        }
+
+        return $this->identifiers;
     }
 
     /**

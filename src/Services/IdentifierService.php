@@ -5,23 +5,24 @@ namespace Corbado\Services;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ServerException;
 use Corbado\Exceptions\StandardException;
-use Corbado\Generated\Api\UsersApi;
+use Corbado\Generated\Api\IdentifiersApi;
 use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\ErrorRsp;
-use Corbado\Generated\Model\UserCreateReq;
-use Corbado\Generated\Model\User;
-use Corbado\Generated\Model\UserUpdateReq;
+use Corbado\Generated\Model\Identifier;
+use Corbado\Generated\Model\IdentifierCreateReq;
+use Corbado\Generated\Model\IdentifierUpdateReq;
+use Corbado\Generated\Model\IdentifierList;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
-class UserService implements UserInterface
+class IdentifierService implements IdentifierInterface
 {
-    private UsersApi $client;
+    private IdentifiersApi $client;
 
     /**
      * @throws AssertException
      */
-    public function __construct(UsersApi $client)
+    public function __construct(IdentifiersApi $client)
     {
         Assert::notNull($client);
         $this->client = $client;
@@ -32,21 +33,21 @@ class UserService implements UserInterface
      * @throws StandardException
      * @throws ServerException
      */
-    public function create(UserCreateReq $req): User
+    public function create(string $userID, IdentifierCreateReq $req): Identifier
     {
         Assert::notNull($req);
 
         try {
-            $user = $this->client->userCreate($req);
+            $identifier = $this->client->identifierCreate($userID, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
 
-        if ($user instanceof ErrorRsp) {
+        if ($identifier instanceof ErrorRsp) {
             throw new StandardException('Got unexpected ErrorRsp');
         }
 
-        return $user;
+        return $identifier;
     }
 
     /**
@@ -54,42 +55,21 @@ class UserService implements UserInterface
      * @throws AssertException
      * @throws ServerException
      */
-    public function delete(string $userID): void
+    public function delete(string $userID, string $identifierID): void
     {
         Assert::stringNotEmpty($userID);
+        Assert::stringNotEmpty($identifierID);
 
         try {
-            // userDelete() returns a "GenericRsp" (see OpenAPI specs) if the
+            // identifierDelete() returns a "GenericRsp" (see OpenAPI specs) if the
             // deletion was successful. But it does not contain any data so we
             // "swallow" it here (delete() returns void). A better approach would
             // be that the Backend API V2 returns 204 No Content with no body but
             // this was too much work to change for now.
-            $this->client->userDelete($userID);
+            $this->client->identifierDelete($userID, $identifierID);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
-    }
-
-    /**
-     * @throws StandardException
-     * @throws AssertException
-     * @throws ServerException
-     */
-    public function get(string $userID): User
-    {
-        Assert::stringNotEmpty($userID);
-
-        try {
-            $user = $this->client->userGet($userID);
-        } catch (ApiException $e) {
-            throw Helper::convertToServerException($e);
-        }
-
-        if ($user instanceof ErrorRsp) {
-            throw new StandardException('Got unexpected ErrorRsp');
-        }
-
-        return $user;
     }
 
     /**
@@ -97,21 +77,42 @@ class UserService implements UserInterface
      * @throws StandardException
      * @throws ServerException
      */
-    public function update(string $userID, UserUpdateReq $req): User
+    public function update(string $userID, string $identifierID, IdentifierUpdateReq $req): Identifier
     {
         Assert::stringNotEmpty($userID);
+        Assert::stringNotEmpty($identifierID);
         Assert::notNull($req);
 
         try {
-            $user = $this->client->userUpdate($userID, $req);
+            $identifier = $this->client->identifierUpdate($userID, $identifierID, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }
 
-        if ($user instanceof ErrorRsp) {
+        if ($identifier instanceof ErrorRsp) {
             throw new StandardException('Got unexpected ErrorRsp');
         }
 
-        return $user;
+        return $identifier;
+    }
+
+    /**
+     * @param array<string> $filter
+     * @throws ServerException
+     * @throws StandardException
+     */
+    public function list(string $sort = '', array $filter = [], int $page = 1, int $pageSize = 10): IdentifierList
+    {
+        try {
+            $rsp = $this->client->identifierList($sort, $filter, $page, $pageSize);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
+        }
+
+        if ($rsp instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
+
+        return $rsp;
     }
 }
