@@ -5,9 +5,7 @@ namespace integration\User;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
 use Corbado\Exceptions\ServerException;
-use Corbado\Exceptions\StandardException;
 use Corbado\Generated\Model\UserUpdateReq;
-use Corbado\Generated\Model\UserStatus;
 use integration\Utils;
 use PHPUnit\Framework\TestCase;
 
