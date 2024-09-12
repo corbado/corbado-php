@@ -6,8 +6,11 @@ use Corbado\Entities\UserEntity;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ValidationException;
 use Corbado\Helper\Assert;
+use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\CachedKeySet;
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
+use Firebase\JWT\SignatureInvalidException;
 use GuzzleHttp\Psr7\HttpFactory;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
@@ -75,6 +78,10 @@ class SessionService implements SessionInterface
     {
         Assert::stringNotEmpty($value);
 
+        $createException = function (string $message, string $jwt, int $code) {
+            return new ValidationException(sprintf('JWT validation failed: "%s" (JWT: "%s")', $message, $jwt), $code);
+        };
+
         try {
             $keySet = new CachedKeySet(
                 $this->jwksURI,
@@ -86,13 +93,22 @@ class SessionService implements SessionInterface
             );
 
             $decoded = JWT::decode($value, $keySet);
-            if ($decoded->iss !== $this->issuer) { // @todo Add unit test for this case
-                throw new ValidationException('Mismatch in JWT issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', ValidationException::CODE_JWT_ISSUER_MISMATCH);
+            if ($decoded->iss !== $this->issuer) {
+                throw $createException(sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $decoded->iss), $value, ValidationException::CODE_JWT_ISSUER_MISMATCH);
             }
 
             return $decoded;
+
+        } catch (SignatureInvalidException $e) {
+            throw $createException($e->getMessage(), $value, ValidationException::CODE_JWT_INVALID_SIGNATURE);
+        } catch (BeforeValidException $e) {
+            throw $createException($e->getMessage(), $value, ValidationException::CODE_JWT_BEFORE);
+        } catch (ExpiredException $e) {
+            throw $createException($e->getMessage(), $value, ValidationException::CODE_JWT_EXPIRED);
+        } catch (\UnexpectedValueException $e) {
+            throw $createException($e->getMessage(), $value, ValidationException::CODE_JWT_INVALID_DATA);
         } catch (Throwable $e) {
-            throw new ValidationException(sprintf('JWT validation failed: "%s %s"', $e->getMessage(), $value), ValidationException::CODE_GENERAL);
+            throw $createException($e->getMessage(), $value, ValidationException::CODE_JWT_GENERAL);
         }
     }
 
