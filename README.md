@@ -46,13 +46,9 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
-- `authTokens` for managing authentication tokens needed for own session management ([examples](tests/integration/AuthToken))
-- `emailMagicLinks` for managing email magic links ([examples](tests/integration/EmailMagicLink))
-- `emailOTPs` for managing email OTPs ([examples](tests/integration/EmailOTP))
-- `sessions` for managing sessions
-- `smsOTPs` for managing SMS OTPs ([examples](tests/integration/SmsOTP))
 - `users` for managing users ([examples](tests/integration/User))
-- `validations` for validating email addresses and phone numbers ([examples](tests/integration/Validation))
+- `identifiers` for managing identifiers ([examples](tests/integration/Identifier))
+- `sessions` for managing sessions
 
 To use a specific service, such as `sessions`, invoke it as shown below:
 
@@ -68,17 +64,18 @@ The Corbado PHP SDK throws exceptions for all errors. The following exceptions a
 
 - `AssertException` for failed assertions (client side)
 - `ConfigException` for configuration errors (client side)
+- `ValidationException` for validation errors (client side)
 - `ServerException` for server errors (server side)
 - `StandardException` for everything else (client side)
 
-If the Backend API returns a HTTP status code other than 200, the Corbado PHP SDK throws a `ServerException`. The `ServerException`class provides convenient methods to access all important data:
+If the Backend API returns an HTTP status code other than 200, the Corbado PHP SDK throws a `ServerException`. The `ServerException`class provides convenient methods to access all important data:
 
 ```PHP
 try {
     // Try to get non-existing user with ID 'usr-123456789'
     $user = $sdk->users()->get('usr-123456789');
 } catch (ServerException $e) {
-    // Show HTTP status code (404 in this case)
+    // Show HTTP status code (400 in this case)
     echo $e->getHttpStatusCode() . PHP_EOL;
     
     // Show request ID (can be used in developer panel to look up the full request
