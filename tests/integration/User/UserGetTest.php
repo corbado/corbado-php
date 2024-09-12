@@ -25,7 +25,8 @@ class UserGetTest extends TestCase
         }
 
         $this->assertNotNull($exception);
-        $this->assertEquals(404, $exception->getHttpStatusCode());
+        $this->assertEquals(400, $exception->getHttpStatusCode());
+        $this->assertEqualsCanonicalizing(['userID: does not exist'], $exception->getValidationMessages());
     }
 
     /**
@@ -36,7 +37,7 @@ class UserGetTest extends TestCase
     {
         $userID = Utils::createUser();
 
-        $rsp = Utils::SDK()->users()->get($userID);
-        $this->assertEquals(200, $rsp->getHttpStatusCode());
+        $user = Utils::SDK()->users()->get($userID);
+        $this->assertNotNull($user);
     }
 }
