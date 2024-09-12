@@ -11,6 +11,7 @@ use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Generated\Model\GenericRsp;
 use Corbado\Generated\Model\UserCreateReq;
 use Corbado\Generated\Model\User;
+use Corbado\Generated\Model\UserUpdateReq;
 use Corbado\Helper\Assert;
 use Corbado\Helper\Helper;
 
@@ -81,6 +82,29 @@ class UserService implements UserInterface
 
         try {
             $user = $this->client->userGet($id);
+        } catch (ApiException $e) {
+            throw Helper::convertToServerException($e);
+        }
+
+        if ($user instanceof ErrorRsp) {
+            throw new StandardException('Got unexpected ErrorRsp');
+        }
+
+        return $user;
+    }
+
+    /**
+     * @throws AssertException
+     * @throws StandardException
+     * @throws ServerException
+     */
+    public function update(string $id, UserUpdateReq $req): User
+    {
+        Assert::stringNotEmpty($id);
+        Assert::notNull($req);
+
+        try {
+            $user = $this->client->userUpdate($id, $req);
         } catch (ApiException $e) {
             throw Helper::convertToServerException($e);
         }

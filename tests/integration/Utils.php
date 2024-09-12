@@ -87,6 +87,7 @@ class Utils
     public static function createUser(): string
     {
         $req = new UserCreateReq();
+        $req->setFullName(self::createRandomTestName());
         // @phpstan-ignore-next-line
         $req->setStatus(UserStatus::ACTIVE);
 
