@@ -13,7 +13,7 @@ class Config
     private string $projectID = '';
     private string $apiSecret = '';
     private string $frontendAPI = '';
-    private string $backendAPI = 'https://backendapi.corbado.io';
+    private string $backendAPI = 'https://backendapi.cloud.corbado.io';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
@@ -133,7 +133,7 @@ class Config
     public function getFrontendAPI(): string
     {
         if ($this->frontendAPI === '') {
-            $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.corbado.io';
+            $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.cloud.corbado.io';
         }
 
         return $this->frontendAPI;
