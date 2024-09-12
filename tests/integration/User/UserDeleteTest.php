@@ -39,7 +39,9 @@ class UserDeleteTest extends TestCase
         $userID = Utils::createUser();
         Utils::SDK()->users()->delete($userID);
 
-        // Otherwise this test is marked as risky
+        // We do not do any "real" asserts because in success case delete() returns nothing
+        // and in case of error it throws an exception. The following assertTrue() is needed
+        // to make PHPUnit happy (otherwise it is marked as a "risky" test).
         $this->assertTrue(true);
     }
 }
