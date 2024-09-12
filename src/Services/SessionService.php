@@ -4,6 +4,7 @@ namespace Corbado\Services;
 
 use Corbado\Entities\UserEntity;
 use Corbado\Exceptions\AssertException;
+use Corbado\Exceptions\ValidationException;
 use Corbado\Helper\Assert;
 use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
@@ -20,7 +21,6 @@ class SessionService implements SessionInterface
     private string $issuer;
     private string $jwksURI;
     private CacheItemPoolInterface $jwksCachePool;
-    private string $lastShortSessionValidationResult = '';
 
     /**
      * Constructor
@@ -68,10 +68,10 @@ class SessionService implements SessionInterface
      * Validates the given short-term session (represented as JWT) value
      *
      * @param string $value Value (JWT)
-     * @return stdClass|null Returns stdClass on success, otherwise null
-     * @throws AssertException
+     * @return stdClass Returns stdClass
+     * @throws AssertException|ValidationException
      */
-    public function validateShortSessionValue(string $value): ?stdClass
+    public function validateShortSessionValue(string $value): stdClass
     {
         Assert::stringNotEmpty($value);
 
@@ -86,36 +86,14 @@ class SessionService implements SessionInterface
             );
 
             $decoded = JWT::decode($value, $keySet);
-
-            $issuerValid = false;
-            if ($decoded->iss === $this->issuer) {
-                $issuerValid = true;
-            } else {
-                $this->lastShortSessionValidationResult = sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT: "%s")', $this->issuer, $decoded->iss);
+            if ($decoded->iss !== $this->issuer) { // @todo Add unit test for this case
+                throw new ValidationException('Mismatch in JWT issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', ValidationException::CODE_JWT_ISSUER_MISMATCH);
             }
 
-            if ($issuerValid === true) {
-                return $decoded;
-            }
-
-            return null;
+            return $decoded;
         } catch (Throwable $e) {
-            $this->lastShortSessionValidationResult = sprintf('JWT validation failed: "%s"', $e->getMessage());
-            return null;
+            throw new ValidationException(sprintf('JWT validation failed: "%s %s"', $e->getMessage(), $value), ValidationException::CODE_GENERAL);
         }
-    }
-
-    /**
-     * Returns the last short-term session validation result
-     *
-     * This method returns the exact reason why the last validation
-     * failed (for example expired or issuer mismatch).
-     *
-     * @return string
-     */
-    public function getLastShortSessionValidationResult(): string
-    {
-        return $this->lastShortSessionValidationResult;
     }
 
     /**
@@ -126,6 +104,7 @@ class SessionService implements SessionInterface
      *
      * @return UserEntity
      * @throws AssertException
+     * @throws ValidationException
      */
     public function getCurrentUser(): UserEntity
     {
@@ -137,38 +116,34 @@ class SessionService implements SessionInterface
         }
 
         $decoded = $this->validateShortSessionValue($value);
-        if ($decoded !== null) {
-            $name = '';
-            if (isset($decoded->name)) {
-                $name = $decoded->name;
-            }
-
-            $email = '';
-            if (isset($decoded->email)) {
-                $email = $decoded->email;
-            }
-
-            $phoneNumber = '';
-            if (isset($decoded->phone_number)) {
-                $phoneNumber = $decoded->phone_number;
-            }
-
-            $orig = '';
-            if (isset($decoded->orig)) {
-                $orig = $decoded->orig;
-            }
-
-            return new UserEntity(
-                true,
-                $decoded->sub,
-                $name,
-                $email,
-                $phoneNumber,
-                $orig
-            );
+        $name = '';
+        if (isset($decoded->name)) {
+            $name = $decoded->name;
         }
 
-        return $guest;
+        $email = '';
+        if (isset($decoded->email)) {
+            $email = $decoded->email;
+        }
+
+        $phoneNumber = '';
+        if (isset($decoded->phone_number)) {
+            $phoneNumber = $decoded->phone_number;
+        }
+
+        $orig = '';
+        if (isset($decoded->orig)) {
+            $orig = $decoded->orig;
+        }
+
+        return new UserEntity(
+            true,
+            $decoded->sub,
+            $name,
+            $email,
+            $phoneNumber,
+            $orig
+        );
     }
 
     /**

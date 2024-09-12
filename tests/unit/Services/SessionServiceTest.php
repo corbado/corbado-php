@@ -2,6 +2,7 @@
 
 namespace unit\Services;
 
+use Corbado\Exceptions\ValidationException;
 use Corbado\Exceptions\AssertException;
 use Corbado\Services\SessionService;
 use Exception;
@@ -35,17 +36,24 @@ class SessionServiceTest extends TestCase
         unset($_COOKIE['cbo_short_session']);
         $value = $session->getShortSessionValue();
         $this->assertEquals('bearer_1234567890', $value);
+
+        // Cleanup so other tests are not affected
+        unset($_SERVER['HTTP_AUTHORIZATION']);
     }
 
     /**
      * @dataProvider provideJWTs
      * @throws Exception
      */
-    public function testValidateShortSessionValue(bool $expected, string $value): void
+    public function testValidateShortSessionValue(bool $success, string $value): void
     {
+        if (!$success) {
+            $this->expectException(ValidationException::class);
+        }
+
         $session = self::createSession();
-        $result = $session->validateShortSessionValue($value);
-        $this->assertEquals($expected, $result !== null);
+        $value = $session->validateShortSessionValue($value);
+        $this->assertTrue($value instanceof \stdClass);
     }
 
     /**

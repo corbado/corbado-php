@@ -49,7 +49,7 @@ class ConfigTest extends TestCase
     public function testGetFrontendAPI(): void
     {
         $config = new Config('pro-123', 'corbado1_123');
-        $this->assertEquals('https://pro-123.frontendapi.corbado.io', $config->getFrontendAPI());
+        $this->assertEquals('https://pro-123.frontendapi.cloud.corbado.io', $config->getFrontendAPI());
     }
 
     /**
