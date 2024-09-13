@@ -13,7 +13,7 @@ class Config
     private string $projectID = '';
     private string $apiSecret = '';
     private string $frontendAPI = '';
-    private string $backendAPI = 'https://backendapi.cloud.corbado.io';
+    private string $backendAPI = 'https://backendapi.cloud.corbado.io/v2';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
@@ -83,7 +83,11 @@ class Config
     {
         $this->assertURL($backendAPI);
 
-        $this->backendAPI = $backendAPI;
+        // assertURL() makes sure no path/version is set in
+        // Backend API URL. Thus, we need to add /v2 here to get
+        // the final Backend API URL. Since major SDK versions
+        // are connected to major API versions this is fine.
+        $this->backendAPI = $backendAPI . '/v2';
 
         return $this;
     }
@@ -194,6 +198,10 @@ class Config
 
         if (isset($parts['pass'])) {
             throw new Exceptions\AssertException(sprintf('Assert failed: password needs to be empty ("%s")', $url));
+        }
+
+        if (isset($parts['path'])) {
+            throw new Exceptions\AssertException(sprintf('Assert failed: path needs to be empty ("%s")', $url));
         }
 
         if (isset($parts['query'])) {
