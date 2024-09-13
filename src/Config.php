@@ -30,12 +30,12 @@ class Config
      */
     public function __construct(string $projectID, string $apiSecret, string $frontendAPI, string $backendAPI)
     {
+        var_dump($projectID);
+
         Assert::stringNotEmpty($projectID);
         Assert::stringNotEmpty($apiSecret);
         $this->assertURL($frontendAPI);
         $this->assertURL($backendAPI);
-
-        var_dump($projectID);
 
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Exceptions\ConfigException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
