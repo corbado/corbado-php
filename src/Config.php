@@ -35,6 +35,8 @@ class Config
         $this->assertURL($frontendAPI);
         $this->assertURL($backendAPI);
 
+        var_dump($projectID);
+
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Exceptions\ConfigException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
