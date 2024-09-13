@@ -30,8 +30,6 @@ class Config
      */
     public function __construct(string $projectID, string $apiSecret, string $frontendAPI, string $backendAPI)
     {
-        var_dump($projectID);
-
         Assert::stringNotEmpty($projectID);
         Assert::stringNotEmpty($apiSecret);
         $this->assertURL($frontendAPI);
