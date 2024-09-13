@@ -10,15 +10,14 @@ class ConfigTest extends TestCase
 {
     /**
      * @dataProvider provideURLs
-     * @param string $frontendAPI
+     * @param string $api
      * @param bool $valid
      * @return void
      */
-    public function testSetFrontendAPI(string $frontendAPI, bool $valid): void
+    public function testConstructor(string $api, bool $valid): void
     {
         try {
-            $config = new Config('pro-123', 'corbado1_123');
-            $config->setFrontendAPI($frontendAPI);
+            (new Config('pro-123', 'corbado1_123', $api, $api));
             $error = false;
         } catch (Throwable) {
             $error = true;
@@ -27,29 +26,11 @@ class ConfigTest extends TestCase
         $this->assertEquals($valid, !$error);
     }
 
-    /**
-     * @dataProvider provideURLs
-     * @param string $backendAPI
-     * @param bool $valid
-     * @return void
-     */
-    public function testSetBackendAPI(string $backendAPI, bool $valid): void
+    public function testGetAPI(): void
     {
-        try {
-            $config = new Config('pro-123', 'corbado1_123');
-            $config->setBackendAPI($backendAPI);
-            $error = false;
-        } catch (Throwable) {
-            $error = true;
-        }
-
-        $this->assertEquals($valid, !$error);
-    }
-
-    public function testGetFrontendAPI(): void
-    {
-        $config = new Config('pro-123', 'corbado1_123');
+        $config = new Config('pro-123', 'corbado1_123', 'https://pro-123.frontendapi.cloud.corbado.io', 'https://backendapi.cloud.corbado.io');
         $this->assertEquals('https://pro-123.frontendapi.cloud.corbado.io', $config->getFrontendAPI());
+        $this->assertEquals('https://backendapi.cloud.corbado.io', $config->getBackendAPI());
     }
 
     /**

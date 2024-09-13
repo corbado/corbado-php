@@ -119,16 +119,11 @@ class SDK
 
     /**
      * @return Generated\Configuration
-     * @throws ConfigException
      */
     private function createGeneratedConfiguration(): Generated\Configuration
     {
-        if ($this->config->getApiSecret() == '') {
-            throw new Exceptions\ConfigException('No API secret set, pass in constructor of configuration');
-        }
-
         $config = new Generated\Configuration();
-        $config->setHost($this->config->getBackendAPI());
+        $config->setHost($this->config->getBackendAPI() . '/v2');
         $config->setUsername($this->config->getProjectID());
         $config->setPassword($this->config->getApiSecret());
         // @phpstan-ignore-next-line

@@ -13,7 +13,7 @@ class Config
     private string $projectID = '';
     private string $apiSecret = '';
     private string $frontendAPI = '';
-    private string $backendAPI = 'https://backendapi.cloud.corbado.io/v2';
+    private string $backendAPI = '';
     private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
@@ -28,20 +28,25 @@ class Config
      * @throws AssertException
      * @throws ConfigException
      */
-    public function __construct(string $projectID, string $apiSecret = '')
+    public function __construct(string $projectID, string $apiSecret, string $frontendAPI, string $backendAPI)
     {
         Assert::stringNotEmpty($projectID);
+        Assert::stringNotEmpty($apiSecret);
+        $this->assertURL($frontendAPI);
+        $this->assertURL($backendAPI);
 
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Exceptions\ConfigException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
-        if ($apiSecret !== '' && !str_starts_with($apiSecret, 'corbado1_')) {
+        if (!str_starts_with($apiSecret, 'corbado1_')) {
             throw new Exceptions\ConfigException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
         }
 
         $this->projectID = $projectID;
         $this->apiSecret = $apiSecret;
+        $this->frontendAPI = $frontendAPI;
+        $this->backendAPI = $backendAPI;
     }
 
     /**
@@ -52,6 +57,8 @@ class Config
     {
         $projectID = getenv('CORBADO_PROJECT_ID');
         $apiSecret = getenv('CORBADO_API_SECRET');
+        $frontendAPI = getenv('CORBADO_FRONTEND_API');
+        $backendAPI = getenv('CORBADO_BACKEND_API');
 
         if ($projectID === false) {
             throw new Exceptions\ConfigException('Environment variable "CORBADO_PROJECT_ID" not set');
@@ -61,35 +68,15 @@ class Config
             throw new Exceptions\ConfigException('Environment variable "CORBADO_API_SECRET" not set');
         }
 
-        return new self($projectID, $apiSecret);
-    }
+        if ($frontendAPI === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_FRONTEND_API" not set');
+        }
 
-    /**
-     * @throws AssertException
-     */
-    public function setFrontendAPI(string $frontendAPI): self
-    {
-        $this->assertURL($frontendAPI);
+        if ($backendAPI === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_BACKEND_API" not set');
+        }
 
-        $this->frontendAPI = $frontendAPI;
-
-        return $this;
-    }
-
-    /**
-     * @throws AssertException
-     */
-    public function setBackendAPI(string $backendAPI): self
-    {
-        $this->assertURL($backendAPI);
-
-        // assertURL() makes sure no path/version is set in
-        // Backend API URL. Thus, we need to add /v2 here to get
-        // the final Backend API URL. Since major SDK versions
-        // are connected to major API versions this is fine.
-        $this->backendAPI = $backendAPI . '/v2';
-
-        return $this;
+        return new self($projectID, $apiSecret, $frontendAPI, $backendAPI);
     }
 
     /**
