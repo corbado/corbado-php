@@ -39,7 +39,6 @@ class UserService implements UserInterface
         try {
             $user = $this->client->userCreate($req);
         } catch (ApiException $e) {
-            var_dump($e);
             throw Helper::convertToServerException($e);
         }
 
