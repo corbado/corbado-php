@@ -46,9 +46,9 @@ A list of examples can be found in the integration tests [here](tests/integratio
 
 The Corbado PHP SDK provides the following services:
 
+- `sessions` for managing sessions
 - `users` for managing users ([examples](tests/integration/User))
 - `identifiers` for managing identifiers ([examples](tests/integration/Identifier))
-- `sessions` for managing sessions
 
 To use a specific service, such as `sessions`, invoke it as shown below:
 
