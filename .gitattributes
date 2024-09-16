@@ -1,0 +1,5 @@
+/.github export-ignore
+/scripts export-ignore
+/tests export-ignore
+/.php-cs-fixer.php export-ignore
+/phpstan.neon export-ignre
