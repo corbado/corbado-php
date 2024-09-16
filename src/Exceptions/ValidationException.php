@@ -11,7 +11,6 @@ class ValidationException extends \Exception
     public const CODE_JWT_BEFORE = 5;
     public const CODE_JWT_EXPIRED = 6;
 
-
     public function __construct(string $message, int $code)
     {
         parent::__construct($message, $code);
