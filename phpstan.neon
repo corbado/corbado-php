@@ -1,6 +1,5 @@
 parameters:
     level: 8
-    checkGenericClassInNonGenericObjectType: false
     excludePaths:
         analyseAndScan:
             - src/Generated

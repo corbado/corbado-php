@@ -18,107 +18,74 @@ use Psr\Cache\CacheItemPoolInterface;
 class SessionServiceTest extends TestCase
 {
     /**
-     * @throws AssertException
-     * @throws Exception
-     */
-    public function testGetShortSessionValue(): void
-    {
-        $session = self::createSession();
-
-        $_COOKIE['cbo_short_session'] = 'cookie_1234567890';
-        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer bearer_1234567890';
-
-        // Check for cookie (has priority)
-        $value = $session->getShortSessionValue();
-        $this->assertEquals('cookie_1234567890', $value);
-
-        // Check for header
-        unset($_COOKIE['cbo_short_session']);
-        $value = $session->getShortSessionValue();
-        $this->assertEquals('bearer_1234567890', $value);
-
-        // Cleanup so other tests are not affected
-        unset($_SERVER['HTTP_AUTHORIZATION']);
-    }
-
-    /**
      * @dataProvider provideJWTs
      * @throws Exception
      */
-    public function testValidateShortSessionValue(bool $success, string $value): void
+    public function testValidateToken(string $shortSession, bool $success, int $code): void
     {
-        if (!$success) {
-            $this->expectException(ValidationException::class);
+        $exception = null;
+        $user = null;
+
+        try {
+            $session = self::createSession();
+            $user = $session->validateToken($shortSession);
+        } catch (\Throwable $e) {
+            $exception = $e;
         }
 
-        $session = self::createSession();
-        $value = $session->validateShortSessionValue($value);
-        $this->assertTrue($value instanceof \stdClass);
+        if ($success === true) {
+            $this->assertNotNull($user);
+            $this->assertEquals('usr-1234567890', $user->getID());
+        } else {
+            $this->assertInstanceOf(ValidationException::class, $exception);
+            $this->assertEquals($code, $exception->getCode());
+        }
     }
 
     /**
      * @throws Exception
-     * @return array<int, array<int, bool|string>>
+     * @return array<int, array<int, string|bool|int>>
      */
     public static function provideJWTs(): array
     {
         return [
             [
                 // JWT with invalid format
+                'invalid',
                 false,
-                'invalid'
+                ValidationException::CODE_JWT_INVALID_DATA
             ],
             [
-                // JWT signed with wrong algorithm (HS256 instead of RS256)
+                // JWT with invalid signature
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImtpZDEyMyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYWNtZS5jb20iLCJpYXQiOjE3MjY0OTE4MDcsImV4cCI6MTcyNjQ5MTkwNywibmJmIjoxNzI2NDkxNzA3LCJzdWIiOiJ1c3ItMTIzNDU2Nzg5MCIsIm5hbWUiOiJuYW1lIiwiZW1haWwiOiJlbWFpbCIsInBob25lX251bWJlciI6InBob25lTnVtYmVyIiwib3JpZyI6Im9yaWcifQ.invalid',
                 false,
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.dyt0CoTl4WoVjAHI9Q_CwSKhl6d_9rhM3NrXuJttkao'
+                ValidationException::CODE_JWT_INVALID_SIGNATURE
             ],
             [
                 // Not before (nfb) in future
+                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100),
                 false,
-                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100)
+                ValidationException::CODE_JWT_BEFORE
             ],
             [
                 // Expired (exp)
+                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100),
                 false,
-                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100)
+                ValidationException::CODE_JWT_EXPIRED
             ],
             [
                 // Invalid issuer (iss)
+                self::generateJWT('https://invalid.com', time() + 100, time() - 100),
                 false,
-                self::generateJWT('https://invalid.com', time() + 100, time() - 100)
+                ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
                 // Success
+                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100),
                 true,
-                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100)
+                0
             ]
         ];
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function testGetCurrentUserGuest(): void
-    {
-        $session = self::createSession();
-        $user = $session->getCurrentUser();
-        $this->assertFalse($user->isAuthenticated());
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function testGetCurrentUserAuthenticated(): void
-    {
-        $_COOKIE['cbo_short_session'] = self::generateJWT('https://auth.acme.com', time() + 100, time() - 100);
-
-        $session = self::createSession();
-        $user = $session->getCurrentUser();
-        $this->assertTrue($user->isAuthenticated());
-        $this->assertEquals('name', $user->getName());
-        $this->assertEquals('email', $user->getEmail());
-        $this->assertEquals('orig', $user->getOrig());
     }
 
     /**
@@ -258,7 +225,6 @@ class SessionServiceTest extends TestCase
 
         return new SessionService(
             $client,
-            'cbo_short_session',
             'https://auth.acme.com',
             'https://xxx', // does not matter because response is mocked
             $cacheItemPool
@@ -275,7 +241,7 @@ class SessionServiceTest extends TestCase
             'iat' => time(),
             'exp' => $exp,
             'nbf' => $nbf,
-            'sub' => '12345',
+            'sub' => 'usr-1234567890',
             'name' => 'name',
             'email' => 'email',
             'phone_number' => 'phoneNumber',

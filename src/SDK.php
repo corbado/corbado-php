@@ -69,7 +69,6 @@ class SDK
 
             $this->session = new SessionService(
                 $this->client,
-                $this->config->getShortSessionCookieName(),
                 $this->config->getFrontendAPI(),
                 $this->config->getFrontendAPI() . '/.well-known/jwks',
                 $this->config->getJwksCachePool()

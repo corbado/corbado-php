@@ -14,7 +14,6 @@ class Config
     private string $apiSecret = '';
     private string $frontendAPI = '';
     private string $backendAPI = '';
-    private string $shortSessionCookieName = 'cbo_short_session';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
 
@@ -79,18 +78,6 @@ class Config
         return new self($projectID, $apiSecret, $frontendAPI, $backendAPI);
     }
 
-    /**
-     * @throws AssertException
-     */
-    public function setShortSessionCookieName(string $shortSessionCookieName): self
-    {
-        Assert::stringNotEmpty($shortSessionCookieName);
-
-        $this->shortSessionCookieName = $shortSessionCookieName;
-
-        return $this;
-    }
-
     public function setHttpClient(ClientInterface $httpClient): self
     {
         $this->httpClient = $httpClient;
@@ -133,14 +120,6 @@ class Config
     public function getBackendAPI(): string
     {
         return $this->backendAPI;
-    }
-
-    /**
-     * @return string
-     */
-    public function getShortSessionCookieName(): string
-    {
-        return $this->shortSessionCookieName;
     }
 
     /**
