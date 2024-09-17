@@ -24,7 +24,7 @@ class SDK
     private ?UserInterface $users = null;
     private ?IdentifierInterface $identifiers = null;
 
-    public const VERSION = '3.1.0';
+    public const VERSION = '4.0.0';
 
     /**
      * Constructor
