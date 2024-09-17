@@ -13,8 +13,7 @@ class Config
     private string $projectID = '';
     private string $apiSecret = '';
     private string $frontendAPI = '';
-    private string $backendAPI = 'https://backendapi.corbado.io';
-    private string $shortSessionCookieName = 'cbo_short_session';
+    private string $backendAPI = '';
     private ?ClientInterface $httpClient = null;
     private ?CacheItemPoolInterface $jwksCachePool = null;
 
@@ -28,20 +27,25 @@ class Config
      * @throws AssertException
      * @throws ConfigException
      */
-    public function __construct(string $projectID, string $apiSecret = '')
+    public function __construct(string $projectID, string $apiSecret, string $frontendAPI, string $backendAPI)
     {
         Assert::stringNotEmpty($projectID);
+        Assert::stringNotEmpty($apiSecret);
+        $this->assertURL($frontendAPI);
+        $this->assertURL($backendAPI);
 
         if (!str_starts_with($projectID, 'pro-')) {
             throw new Exceptions\ConfigException('Invalid project ID "' . $projectID . '" given, needs to start with "pro-"');
         }
 
-        if ($apiSecret !== '' && !str_starts_with($apiSecret, 'corbado1_')) {
+        if (!str_starts_with($apiSecret, 'corbado1_')) {
             throw new Exceptions\ConfigException('Invalid API secret "' . $apiSecret . '" given, needs to start with "corbado1_"');
         }
 
         $this->projectID = $projectID;
         $this->apiSecret = $apiSecret;
+        $this->frontendAPI = $frontendAPI;
+        $this->backendAPI = $backendAPI;
     }
 
     /**
@@ -52,6 +56,8 @@ class Config
     {
         $projectID = getenv('CORBADO_PROJECT_ID');
         $apiSecret = getenv('CORBADO_API_SECRET');
+        $frontendAPI = getenv('CORBADO_FRONTEND_API');
+        $backendAPI = getenv('CORBADO_BACKEND_API');
 
         if ($projectID === false) {
             throw new Exceptions\ConfigException('Environment variable "CORBADO_PROJECT_ID" not set');
@@ -61,43 +67,15 @@ class Config
             throw new Exceptions\ConfigException('Environment variable "CORBADO_API_SECRET" not set');
         }
 
-        return new self($projectID, $apiSecret);
-    }
+        if ($frontendAPI === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_FRONTEND_API" not set');
+        }
 
-    /**
-     * @throws AssertException
-     */
-    public function setFrontendAPI(string $frontendAPI): self
-    {
-        $this->assertURL($frontendAPI);
+        if ($backendAPI === false) {
+            throw new Exceptions\ConfigException('Environment variable "CORBADO_BACKEND_API" not set');
+        }
 
-        $this->frontendAPI = $frontendAPI;
-
-        return $this;
-    }
-
-    /**
-     * @throws AssertException
-     */
-    public function setBackendAPI(string $backendAPI): self
-    {
-        $this->assertURL($backendAPI);
-
-        $this->backendAPI = $backendAPI;
-
-        return $this;
-    }
-
-    /**
-     * @throws AssertException
-     */
-    public function setShortSessionCookieName(string $shortSessionCookieName): self
-    {
-        Assert::stringNotEmpty($shortSessionCookieName);
-
-        $this->shortSessionCookieName = $shortSessionCookieName;
-
-        return $this;
+        return new self($projectID, $apiSecret, $frontendAPI, $backendAPI);
     }
 
     public function setHttpClient(ClientInterface $httpClient): self
@@ -133,7 +111,7 @@ class Config
     public function getFrontendAPI(): string
     {
         if ($this->frontendAPI === '') {
-            $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.corbado.io';
+            $this->frontendAPI = 'https://' . $this->projectID . '.frontendapi.cloud.corbado.io';
         }
 
         return $this->frontendAPI;
@@ -142,14 +120,6 @@ class Config
     public function getBackendAPI(): string
     {
         return $this->backendAPI;
-    }
-
-    /**
-     * @return string
-     */
-    public function getShortSessionCookieName(): string
-    {
-        return $this->shortSessionCookieName;
     }
 
     /**
@@ -175,39 +145,37 @@ class Config
     {
         Assert::stringNotEmpty($url);
 
-        // @todo Add url value to exceptions
-
         $parts = parse_url($url);
         if ($parts === false) {
-            throw new Exceptions\AssertException('Assert failed: parse_url() returned error');
+            throw new Exceptions\AssertException(sprintf('Assert failed: parse_url() returned error ("%s")', $url));
         }
 
         if (isset($parts['scheme']) && $parts['scheme'] !== 'https') {
-            throw new Exceptions\AssertException('Assert failed: scheme needs to be https');
+            throw new Exceptions\AssertException(sprintf('Assert failed: scheme needs to be https ("%s")', $url));
         }
 
         if (!isset($parts['host'])) {
-            throw new Exceptions\AssertException('Assert failed: host is empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: host is empty ("%s")', $url));
         }
 
         if (isset($parts['user'])) {
-            throw new Exceptions\AssertException('Assert failed: username needs to be empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: username needs to be empty ("%s")', $url));
         }
 
         if (isset($parts['pass'])) {
-            throw new Exceptions\AssertException('Assert failed: password needs to be empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: password needs to be empty ("%s")', $url));
         }
 
         if (isset($parts['path'])) {
-            throw new Exceptions\AssertException('Assert failed: path needs to be empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: path needs to be empty ("%s")', $url));
         }
 
         if (isset($parts['query'])) {
-            throw new Exceptions\AssertException('Assert failed: querystring needs to be empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: querystring needs to be empty ("%s")', $url));
         }
 
         if (isset($parts['fragment'])) {
-            throw new Exceptions\AssertException('Assert failed: fragment needs to be empty');
+            throw new Exceptions\AssertException(sprintf('Assert failed: fragment needs to be empty ("%s")', $url));
         }
     }
 }

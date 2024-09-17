@@ -13,12 +13,12 @@
 /**
  * Corbado Backend API
  *
- * # Introduction This documentation gives an overview of all Corbado Backend API calls to implement passwordless authentication with Passkeys.  The Corbado Backend API is organized around REST principles. It uses resource-oriented URLs with verbs (HTTP methods) and HTTP status codes. Requests need to be valid JSON payloads. We always return JSON.  The Corbado Backend API specification is written in **OpenAPI Version 3.0.3**. You can download it via the download button at the top and use it to generate clients in languages we do not provide officially for example.  # Authentication To authenticate your API requests HTTP Basic Auth is used.  You need to set the projectID as username and the API secret as password. The authorization header looks as follows:  `Basic <<projectID>:<API secret>>`  The **authorization header** needs to be **Base64 encoded** to be working. If the authorization header is missing or incorrect, the API will respond with status code 401.  # Error types As mentioned above we make use of HTTP status codes. **4xx** errors indicate so called client errors, meaning the error occurred on client side and you need to fix it. **5xx** errors indicate server errors, which means the error occurred on server side and outside your control.  Besides HTTP status codes Corbado uses what we call error types which gives more details in error cases and help you to debug your request.  ## internal_error The error type **internal_error** is used when some internal error occurred at Corbado. You can retry your request but usually there is nothing you can do about it. All internal errors get logged and will triggert an alert to our operations team which takes care of the situation as soon as possible.  ## not_found The error type **not_found** is used when you try to get a resource which cannot be found. Most common case is that you provided a wrong ID.  ## method_not_allowed The error type **method_not_allowed** is used when you use a HTTP method (GET for example) on a resource/endpoint which it not supports.   ## validation_error The error type **validation_error** is used when there is validation error on the data you provided in the request payload or path. There will be detailed information in the JSON response about the validation error like what exactly went wrong on what field.   ## project_id_mismatch The error type **project_id_mismatch** is used when there is a project ID you provided mismatch.  ## login_error The error type **login_error** is used when the authentication failed. Most common case is that you provided a wrong pair of project ID and API secret. As mentioned above with use HTTP Basic Auth for authentication.  ## invalid_json The error type **invalid_json** is used when you send invalid JSON as request body. There will be detailed information in the JSON response about what went wrong.  ## rate_limited The error type **rate_limited** is used when ran into rate limiting of the Corbado Backend API. Right now you can do a maximum of **2000 requests** within **10 seconds** from a **single IP**. Throttle your requests and try again. If you think you need more contact support@corbado.com.  ## invalid_origin The error type **invalid_origin** is used when the API has been called from a origin which is not authorized (CORS). Add the origin to your project at https://app.corbado.com/app/settings/credentials/authorized-origins.  ## already_exists The error type **already_exists** is used when you try create a resource which already exists. Most common case is that there is some unique constraint on one of the fields.  # Security and privacy Corbado services are designed, developed, monitored, and updated with security at our core to protect you and your customers’ data and privacy.  ## Security  ### Infrastructure security Corbado leverages highly available and secure cloud infrastructure to ensure that our services are always available and securely delivered. Corbado's services are operated in uvensys GmbH's data centers in Germany and comply with ISO standard 27001. All data centers have redundant power and internet connections to avoid failure. The main location of the servers used is in Linden and offers 24/7 support. We do not use any AWS, GCP or Azure services.  Each server is monitored 24/7 and in the event of problems, automated information is sent via SMS and e-mail. The monitoring is done by the external service provider Serverguard24 GmbH.   All Corbado hardware and networking is routinely updated and audited to ensure systems are secure and that least privileged access is followed. Additionally we implement robust logging and audit protocols that allow us high visibility into system use.  ### Responsible disclosure program Here at Corbado, we take the security of our user’s data and of our services seriously. As such, we encourage responsible security research on Corbado services and products. If you believe you’ve discovered a potential vulnerability, please let us know by emailing us at [security@corbado.com](mailto:security@corbado.com). We will acknowledge your email within 2 business days. As public disclosures of a security vulnerability could put the entire Corbado community at risk, we ask that you keep such potential vulnerabilities confidential until we are able to address them. We aim to resolve critical issues within 30 days of disclosure. Please make a good faith effort to avoid violating privacy, destroying data, or interrupting or degrading the Corbado service. Please only interact with accounts you own or for which you have explicit permission from the account holder. While researching, please refrain from:  - Distributed Denial of Service (DDoS) - Spamming - Social engineering or phishing of Corbado employees or contractors - Any attacks against Corbado's physical property or data centers  Thank you for helping to keep Corbado and our users safe!  ### Rate limiting At Corbado, we apply rate limit policies on our APIs in order to protect your application and user management infrastructure, so your users will have a frictionless non-interrupted experience.  Corbado responds with HTTP status code 429 (too many requests) when the rate limits exceed. Your code logic should be able to handle such cases by checking the status code on the response and recovering from such cases. If a retry is needed, it is best to allow for a back-off to avoid going into an infinite retry loop.  The current rate limit for all our API endpoints is **max. 100 requests per 10 seconds**.  ## Privacy Corbado is committed to protecting the personal data of our customers and their customers. Corbado has in place appropriate data security measures that meet industry standards. We regularly review and make enhancements to our processes, products, documentation, and contracts to help support ours and our customers’ compliance for the processing of personal data.  We try to minimize the usage and processing of personally identifiable information. Therefore, all our services are constructed to avoid unnecessary data consumption.  To make our services work, we only require the following data: - any kind of identifier (e.g. UUID, phone number, email address) - IP address (only temporarily for rate limiting aspects) - User agent (for device management)
+ * # Introduction This documentation gives an overview of all Corbado Backend API calls to implement passwordless authentication with Passkeys.
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: 2.0.0
  * Contact: support@corbado.com
  * Generated by: https://openapi-generator.tech
- * OpenAPI Generator version: 7.2.0-SNAPSHOT
+ * Generator version: 7.9.0-SNAPSHOT
  */
 
 /**
@@ -58,20 +58,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
+        'long_session_id' => 'string',
         'user_id' => 'string',
-        'user_identifier' => 'string',
-        'user_full_name' => 'string',
-        'device_id' => 'string',
-        'browser_name' => 'string',
-        'browser_version' => 'string',
-        'os_name' => 'string',
-        'os_version' => 'string',
-        'expires' => 'string',
-        'last_action' => 'string',
-        'created' => 'string',
-        'updated' => 'string',
-        'status' => 'string'
+        'identifier_value' => 'string',
+        'status' => '\Corbado\Generated\Model\LongSessionStatus',
+        'expires' => 'string'
     ];
 
     /**
@@ -82,20 +73,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
+        'long_session_id' => null,
         'user_id' => null,
-        'user_identifier' => null,
-        'user_full_name' => null,
-        'device_id' => null,
-        'browser_name' => null,
-        'browser_version' => null,
-        'os_name' => null,
-        'os_version' => null,
-        'expires' => null,
-        'last_action' => null,
-        'created' => null,
-        'updated' => null,
-        'status' => null
+        'identifier_value' => null,
+        'status' => null,
+        'expires' => null
     ];
 
     /**
@@ -104,20 +86,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
+        'long_session_id' => false,
         'user_id' => false,
-        'user_identifier' => false,
-        'user_full_name' => false,
-        'device_id' => false,
-        'browser_name' => false,
-        'browser_version' => false,
-        'os_name' => false,
-        'os_version' => false,
-        'expires' => false,
-        'last_action' => false,
-        'created' => false,
-        'updated' => false,
-        'status' => false
+        'identifier_value' => false,
+        'status' => false,
+        'expires' => false
     ];
 
     /**
@@ -206,20 +179,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'ID',
+        'long_session_id' => 'longSessionID',
         'user_id' => 'userID',
-        'user_identifier' => 'userIdentifier',
-        'user_full_name' => 'userFullName',
-        'device_id' => 'deviceID',
-        'browser_name' => 'browserName',
-        'browser_version' => 'browserVersion',
-        'os_name' => 'osName',
-        'os_version' => 'osVersion',
-        'expires' => 'expires',
-        'last_action' => 'lastAction',
-        'created' => 'created',
-        'updated' => 'updated',
-        'status' => 'status'
+        'identifier_value' => 'identifierValue',
+        'status' => 'status',
+        'expires' => 'expires'
     ];
 
     /**
@@ -228,20 +192,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'long_session_id' => 'setLongSessionId',
         'user_id' => 'setUserId',
-        'user_identifier' => 'setUserIdentifier',
-        'user_full_name' => 'setUserFullName',
-        'device_id' => 'setDeviceId',
-        'browser_name' => 'setBrowserName',
-        'browser_version' => 'setBrowserVersion',
-        'os_name' => 'setOsName',
-        'os_version' => 'setOsVersion',
-        'expires' => 'setExpires',
-        'last_action' => 'setLastAction',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated',
-        'status' => 'setStatus'
+        'identifier_value' => 'setIdentifierValue',
+        'status' => 'setStatus',
+        'expires' => 'setExpires'
     ];
 
     /**
@@ -250,20 +205,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'long_session_id' => 'getLongSessionId',
         'user_id' => 'getUserId',
-        'user_identifier' => 'getUserIdentifier',
-        'user_full_name' => 'getUserFullName',
-        'device_id' => 'getDeviceId',
-        'browser_name' => 'getBrowserName',
-        'browser_version' => 'getBrowserVersion',
-        'os_name' => 'getOsName',
-        'os_version' => 'getOsVersion',
-        'expires' => 'getExpires',
-        'last_action' => 'getLastAction',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'status' => 'getStatus'
+        'identifier_value' => 'getIdentifierValue',
+        'status' => 'getStatus',
+        'expires' => 'getExpires'
     ];
 
     /**
@@ -307,27 +253,6 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_LOGGED_OUT = 'logged_out';
-    public const STATUS_EXPIRED = 'expired';
-    public const STATUS_INACTIVITY_REACHED = 'inactivity_reached';
-    public const STATUS_REVOKED = 'revoked';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ACTIVE,
-            self::STATUS_LOGGED_OUT,
-            self::STATUS_EXPIRED,
-            self::STATUS_INACTIVITY_REACHED,
-            self::STATUS_REVOKED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -344,20 +269,11 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('long_session_id', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('user_identifier', $data ?? [], null);
-        $this->setIfExists('user_full_name', $data ?? [], null);
-        $this->setIfExists('device_id', $data ?? [], null);
-        $this->setIfExists('browser_name', $data ?? [], null);
-        $this->setIfExists('browser_version', $data ?? [], null);
-        $this->setIfExists('os_name', $data ?? [], null);
-        $this->setIfExists('os_version', $data ?? [], null);
-        $this->setIfExists('expires', $data ?? [], null);
-        $this->setIfExists('last_action', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('updated', $data ?? [], null);
+        $this->setIfExists('identifier_value', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('expires', $data ?? [], null);
     }
 
     /**
@@ -387,57 +303,21 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['long_session_id'] === null) {
+            $invalidProperties[] = "'long_session_id' can't be null";
         }
         if ($this->container['user_id'] === null) {
             $invalidProperties[] = "'user_id' can't be null";
         }
-        if ($this->container['user_identifier'] === null) {
-            $invalidProperties[] = "'user_identifier' can't be null";
-        }
-        if ($this->container['user_full_name'] === null) {
-            $invalidProperties[] = "'user_full_name' can't be null";
-        }
-        if ($this->container['device_id'] === null) {
-            $invalidProperties[] = "'device_id' can't be null";
-        }
-        if ($this->container['browser_name'] === null) {
-            $invalidProperties[] = "'browser_name' can't be null";
-        }
-        if ($this->container['browser_version'] === null) {
-            $invalidProperties[] = "'browser_version' can't be null";
-        }
-        if ($this->container['os_name'] === null) {
-            $invalidProperties[] = "'os_name' can't be null";
-        }
-        if ($this->container['os_version'] === null) {
-            $invalidProperties[] = "'os_version' can't be null";
-        }
-        if ($this->container['expires'] === null) {
-            $invalidProperties[] = "'expires' can't be null";
-        }
-        if ($this->container['last_action'] === null) {
-            $invalidProperties[] = "'last_action' can't be null";
-        }
-        if ($this->container['created'] === null) {
-            $invalidProperties[] = "'created' can't be null";
-        }
-        if ($this->container['updated'] === null) {
-            $invalidProperties[] = "'updated' can't be null";
+        if ($this->container['identifier_value'] === null) {
+            $invalidProperties[] = "'identifier_value' can't be null";
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['expires'] === null) {
+            $invalidProperties[] = "'expires' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -454,28 +334,28 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets long_session_id
      *
      * @return string
      */
-    public function getId()
+    public function getLongSessionId()
     {
-        return $this->container['id'];
+        return $this->container['long_session_id'];
     }
 
     /**
-     * Sets id
+     * Sets long_session_id
      *
-     * @param string $id id
+     * @param string $long_session_id long_session_id
      *
      * @return self
      */
-    public function setId($id)
+    public function setLongSessionId($long_session_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($long_session_id)) {
+            throw new \InvalidArgumentException('non-nullable long_session_id cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['long_session_id'] = $long_session_id;
 
         return $this;
     }
@@ -493,7 +373,7 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets user_id
      *
-     * @param string $user_id ID of the user
+     * @param string $user_id user_id
      *
      * @return self
      */
@@ -508,190 +388,55 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets user_identifier
+     * Gets identifier_value
      *
      * @return string
      */
-    public function getUserIdentifier()
+    public function getIdentifierValue()
     {
-        return $this->container['user_identifier'];
+        return $this->container['identifier_value'];
     }
 
     /**
-     * Sets user_identifier
+     * Sets identifier_value
      *
-     * @param string $user_identifier user_identifier
+     * @param string $identifier_value identifier_value
      *
      * @return self
      */
-    public function setUserIdentifier($user_identifier)
+    public function setIdentifierValue($identifier_value)
     {
-        if (is_null($user_identifier)) {
-            throw new \InvalidArgumentException('non-nullable user_identifier cannot be null');
+        if (is_null($identifier_value)) {
+            throw new \InvalidArgumentException('non-nullable identifier_value cannot be null');
         }
-        $this->container['user_identifier'] = $user_identifier;
+        $this->container['identifier_value'] = $identifier_value;
 
         return $this;
     }
 
     /**
-     * Gets user_full_name
+     * Gets status
      *
-     * @return string
+     * @return \Corbado\Generated\Model\LongSessionStatus
      */
-    public function getUserFullName()
+    public function getStatus()
     {
-        return $this->container['user_full_name'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets user_full_name
+     * Sets status
      *
-     * @param string $user_full_name user_full_name
+     * @param \Corbado\Generated\Model\LongSessionStatus $status status
      *
      * @return self
      */
-    public function setUserFullName($user_full_name)
+    public function setStatus($status)
     {
-        if (is_null($user_full_name)) {
-            throw new \InvalidArgumentException('non-nullable user_full_name cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['user_full_name'] = $user_full_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets device_id
-     *
-     * @return string
-     */
-    public function getDeviceId()
-    {
-        return $this->container['device_id'];
-    }
-
-    /**
-     * Sets device_id
-     *
-     * @param string $device_id ID of the device
-     *
-     * @return self
-     */
-    public function setDeviceId($device_id)
-    {
-        if (is_null($device_id)) {
-            throw new \InvalidArgumentException('non-nullable device_id cannot be null');
-        }
-        $this->container['device_id'] = $device_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets browser_name
-     *
-     * @return string
-     */
-    public function getBrowserName()
-    {
-        return $this->container['browser_name'];
-    }
-
-    /**
-     * Sets browser_name
-     *
-     * @param string $browser_name browser_name
-     *
-     * @return self
-     */
-    public function setBrowserName($browser_name)
-    {
-        if (is_null($browser_name)) {
-            throw new \InvalidArgumentException('non-nullable browser_name cannot be null');
-        }
-        $this->container['browser_name'] = $browser_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets browser_version
-     *
-     * @return string
-     */
-    public function getBrowserVersion()
-    {
-        return $this->container['browser_version'];
-    }
-
-    /**
-     * Sets browser_version
-     *
-     * @param string $browser_version browser_version
-     *
-     * @return self
-     */
-    public function setBrowserVersion($browser_version)
-    {
-        if (is_null($browser_version)) {
-            throw new \InvalidArgumentException('non-nullable browser_version cannot be null');
-        }
-        $this->container['browser_version'] = $browser_version;
-
-        return $this;
-    }
-
-    /**
-     * Gets os_name
-     *
-     * @return string
-     */
-    public function getOsName()
-    {
-        return $this->container['os_name'];
-    }
-
-    /**
-     * Sets os_name
-     *
-     * @param string $os_name os_name
-     *
-     * @return self
-     */
-    public function setOsName($os_name)
-    {
-        if (is_null($os_name)) {
-            throw new \InvalidArgumentException('non-nullable os_name cannot be null');
-        }
-        $this->container['os_name'] = $os_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets os_version
-     *
-     * @return string
-     */
-    public function getOsVersion()
-    {
-        return $this->container['os_version'];
-    }
-
-    /**
-     * Sets os_version
-     *
-     * @param string $os_version os_version
-     *
-     * @return self
-     */
-    public function setOsVersion($os_version)
-    {
-        if (is_null($os_version)) {
-            throw new \InvalidArgumentException('non-nullable os_version cannot be null');
-        }
-        $this->container['os_version'] = $os_version;
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -709,7 +454,7 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires
      *
-     * @param string $expires Timestamp of when long session expires in yyyy-MM-dd'T'HH:mm:ss format
+     * @param string $expires expires
      *
      * @return self
      */
@@ -719,124 +464,6 @@ class LongSession implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable expires cannot be null');
         }
         $this->container['expires'] = $expires;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_action
-     *
-     * @return string
-     */
-    public function getLastAction()
-    {
-        return $this->container['last_action'];
-    }
-
-    /**
-     * Sets last_action
-     *
-     * @param string $last_action Timestamp of when last action was done on long session in yyyy-MM-dd'T'HH:mm:ss format
-     *
-     * @return self
-     */
-    public function setLastAction($last_action)
-    {
-        if (is_null($last_action)) {
-            throw new \InvalidArgumentException('non-nullable last_action cannot be null');
-        }
-        $this->container['last_action'] = $last_action;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string $created Timestamp of when the entity was created in yyyy-MM-dd'T'HH:mm:ss format
-     *
-     * @return self
-     */
-    public function setCreated($created)
-    {
-        if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
-        }
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string $updated Timestamp of when the entity was last updated in yyyy-MM-dd'T'HH:mm:ss format
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        if (is_null($updated)) {
-            throw new \InvalidArgumentException('non-nullable updated cannot be null');
-        }
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status status values of a long session
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
 
         return $this;
     }

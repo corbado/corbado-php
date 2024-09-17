@@ -6,6 +6,7 @@ use Corbado\Config;
 use Corbado\Exceptions\AssertException;
 use Corbado\Exceptions\ConfigException;
 use Corbado\Generated\Model\UserCreateReq;
+use Corbado\Generated\Model\UserStatus;
 use Corbado\SDK;
 use Exception;
 
@@ -18,23 +19,7 @@ class Utils
      */
     public static function SDK(): SDK
     {
-        $config = new Config(self::getEnv('CORBADO_PROJECT_ID'), self::getEnv('CORBADO_API_SECRET'));
-        $config->setBackendAPI(self::getEnv('CORBADO_BACKEND_API'));
-
-        return new SDK($config);
-    }
-
-    /**
-     * @throws Exception
-     */
-    private static function getEnv(string $key): string
-    {
-        $value = getenv($key);
-        if ($value === false) {
-            throw new Exception('Environment variable ' . $key . ' not found');
-        }
-
-        return $value;
+        return new SDK(Config::fromEnv());
     }
 
     public static function generateString(int $length): string
@@ -86,11 +71,12 @@ class Utils
     public static function createUser(): string
     {
         $req = new UserCreateReq();
-        $req->setName(self::createRandomTestName());
-        $req->setEmail(self::createRandomTestEmail());
+        $req->setFullName(self::createRandomTestName());
+        // @phpstan-ignore-next-line
+        $req->setStatus(UserStatus::ACTIVE);
 
-        $rsp = self::SDK()->users()->create($req);
+        $user = self::SDK()->users()->create($req);
 
-        return $rsp->getData()->getUserId();
+        return $user->getUserId();
     }
 }

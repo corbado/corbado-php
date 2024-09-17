@@ -73,14 +73,11 @@ class Helper
         throw new ServerException($data['httpStatusCode'], $data['message'], $data['requestData'], $data['runtime'], $data['error']);
     }
 
-    /**
-     * @throws StandardException
-     */
-    public static function convertToServerException(ApiException $e): ServerException
+    public static function convertToServerException(ApiException $e): ServerException|StandardException
     {
         $body = $e->getResponseBody();
-        if (!is_string($body)) {
-            throw new StandardException('Response body is not a string');
+        if (!is_string($body) || $body === '') {
+            return new StandardException($e->getMessage());
         }
 
         $data = self::jsonDecode($body);
