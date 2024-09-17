@@ -14,8 +14,8 @@ require_once 'vendor/autoload.php';
 // Configuration
 $projectID = '<Your Project ID>';
 $apiSecret = '<Your API secret>';
-$frontendAPI = '<Frontend API URL>';
-$backendAPI = '<Backend API URL>';
+$frontendAPI = '<Your Frontend API URL>';
+$backendAPI = '<Your Backend API URL>';
 
 // Create JWKS cache (JWKS stands for JSON Web Key Sets and contain the public keys that must
 // be used to verify the signature of a JWT which we use for the short-term session).
