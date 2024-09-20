@@ -5,6 +5,8 @@ namespace Corbado\Services;
 use Corbado\Generated\Model\Identifier;
 use Corbado\Generated\Model\IdentifierCreateReq;
 use Corbado\Generated\Model\IdentifierList;
+use Corbado\Generated\Model\IdentifierStatus;
+use Corbado\Generated\Model\IdentifierType;
 use Corbado\Generated\Model\IdentifierUpdateReq;
 
 interface IdentifierInterface
@@ -12,9 +14,39 @@ interface IdentifierInterface
     public function create(string $userID, IdentifierCreateReq $req): Identifier;
     public function delete(string $userID, string $identifierID): void;
     public function update(string $userID, string $identifierID, IdentifierUpdateReq $req): Identifier;
+    public function updateStatus(string $userID, string $identifierID, IdentifierStatus $status): Identifier;
 
     /**
      * @param array<string> $filter
      */
     public function list(string $sort = '', array $filter = [], int $page = 1, int $pageSize = 10): IdentifierList;
+
+    /**
+     * @param string $value
+     * @param IdentifierType $type
+     * @param string $sort
+     * @param int $page
+     * @param int $pageSize
+     * @return IdentifierList
+     */
+    public function listByValueAndType(string $value, IdentifierType $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+
+    /**
+     * @param string $userId
+     * @param string $sort
+     * @param int $page
+     * @param int $pageSize
+     * @return IdentifierList
+     */
+    public function listByUserId(string $userId, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+
+    /**
+     * @param string $userId
+     * @param IdentifierType $type
+     * @param string $sort
+     * @param int $page
+     * @param int $pageSize
+     * @return IdentifierList
+     */
+    public function listByUserIdAndType(string $userId, IdentifierType $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 }
