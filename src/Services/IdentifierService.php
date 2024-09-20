@@ -103,11 +103,12 @@ class IdentifierService implements IdentifierInterface
      * @throws StandardException
      * @throws ServerException
      */
-    public function updateStatus(string $userID, string $identifierID, IdentifierStatus $status): Identifier
+    public function updateStatus(string $userID, string $identifierID, string $status): Identifier
     {
         Assert::stringNotEmpty($userID);
         Assert::stringNotEmpty($userID);
         Assert::notNull($status);
+        Assert::arrayStringExist(IdentifierStatus::getAllowableEnumValues(), $status);
 
         $req = new IdentifierUpdateReq();
         $req->setStatus($status);
@@ -140,12 +141,14 @@ class IdentifierService implements IdentifierInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function listByValueAndType(string $value, IdentifierType $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByValueAndType(string $value, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
         Assert::stringNotEmpty($value);
+        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(),$type);
         Assert::notNull($type);
 
-        $filter = [`identifierValue:eq:${value}`, `identifierType:eq:${type}`];
+
+        $filter = ["identifierValue:eq:".$value, "identifierType:eq:".$type];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
@@ -159,7 +162,14 @@ class IdentifierService implements IdentifierInterface
     {
         Assert::stringNotEmpty($userId);
 
-        $filter = [`userID:eq:${$userId}`];
+        // Check if the string starts with the prefix 'usr-'
+        $prefix="usr-";
+        if (str_starts_with($userId, $prefix)) {
+            // Remove the prefix by slicing the string
+            $userId = substr($userId, strlen($prefix));
+        }
+
+        $filter = ["userID:eq:" . $userId];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
@@ -169,12 +179,20 @@ class IdentifierService implements IdentifierInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function listByUserIdAndType(string $userId, IdentifierType $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByUserIdAndType(string $userId, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
         Assert::stringNotEmpty($userId);
+        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);
         Assert::notNull($userId);
 
-        $filter = [`userID:eq:${$userId}`,`identifierType:eq:${type}`];
+        // Check if the string starts with the prefix 'usr-'
+        $prefix="usr-";
+        if (str_starts_with($userId, $prefix)) {
+            // Remove the prefix by slicing the string
+            $userId = substr($userId, strlen($prefix));
+        }
+
+        $filter = ["userID:eq:" . $userId, "identifierType:eq:" . $type];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
