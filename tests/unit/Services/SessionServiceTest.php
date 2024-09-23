@@ -57,7 +57,7 @@ class SessionServiceTest extends TestCase
             throw new Exception('file_get_contents() failed');
         }
 
-        $invalidPrivateKey = file_get_contents(dirname(__FILE__) . '/testdata/invalidPrivateKey.pem.pem');
+        $invalidPrivateKey = file_get_contents(dirname(__FILE__) . '/testdata/invalidPrivateKey.pem');
         if ($invalidPrivateKey === false) {
             throw new Exception('file_get_contents() failed');
         }
