@@ -111,6 +111,7 @@ class IdentifierService implements IdentifierInterface
         Assert::arrayStringExist(IdentifierStatus::getAllowableEnumValues(), $status);
 
         $req = new IdentifierUpdateReq();
+        // @phpstan-ignore-next-line
         $req->setStatus($status);
 
         return $this->update($userID, $identifierID, $req);
@@ -144,11 +145,11 @@ class IdentifierService implements IdentifierInterface
     public function listByValueAndType(string $value, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
         Assert::stringNotEmpty($value);
-        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(),$type);
+        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);
         Assert::notNull($type);
 
 
-        $filter = ["identifierValue:eq:".$value, "identifierType:eq:".$type];
+        $filter = ["identifierValue:eq:" . $value, "identifierType:eq:" . $type];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
@@ -163,7 +164,7 @@ class IdentifierService implements IdentifierInterface
         Assert::stringNotEmpty($userId);
 
         // Check if the string starts with the prefix 'usr-'
-        $prefix="usr-";
+        $prefix = "usr-";
         if (str_starts_with($userId, $prefix)) {
             // Remove the prefix by slicing the string
             $userId = substr($userId, strlen($prefix));
@@ -186,7 +187,7 @@ class IdentifierService implements IdentifierInterface
         Assert::notNull($userId);
 
         // Check if the string starts with the prefix 'usr-'
-        $prefix="usr-";
+        $prefix = "usr-";
         if (str_starts_with($userId, $prefix)) {
             // Remove the prefix by slicing the string
             $userId = substr($userId, strlen($prefix));

@@ -68,7 +68,6 @@ class IdentifierCompleteTest extends TestCase
         try {
             $status = IdentifierStatus::PENDING;
 
-            // @phpstan-ignore-next-line
             Utils::SDK()->identifiers()->updateStatus($existingUserID, 'ide-123456789', $status);
         } catch (ServerException $e) {
             $exception = $e;
@@ -118,7 +117,6 @@ class IdentifierCompleteTest extends TestCase
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 
         // Test listing identifiers by UserId and Type with data returned
-        // @phpstan-ignore-next-line
         $rsp = Utils::SDK()->identifiers()->listByUserIdAndType($existingUserID, IdentifierType::EMAIL);
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 

@@ -12,13 +12,15 @@ use Corbado\Generated\Model\IdentifierUpdateReq;
 interface IdentifierInterface
 {
     public function create(string $userID, IdentifierCreateReq $req): Identifier;
+
     public function delete(string $userID, string $identifierID): void;
+
     public function update(string $userID, string $identifierID, IdentifierUpdateReq $req): Identifier;
 
     /**
      * @param string $userID
      * @param string $identifierID
-     * @param IdentifierStatus $status
+     * @param string $status
      * @return Identifier
      */
     public function updateStatus(string $userID, string $identifierID, string $status): Identifier;
@@ -30,7 +32,7 @@ interface IdentifierInterface
 
     /**
      * @param string $value
-     * @param IdentifierType $type
+     * @param string $type
      * @param string $sort
      * @param int $page
      * @param int $pageSize
@@ -49,7 +51,7 @@ interface IdentifierInterface
 
     /**
      * @param string $userId
-     * @param IdentifierType $type
+     * @param string $type
      * @param string $sort
      * @param int $page
      * @param int $pageSize
