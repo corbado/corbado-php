@@ -5,6 +5,8 @@ namespace unit\Services;
 use Corbado\Exceptions\ValidationException;
 use Corbado\Exceptions\AssertException;
 use Corbado\Services\SessionService;
+use DateInterval;
+use DateTimeInterface;
 use Exception;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
@@ -14,6 +16,7 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use Throwable;
 
 class SessionServiceTest extends TestCase
 {
@@ -29,7 +32,7 @@ class SessionServiceTest extends TestCase
         try {
             $session = self::createSession();
             $user = $session->validateToken($shortSession);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $exception = $e;
         }
 
@@ -43,11 +46,22 @@ class SessionServiceTest extends TestCase
     }
 
     /**
-     * @throws Exception
      * @return array<int, array<int, string|bool|int>>
+     * @throws Exception
      */
     public static function provideJWTs(): array
     {
+
+        $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');
+        if ($privateKey === false) {
+            throw new Exception('file_get_contents() failed');
+        }
+
+        $invalidPrivateKey = file_get_contents(dirname(__FILE__) . '/testdata/invalidPrivateKey.pem.pem');
+        if ($invalidPrivateKey === false) {
+            throw new Exception('file_get_contents() failed');
+        }
+
         return [
             [
                 // JWT with invalid format
@@ -62,26 +76,32 @@ class SessionServiceTest extends TestCase
                 ValidationException::CODE_JWT_INVALID_SIGNATURE
             ],
             [
+                // JWT with invalid private key signed
+                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100, $invalidPrivateKey),
+                false,
+                ValidationException::CODE_JWT_INVALID_SIGNATURE
+            ],
+            [
                 // Not before (nfb) in future
-                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100),
+                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_BEFORE
             ],
             [
                 // Expired (exp)
-                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100),
+                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_EXPIRED
             ],
             [
                 // Invalid issuer (iss)
-                self::generateJWT('https://invalid.com', time() + 100, time() - 100),
+                self::generateJWT('https://invalid.com', time() + 100, time() - 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
                 // Success
-                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100),
+                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100, $privateKey),
                 true,
                 0
             ]
@@ -154,12 +174,12 @@ class SessionServiceTest extends TestCase
                         return $this;
                     }
 
-                    public function expiresAt(?\DateTimeInterface $expiration): static
+                    public function expiresAt(?DateTimeInterface $expiration): static
                     {
                         return $this;
                     }
 
-                    public function expiresAfter(\DateInterval|int|null $time): static
+                    public function expiresAfter(DateInterval|int|null $time): static
                     {
                         return $this;
                     }
@@ -234,7 +254,7 @@ class SessionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function generateJWT(string $iss, int $exp, int $nbf): string
+    private static function generateJWT(string $iss, int $exp, int $nbf, string $privateKey): string
     {
         $payload = [
             'iss' => $iss,
@@ -247,11 +267,6 @@ class SessionServiceTest extends TestCase
             'phone_number' => 'phoneNumber',
             'orig' => 'orig',
         ];
-
-        $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');
-        if ($privateKey === false) {
-            throw new Exception('file_get_contents() failed');
-        }
 
         return JWT::encode($payload, $privateKey, 'RS256', 'kid123');
     }
