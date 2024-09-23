@@ -41,21 +41,21 @@ interface IdentifierInterface
     public function listByValueAndType(string $value, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 
     /**
-     * @param string $userId
+     * @param string $userID
      * @param string $sort
      * @param int $page
      * @param int $pageSize
      * @return IdentifierList
      */
-    public function listByUserId(string $userId, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+    public function listByUserId(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 
     /**
-     * @param string $userId
+     * @param string $userID
      * @param string $type
      * @param string $sort
      * @param int $page
      * @param int $pageSize
      * @return IdentifierList
      */
-    public function listByUserIdAndType(string $userId, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+    public function listByUserIdAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 }

@@ -159,18 +159,16 @@ class IdentifierService implements IdentifierInterface
      * @throws AssertException
      * @throws StandardException
      */
-    public function listByUserId(string $userId, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByUserId(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
-        Assert::stringNotEmpty($userId);
+        Assert::stringNotEmpty($userID);
 
-        // Check if the string starts with the prefix 'usr-'
         $prefix = "usr-";
-        if (str_starts_with($userId, $prefix)) {
-            // Remove the prefix by slicing the string
-            $userId = substr($userId, strlen($prefix));
+        if (str_starts_with($userID, $prefix)) {
+            $userID = substr($userID, strlen($prefix));
         }
 
-        $filter = ["userID:eq:" . $userId];
+        $filter = ["userID:eq:" . $userID];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
@@ -180,20 +178,18 @@ class IdentifierService implements IdentifierInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function listByUserIdAndType(string $userId, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByUserIdAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
-        Assert::stringNotEmpty($userId);
+        Assert::stringNotEmpty($userID);
         Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);
-        Assert::notNull($userId);
+        Assert::notNull($userID);
 
-        // Check if the string starts with the prefix 'usr-'
         $prefix = "usr-";
-        if (str_starts_with($userId, $prefix)) {
-            // Remove the prefix by slicing the string
-            $userId = substr($userId, strlen($prefix));
+        if (str_starts_with($userID, $prefix)) {
+            $userID = substr($userID, strlen($prefix));
         }
 
-        $filter = ["userID:eq:" . $userId, "identifierType:eq:" . $type];
+        $filter = ["userID:eq:" . $userID, "identifierType:eq:" . $type];
 
         return $this->list($sort, $filter, $page, $pageSize);
     }
