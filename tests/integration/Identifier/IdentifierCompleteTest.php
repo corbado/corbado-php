@@ -113,11 +113,11 @@ class IdentifierCompleteTest extends TestCase
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 
         // Test listing identifiers by UserId with data returned
-        $rsp = Utils::SDK()->identifiers()->listByUserId($existingUserID);
+        $rsp = Utils::SDK()->identifiers()->listByUserID($existingUserID);
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 
         // Test listing identifiers by UserId and Type with data returned
-        $rsp = Utils::SDK()->identifiers()->listByUserIdAndType($existingUserID, IdentifierType::EMAIL);
+        $rsp = Utils::SDK()->identifiers()->listByUserIDAndType($existingUserID, IdentifierType::EMAIL);
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 
         // Test updating an existing identifier with valid data

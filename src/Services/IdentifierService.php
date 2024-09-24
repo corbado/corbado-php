@@ -159,7 +159,7 @@ class IdentifierService implements IdentifierInterface
      * @throws AssertException
      * @throws StandardException
      */
-    public function listByUserId(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByUserID(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
         Assert::stringNotEmpty($userID);
 
@@ -178,7 +178,7 @@ class IdentifierService implements IdentifierInterface
      * @throws ServerException
      * @throws StandardException
      */
-    public function listByUserIdAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    public function listByUserIDAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
     {
         Assert::stringNotEmpty($userID);
         Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);

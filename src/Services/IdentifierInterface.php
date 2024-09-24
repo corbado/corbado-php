@@ -47,7 +47,7 @@ interface IdentifierInterface
      * @param int $pageSize
      * @return IdentifierList
      */
-    public function listByUserId(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+    public function listByUserID(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 
     /**
      * @param string $userID
@@ -57,5 +57,5 @@ interface IdentifierInterface
      * @param int $pageSize
      * @return IdentifierList
      */
-    public function listByUserIdAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
+    public function listByUserIDAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList;
 }
