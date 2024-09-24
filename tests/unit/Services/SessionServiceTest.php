@@ -52,7 +52,7 @@ class SessionServiceTest extends TestCase
     public static function provideJWTs(): array
     {
 
-        $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/privateKey.pem');
+        $privateKey = file_get_contents(dirname(__FILE__) . '/testdata/validPrivateKey.pem');
         if ($privateKey === false) {
             throw new Exception('file_get_contents() failed');
         }
