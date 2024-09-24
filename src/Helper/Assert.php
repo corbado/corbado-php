@@ -69,4 +69,19 @@ class Assert
             }
         }
     }
+
+    /**
+     * Checks if given string exist in given string array
+     *
+     * @param array<string> $array
+     * @param string $string
+     * @return void
+     * @throws AssertException
+     */
+    public static function arrayStringExist(array $array, string $string): void
+    {
+        if (!in_array($string, $array)) {
+            throw new AssertException('Assert failed: Given array has no string "' . $string . '"');
+        }
+    }
 }

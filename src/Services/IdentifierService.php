@@ -10,6 +10,8 @@ use Corbado\Generated\ApiException;
 use Corbado\Generated\Model\ErrorRsp;
 use Corbado\Generated\Model\Identifier;
 use Corbado\Generated\Model\IdentifierCreateReq;
+use Corbado\Generated\Model\IdentifierStatus;
+use Corbado\Generated\Model\IdentifierType;
 use Corbado\Generated\Model\IdentifierUpdateReq;
 use Corbado\Generated\Model\IdentifierList;
 use Corbado\Helper\Assert;
@@ -97,6 +99,25 @@ class IdentifierService implements IdentifierInterface
     }
 
     /**
+     * @throws AssertException
+     * @throws StandardException
+     * @throws ServerException
+     */
+    public function updateStatus(string $userID, string $identifierID, string $status): Identifier
+    {
+        Assert::stringNotEmpty($userID);
+        Assert::stringNotEmpty($userID);
+        Assert::notNull($status);
+        Assert::arrayStringExist(IdentifierStatus::getAllowableEnumValues(), $status);
+
+        $req = new IdentifierUpdateReq();
+        // @phpstan-ignore-next-line
+        $req->setStatus($status);
+
+        return $this->update($userID, $identifierID, $req);
+    }
+
+    /**
      * @param array<string> $filter
      * @throws ServerException
      * @throws StandardException
@@ -114,5 +135,62 @@ class IdentifierService implements IdentifierInterface
         }
 
         return $rsp;
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ServerException
+     * @throws StandardException
+     */
+    public function listByValueAndType(string $value, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    {
+        Assert::stringNotEmpty($value);
+        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);
+        Assert::notNull($type);
+
+
+        $filter = ["identifierValue:eq:" . $value, "identifierType:eq:" . $type];
+
+        return $this->list($sort, $filter, $page, $pageSize);
+    }
+
+    /**
+     * @throws ServerException
+     * @throws AssertException
+     * @throws StandardException
+     */
+    public function listByUserID(string $userID, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    {
+        Assert::stringNotEmpty($userID);
+
+        $prefix = "usr-";
+        if (str_starts_with($userID, $prefix)) {
+            $userID = substr($userID, strlen($prefix));
+        }
+
+        $filter = ["userID:eq:" . $userID];
+
+        return $this->list($sort, $filter, $page, $pageSize);
+    }
+
+    /**
+     * @throws AssertException
+     * @throws ServerException
+     * @throws StandardException
+     */
+    public function listByUserIDAndType(string $userID, string $type, string $sort = '', int $page = 1, int $pageSize = 10): IdentifierList
+    {
+        Assert::stringNotEmpty($userID);
+        Assert::arrayStringExist(IdentifierType::getAllowableEnumValues(), $type);
+        Assert::notNull($userID);
+
+        $prefix = "usr-";
+        if (str_starts_with($userID, $prefix)) {
+            $userID = substr($userID, strlen($prefix));
+        }
+
+        $filter = ["userID:eq:" . $userID, "identifierType:eq:" . $type];
+
+        return $this->list($sort, $filter, $page, $pageSize);
     }
 }

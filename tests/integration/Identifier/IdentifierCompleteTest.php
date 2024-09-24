@@ -64,6 +64,19 @@ class IdentifierCompleteTest extends TestCase
         $this->assertEquals(400, $exception->getHttpStatusCode());
         $this->assertEqualsCanonicalizing(['identifierID: does not exist'], $exception->getValidationMessages());
 
+        // Test updating Status of a non-existent identifier
+        try {
+            $status = IdentifierStatus::PENDING;
+
+            Utils::SDK()->identifiers()->updateStatus($existingUserID, 'ide-123456789', $status);
+        } catch (ServerException $e) {
+            $exception = $e;
+        }
+
+        $this->assertNotNull($exception);
+        $this->assertEquals(400, $exception->getHttpStatusCode());
+        $this->assertEqualsCanonicalizing(['identifierID: does not exist'], $exception->getValidationMessages());
+
         // Test creating an identifier with invalid data
         try {
             $req = new IdentifierCreateReq();
@@ -95,6 +108,18 @@ class IdentifierCompleteTest extends TestCase
         $rsp = Utils::SDK()->identifiers()->list('', ['identifierType:eq:email', 'identifierValue:eq:' . $existingIdentifierValue]);
         $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
 
+        // Test listing identifiers by Value and Type with data returned
+        $rsp = Utils::SDK()->identifiers()->listByValueAndType($existingIdentifierValue, IdentifierType::EMAIL);
+        $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
+
+        // Test listing identifiers by UserId with data returned
+        $rsp = Utils::SDK()->identifiers()->listByUserID($existingUserID);
+        $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
+
+        // Test listing identifiers by UserId and Type with data returned
+        $rsp = Utils::SDK()->identifiers()->listByUserIDAndType($existingUserID, IdentifierType::EMAIL);
+        $this->assertEquals(1, $rsp->getPaging()->getTotalItems());
+
         // Test updating an existing identifier with valid data
         $req = new IdentifierUpdateReq();
         // @phpstan-ignore-next-line
@@ -102,6 +127,10 @@ class IdentifierCompleteTest extends TestCase
 
         $identifier = Utils::SDK()->identifiers()->update($existingUserID, $existingIdentifierID, $req);
         $this->assertEquals(IdentifierStatus::VERIFIED, $identifier->getStatus());
+
+        // Test updating identifier status
+        $identifier = Utils::SDK()->identifiers()->updateStatus($existingUserID, $existingIdentifierID, IdentifierStatus::PENDING);
+        $this->assertEquals(IdentifierStatus::PENDING, $identifier->getStatus());
 
         // Test deleting an existing identifier
         Utils::SDK()->identifiers()->delete($existingUserID, $existingIdentifierID);
