@@ -18,7 +18,7 @@ The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the
 
 ### Requirements
 
-- PHP 7.2 or later
+- PHP 8.0 or later
 - [Composer](https://getcomposer.org/)
 
 ### Installation
