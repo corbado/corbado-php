@@ -23,6 +23,7 @@ class SessionService implements SessionInterface
     private string $issuer;
     private string $jwksURI;
     private CacheItemPoolInterface $jwksCachePool;
+    private string $projectID;
 
     /**
      * Constructor
@@ -33,7 +34,7 @@ class SessionService implements SessionInterface
      * @param CacheItemPoolInterface $jwksCachePool
      * @throws AssertException
      */
-    public function __construct(ClientInterface $client, string $issuer, string $jwksURI, CacheItemPoolInterface $jwksCachePool)
+    public function __construct(ClientInterface $client, string $issuer, string $jwksURI, CacheItemPoolInterface $jwksCachePool, string $projectID = '')
     {
         Assert::stringNotEmpty($issuer);
         Assert::stringNotEmpty($jwksURI);
@@ -42,6 +43,7 @@ class SessionService implements SessionInterface
         $this->issuer = $issuer;
         $this->jwksURI = $jwksURI;
         $this->jwksCachePool = $jwksCachePool;
+        $this->projectID = $projectID;
     }
 
     /**
@@ -55,10 +57,6 @@ class SessionService implements SessionInterface
     {
         Assert::stringNotEmpty($shortSession);
 
-        $createException = function (string $message, string $jwt, int $code) {
-            return new ValidationException(sprintf('JWT validation failed: "%s" (JWT: "%s")', $message, $jwt), $code);
-        };
-
         try {
             $keySet = new CachedKeySet(
                 $this->jwksURI,
@@ -70,9 +68,7 @@ class SessionService implements SessionInterface
             );
 
             $decoded = JWT::decode($shortSession, $keySet);
-            if ($decoded->iss !== $this->issuer) {
-                throw $createException(sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $decoded->iss), $shortSession, ValidationException::CODE_JWT_ISSUER_MISMATCH);
-            }
+            $this->validateIssuer($decoded->iss, $shortSession);
 
             $name = '';
             if (isset($decoded->name)) {
@@ -104,15 +100,45 @@ class SessionService implements SessionInterface
         } catch (ValidationException $e) {
             throw $e;
         } catch (SignatureInvalidException $e) {
-            throw $createException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_SIGNATURE);
+            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_SIGNATURE);
         } catch (BeforeValidException $e) {
-            throw $createException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_BEFORE);
+            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_BEFORE);
         } catch (ExpiredException $e) {
-            throw $createException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_EXPIRED);
+            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_EXPIRED);
         } catch (\UnexpectedValueException $e) {
-            throw $createException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_DATA);
+            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_DATA);
         } catch (Throwable $e) {
-            throw $createException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_GENERAL);
+            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_GENERAL);
         }
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    private function validateIssuer(string $issuer, string $shortSession): void
+    {
+        // Compare to old Frontend API (without .cloud.) to make our Frontend API host name change downwards compatible
+        if ($issuer === sprintf('https://%s.frontendapi.corbado.io', $this->projectID)) {
+            return;
+        }
+
+        // Compare to new Frontend API (with .cloud.)
+        if ($issuer === sprintf('https://%s.frontendapi.cloud.corbado.io', $this->projectID)) {
+            return;
+        }
+
+        // Compare to configured issuer (from FrontendAPI), needed if you set a CNAME for example
+        if ($issuer !== $this->issuer) {
+            throw $this->createValidationException(
+                sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $issuer),
+                $shortSession,
+                ValidationException::CODE_JWT_ISSUER_MISMATCH
+            );
+        }
+    }
+
+    private function createValidationException(string $message, string $jwt, int $code): ValidationException
+    {
+        return new ValidationException(sprintf('JWT validation failed: "%s" (JWT: "%s")', $message, $jwt), $code);
     }
 }

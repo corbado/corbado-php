@@ -24,13 +24,13 @@ class SessionServiceTest extends TestCase
      * @dataProvider provideJWTs
      * @throws Exception
      */
-    public function testValidateToken(string $shortSession, bool $success, int $code): void
+    public function testValidateToken(string $issuer, string $shortSession, bool $success, int $code): void
     {
         $exception = null;
         $user = null;
 
         try {
-            $session = self::createSession();
+            $session = self::createSession($issuer);
             $user = $session->validateToken($shortSession);
         } catch (Throwable $e) {
             $exception = $e;
@@ -65,42 +65,84 @@ class SessionServiceTest extends TestCase
         return [
             [
                 // JWT with invalid format
+                'https://pro-1.frontendapi.cloud.corbado.io',
                 'invalid',
                 false,
                 ValidationException::CODE_JWT_INVALID_DATA
             ],
             [
                 // JWT with invalid signature
+                'https://pro-1.frontendapi.cloud.corbado.io',
                 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImtpZDEyMyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYWNtZS5jb20iLCJpYXQiOjE3MjY0OTE4MDcsImV4cCI6MTcyNjQ5MTkwNywibmJmIjoxNzI2NDkxNzA3LCJzdWIiOiJ1c3ItMTIzNDU2Nzg5MCIsIm5hbWUiOiJuYW1lIiwiZW1haWwiOiJlbWFpbCIsInBob25lX251bWJlciI6InBob25lTnVtYmVyIiwib3JpZyI6Im9yaWcifQ.invalid',
                 false,
                 ValidationException::CODE_JWT_INVALID_SIGNATURE
             ],
             [
                 // JWT with invalid private key signed
-                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100, $invalidPrivateKey),
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $invalidPrivateKey),
                 false,
                 ValidationException::CODE_JWT_INVALID_SIGNATURE
             ],
             [
                 // Not before (nfb) in future
-                self::generateJWT('https://auth.acme.com', time() + 100, time() + 100, $privateKey),
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_BEFORE
             ],
             [
                 // Expired (exp)
-                self::generateJWT('https://auth.acme.com', time() - 100, time() - 100, $privateKey),
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() - 100, time() - 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_EXPIRED
             ],
             [
                 // Invalid issuer (iss)
-                self::generateJWT('https://invalid.com', time() + 100, time() - 100, $privateKey),
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
                 false,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
-                // Success
+                // Invalid issuer (iss)
+                'https://pro-1.frontendapi.corbado.io',
+                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                false,
+                ValidationException::CODE_JWT_ISSUER_MISMATCH
+            ],
+            [
+                // Invalid issuer (iss)
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-2.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey),
+                false,
+                ValidationException::CODE_JWT_ISSUER_MISMATCH
+            ],
+            [
+                // Success with new Frontend API URL
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                true,
+                0
+            ],
+            [
+                // Success with old Frontend API URL in JWT
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey),
+                true,
+                0
+            ],
+            [
+                // Success with old Frontend API URL in config
+                'https://pro-1.frontendapi.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                true,
+                0
+            ],
+            [
+                // Success with CNAME
+                'https://auth.acme.com',
                 self::generateJWT('https://auth.acme.com', time() + 100, time() - 100, $privateKey),
                 true,
                 0
@@ -111,7 +153,7 @@ class SessionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function createSession(): SessionService
+    private static function createSession(string $issuer): SessionService
     {
         $jwks = file_get_contents(dirname(__FILE__) . '/testdata/jwks.json');
         if ($jwks === false) {
@@ -245,9 +287,10 @@ class SessionServiceTest extends TestCase
 
         return new SessionService(
             $client,
-            'https://auth.acme.com',
+            $issuer,
             'https://xxx', // does not matter because response is mocked
-            $cacheItemPool
+            $cacheItemPool,
+            'pro-1'
         );
     }
 
