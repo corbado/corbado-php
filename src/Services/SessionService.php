@@ -115,22 +115,22 @@ class SessionService implements SessionInterface
     /**
      * @throws ValidationException
      */
-    private function validateIssuer(string $issuer, string $shortSession): void
+    private function validateIssuer(string $jwtIssuer, string $shortSession): void
     {
         // Compare to old Frontend API (without .cloud.) to make our Frontend API host name change downwards compatible
-        if ($issuer === sprintf('https://%s.frontendapi.corbado.io', $this->projectID)) {
+        if ($jwtIssuer === sprintf('https://%s.frontendapi.corbado.io', $this->projectID)) {
             return;
         }
 
         // Compare to new Frontend API (with .cloud.)
-        if ($issuer === sprintf('https://%s.frontendapi.cloud.corbado.io', $this->projectID)) {
+        if ($jwtIssuer === sprintf('https://%s.frontendapi.cloud.corbado.io', $this->projectID)) {
             return;
         }
 
         // Compare to configured issuer (from FrontendAPI), needed if you set a CNAME for example
-        if ($issuer !== $this->issuer) {
+        if ($jwtIssuer !== $this->issuer) {
             throw $this->createValidationException(
-                sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $issuer),
+                sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $jwtIssuer),
                 $shortSession,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             );
