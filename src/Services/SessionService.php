@@ -118,7 +118,7 @@ class SessionService implements SessionInterface
     private function validateIssuer(string $jwtIssuer, string $shortSession): void
     {
         if (empty($jwtIssuer)) {
-            throw $this->createValidationException('Issuer is empty', $shortSession, ValidationException::CODE_JWT_ISSUER_MISMATCH);
+            throw $this->createValidationException('Issuer is empty', $shortSession, ValidationException::CODE_JWT_ISSUER_EMPTY);
         }
 
         // Compare to old Frontend API (without .cloud.) to make our Frontend API host name change downwards compatible

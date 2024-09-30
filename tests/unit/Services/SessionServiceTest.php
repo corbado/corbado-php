@@ -103,7 +103,7 @@ class SessionServiceTest extends TestCase
                 'https://pro-1.frontendapi.cloud.corbado.io',
                 self::generateJWT('', time() + 100, time() - 100, $privateKey),
                 false,
-                ValidationException::CODE_JWT_ISSUER_MISMATCH
+                ValidationException::CODE_JWT_ISSUER_EMPTY
             ],
             [
                 // Invalid issuer (iss)
