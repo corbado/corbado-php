@@ -71,7 +71,8 @@ class SDK
                 $this->client,
                 $this->config->getFrontendAPI(),
                 $this->config->getFrontendAPI() . '/.well-known/jwks',
-                $this->config->getJwksCachePool()
+                $this->config->getJwksCachePool(),
+                $this->config->getProjectID()
             );
         }
 
