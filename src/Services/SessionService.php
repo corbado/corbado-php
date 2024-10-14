@@ -47,15 +47,15 @@ class SessionService implements SessionInterface
     }
 
     /**
-     * Validates the given short-term session (represented as JWT) value
+     * Validates the given session-token
      *
-     * @param string $shortSession Value (JWT)
+     * @param string $sessionToken Value (JWT)
      * @return UserEntity Returns UserEntity
      * @throws AssertException|ValidationException
      */
-    public function validateToken(string $shortSession): UserEntity
+    public function validateToken(string $sessionToken): UserEntity
     {
-        Assert::stringNotEmpty($shortSession);
+        Assert::stringNotEmpty($sessionToken);
 
         try {
             $keySet = new CachedKeySet(
@@ -67,8 +67,8 @@ class SessionService implements SessionInterface
                 true
             );
 
-            $decoded = JWT::decode($shortSession, $keySet);
-            $this->validateIssuer($decoded->iss, $shortSession);
+            $decoded = JWT::decode($sessionToken, $keySet);
+            $this->validateIssuer($decoded->iss, $sessionToken);
 
             $name = '';
             if (isset($decoded->name)) {
@@ -100,25 +100,25 @@ class SessionService implements SessionInterface
         } catch (ValidationException $e) {
             throw $e;
         } catch (SignatureInvalidException $e) {
-            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_SIGNATURE);
+            throw $this->createValidationException($e->getMessage(), $sessionToken, ValidationException::CODE_JWT_INVALID_SIGNATURE);
         } catch (BeforeValidException $e) {
-            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_BEFORE);
+            throw $this->createValidationException($e->getMessage(), $sessionToken, ValidationException::CODE_JWT_BEFORE);
         } catch (ExpiredException $e) {
-            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_EXPIRED);
+            throw $this->createValidationException($e->getMessage(), $sessionToken, ValidationException::CODE_JWT_EXPIRED);
         } catch (\UnexpectedValueException $e) {
-            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_INVALID_DATA);
+            throw $this->createValidationException($e->getMessage(), $sessionToken, ValidationException::CODE_JWT_INVALID_DATA);
         } catch (Throwable $e) {
-            throw $this->createValidationException($e->getMessage(), $shortSession, ValidationException::CODE_JWT_GENERAL);
+            throw $this->createValidationException($e->getMessage(), $sessionToken, ValidationException::CODE_JWT_GENERAL);
         }
     }
 
     /**
      * @throws ValidationException
      */
-    private function validateIssuer(string $jwtIssuer, string $shortSession): void
+    private function validateIssuer(string $jwtIssuer, string $sessionToken): void
     {
         if (empty($jwtIssuer)) {
-            throw $this->createValidationException('Issuer is empty', $shortSession, ValidationException::CODE_JWT_ISSUER_EMPTY);
+            throw $this->createValidationException('Issuer is empty', $sessionToken, ValidationException::CODE_JWT_ISSUER_EMPTY);
         }
 
         // Compare to old Frontend API (without .cloud.) to make our Frontend API host name change downwards compatible
@@ -135,7 +135,7 @@ class SessionService implements SessionInterface
         if ($jwtIssuer !== $this->issuer) {
             throw $this->createValidationException(
                 sprintf('Mismatch in issuer (configured through FrontendAPI: "%s", JWT issuer: "%s")', $this->issuer, $jwtIssuer),
-                $shortSession,
+                $sessionToken,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             );
         }
