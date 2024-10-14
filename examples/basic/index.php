@@ -18,7 +18,7 @@ $frontendAPI = '<Your Frontend API URL>';
 $backendAPI = '<Your Backend API URL>';
 
 // Create JWKS cache (JWKS stands for JSON Web Key Sets and contain the public keys that must
-// be used to verify the signature of a JWT which we use for the short-term session).
+// be used to verify the signature of a JWT which we use for the session-token).
 $jwksCache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter();
 
 // Create SDK instance
@@ -30,19 +30,19 @@ $sdk = new \Corbado\SDK($config);
 // Protecting routes                                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-// Retrieve the short-term session value from the Cookie ($_COOKIE['cbo_short_session']) or
+// Retrieve the session-token from cookie ($_COOKIE['cbo_session_token']) or
 // the Authorization header ($_SERVER['HTTP_AUTHORIZATION']).
-$shortTermSessionValue = '<Your short-term session value>';
+$sessionToken = '<Your session-token>';
 
-if ($shortTermSessionValue == '') {
-    // If the short-term session value is empty (e.g. the cookie is not set or
+if ($sessionToken == '') {
+    // If the session-token is empty (e.g. the cookie is not set or
     // expired), the user is not authenticated. Redirect to the login page.
     header('Location: /login');
     exit(0);
 }
 
 try {
-    $user = $sdk->sessions()->validateToken($shortTermSessionValue);
+    $user = $sdk->sessions()->validateToken($sessionToken);
 
     echo 'User with ID ' . $user->getId() . ' is authenticated!' . PHP_EOL;
 } catch (\Corbado\Exceptions\ValidationException $e) {
@@ -57,10 +57,10 @@ try {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-// Getting user data from short-term session (represented as JWT)                           //
+// Getting user data from session-token                                                     //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-$user = $sdk->sessions()->validateToken($shortTermSessionValue);
+$user = $sdk->sessions()->validateToken($sessionToken);
 
 echo 'User ID: ' . $user->getID() . PHP_EOL;
 echo 'User full name: ' . $user->getName() . PHP_EOL;
@@ -71,7 +71,7 @@ echo 'User phone number: ' . $user->getPhoneNumber() . PHP_EOL;
 // Getting user data from Corbado Backend API                                               //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-$user = $sdk->sessions()->validateToken($shortTermSessionValue);
+$user = $sdk->sessions()->validateToken($sessionToken);
 $fullUser = $sdk->users()->get($user->getID());
 
 echo 'User full name: ' . $fullUser->getFullName() . PHP_EOL;
