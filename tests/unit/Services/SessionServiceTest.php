@@ -24,14 +24,14 @@ class SessionServiceTest extends TestCase
      * @dataProvider provideJWTs
      * @throws Exception
      */
-    public function testValidateToken(string $issuer, string $shortSession, bool $success, int $code): void
+    public function testValidateToken(string $issuer, string $sessionToken, bool $success, int $code): void
     {
         $exception = null;
         $user = null;
 
         try {
             $session = self::createSession($issuer);
-            $user = $session->validateToken($shortSession);
+            $user = $session->validateToken($sessionToken);
         } catch (Throwable $e) {
             $exception = $e;
         }

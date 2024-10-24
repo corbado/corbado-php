@@ -6,5 +6,5 @@ use Corbado\Entities\UserEntity;
 
 interface SessionInterface
 {
-    public function validateToken(string $shortSession): UserEntity;
+    public function validateToken(string $sessionToken): UserEntity;
 }
