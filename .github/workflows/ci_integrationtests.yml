@@ -2,6 +2,8 @@ name: integrationtests
 
 on:
   workflow_call:
+  schedule:
+    - cron: '0 0 * * *'  # Run at midnight UTC every day  
 
 jobs:
   integrationtests:

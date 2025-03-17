@@ -24,7 +24,7 @@ class UserCompleteTest extends TestCase
 
         $this->assertNotNull($exception);
         $this->assertEquals(400, $exception->getHttpStatusCode());
-        $this->assertEqualsCanonicalizing(['userID: does not exist'], $exception->getValidationMessages());
+        $this->assertEqualsCanonicalizing(['xxx userID: does not exist'], $exception->getValidationMessages());
 
         // Test deleting a non-existent user
         try {
