@@ -40,7 +40,7 @@ $sdk = new Corbado\SDK($config);
 
 ### See in action
 
-[![integration-guides]([assets/integration_guides.png](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b))](https://app.corbado.com/getting-started?search=php)
+[![integration-guides](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b)](https://app.corbado.com/getting-started?search=php)
 
 - Check the [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
 - Check the integration tests [here](tests/integration)
@@ -90,7 +90,7 @@ try {
     
     // Show runtime of request in seconds (server side)
     echo $e->getRuntime() . PHP_EOL;
-    /Users/stefan.becker/Projects/Corbado/sdks/corbado-php/assets/integration_guides.png
+    
     // Show validation error messages (server side validation in case of HTTP
     // status code 400 (Bad Request))
     var_dump($e->getValidationMessages());
