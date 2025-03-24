@@ -90,7 +90,7 @@ try {
     
     // Show runtime of request in seconds (server side)
     echo $e->getRuntime() . PHP_EOL;
-    
+    /Users/stefan.becker/Projects/Corbado/sdks/corbado-php/assets/integration_guides.png
     // Show validation error messages (server side validation in case of HTTP
     // status code 400 (Bad Request))
     var_dump($e->getValidationMessages());
