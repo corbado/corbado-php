@@ -40,7 +40,7 @@ $sdk = new Corbado\SDK($config);
 
 ### See in action
 
-[![integration-guides](assets/use_integration_guides.png)](https://app.corbado.com/getting-started?search=php)
+[![integration-guides](assets/integration_guides.png)](https://app.corbado.com/getting-started?search=php)
 
 - Check the [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
 - Check the integration tests [here](tests/integration)
