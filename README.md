@@ -40,7 +40,7 @@ $sdk = new Corbado\SDK($config);
 
 ### See in action
 
-[![integration-guides](assets/integration_guides.png)](https://www.google.com){:target="_blank"}
+[![integration-guides](assets/integration_guides.png)](https://app.corbado.com/getting-started?search=php)
 
 - Check the integration tests [here](tests/integration).
 
