@@ -15,7 +15,6 @@ The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the
 :rocket: [Getting started](#rocket-getting-started) | :hammer_and_wrench: [Services](#hammer_and_wrench-services) | :books: [Advanced](#books-advanced) | :speech_balloon: [Support & Feedback](#speech_balloon-support--feedback)
 
 ## :rocket: Getting started
-![integration_guides](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b)
 
 ### Requirements
 
@@ -41,7 +40,7 @@ $sdk = new Corbado\SDK($config);
 
 ### See in action
 
-[![integration-guides](assets/integration_guides.png)](https://app.corbado.com/getting-started?search=php)
+[![integration-guides]([assets/integration_guides.png](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b))](https://app.corbado.com/getting-started?search=php)
 
 - Check the [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
 - Check the integration tests [here](tests/integration)
