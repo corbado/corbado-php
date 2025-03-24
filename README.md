@@ -42,7 +42,8 @@ $sdk = new Corbado\SDK($config);
 
 [![integration-guides](assets/integration_guides.png)](https://app.corbado.com/getting-started?search=php)
 
-- Check the integration tests [here](tests/integration).
+- Check the [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
+- Check the integration tests [here](tests/integration)
 
 ## :hammer_and_wrench: Services
 
