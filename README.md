@@ -18,8 +18,8 @@ The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the
 
 [![integration-guides](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b)](https://app.corbado.com/getting-started?search=php)
 
-- Check the [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
-- Check the integration tests [here](tests/integration)
+- Check [PHP Laravel](https://github.com/corbado/passkeys-php-laravel) example
+- Check integration tests [here](tests/integration)
 
 ## :rocket: Getting started
 
