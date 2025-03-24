@@ -38,9 +38,9 @@ $config = new Corbado\Config('<Project ID>', '<API secret>', '<Frontend API URL>
 $sdk = new Corbado\SDK($config);
 ```
 
-### Examples
+### See in action
 
-A list of examples can be found in the integration tests [here](tests/integration).
+- Check the integration tests [here](tests/integration).
 
 ## :hammer_and_wrench: Services
 
