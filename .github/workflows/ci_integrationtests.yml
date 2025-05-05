@@ -44,8 +44,8 @@ jobs:
 
       - name: Run integration tests
         env:
-          CORBADO_PROJECT_ID: ${{ secrets.CORBADO_PROJECT_ID }}
+          CORBADO_PROJECT_ID: "pro-9745575335315087553"
           CORBADO_API_SECRET: ${{ secrets.CORBADO_API_SECRET }}
-          CORBADO_FRONTEND_API: ${{ secrets.CORBADO_FRONTEND_API }}
-          CORBADO_BACKEND_API: ${{ secrets.CORBADO_BACKEND_API }}
+          CORBADO_FRONTEND_API: "https://pro-9745575335315087553.frontendapi.cloud.corbado.io"
+          CORBADO_BACKEND_API: "https://backendapi.cloud.corbado.io"
         run: composer integrationtests
