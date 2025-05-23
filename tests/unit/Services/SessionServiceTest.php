@@ -80,77 +80,84 @@ class SessionServiceTest extends TestCase
             [
                 // JWT with invalid private key signed
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $invalidPrivateKey),
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $invalidPrivateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_INVALID_SIGNATURE
             ],
             [
+                // JWT with alg 'none'
+                'https://pro-1.frontendapi.cloud.corbado.io',
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $invalidPrivateKey, 'NONE'),
+                false,
+                ValidationException::CODE_JWT_INVALID_DATA
+            ],
+            [
                 // Not before (nfb) in future
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $privateKey),
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() + 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_BEFORE
             ],
             [
                 // Expired (exp)
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() - 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() - 100, time() - 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_EXPIRED
             ],
             [
                 // Empty issuer (iss)
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('', time() + 100, time() - 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_ISSUER_EMPTY
             ],
             [
                 // Invalid issuer (iss)
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
                 // Invalid issuer (iss)
                 'https://pro-1.frontendapi.corbado.io',
-                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-2.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
                 // Invalid issuer (iss)
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-2.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-2.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 false,
                 ValidationException::CODE_JWT_ISSUER_MISMATCH
             ],
             [
                 // Success with new Frontend API URL
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 true,
                 0
             ],
             [
                 // Success with old Frontend API URL in JWT
                 'https://pro-1.frontendapi.cloud.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-1.frontendapi.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 true,
                 0
             ],
             [
                 // Success with old Frontend API URL in config
                 'https://pro-1.frontendapi.corbado.io',
-                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://pro-1.frontendapi.cloud.corbado.io', time() + 100, time() - 100, $privateKey, 'RS256'),
                 true,
                 0
             ],
             [
                 // Success with CNAME
                 'https://auth.acme.com',
-                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100, $privateKey),
+                self::generateJWT('https://auth.acme.com', time() + 100, time() - 100, $privateKey, 'RS256'),
                 true,
                 0
             ]
@@ -304,7 +311,7 @@ class SessionServiceTest extends TestCase
     /**
      * @throws Exception
      */
-    private static function generateJWT(string $iss, int $exp, int $nbf, string $privateKey): string
+    private static function generateJWT(string $iss, int $exp, int $nbf, string $privateKey, string $alg): string
     {
         $payload = [
             'iss' => $iss,
@@ -318,6 +325,23 @@ class SessionServiceTest extends TestCase
             'orig' => 'orig',
         ];
 
-        return JWT::encode($payload, $privateKey, 'RS256', 'kid123');
+        if ($alg === 'NONE') {
+            $encodedHeader = json_encode(['typ' => 'JWT', 'alg' => 'none']);
+            if ($encodedHeader === false) {
+                throw new Exception('json_encode() failed');
+            }
+
+            $encodedPayload = json_encode($payload);
+            if ($encodedPayload === false) {
+                throw new Exception('json_encode() failed');
+            }
+
+            $base64UrlHeader = rtrim(strtr(base64_encode($encodedHeader), '+/', '-_'), '=');
+            $base64UrlPayload = rtrim(strtr(base64_encode($encodedPayload), '+/', '-_'), '=');
+
+            return $base64UrlHeader . '.' . $base64UrlPayload . '.';
+        }
+
+        return JWT::encode($payload, $privateKey, $alg, 'kid123');
     }
 }
