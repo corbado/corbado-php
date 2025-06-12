@@ -5,10 +5,10 @@
 [![License](https://poser.pugx.org/corbado/php-sdk/license.svg)](https://packagist.org/packages/corbado/php-sdk)
 [![Latest Stable Version](http://poser.pugx.org/corbado/php-sdk/v)](https://packagist.org/packages/corbado/php-sdk)
 [![Test Status](https://github.com/corbado/corbado-php/workflows/tests/badge.svg)](https://github.com/corbado/corbado-php/actions?query=workflow%3Atests)
-[![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://apireference.cloud.corbado.io/backendapi-v2/)
+[![documentation](https://img.shields.io/badge/documentation-Corbado_Backend_API_Reference-blue.svg)](https://docs.corbado.com/api-reference/backend-api)
 [![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ)
 
-The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the [Corbado Backend API](https://apireference.cloud.corbado.io/backendapi-v2/) from applications written in the PHP language.
+The [Corbado](https://www.corbado.com) PHP SDK provides convenient access to the [Corbado Backend API](https://docs.corbado.com/api-reference/backend-api) from applications written in the PHP language.
 
 [![integration-guides](https://github.com/user-attachments/assets/7859201b-a345-4b68-b336-6e2edcc6577b)](https://app.corbado.com/getting-started?search=php)
 
@@ -57,7 +57,7 @@ To use a specific service, such as `sessions`, invoke it as shown below:
 
 ```PHP
 $user = $sdk->sessions()->getCurrentUser();
-``` 
+```
 
 ## :books: Advanced
 
@@ -80,21 +80,21 @@ try {
 } catch (ServerException $e) {
     // Show HTTP status code (400 in this case)
     echo $e->getHttpStatusCode() . PHP_EOL;
-    
+
     // Show request ID (can be used in developer panel to look up the full request
     // and response, see https://app.corbado.com/app/logs/requests)
     echo $e->getRequestID() . PHP_EOL;
-    
+
     // Show full request data
     var_dump($e->getRequestData());
-    
+
     // Show runtime of request in seconds (server side)
     echo $e->getRuntime() . PHP_EOL;
-    
+
     // Show validation error messages (server side validation in case of HTTP
     // status code 400 (Bad Request))
     var_dump($e->getValidationMessages());
-    
+
     // Show full error data
     var_dump($e->getError());
 }
